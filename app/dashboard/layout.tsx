@@ -19,6 +19,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import { FreeTrialBanner } from "@/components/free-trial-banner"
 import { Logo } from "@/components/logo"
+import { signOut } from "next-auth/react"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [isMobile, setIsMobile] = useState(false)
@@ -177,11 +178,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                     <span>Feedback</span>
                   </a>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/login">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </Link>
+                <DropdownMenuItem onClick={()=>signOut({ callbackUrl: "/login" })}>
+                  
+                    <LogOut className="mr-2 h-4 w-4"  />
+                    <span >Log out</span>
+                  
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

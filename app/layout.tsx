@@ -1,8 +1,11 @@
+
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Onest } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
+import { SessionProvider } from "next-auth/react"
+import SessionWrapper from "@/components/SessionWrapper"
 
 // Load Onest font for headings
 const onest = Onest({
@@ -32,8 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${onest.variable} ${inter.variable} font-sans`}>
+        <SessionWrapper>
         {children}
+
         <Toaster />
+        </SessionWrapper>
       </body>
     </html>
   )

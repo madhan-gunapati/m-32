@@ -1,4 +1,6 @@
+"use client"
 import type React from "react"
+import { useState } from "react"
 import { CheckCircle, ShieldCheck } from "lucide-react"
 import {
   Button,
@@ -13,7 +15,9 @@ import {
 } from "@/components/ui"
 import Link from "next/link"
 import { Logo } from "@/components/logo"
-
+import {signIn} from "next-auth/react"
+import { useSearchParams } from "next/navigation"
+import { useSession } from "next-auth/react"
 // Custom icon components
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -50,6 +54,31 @@ function MicrosoftIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function LoginPage() {
+  const [credentials , setCredentials] = useState({ email: "", password: "" })
+  const searchParams = useSearchParams();
+  
+  
+  let error = searchParams.get('error');
+  
+if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.';
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials({ ...credentials, email: e.target.value })
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials({ ...credentials, password: e.target.value })
+  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle login logic here
+  
+  const {email, password} = credentials
+  await signIn("credentials", {
+    email,
+    password,
+    callbackUrl: "/dashboard", 
+  });
+  }
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Left side - Benefits and testimonials (hidden on mobile) */}
@@ -123,11 +152,11 @@ export default function LoginPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" onClick={() => signIn("google",  { callbackUrl: "/dashboard" })}>
                 <GoogleIcon className="mr-2 h-5 w-5 text-[#4285F4]" />
                 Google
               </Button>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" onClick={() => signIn("azure-ad", { callbackUrl: "/dashboard" })}>
                 <MicrosoftIcon className="mr-2 h-5 w-5 text-[#00A4EF]" />
                 Microsoft
               </Button>
@@ -142,7 +171,7 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" placeholder="m@example.com" type="email" />
+              <Input id="email" placeholder="m@example.com" type="email" onChange={handleEmailChange} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -151,10 +180,11 @@ export default function LoginPage() {
                   Forgot password?
                 </Link>
               </div>
-              <Input id="password" type="password" />
+              <Input id="password" type="password" onChange={handlePasswordChange}/>
             </div>
-            <Button className="w-full" size="lg" asChild>
-              <Link href="/dashboard/assignments">Log in</Link>
+            <p className="text-red-500 text-center">{error? error : ''}</p>
+            <Button className="w-full" size="lg"  onClick={handleSubmit}>
+             Login
             </Button>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 border-t pt-4">
