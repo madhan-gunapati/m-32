@@ -1,8 +1,10 @@
-//TESTING the working of prisma
+// //TESTING the working of prisma
 
-import { PrismaClient } from "@/lib/generated/prisma";
+// import { PrismaClient } from "@/lib/generated/prisma";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+
+import prisma from "@/lib/prisma";
 
 export async function GET() {
     const user = await prisma.user.create({

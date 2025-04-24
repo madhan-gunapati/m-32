@@ -22,3 +22,15 @@ model User {
   hashed_password String 
 }
   
+enum PaymentStatus {
+  PENDING
+  ACTIVE
+  STOPPED
+}
+
+model Payments {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  email          String        @unique
+  payment_status PaymentStatus
+}
+

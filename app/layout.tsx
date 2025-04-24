@@ -6,7 +6,8 @@ import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
 import { SessionProvider } from "next-auth/react"
 import SessionWrapper from "@/components/SessionWrapper"
-
+import {store} from "@/lib/state/store"
+import { Provider } from "react-redux"
 // Load Onest font for headings
 const onest = Onest({
   subsets: ["latin"],
@@ -35,11 +36,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${onest.variable} ${inter.variable} font-sans`}>
+      
         <SessionWrapper>
         {children}
 
         <Toaster />
         </SessionWrapper>
+        
       </body>
     </html>
   )

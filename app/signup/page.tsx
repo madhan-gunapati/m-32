@@ -22,7 +22,10 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { Logo } from "@/components/logo"
-
+import { useSelector, useSelector as UseSelector } from "react-redux"
+import { RootState } from "@/lib/state/store"
+import {Elements , CardElement , useStripe , useElements} from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
 // Custom icon components
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -57,13 +60,24 @@ function MicrosoftIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
 
-export default function SignupPage() {
+
+function SignupForm() {
   const [step, setStep] = useState(1)
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("")  
   const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+  const [loginError, setLoginError] = useState("")
+  const [cardError, setCardError] = useState("")
   const [billingCycle, setBillingCycle] = useState("yearly")
   const [selectedPlan, setSelectedPlan] = useState("department")
+  const [loading, setLoading] = useState(false)
+  const stripe = useStripe()
+  const elements = useElements() 
+  
+
+  
 
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,6 +87,79 @@ export default function SignupPage() {
   const handleBack = () => {
     setStep(step - 1)
   }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const password = e.target.value
+   
+      // Handle valid password
+      setPassword(password)
+    }
+  
+  const checkSignUpDetails = () => {
+    if (email === "" || name === "" || password === "") {
+      setLoginError("Please fill in all fields")
+      return
+    }
+    if (password.length < 8) {
+      setLoginError("Password must be at least 8 characters") 
+      return
+    }
+    setLoginError("")
+    setStep(2)
+  }
+
+  const handleSubscribe = async () => {
+    
+    if (!stripe || !elements) {
+      setCardError("Stripe.js has not yet loaded.") 
+      return 
+    }
+
+    setLoading(true);
+
+    const card = elements.getElement(CardElement);
+    if (!card) {
+      setCardError('Card element not found');
+      setLoading(false);
+      return;
+    }
+
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: 'card',
+      card,
+      billing_details: { email },
+    });
+
+    if (error) {
+      alert(error.message);
+      setLoading(false);
+      return;
+    }
+try{
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        paymentMethodId: paymentMethod.id,
+        priceId: 'price_1RH7I24JgYJcsKhbqJ8yOEWg', // Replace with your actual price ID
+      }),
+    });
+
+    const data = await res.json();
+    if (data.error) {
+      alert( data.error);
+    } else {
+      alert('Subscription created successfully!');
+    }
+  }
+  catch (error) {
+    if(error instanceof Error)
+    console.error('Error creating subscription:', error.message);
+  }
+
+    setLoading(false);
+  };
 
   const plans = {
     monthly: {
@@ -247,7 +334,7 @@ export default function SignupPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             {step === 1 ? (
-              <form onSubmit={handleContinue} className="space-y-4">
+              <form onSubmit={(e)=>{e.preventDefault()}} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <Button variant="outline" className="w-full">
                     <GoogleIcon className="mr-2 h-5 w-5" />
@@ -296,7 +383,7 @@ export default function SignupPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" name="password" type="password" placeholder="••••••••" required />
+                    <Input id="password" name="password" type="password" placeholder="••••••••"  required  value={password} onChange={handlePasswordChange} />
                     <p className="text-xs text-muted-foreground">Password must be at least 8 characters</p>
                   </div>
                 </div>
@@ -323,8 +410,8 @@ export default function SignupPage() {
                     </li>
                   </ul>
                 </div>
-
-                <Button className="w-full py-6 text-base" type="submit">
+                <p className="text-center text-red-500">{loginError}</p>
+                <Button className="w-full py-6 text-base" type="button" onClick={checkSignUpDetails} >
                   Start Your Free, Effortless Teaching Journey
                 </Button>
 
@@ -397,7 +484,7 @@ export default function SignupPage() {
                           )}
                         </div>
                         <ul className="mb-2 space-y-1 text-sm">
-                          {plan.features.map((feature, index) => (
+                          {plan.features.map((feature : any, index:any) => (
                             <li key={index} className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-green-500" />
                               <span>{feature}</span>
@@ -444,7 +531,8 @@ export default function SignupPage() {
                   <span className="text-sm font-medium text-primary">Secure — No charges today</span>
                 </div>
 
-                <div className="border rounded-md p-4 bg-white space-y-4">
+                {/* <div className="border rounded-md p-4 bg-white space-y-4">
+                  
                   <div className="space-y-2">
                     <Label htmlFor="card-number" className="text-xs text-muted-foreground">
                       Card number
@@ -466,7 +554,24 @@ export default function SignupPage() {
                       <Input id="cvc" placeholder="123" />
                     </div>
                   </div>
-                </div>
+                </div> */}
+
+{stripe && elements && (
+  <div style={{ border: '1px solid black', padding: '12px' }}>
+    <CardElement   options={{
+    hidePostalCode: true,
+    style: {
+      base: {
+        fontSize: '16px',
+        color: '#424770',
+        '::placeholder': { color: '#aab7c4' },
+      },
+      invalid: { color: '#9e2146' },
+    },
+  }}/>
+  </div>
+)}
+                
 
                 <div className="flex items-center space-x-2 text-sm">
                   <Shield className="h-4 w-4 text-muted-foreground" />
@@ -524,11 +629,12 @@ export default function SignupPage() {
                 </div>
 
                 <div className="flex flex-col space-y-2">
-                  <Button className="w-full py-6 text-base" asChild>
-                    <Link href="/dashboard/assignments">
+                  <p className="text-red-400">{cardError}</p>
+                  <Button className="w-full py-6 text-base" type="button" onClick={handleSubscribe} >
+                   
                       <CreditCard className="mr-2 h-4 w-4" />
                       Activate Your Trial — Secure & No Charges Today
-                    </Link>
+                  
                   </Button>
 
                   <Button variant="ghost" onClick={handleBack} className="mt-2">
@@ -555,3 +661,13 @@ export default function SignupPage() {
     </div>
   )
 }
+
+
+export default function SignUpPage() {
+  return (
+    <Elements stripe={stripePromise}>
+      <SignupForm />
+    </Elements>
+  );
+}
+

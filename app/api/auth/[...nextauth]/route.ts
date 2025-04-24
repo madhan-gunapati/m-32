@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import AzureADProvider from "next-auth/providers/azure-ad";
+import { sign } from "crypto";
 const handler = NextAuth({
     providers: [
         CredentialsProvider({
@@ -37,13 +38,24 @@ const handler = NextAuth({
         GoogleProvider({
           clientId: process.env.GOOGLE_CLIENT_ID!,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        }),
+        },
+    
+    ),
         AzureADProvider({
           clientId: process.env.AZURE_AD_CLIENT_ID!,
           clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
           tenantId: process.env.AZURE_AD_TENANT_ID!,
         }),
       ],
+      callbacks: {
+        async signIn({ user, account, profile }) {
+          // You can add custom logic here to handle sign-in
+          console.log("SignIn Callback", user, account, profile);
+          return true;
+        },
+        
+      
+      },
       pages: {
         signIn: "/login", // custom login page
           error: '/login'
