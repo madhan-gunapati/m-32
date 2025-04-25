@@ -18,6 +18,8 @@ import { Logo } from "@/components/logo"
 import {signIn} from "next-auth/react"
 import { useSearchParams } from "next/navigation"
 import { useSession } from "next-auth/react"
+import { Suspense } from 'react';
+
 // Custom icon components
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -53,7 +55,7 @@ function MicrosoftIcon(props: React.SVGProps<SVGSVGElement>) {
   )
 }
 
-export default function LoginPage() {
+function LoginPage() {
   const [credentials , setCredentials] = useState({ email: "", password: "" })
   const searchParams = useSearchParams();
   
@@ -79,7 +81,7 @@ if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.'
     callbackUrl: "/dashboard", 
   });
   }
-  
+
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Left side - Benefits and testimonials (hidden on mobile) */}
@@ -203,4 +205,13 @@ if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.'
       </div>
     </div>
   )
+}
+
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginPage />
+    </Suspense>
+  );
 }
