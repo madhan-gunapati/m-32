@@ -14,11 +14,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  email           String @unique
-  hashed_password String
+enum Provider {
+  credentials
+  google
+  azure
 }
 
 enum PaymentStatus {
@@ -27,8 +26,23 @@ enum PaymentStatus {
   STOPPED
 }
 
+enum SubsciptionType {
+  educator
+  department
+  institution
+}
+
+model User {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String   @unique
+  hashed_password String
+  provider        Provider
+}
+
 model Payments {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  email          String        @unique
-  payment_status PaymentStatus
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  email             String          @unique
+  payment_status    PaymentStatus
+  subscription_type SubsciptionType
 }

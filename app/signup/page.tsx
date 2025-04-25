@@ -26,6 +26,7 @@ import { useSelector, useSelector as UseSelector } from "react-redux"
 import { RootState } from "@/lib/state/store"
 import {Elements , CardElement , useStripe , useElements} from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
+import { signIn } from "next-auth/react"
 // Custom icon components
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -108,6 +109,16 @@ function SignupForm() {
     setStep(2)
   }
 
+const handleSignUp = async()=>{
+  await signIn("credentials", {   
+    email,
+    password,
+    name,
+    callbackUrl: "/dashboard",
+  })
+}
+
+
   const handleSubscribe = async () => {
     
     if (!stripe || !elements) {
@@ -142,7 +153,9 @@ try{
       body: JSON.stringify({
         email,
         paymentMethodId: paymentMethod.id,
-        priceId: 'price_1RH7I24JgYJcsKhbqJ8yOEWg', // Replace with your actual price ID
+         
+        subscription_type: selectedPlan,
+        billing_cycle: billingCycle,
       }),
     });
 
@@ -150,6 +163,7 @@ try{
     if (data.error) {
       alert( data.error);
     } else {
+      handleSignUp()
       alert('Subscription created successfully!');
     }
   }

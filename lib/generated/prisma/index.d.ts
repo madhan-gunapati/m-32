@@ -28,7 +28,16 @@ export type Payments = $Result.DefaultSelection<Prisma.$PaymentsPayload>
  * Enums
  */
 export namespace $Enums {
-  export const PaymentStatus: {
+  export const Provider: {
+  credentials: 'credentials',
+  google: 'google',
+  azure: 'azure'
+};
+
+export type Provider = (typeof Provider)[keyof typeof Provider]
+
+
+export const PaymentStatus: {
   PENDING: 'PENDING',
   ACTIVE: 'ACTIVE',
   STOPPED: 'STOPPED'
@@ -36,11 +45,28 @@ export namespace $Enums {
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
+
+export const SubsciptionType: {
+  educator: 'educator',
+  department: 'department',
+  institution: 'institution'
+};
+
+export type SubsciptionType = (typeof SubsciptionType)[keyof typeof SubsciptionType]
+
 }
+
+export type Provider = $Enums.Provider
+
+export const Provider: typeof $Enums.Provider
 
 export type PaymentStatus = $Enums.PaymentStatus
 
 export const PaymentStatus: typeof $Enums.PaymentStatus
+
+export type SubsciptionType = $Enums.SubsciptionType
+
+export const SubsciptionType: typeof $Enums.SubsciptionType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -947,6 +973,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     hashed_password: string | null
+    provider: $Enums.Provider | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -954,6 +981,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     hashed_password: string | null
+    provider: $Enums.Provider | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -961,6 +989,7 @@ export namespace Prisma {
     name: number
     email: number
     hashed_password: number
+    provider: number
     _all: number
   }
 
@@ -970,6 +999,7 @@ export namespace Prisma {
     name?: true
     email?: true
     hashed_password?: true
+    provider?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -977,6 +1007,7 @@ export namespace Prisma {
     name?: true
     email?: true
     hashed_password?: true
+    provider?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -984,6 +1015,7 @@ export namespace Prisma {
     name?: true
     email?: true
     hashed_password?: true
+    provider?: true
     _all?: true
   }
 
@@ -1064,6 +1096,7 @@ export namespace Prisma {
     name: string
     email: string
     hashed_password: string
+    provider: $Enums.Provider
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1088,6 +1121,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     hashed_password?: boolean
+    provider?: boolean
   }, ExtArgs["result"]["user"]>
 
 
@@ -1097,9 +1131,10 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     hashed_password?: boolean
+    provider?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "hashed_password", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "hashed_password" | "provider", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1109,6 +1144,7 @@ export namespace Prisma {
       name: string
       email: string
       hashed_password: string
+      provider: $Enums.Provider
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1505,6 +1541,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly hashed_password: FieldRef<"User", 'String'>
+    readonly provider: FieldRef<"User", 'Provider'>
   }
     
 
@@ -1867,18 +1904,21 @@ export namespace Prisma {
     id: string | null
     email: string | null
     payment_status: $Enums.PaymentStatus | null
+    subscription_type: $Enums.SubsciptionType | null
   }
 
   export type PaymentsMaxAggregateOutputType = {
     id: string | null
     email: string | null
     payment_status: $Enums.PaymentStatus | null
+    subscription_type: $Enums.SubsciptionType | null
   }
 
   export type PaymentsCountAggregateOutputType = {
     id: number
     email: number
     payment_status: number
+    subscription_type: number
     _all: number
   }
 
@@ -1887,18 +1927,21 @@ export namespace Prisma {
     id?: true
     email?: true
     payment_status?: true
+    subscription_type?: true
   }
 
   export type PaymentsMaxAggregateInputType = {
     id?: true
     email?: true
     payment_status?: true
+    subscription_type?: true
   }
 
   export type PaymentsCountAggregateInputType = {
     id?: true
     email?: true
     payment_status?: true
+    subscription_type?: true
     _all?: true
   }
 
@@ -1978,6 +2021,7 @@ export namespace Prisma {
     id: string
     email: string
     payment_status: $Enums.PaymentStatus
+    subscription_type: $Enums.SubsciptionType
     _count: PaymentsCountAggregateOutputType | null
     _min: PaymentsMinAggregateOutputType | null
     _max: PaymentsMaxAggregateOutputType | null
@@ -2001,6 +2045,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     payment_status?: boolean
+    subscription_type?: boolean
   }, ExtArgs["result"]["payments"]>
 
 
@@ -2009,9 +2054,10 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     payment_status?: boolean
+    subscription_type?: boolean
   }
 
-  export type PaymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "payment_status", ExtArgs["result"]["payments"]>
+  export type PaymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "payment_status" | "subscription_type", ExtArgs["result"]["payments"]>
 
   export type $PaymentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Payments"
@@ -2020,6 +2066,7 @@ export namespace Prisma {
       id: string
       email: string
       payment_status: $Enums.PaymentStatus
+      subscription_type: $Enums.SubsciptionType
     }, ExtArgs["result"]["payments"]>
     composites: {}
   }
@@ -2415,6 +2462,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Payments", 'String'>
     readonly email: FieldRef<"Payments", 'String'>
     readonly payment_status: FieldRef<"Payments", 'PaymentStatus'>
+    readonly subscription_type: FieldRef<"Payments", 'SubsciptionType'>
   }
     
 
@@ -2771,7 +2819,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    hashed_password: 'hashed_password'
+    hashed_password: 'hashed_password',
+    provider: 'provider'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -2780,7 +2829,8 @@ export namespace Prisma {
   export const PaymentsScalarFieldEnum: {
     id: 'id',
     email: 'email',
-    payment_status: 'payment_status'
+    payment_status: 'payment_status',
+    subscription_type: 'subscription_type'
   };
 
   export type PaymentsScalarFieldEnum = (typeof PaymentsScalarFieldEnum)[keyof typeof PaymentsScalarFieldEnum]
@@ -2822,6 +2872,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Provider'
+   */
+  export type EnumProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Provider'>
+    
+
+
+  /**
+   * Reference to a field of type 'Provider[]'
+   */
+  export type ListEnumProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Provider[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PaymentStatus'
    */
   export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
@@ -2832,6 +2896,20 @@ export namespace Prisma {
    * Reference to a field of type 'PaymentStatus[]'
    */
   export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubsciptionType'
+   */
+  export type EnumSubsciptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubsciptionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubsciptionType[]'
+   */
+  export type ListEnumSubsciptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubsciptionType[]'>
     
 
 
@@ -2860,6 +2938,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     hashed_password?: StringFilter<"User"> | string
+    provider?: EnumProviderFilter<"User"> | $Enums.Provider
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2867,6 +2946,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     hashed_password?: SortOrder
+    provider?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -2877,6 +2957,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     hashed_password?: StringFilter<"User"> | string
+    provider?: EnumProviderFilter<"User"> | $Enums.Provider
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -2884,6 +2965,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     hashed_password?: SortOrder
+    provider?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -2897,6 +2979,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     hashed_password?: StringWithAggregatesFilter<"User"> | string
+    provider?: EnumProviderWithAggregatesFilter<"User"> | $Enums.Provider
   }
 
   export type PaymentsWhereInput = {
@@ -2906,12 +2989,14 @@ export namespace Prisma {
     id?: StringFilter<"Payments"> | string
     email?: StringFilter<"Payments"> | string
     payment_status?: EnumPaymentStatusFilter<"Payments"> | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFilter<"Payments"> | $Enums.SubsciptionType
   }
 
   export type PaymentsOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
     payment_status?: SortOrder
+    subscription_type?: SortOrder
   }
 
   export type PaymentsWhereUniqueInput = Prisma.AtLeast<{
@@ -2921,12 +3006,14 @@ export namespace Prisma {
     OR?: PaymentsWhereInput[]
     NOT?: PaymentsWhereInput | PaymentsWhereInput[]
     payment_status?: EnumPaymentStatusFilter<"Payments"> | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFilter<"Payments"> | $Enums.SubsciptionType
   }, "id" | "email">
 
   export type PaymentsOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
     payment_status?: SortOrder
+    subscription_type?: SortOrder
     _count?: PaymentsCountOrderByAggregateInput
     _max?: PaymentsMaxOrderByAggregateInput
     _min?: PaymentsMinOrderByAggregateInput
@@ -2939,6 +3026,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Payments"> | string
     email?: StringWithAggregatesFilter<"Payments"> | string
     payment_status?: EnumPaymentStatusWithAggregatesFilter<"Payments"> | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeWithAggregatesFilter<"Payments"> | $Enums.SubsciptionType
   }
 
   export type UserCreateInput = {
@@ -2946,6 +3034,7 @@ export namespace Prisma {
     name: string
     email: string
     hashed_password: string
+    provider: $Enums.Provider
   }
 
   export type UserUncheckedCreateInput = {
@@ -2953,18 +3042,21 @@ export namespace Prisma {
     name: string
     email: string
     hashed_password: string
+    provider: $Enums.Provider
   }
 
   export type UserUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   }
 
   export type UserUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   }
 
   export type UserCreateManyInput = {
@@ -2972,56 +3064,66 @@ export namespace Prisma {
     name: string
     email: string
     hashed_password: string
+    provider: $Enums.Provider
   }
 
   export type UserUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   }
 
   export type UserUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   }
 
   export type PaymentsCreateInput = {
     id?: string
     email: string
     payment_status: $Enums.PaymentStatus
+    subscription_type: $Enums.SubsciptionType
   }
 
   export type PaymentsUncheckedCreateInput = {
     id?: string
     email: string
     payment_status: $Enums.PaymentStatus
+    subscription_type: $Enums.SubsciptionType
   }
 
   export type PaymentsUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     payment_status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFieldUpdateOperationsInput | $Enums.SubsciptionType
   }
 
   export type PaymentsUncheckedUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     payment_status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFieldUpdateOperationsInput | $Enums.SubsciptionType
   }
 
   export type PaymentsCreateManyInput = {
     id?: string
     email: string
     payment_status: $Enums.PaymentStatus
+    subscription_type: $Enums.SubsciptionType
   }
 
   export type PaymentsUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     payment_status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFieldUpdateOperationsInput | $Enums.SubsciptionType
   }
 
   export type PaymentsUncheckedUpdateManyInput = {
     email?: StringFieldUpdateOperationsInput | string
     payment_status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    subscription_type?: EnumSubsciptionTypeFieldUpdateOperationsInput | $Enums.SubsciptionType
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3039,11 +3141,19 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type EnumProviderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Provider | EnumProviderFieldRefInput<$PrismaModel>
+    in?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    not?: NestedEnumProviderFilter<$PrismaModel> | $Enums.Provider
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     hashed_password?: SortOrder
+    provider?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -3051,6 +3161,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     hashed_password?: SortOrder
+    provider?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -3058,6 +3169,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     hashed_password?: SortOrder
+    provider?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3078,6 +3190,16 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type EnumProviderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Provider | EnumProviderFieldRefInput<$PrismaModel>
+    in?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    not?: NestedEnumProviderWithAggregatesFilter<$PrismaModel> | $Enums.Provider
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProviderFilter<$PrismaModel>
+    _max?: NestedEnumProviderFilter<$PrismaModel>
+  }
+
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
@@ -3085,22 +3207,32 @@ export namespace Prisma {
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
   }
 
+  export type EnumSubsciptionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubsciptionType | EnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubsciptionTypeFilter<$PrismaModel> | $Enums.SubsciptionType
+  }
+
   export type PaymentsCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     payment_status?: SortOrder
+    subscription_type?: SortOrder
   }
 
   export type PaymentsMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     payment_status?: SortOrder
+    subscription_type?: SortOrder
   }
 
   export type PaymentsMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     payment_status?: SortOrder
+    subscription_type?: SortOrder
   }
 
   export type EnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -3113,12 +3245,30 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
+  export type EnumSubsciptionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubsciptionType | EnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubsciptionTypeWithAggregatesFilter<$PrismaModel> | $Enums.SubsciptionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubsciptionTypeFilter<$PrismaModel>
+    _max?: NestedEnumSubsciptionTypeFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
+  export type EnumProviderFieldUpdateOperationsInput = {
+    set?: $Enums.Provider
+  }
+
   export type EnumPaymentStatusFieldUpdateOperationsInput = {
     set?: $Enums.PaymentStatus
+  }
+
+  export type EnumSubsciptionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SubsciptionType
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3133,6 +3283,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedEnumProviderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Provider | EnumProviderFieldRefInput<$PrismaModel>
+    in?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    not?: NestedEnumProviderFilter<$PrismaModel> | $Enums.Provider
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3163,11 +3320,28 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumProviderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Provider | EnumProviderFieldRefInput<$PrismaModel>
+    in?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
+    not?: NestedEnumProviderWithAggregatesFilter<$PrismaModel> | $Enums.Provider
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProviderFilter<$PrismaModel>
+    _max?: NestedEnumProviderFilter<$PrismaModel>
+  }
+
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
+  }
+
+  export type NestedEnumSubsciptionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubsciptionType | EnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubsciptionTypeFilter<$PrismaModel> | $Enums.SubsciptionType
   }
 
   export type NestedEnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -3178,6 +3352,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentStatusFilter<$PrismaModel>
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSubsciptionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubsciptionType | EnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubsciptionType[] | ListEnumSubsciptionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubsciptionTypeWithAggregatesFilter<$PrismaModel> | $Enums.SubsciptionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubsciptionTypeFilter<$PrismaModel>
+    _max?: NestedEnumSubsciptionTypeFilter<$PrismaModel>
   }
 
 

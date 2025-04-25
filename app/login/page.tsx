@@ -79,6 +79,7 @@ if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.'
     callbackUrl: "/dashboard", 
   });
   }
+  
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Left side - Benefits and testimonials (hidden on mobile) */}

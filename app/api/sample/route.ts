@@ -11,7 +11,8 @@ export async function GET() {
         data: {
             email: "manu@gmail.com",
             name: "Manu", 
-            hashed_password: "123456"
+            hashed_password: "123456",
+            provider: "credentials",
         },
     });
     console.log(user);
