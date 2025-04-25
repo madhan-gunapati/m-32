@@ -39,6 +39,9 @@ const handler = NextAuth({
             
             if (user ) {
               // If password matches, return user object
+              if(user.provider !== 'credentials'){
+                throw new Error(`Try Log in with ${user.provider}`); // 👈 Custom error
+                }
               const hashedPassword = user?.hashed_password;
              const result = await bcrypt.compare(password, hashedPassword);
              if(!result){
@@ -97,9 +100,46 @@ const handler = NextAuth({
       ],
       callbacks: {
         async signIn({ user, account, profile }) {
-          // You can add custom logic here to handle sign-in
-          //check for payment status and sign in only if payment is active
-          return true;
+           
+            
+            if(user.email && user.name ){
+                //check if user is already in the database
+            const existingUser = await prisma.user.findUnique({
+                where: {
+                  email: user.email,
+                },
+              });
+            //if user is already in the database, return true
+            if (existingUser) {
+                return true;
+            }
+            //if not existing user, check for payment status and create new user
+            const user_payment = await prisma.payments.findUnique({
+                where: {
+                email: user.email,
+                },
+            });
+            //paymnent done add new user
+            if(user_payment){
+                const newUser = await prisma.user.create({
+                    data: {
+                      email: user.email,
+                      name: user.name,
+                      hashed_password: 'google',
+                      provider: 'google',
+                    },
+                  });
+                  return true;
+            }
+            else {
+                //payment not done stop new user registration 
+                throw new Error('Error in Subscribtion , Add Subscription or Register First '); // 👈 Custom error
+                
+            }
+            
+        }
+        throw new Error('Error in Authentication , TRY AGAIN '); // 👈 Custom error
+         
         },
         
       

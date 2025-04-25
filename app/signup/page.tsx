@@ -22,7 +22,7 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { Logo } from "@/components/logo"
-import { useSelector, useSelector as UseSelector } from "react-redux"
+import { Provider, useSelector, useSelector as UseSelector } from "react-redux"
 import { RootState } from "@/lib/state/store"
 import {Elements , CardElement , useStripe , useElements} from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
@@ -74,6 +74,7 @@ function SignupForm() {
   const [billingCycle, setBillingCycle] = useState("yearly")
   const [selectedPlan, setSelectedPlan] = useState("department")
   const [loading, setLoading] = useState(false)
+  const [provider, setProvider] = useState("credentials")
   const stripe = useStripe()
   const elements = useElements() 
   
@@ -106,10 +107,12 @@ function SignupForm() {
       return
     }
     setLoginError("")
+    setProvider("credentials")
     setStep(2)
   }
 
 const handleSignUp = async()=>{
+  if(provider === "credentials"){ 
   await signIn("credentials", {   
     email,
     password,
@@ -117,6 +120,19 @@ const handleSignUp = async()=>{
     callbackUrl: "/dashboard",
   })
 }
+else if(provider === "google"){
+  await signIn("google", {
+    callbackUrl: "/dashboard",
+  })
+}
+}
+
+const handleGoogleSignUp = async () => {
+  setProvider("google")
+  setStep(2)
+}
+
+
 
 
   const handleSubscribe = async () => {
@@ -133,6 +149,11 @@ const handleSignUp = async()=>{
       setCardError('Card element not found');
       setLoading(false);
       return;
+    }
+    if(email === ""){
+      setCardError("Please enter your email")
+      setLoading(false)
+      return
     }
 
     const { paymentMethod, error } = await stripe.createPaymentMethod({
@@ -350,11 +371,11 @@ try{
             {step === 1 ? (
               <form onSubmit={(e)=>{e.preventDefault()}} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full" onClick={handleGoogleSignUp}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full" >
                     <MicrosoftIcon className="mr-2 h-5 w-5" />
                     Microsoft
                   </Button>
@@ -569,6 +590,7 @@ try{
                     </div>
                   </div>
                 </div> */}
+                
 
 {stripe && elements && (
   <div style={{ border: '1px solid black', padding: '12px' }}>
@@ -585,7 +607,18 @@ try{
   }}/>
   </div>
 )}
-                
+              <div className="space-y-2">
+                    <Label htmlFor="email">Work or .edu email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="john@edu.com"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
 
                 <div className="flex items-center space-x-2 text-sm">
                   <Shield className="h-4 w-4 text-muted-foreground" />
@@ -643,7 +676,7 @@ try{
                 </div>
 
                 <div className="flex flex-col space-y-2">
-                  <p className="text-red-400">{cardError}</p>
+                  <p className="text-red-400 text-center">{cardError}</p>
                   <Button className="w-full py-6 text-base" type="button" onClick={handleSubscribe} >
                    
                       <CreditCard className="mr-2 h-4 w-4" />

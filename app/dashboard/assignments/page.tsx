@@ -6,9 +6,16 @@ import { Input } from "@/components/ui/input"
 import { CalendarDays, Clock, FileText, Plus, Search } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
+import { useEffect } from "react"
+import { useSession } from "next-auth/react"
 
 export default function AssignmentsPage() {
   const { toast } = useToast()
+
+  
+    // const sesssion = useSession()
+    // console.log("Session data:", sesssion)
+  
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
