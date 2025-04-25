@@ -3,7 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import prisma from "@/lib/prisma";
-import bcrypt from "bcrypt";
+
+import bcrypt from "bcryptjs";
 const handler = NextAuth({
     providers: [
         CredentialsProvider({
