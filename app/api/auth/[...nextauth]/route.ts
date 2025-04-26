@@ -48,7 +48,7 @@ const handler = NextAuth({
              if(!result){
               throw new Error('Invalid password'); // 👈 Custom error
                 }
-              return { id: user.id, name: user.name, email: user.email };
+              return { id: user.id, name: user.name, email: user.email  , provider: user.provider ,test: 'test' };
             }
 
 // If user not found, create a new user
@@ -80,10 +80,7 @@ const handler = NextAuth({
             else if (!user && !name ){
               throw new Error('user-not-found'); // 👈 Custom error
             }
-            // if (email === "test@example.com" && password === "pass123") {
-            //   return { id: "1", name: "Test User", email };
-            // }
-    
+           
             return null;
           },
         }),
@@ -101,47 +98,80 @@ const handler = NextAuth({
       ],
       callbacks: {
         async signIn({ user, account, profile }) {
-           
-            
-            if(user.email && user.name ){
-                //check if user is already in the database
-            const existingUser = await prisma.user.findUnique({
+            if (user.email && user.name) {
+              const existingUser = await prisma.user.findUnique({
                 where: {
                   email: user.email,
                 },
               });
-            //if user is already in the database, return true
-            if (existingUser) {
-                return true;
-            }
-            //if not existing user, check for payment status and create new user
-            const user_payment = await prisma.payments.findUnique({
-                where: {
-                email: user.email,
-                },
-            });
-            //paymnent done add new user
-            if(user_payment){
-                const newUser = await prisma.user.create({
-                    data: {
-                      email: user.email,
-                      name: user.name,
-                      hashed_password: 'google',
-                      provider: 'google',
-                    },
-                  });
-                  return true;
-            }
-            else {
-                //payment not done stop new user registration 
-                throw new Error('Error in Subscribtion , Add Subscription or Register First '); // 👈 Custom error
+          
+              if (existingUser) {
                 
+                return true; // User exists, allow sign-in
+              }
+          
+              const user_payment = await prisma.payments.findUnique({
+                where: {
+                  email: user.email,
+                },
+              });
+          
+              if (user_payment) {
+                // Create new user and return the user object
+                const newUser = await prisma.user.create({
+                  data: {
+                    email: user.email,
+                    name: user.name,
+                    hashed_password: 'google',
+                    provider: 'google',
+                  },
+                });
+          
+                // Return new user object to make it available in the jwt and session callbacks
+                return true; // User created successfully
+              } else {
+                throw new Error('Error in Subscription, Add Subscription or Register First');
+              }
             }
+          
+            throw new Error('Error in Authentication, TRY AGAIN');
+          }
+          ,
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+                token.name = user.name;
+                token.email = user.email;
+              // Attach user data to JWT
+              if(!user.provider && user.email){
+                
+                const existingUser = await prisma.user.findUnique({
+                  where: {
+                    email: user.email,
+                  },
+                });
+                if (existingUser) {
+                  token.id = existingUser.id;
+                  token.name = existingUser.name;
+                  token.email = existingUser.email;
+                }
+              }
             
-        }
-        throw new Error('Error in Authentication , TRY AGAIN '); // 👈 Custom error
-         
-        },
+             
+            }
+            return token;
+          },
+          async session({ session, token }) {
+            // Attach user data from JWT to session
+           
+            if (token && session.user) {
+              session.user.id = token.id;
+              session.user.name = token.name;
+              session.user.email = token.email;
+            }
+            return session;
+          },
+        
         
       
       },

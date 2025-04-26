@@ -13,8 +13,8 @@ export default function AssignmentsPage() {
   const { toast } = useToast()
 
   
-    // const sesssion = useSession()
-    // console.log("Session data:", sesssion)
+    const sesssion = useSession()
+    console.log("Session data:", sesssion)
   
 
   return (

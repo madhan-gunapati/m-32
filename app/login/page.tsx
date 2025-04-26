@@ -57,6 +57,7 @@ function MicrosoftIcon(props: React.SVGProps<SVGSVGElement>) {
 
 function LoginPage() {
   const [credentials , setCredentials] = useState({ email: "", password: "" })
+  const [loading, setLoading] = useState(false)
   const searchParams = useSearchParams();
   
   
@@ -73,6 +74,7 @@ if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.'
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     // Handle login logic here
+    setLoading(true)
   
   const {email, password} = credentials
   await signIn("credentials", {
@@ -187,7 +189,7 @@ if(error==='CredentialsSignin') error = 'Invalid credentials. Please try again.'
             </div>
             <p className="text-red-500 text-center">{error? error : ''}</p>
             <Button className="w-full" size="lg"  onClick={handleSubmit}>
-             Login
+          {loading?'Loading ....' :   'Login' }
             </Button>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 border-t pt-4">

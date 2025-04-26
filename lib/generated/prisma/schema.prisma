@@ -33,17 +33,78 @@ enum SubsciptionType {
   institution
 }
 
+model Payments {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  email             String          @unique
+  payment_status    PaymentStatus
+  subscription_type SubsciptionType
+}
+
 model User {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   email           String   @unique
   hashed_password String
   provider        Provider
+  courses         Course[] // reverse relation: a user can create many courses
 }
 
-model Payments {
-  id                String          @id @default(auto()) @map("_id") @db.ObjectId
-  email             String          @unique
-  payment_status    PaymentStatus
-  subscription_type SubsciptionType
+model Course {
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  instructorId      String
+  instructor        User               @relation(fields: [instructorId], references: [id])
+  subject           String
+  gradeLevel        String
+  courseDescription String
+  generationPrompt  String
+  additionalInfo    String?
+  term              String
+  learningObjects   String[]
+  requiredMaterials RequiredMaterial[]
+  gradingPolicy     GradingPolicy?
+  coursePolicies    CoursePolicies?
+  gradingReferences GradingReference[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model RequiredMaterial {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String
+  course    Course  @relation(fields: [courseId], references: [id])
+  title     String
+  author    String
+  publisher String
+  required  Boolean
+}
+
+model GradingPolicy {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  courseId      String @unique
+  course        Course @relation(fields: [courseId], references: [id])
+  assignment    Int
+  participation Int
+  midterm       Int
+  finalExam     Int
+}
+
+model CoursePolicies {
+  id                      String @id @default(auto()) @map("_id") @db.ObjectId
+  courseId                String @unique
+  course                  Course @relation(fields: [courseId], references: [id])
+  attendancePolicy        String
+  lateWorkPolicy          String
+  academicIntegrityPolicy String
+  accommodationsPolicy    String
+}
+
+model GradingReference {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id])
+  title    String
+  type     String
+  addedIn  DateTime @default(now())
+  link     String
 }
