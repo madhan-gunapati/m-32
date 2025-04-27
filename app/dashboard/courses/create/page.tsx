@@ -49,6 +49,7 @@ export default function CreateCoursePage() {
 
   function onSubmitDetails(values: z.infer<typeof formSchema>) {
     setCourseDetails(values)
+    
     setActiveTab("syllabus")
   }
 

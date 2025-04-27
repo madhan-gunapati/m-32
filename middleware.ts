@@ -4,6 +4,7 @@ import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req:NextRequest) {
+    
   // Get the JWT token from cookies
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 

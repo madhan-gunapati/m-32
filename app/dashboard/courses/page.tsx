@@ -1,12 +1,19 @@
+"use client"
 import Link from "next/link"
 import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
+import { useSelector } from "react-redux"
+import { selectUser } from "@/lib/state/slices/userSlice"
+ 
 export default function CoursesPage() {
+
+  
+  
   // Mock courses data
+  //fetch the created classes - MN
   const courses = [
     {
       id: "1",

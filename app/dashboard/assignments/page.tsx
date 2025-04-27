@@ -6,21 +6,35 @@ import { Input } from "@/components/ui/input"
 import { CalendarDays, Clock, FileText, Plus, Search } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
-import { useEffect } from "react"
+import { use, useEffect } from "react"
 import { useSession } from "next-auth/react"
+import { useDispatch } from "react-redux"
+import { setUser } from "@/lib/state/slices/userSlice"
+import { date } from "zod"
+import { useSelector } from "react-redux"
+import { selectUser } from "@/lib/state/slices/userSlice"
 
 export default function AssignmentsPage() {
   const { toast } = useToast()
-
+  const dispatch = useDispatch()
   
-    const sesssion = useSession()
-    console.log("Session data:", sesssion)
+
+  const { data: session } = useSession()
+  
+ 
+
+  useEffect(() => {
+    
+  dispatch(setUser(session?.user))
+  }
+, [session , dispatch])
   
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Assignments</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Assignments </h2>
+        
         <div className="flex items-center space-x-2">
           <Link href="/dashboard/create-assignment">
             <Button>
