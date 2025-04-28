@@ -32,6 +32,9 @@ import { Badge } from "@/components/ui/badge"
 import { PDFPreviewDialog } from "@/components/pdf-preview-dialog"
 import { EmailPreviewDialog } from "@/components/email-preview-dialog"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { useSelector } from "react-redux"
+import { selectUser } from "@/lib/state/slices/userSlice"
+
 
 // Assignment type definitions
 const ASSIGNMENT_TYPES = {
@@ -121,6 +124,9 @@ export default function CreateAssignmentPage() {
 
   // Assignment type selection
   const [selectedType, setSelectedType] = useState<string>("")
+
+  //getting user data
+   const user = useSelector(selectUser)
 
   // Basic assignment info
   const [assignmentTitle, setAssignmentTitle] = useState("")
@@ -248,6 +254,7 @@ export default function CreateAssignmentPage() {
       }
 
       setGeneratedContent(newContent)
+      
       setIsGenerating(false)
 
       toast({
@@ -575,21 +582,43 @@ This peer evaluation will be used as part of the individual grade calculation fo
   }
 
   // Handle saving the assignment
-  const handleSaveAssignment = () => {
+  const handleSaveAssignment = async() => {
     setIsSaving(true)
 
+    const isoDueDate = new Date(dueDate).toISOString();
+
+const response = await  fetch('/api/create-assignment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_email: user?.email,
+        details: {
+           assignmentTitle,
+           selectedCourse,
+           dueDate:isoDueDate,
+          description,
+           learningObjectives,
+          
+          ... generatedContent,
+        },
+      }),
+    })
+   
+    setIsSaving(false)
     // Simulate saving assignment
-    setTimeout(() => {
-      setIsSaving(false)
+    // setTimeout(() => {
+    //   setIsSaving(false)
 
-      toast({
-        title: "Assignment Saved",
-        description: "Your assignment has been saved successfully",
-      })
+    //   toast({
+    //     title: "Assignment Saved",
+    //     description: "Your assignment has been saved successfully",
+    //   })
 
-      // In a real app, this would save to a database and redirect
-      router.push("/dashboard/assignments")
-    }, 2000)
+    //   // In a real app, this would save to a database and redirect
+    //   router.push("/dashboard/assignments")
+    // }, 2000)
   }
 
   // Handle copying content to clipboard
@@ -1204,6 +1233,7 @@ This peer evaluation will be used as part of the individual grade calculation fo
                   <>
                     <Save className="mr-2 h-4 w-4" />
                     Save {typeInfo?.title || "Assignment"}
+                    
                   </>
                 )}
               </Button>

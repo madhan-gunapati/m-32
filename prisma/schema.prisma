@@ -35,51 +35,6 @@ enum SubsciptionType{
 
 
 
-  
-
-model Payments {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  email          String        @unique
-  payment_status PaymentStatus
-  subscription_type SubsciptionType
-}
-
-model User {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  email String @unique
-  hashed_password String 
-  provider Provider
-  courses   Course[]  // reverse relation: a user can create many courses
-}
-
-
-
-model Course {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String   @db.ObjectId
-  user              User     @relation(fields: [userId], references: [id])
-
-  name              String
-  courseTitle       String
-  courseDescription String
-  description       String
-  instructor        String
-  subject           String
-  term              String
-  gradeLevel        String
-
-  learningObjectives String[]
-
-  requiredMaterials Material[]
-
-  gradingPolicy     GradingPolicy
-
-  policies          Policies
-
-  weeklySchedule    WeeklySchedule[]
-}
-
 type Material {
   title     String
   author    String
@@ -113,4 +68,75 @@ type WeeklySchedule {
   readings    String
   assignments String
 }
+
+
+
+
+  
+
+model Payments {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  email          String        @unique
+  payment_status PaymentStatus
+  subscription_type SubsciptionType
+}
+
+model User {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  email String @unique
+  hashed_password String 
+  provider Provider
+  courses   Course[]  // reverse relation: a user can create many courses
+  assignments Assignment[] // One user can have many assignments
+}
+
+
+
+model Course {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String   @db.ObjectId
+  user              User     @relation(fields: [userId], references: [id])
+
+  name              String
+  courseTitle       String
+  courseDescription String
+  description       String
+  instructor        String
+  subject           String
+  term              String
+  gradeLevel        String
+
+  learningObjectives String[]
+
+  requiredMaterials Material[]
+
+  gradingPolicy     GradingPolicy
+
+  policies          Policies
+
+  weeklySchedule    WeeklySchedule[]
+}
+
+model Assignment {
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  assignmentTitle    String
+  selectedCourse     String
+  dueDate            DateTime
+  description        String
+  learningObjectives String
+  instructions       String?  // Optional fields
+  rubric             String?
+  questions          String?
+  answer_key         String?
+  checklist          String?
+  participation_criteria String?
+  peer_evaluation    String?
+  userId             String     // Foreign key to User
+  user               User     @relation(fields: [userId], references: [id]) // Relationship to User model
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
 
