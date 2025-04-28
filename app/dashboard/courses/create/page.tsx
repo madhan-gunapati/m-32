@@ -60,7 +60,7 @@ export default function CreateCoursePage() {
     const pushableData = {
       user: user.id,
       course:{
-        
+
       ...courseDetails,
       ...syllabusData,
       }
@@ -76,10 +76,14 @@ export default function CreateCoursePage() {
       },
       body: JSON.stringify(pushableData),
     })
-    setTimeout(() => {
-      setIsCreating(false)
+    const data = await result.json()
+    setIsCreating(false)
+    if (data.success) {
       router.push("/dashboard/courses")
-    }, 1500)
+    }
+    else {
+      alert("Error creating course. Please try again.")
+    }
   }
 
   return (
