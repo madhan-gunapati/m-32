@@ -65,7 +65,7 @@ export default function CreateCoursePage() {
       ...syllabusData,
       }
     }
-    console.log("Course Created:", pushableData)
+    
     
     setIsCreating(true)
     // Simulate API call

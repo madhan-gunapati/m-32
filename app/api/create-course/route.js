@@ -19,7 +19,7 @@ export async function POST(req) {
 
     return NextResponse.json(newCourse);
   } catch (error) {
-    console.error(error.message);
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+    
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
