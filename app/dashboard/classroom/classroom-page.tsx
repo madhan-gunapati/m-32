@@ -19,9 +19,52 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { StudentsList } from "./students-list"
 import { CoTeachersList } from "./co-teachers-list"
 import { useToast } from "@/components/ui/toast"
-
+import { useState } from "react"
+import { useSelector } from "react-redux"
+import { selectUser } from "@/lib/state/slices/userSlice"
 export default function ClassroomPage() {
+  const [studentName , setStudentName] = useState("")
+  const [studentEmail , setStudentEmail] = useState("")
+  const [studentClass , setStudentClass] = useState("")
+  const [coTeacherEmail , setCoTeacherEmail] = useState("")
+  const [coTeacherClass , setCoTeacherClass] = useState("")
+  const [coTeacherName , setCoTeacherName] = useState("")
+  const [coTeacherRole , setCoTeacherRole] = useState("")
   const { toast } = useToast()
+  const user = useSelector(selectUser)
+ 
+  const handleStudentSubmissiontoDB = async () => {
+    try {
+      const response = await fetch("/api/create-student", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_email: user.email,
+          details: {
+            name: studentName,
+            email: studentEmail,
+            class: studentClass,
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        alert("Failed to add student . Retry again")
+      }
+
+      const data = await response.json()
+      toast({
+        title: "Student added",
+        description: "The student has been added to your class successfully.",
+      })
+      
+    } catch (error) {
+      alert("Error adding student:") 
+    }
+  } 
+
   return (
     <div className="container py-6">
       <div className="flex items-center justify-between">
@@ -151,7 +194,7 @@ export default function ClassroomPage() {
                         <Label htmlFor="student-name" className="text-right">
                           Name
                         </Label>
-                        <Input id="student-name" placeholder="John Doe" className="col-span-3" />
+                        <Input id="student-name" placeholder="John Doe" className="col-span-3" onChange={(e)=>setStudentName(e.target.value)} />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="student-email" className="text-right">
@@ -162,6 +205,7 @@ export default function ClassroomPage() {
                           type="email"
                           placeholder="student@school.edu"
                           className="col-span-3"
+                          onChange={(e)=>setStudentEmail(e.target.value)}
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
@@ -171,10 +215,12 @@ export default function ClassroomPage() {
                         <select
                           id="student-class"
                           className="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        onChange={(e)=>setStudentClass(e.target.value)}
                         >
                           <option value="math101">Math 101</option>
                           <option value="science202">Science 202</option>
                           <option value="history303">History 303</option>
+                          <option value="Will fetch from db">Will fetch from db</option>
                         </select>
                       </div>
                     </div>
@@ -182,10 +228,8 @@ export default function ClassroomPage() {
                       <Button
                         type="submit"
                         onClick={() => {
-                          toast({
-                            title: "Student added",
-                            description: "The student has been added to your class successfully.",
-                          })
+                          handleStudentSubmissiontoDB()
+                          
                         }}
                       >
                         Add Student
