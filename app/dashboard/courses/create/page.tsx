@@ -17,6 +17,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { SyllabusCreator } from "./syllabus-creator"
 import { useSelector } from "react-redux"
 import { selectUser } from "@/lib/state/slices/userSlice"
+import { useSession } from "next-auth/react"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { setUser } from "@/lib/state/slices/userSlice"
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Course name must be at least 2 characters.",
@@ -37,7 +41,12 @@ export default function CreateCoursePage() {
   const [activeTab, setActiveTab] = useState("details")
   const [isCreating, setIsCreating] = useState(false)
   const [courseDetails, setCourseDetails] = useState({})
-  const user = useSelector(selectUser)
+  const dispatch = useDispatch()
+  
+
+  const { data: session } = useSession()
+  
+  // const user = useSelector(selectUser)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,9 +65,15 @@ export default function CreateCoursePage() {
   }
 
   async function onCreateCourse(syllabusData: any) {
+
+    
+      if(session?.user?.email === undefined) {
+        alert("Please log in to create a course.")
+        return
+      }
    
     const pushableData = {
-      user: user.id,
+      user_email: session.user.email,
       course:{
 
       ...courseDetails,
@@ -76,16 +91,28 @@ export default function CreateCoursePage() {
       },
       body: JSON.stringify(pushableData),
     })
-    const data = await result.json()
-    setIsCreating(false)
-    if (data.success) {
-      router.push("/dashboard/courses")
-    }
-    else {
-      console.error("Error creating course:", data.error)
-      alert("Error creating course. Please try again.")
-    }
+      
+      setIsCreating(false)
+      if (result.ok) {
+        alert("Course created successfully!")
+        router.push("/dashboard/courses")
+      }
+      else {
+        console.error("Error creating course:", result.statusText)
+        alert("Error creating course. Please try again.")
+      }
+  
+  
   }
+
+  
+ 
+
+  useEffect(() => {
+    
+  dispatch(setUser(session?.user))
+  }
+, [session , dispatch])
 
   return (
     <div className="container mx-auto py-6">
