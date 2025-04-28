@@ -619,6 +619,7 @@ const response = await  fetch('/api/create-assignment', {
       // console.log("Assignment saved successfully:", data)
       setIsSaving(false)
       alert("Assignment created successfully!")
+         router.push("/dashboard/assignments")
     }
    
     // setIsSaving(false)
