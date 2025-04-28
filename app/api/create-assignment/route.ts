@@ -7,7 +7,7 @@ export async function POST(req:NextRequest) {
   try {
     const body = await req.json();
     const { user_email  , details} = body;
-    console.log("Received data:", details);
+    
     const user = await prisma.user.findUnique({  
         where: {
             email: user_email,

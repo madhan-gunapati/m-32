@@ -605,8 +605,23 @@ const response = await  fetch('/api/create-assignment', {
         },
       }),
     })
+    if (!response.ok) {
+      setIsSaving(false)
+      toast({
+        title: "Error saving assignment",
+        description: "There was an error saving your assignment. Please try again.",
+        variant: "destructive",
+      })
+      return
+    }
+    else {
+      const data = await response.json()
+      // console.log("Assignment saved successfully:", data)
+      setIsSaving(false)
+      alert("Assignment created successfully!")
+    }
    
-    setIsSaving(false)
+    // setIsSaving(false)
     // Simulate saving assignment
     // setTimeout(() => {
     //   setIsSaving(false)
