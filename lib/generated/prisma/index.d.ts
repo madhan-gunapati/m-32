@@ -14,6 +14,31 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model Material
+ * 
+ */
+export type Material = $Result.DefaultSelection<Prisma.$MaterialPayload>
+/**
+ * Model GradingPolicy
+ * 
+ */
+export type GradingPolicy = $Result.DefaultSelection<Prisma.$GradingPolicyPayload>
+/**
+ * Model GradingComponent
+ * 
+ */
+export type GradingComponent = $Result.DefaultSelection<Prisma.$GradingComponentPayload>
+/**
+ * Model Policies
+ * 
+ */
+export type Policies = $Result.DefaultSelection<Prisma.$PoliciesPayload>
+/**
+ * Model WeeklySchedule
+ * 
+ */
+export type WeeklySchedule = $Result.DefaultSelection<Prisma.$WeeklySchedulePayload>
+/**
  * Model Payments
  * 
  */
@@ -28,26 +53,6 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type Course = $Result.DefaultSelection<Prisma.$CoursePayload>
-/**
- * Model RequiredMaterial
- * 
- */
-export type RequiredMaterial = $Result.DefaultSelection<Prisma.$RequiredMaterialPayload>
-/**
- * Model GradingPolicy
- * 
- */
-export type GradingPolicy = $Result.DefaultSelection<Prisma.$GradingPolicyPayload>
-/**
- * Model CoursePolicies
- * 
- */
-export type CoursePolicies = $Result.DefaultSelection<Prisma.$CoursePoliciesPayload>
-/**
- * Model GradingReference
- * 
- */
-export type GradingReference = $Result.DefaultSelection<Prisma.$GradingReferencePayload>
 
 /**
  * Enums
@@ -214,46 +219,6 @@ export class PrismaClient<
     * ```
     */
   get course(): Prisma.CourseDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.requiredMaterial`: Exposes CRUD operations for the **RequiredMaterial** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more RequiredMaterials
-    * const requiredMaterials = await prisma.requiredMaterial.findMany()
-    * ```
-    */
-  get requiredMaterial(): Prisma.RequiredMaterialDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.gradingPolicy`: Exposes CRUD operations for the **GradingPolicy** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more GradingPolicies
-    * const gradingPolicies = await prisma.gradingPolicy.findMany()
-    * ```
-    */
-  get gradingPolicy(): Prisma.GradingPolicyDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.coursePolicies`: Exposes CRUD operations for the **CoursePolicies** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CoursePolicies
-    * const coursePolicies = await prisma.coursePolicies.findMany()
-    * ```
-    */
-  get coursePolicies(): Prisma.CoursePoliciesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.gradingReference`: Exposes CRUD operations for the **GradingReference** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more GradingReferences
-    * const gradingReferences = await prisma.gradingReference.findMany()
-    * ```
-    */
-  get gradingReference(): Prisma.GradingReferenceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -696,11 +661,7 @@ export namespace Prisma {
   export const ModelName: {
     Payments: 'Payments',
     User: 'User',
-    Course: 'Course',
-    RequiredMaterial: 'RequiredMaterial',
-    GradingPolicy: 'GradingPolicy',
-    CoursePolicies: 'CoursePolicies',
-    GradingReference: 'GradingReference'
+    Course: 'Course'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -719,7 +680,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "payments" | "user" | "course" | "requiredMaterial" | "gradingPolicy" | "coursePolicies" | "gradingReference"
+      modelProps: "payments" | "user" | "course"
       txIsolationLevel: never
     }
     model: {
@@ -945,302 +906,6 @@ export namespace Prisma {
           }
         }
       }
-      RequiredMaterial: {
-        payload: Prisma.$RequiredMaterialPayload<ExtArgs>
-        fields: Prisma.RequiredMaterialFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.RequiredMaterialFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.RequiredMaterialFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          findFirst: {
-            args: Prisma.RequiredMaterialFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.RequiredMaterialFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          findMany: {
-            args: Prisma.RequiredMaterialFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>[]
-          }
-          create: {
-            args: Prisma.RequiredMaterialCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          createMany: {
-            args: Prisma.RequiredMaterialCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.RequiredMaterialDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          update: {
-            args: Prisma.RequiredMaterialUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          deleteMany: {
-            args: Prisma.RequiredMaterialDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.RequiredMaterialUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.RequiredMaterialUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequiredMaterialPayload>
-          }
-          aggregate: {
-            args: Prisma.RequiredMaterialAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateRequiredMaterial>
-          }
-          groupBy: {
-            args: Prisma.RequiredMaterialGroupByArgs<ExtArgs>
-            result: $Utils.Optional<RequiredMaterialGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.RequiredMaterialFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.RequiredMaterialAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.RequiredMaterialCountArgs<ExtArgs>
-            result: $Utils.Optional<RequiredMaterialCountAggregateOutputType> | number
-          }
-        }
-      }
-      GradingPolicy: {
-        payload: Prisma.$GradingPolicyPayload<ExtArgs>
-        fields: Prisma.GradingPolicyFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.GradingPolicyFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.GradingPolicyFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          findFirst: {
-            args: Prisma.GradingPolicyFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.GradingPolicyFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          findMany: {
-            args: Prisma.GradingPolicyFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>[]
-          }
-          create: {
-            args: Prisma.GradingPolicyCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          createMany: {
-            args: Prisma.GradingPolicyCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.GradingPolicyDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          update: {
-            args: Prisma.GradingPolicyUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          deleteMany: {
-            args: Prisma.GradingPolicyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.GradingPolicyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.GradingPolicyUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingPolicyPayload>
-          }
-          aggregate: {
-            args: Prisma.GradingPolicyAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGradingPolicy>
-          }
-          groupBy: {
-            args: Prisma.GradingPolicyGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GradingPolicyGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.GradingPolicyFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.GradingPolicyAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.GradingPolicyCountArgs<ExtArgs>
-            result: $Utils.Optional<GradingPolicyCountAggregateOutputType> | number
-          }
-        }
-      }
-      CoursePolicies: {
-        payload: Prisma.$CoursePoliciesPayload<ExtArgs>
-        fields: Prisma.CoursePoliciesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CoursePoliciesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CoursePoliciesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          findFirst: {
-            args: Prisma.CoursePoliciesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CoursePoliciesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          findMany: {
-            args: Prisma.CoursePoliciesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>[]
-          }
-          create: {
-            args: Prisma.CoursePoliciesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          createMany: {
-            args: Prisma.CoursePoliciesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.CoursePoliciesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          update: {
-            args: Prisma.CoursePoliciesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          deleteMany: {
-            args: Prisma.CoursePoliciesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CoursePoliciesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.CoursePoliciesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CoursePoliciesPayload>
-          }
-          aggregate: {
-            args: Prisma.CoursePoliciesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCoursePolicies>
-          }
-          groupBy: {
-            args: Prisma.CoursePoliciesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CoursePoliciesGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.CoursePoliciesFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.CoursePoliciesAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.CoursePoliciesCountArgs<ExtArgs>
-            result: $Utils.Optional<CoursePoliciesCountAggregateOutputType> | number
-          }
-        }
-      }
-      GradingReference: {
-        payload: Prisma.$GradingReferencePayload<ExtArgs>
-        fields: Prisma.GradingReferenceFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.GradingReferenceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.GradingReferenceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          findFirst: {
-            args: Prisma.GradingReferenceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.GradingReferenceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          findMany: {
-            args: Prisma.GradingReferenceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>[]
-          }
-          create: {
-            args: Prisma.GradingReferenceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          createMany: {
-            args: Prisma.GradingReferenceCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.GradingReferenceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          update: {
-            args: Prisma.GradingReferenceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          deleteMany: {
-            args: Prisma.GradingReferenceDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.GradingReferenceUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.GradingReferenceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GradingReferencePayload>
-          }
-          aggregate: {
-            args: Prisma.GradingReferenceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGradingReference>
-          }
-          groupBy: {
-            args: Prisma.GradingReferenceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GradingReferenceGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.GradingReferenceFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.GradingReferenceAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.GradingReferenceCountArgs<ExtArgs>
-            result: $Utils.Optional<GradingReferenceCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1315,10 +980,6 @@ export namespace Prisma {
     payments?: PaymentsOmit
     user?: UserOmit
     course?: CourseOmit
-    requiredMaterial?: RequiredMaterialOmit
-    gradingPolicy?: GradingPolicyOmit
-    coursePolicies?: CoursePoliciesOmit
-    gradingReference?: GradingReferenceOmit
   }
 
   /* Types for Logging */
@@ -1440,48 +1101,356 @@ export namespace Prisma {
 
 
   /**
-   * Count Type CourseCountOutputType
+   * Models
    */
 
-  export type CourseCountOutputType = {
-    requiredMaterials: number
-    gradingReferences: number
+  /**
+   * Model Material
+   */
+
+
+
+
+
+  export type MaterialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    title?: boolean
+    author?: boolean
+    publisher?: boolean
+    year?: boolean
+    required?: boolean
+  }, ExtArgs["result"]["material"]>
+
+
+
+  export type MaterialSelectScalar = {
+    title?: boolean
+    author?: boolean
+    publisher?: boolean
+    year?: boolean
+    required?: boolean
   }
 
-  export type CourseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    requiredMaterials?: boolean | CourseCountOutputTypeCountRequiredMaterialsArgs
-    gradingReferences?: boolean | CourseCountOutputTypeCountGradingReferencesArgs
+  export type MaterialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"title" | "author" | "publisher" | "year" | "required", ExtArgs["result"]["material"]>
+
+  export type $MaterialPayload = {
+    name: "Material"
+    objects: {}
+    scalars: {
+      title: string
+      author: string
+      publisher: string
+      year: string
+      required: boolean
+    }
+    composites: {}
   }
+
+  type MaterialGetPayload<S extends boolean | null | undefined | MaterialDefaultArgs> = $Result.GetResult<Prisma.$MaterialPayload, S>
+
+
+
+
+
+  /**
+   * Fields of the Material model
+   */
+  interface MaterialFieldRefs {
+    readonly title: FieldRef<"Material", 'String'>
+    readonly author: FieldRef<"Material", 'String'>
+    readonly publisher: FieldRef<"Material", 'String'>
+    readonly year: FieldRef<"Material", 'String'>
+    readonly required: FieldRef<"Material", 'Boolean'>
+  }
+    
 
   // Custom InputTypes
   /**
-   * CourseCountOutputType without action
+   * Material without action
    */
-  export type CourseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MaterialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CourseCountOutputType
+     * Select specific fields to fetch from the Material
      */
-    select?: CourseCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * CourseCountOutputType without action
-   */
-  export type CourseCountOutputTypeCountRequiredMaterialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RequiredMaterialWhereInput
-  }
-
-  /**
-   * CourseCountOutputType without action
-   */
-  export type CourseCountOutputTypeCountGradingReferencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GradingReferenceWhereInput
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
   }
 
 
   /**
-   * Models
+   * Model GradingPolicy
    */
+
+
+
+
+
+  export type GradingPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    assignments?: boolean | GradingComponentDefaultArgs<ExtArgs>
+    midterm?: boolean | GradingComponentDefaultArgs<ExtArgs>
+    finalExam?: boolean | GradingComponentDefaultArgs<ExtArgs>
+    participation?: boolean | GradingComponentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gradingPolicy"]>
+
+
+
+  export type GradingPolicySelectScalar = {}
+
+  export type GradingPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"assignments" | "midterm" | "finalExam" | "participation", ExtArgs["result"]["gradingPolicy"]>
+  export type GradingPolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $GradingPolicyPayload = {
+    name: "GradingPolicy"
+    objects: {}
+    scalars: {}
+    composites: {
+      assignments: Prisma.$GradingComponentPayload
+      midterm: Prisma.$GradingComponentPayload
+      finalExam: Prisma.$GradingComponentPayload
+      participation: Prisma.$GradingComponentPayload
+    }
+  }
+
+  type GradingPolicyGetPayload<S extends boolean | null | undefined | GradingPolicyDefaultArgs> = $Result.GetResult<Prisma.$GradingPolicyPayload, S>
+
+
+
+
+
+  /**
+   * Fields of the GradingPolicy model
+   */
+  interface GradingPolicyFieldRefs {
+
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GradingPolicy without action
+   */
+  export type GradingPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GradingPolicy
+     */
+    select?: GradingPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GradingPolicy
+     */
+    omit?: GradingPolicyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradingPolicyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GradingComponent
+   */
+
+
+
+
+
+  export type GradingComponentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    description?: boolean
+    percentage?: boolean
+  }, ExtArgs["result"]["gradingComponent"]>
+
+
+
+  export type GradingComponentSelectScalar = {
+    description?: boolean
+    percentage?: boolean
+  }
+
+  export type GradingComponentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"description" | "percentage", ExtArgs["result"]["gradingComponent"]>
+
+  export type $GradingComponentPayload = {
+    name: "GradingComponent"
+    objects: {}
+    scalars: {
+      description: string
+      percentage: number
+    }
+    composites: {}
+  }
+
+  type GradingComponentGetPayload<S extends boolean | null | undefined | GradingComponentDefaultArgs> = $Result.GetResult<Prisma.$GradingComponentPayload, S>
+
+
+
+
+
+  /**
+   * Fields of the GradingComponent model
+   */
+  interface GradingComponentFieldRefs {
+    readonly description: FieldRef<"GradingComponent", 'String'>
+    readonly percentage: FieldRef<"GradingComponent", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GradingComponent without action
+   */
+  export type GradingComponentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GradingComponent
+     */
+    select?: GradingComponentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GradingComponent
+     */
+    omit?: GradingComponentOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Policies
+   */
+
+
+
+
+
+  export type PoliciesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    attendance?: boolean
+    lateWork?: boolean
+    academicIntegrity?: boolean
+    accommodations?: boolean
+  }, ExtArgs["result"]["policies"]>
+
+
+
+  export type PoliciesSelectScalar = {
+    attendance?: boolean
+    lateWork?: boolean
+    academicIntegrity?: boolean
+    accommodations?: boolean
+  }
+
+  export type PoliciesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"attendance" | "lateWork" | "academicIntegrity" | "accommodations", ExtArgs["result"]["policies"]>
+
+  export type $PoliciesPayload = {
+    name: "Policies"
+    objects: {}
+    scalars: {
+      attendance: string
+      lateWork: string
+      academicIntegrity: string
+      accommodations: string
+    }
+    composites: {}
+  }
+
+  type PoliciesGetPayload<S extends boolean | null | undefined | PoliciesDefaultArgs> = $Result.GetResult<Prisma.$PoliciesPayload, S>
+
+
+
+
+
+  /**
+   * Fields of the Policies model
+   */
+  interface PoliciesFieldRefs {
+    readonly attendance: FieldRef<"Policies", 'String'>
+    readonly lateWork: FieldRef<"Policies", 'String'>
+    readonly academicIntegrity: FieldRef<"Policies", 'String'>
+    readonly accommodations: FieldRef<"Policies", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Policies without action
+   */
+  export type PoliciesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Policies
+     */
+    select?: PoliciesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Policies
+     */
+    omit?: PoliciesOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WeeklySchedule
+   */
+
+
+
+
+
+  export type WeeklyScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    week?: boolean
+    topic?: boolean
+    readings?: boolean
+    assignments?: boolean
+  }, ExtArgs["result"]["weeklySchedule"]>
+
+
+
+  export type WeeklyScheduleSelectScalar = {
+    week?: boolean
+    topic?: boolean
+    readings?: boolean
+    assignments?: boolean
+  }
+
+  export type WeeklyScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"week" | "topic" | "readings" | "assignments", ExtArgs["result"]["weeklySchedule"]>
+
+  export type $WeeklySchedulePayload = {
+    name: "WeeklySchedule"
+    objects: {}
+    scalars: {
+      week: number
+      topic: string
+      readings: string
+      assignments: string
+    }
+    composites: {}
+  }
+
+  type WeeklyScheduleGetPayload<S extends boolean | null | undefined | WeeklyScheduleDefaultArgs> = $Result.GetResult<Prisma.$WeeklySchedulePayload, S>
+
+
+
+
+
+  /**
+   * Fields of the WeeklySchedule model
+   */
+  interface WeeklyScheduleFieldRefs {
+    readonly week: FieldRef<"WeeklySchedule", 'Int'>
+    readonly topic: FieldRef<"WeeklySchedule", 'String'>
+    readonly readings: FieldRef<"WeeklySchedule", 'String'>
+    readonly assignments: FieldRef<"WeeklySchedule", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WeeklySchedule without action
+   */
+  export type WeeklyScheduleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeeklySchedule
+     */
+    select?: WeeklyScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeeklySchedule
+     */
+    omit?: WeeklyScheduleOmit<ExtArgs> | null
+  }
+
 
   /**
    * Model Payments
@@ -3421,90 +3390,84 @@ export namespace Prisma {
 
   export type CourseMinAggregateOutputType = {
     id: string | null
+    userId: string | null
     name: string | null
-    instructorId: string | null
-    subject: string | null
-    gradeLevel: string | null
+    courseTitle: string | null
     courseDescription: string | null
-    generationPrompt: string | null
-    additionalInfo: string | null
+    description: string | null
+    instructor: string | null
+    subject: string | null
     term: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    gradeLevel: string | null
   }
 
   export type CourseMaxAggregateOutputType = {
     id: string | null
+    userId: string | null
     name: string | null
-    instructorId: string | null
-    subject: string | null
-    gradeLevel: string | null
+    courseTitle: string | null
     courseDescription: string | null
-    generationPrompt: string | null
-    additionalInfo: string | null
+    description: string | null
+    instructor: string | null
+    subject: string | null
     term: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    gradeLevel: string | null
   }
 
   export type CourseCountAggregateOutputType = {
     id: number
+    userId: number
     name: number
-    instructorId: number
-    subject: number
-    gradeLevel: number
+    courseTitle: number
     courseDescription: number
-    generationPrompt: number
-    additionalInfo: number
+    description: number
+    instructor: number
+    subject: number
     term: number
-    learningObjects: number
-    createdAt: number
-    updatedAt: number
+    gradeLevel: number
+    learningObjectives: number
     _all: number
   }
 
 
   export type CourseMinAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
-    instructorId?: true
-    subject?: true
-    gradeLevel?: true
+    courseTitle?: true
     courseDescription?: true
-    generationPrompt?: true
-    additionalInfo?: true
+    description?: true
+    instructor?: true
+    subject?: true
     term?: true
-    createdAt?: true
-    updatedAt?: true
+    gradeLevel?: true
   }
 
   export type CourseMaxAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
-    instructorId?: true
-    subject?: true
-    gradeLevel?: true
+    courseTitle?: true
     courseDescription?: true
-    generationPrompt?: true
-    additionalInfo?: true
+    description?: true
+    instructor?: true
+    subject?: true
     term?: true
-    createdAt?: true
-    updatedAt?: true
+    gradeLevel?: true
   }
 
   export type CourseCountAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
-    instructorId?: true
-    subject?: true
-    gradeLevel?: true
+    courseTitle?: true
     courseDescription?: true
-    generationPrompt?: true
-    additionalInfo?: true
+    description?: true
+    instructor?: true
+    subject?: true
     term?: true
-    learningObjects?: true
-    createdAt?: true
-    updatedAt?: true
+    gradeLevel?: true
+    learningObjectives?: true
     _all?: true
   }
 
@@ -3582,17 +3545,16 @@ export namespace Prisma {
 
   export type CourseGroupByOutputType = {
     id: string
+    userId: string
     name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects: string[]
-    createdAt: Date
-    updatedAt: Date
+    gradeLevel: string
+    learningObjectives: string[]
     _count: CourseCountAggregateOutputType | null
     _min: CourseMinAggregateOutputType | null
     _max: CourseMaxAggregateOutputType | null
@@ -3614,76 +3576,68 @@ export namespace Prisma {
 
   export type CourseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    userId?: boolean
     name?: boolean
-    instructorId?: boolean
-    subject?: boolean
-    gradeLevel?: boolean
+    courseTitle?: boolean
     courseDescription?: boolean
-    generationPrompt?: boolean
-    additionalInfo?: boolean
+    description?: boolean
+    instructor?: boolean
+    subject?: boolean
     term?: boolean
-    learningObjects?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    instructor?: boolean | UserDefaultArgs<ExtArgs>
-    requiredMaterials?: boolean | Course$requiredMaterialsArgs<ExtArgs>
-    gradingPolicy?: boolean | Course$gradingPolicyArgs<ExtArgs>
-    coursePolicies?: boolean | Course$coursePoliciesArgs<ExtArgs>
-    gradingReferences?: boolean | Course$gradingReferencesArgs<ExtArgs>
-    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
+    gradeLevel?: boolean
+    learningObjectives?: boolean
+    requiredMaterials?: boolean | MaterialDefaultArgs<ExtArgs>
+    gradingPolicy?: boolean | GradingPolicyDefaultArgs<ExtArgs>
+    policies?: boolean | PoliciesDefaultArgs<ExtArgs>
+    weeklySchedule?: boolean | WeeklyScheduleDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
 
 
   export type CourseSelectScalar = {
     id?: boolean
+    userId?: boolean
     name?: boolean
-    instructorId?: boolean
-    subject?: boolean
-    gradeLevel?: boolean
+    courseTitle?: boolean
     courseDescription?: boolean
-    generationPrompt?: boolean
-    additionalInfo?: boolean
+    description?: boolean
+    instructor?: boolean
+    subject?: boolean
     term?: boolean
-    learningObjects?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    gradeLevel?: boolean
+    learningObjectives?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "instructorId" | "subject" | "gradeLevel" | "courseDescription" | "generationPrompt" | "additionalInfo" | "term" | "learningObjects" | "createdAt" | "updatedAt", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "courseTitle" | "courseDescription" | "description" | "instructor" | "subject" | "term" | "gradeLevel" | "learningObjectives" | "requiredMaterials" | "gradingPolicy" | "policies" | "weeklySchedule", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    instructor?: boolean | UserDefaultArgs<ExtArgs>
-    requiredMaterials?: boolean | Course$requiredMaterialsArgs<ExtArgs>
-    gradingPolicy?: boolean | Course$gradingPolicyArgs<ExtArgs>
-    coursePolicies?: boolean | Course$coursePoliciesArgs<ExtArgs>
-    gradingReferences?: boolean | Course$gradingReferencesArgs<ExtArgs>
-    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $CoursePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Course"
     objects: {
-      instructor: Prisma.$UserPayload<ExtArgs>
-      requiredMaterials: Prisma.$RequiredMaterialPayload<ExtArgs>[]
-      gradingPolicy: Prisma.$GradingPolicyPayload<ExtArgs> | null
-      coursePolicies: Prisma.$CoursePoliciesPayload<ExtArgs> | null
-      gradingReferences: Prisma.$GradingReferencePayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      userId: string
       name: string
-      instructorId: string
-      subject: string
-      gradeLevel: string
+      courseTitle: string
       courseDescription: string
-      generationPrompt: string
-      additionalInfo: string | null
+      description: string
+      instructor: string
+      subject: string
       term: string
-      learningObjects: string[]
-      createdAt: Date
-      updatedAt: Date
+      gradeLevel: string
+      learningObjectives: string[]
     }, ExtArgs["result"]["course"]>
-    composites: {}
+    composites: {
+      requiredMaterials: Prisma.$MaterialPayload[]
+      gradingPolicy: Prisma.$GradingPolicyPayload
+      policies: Prisma.$PoliciesPayload
+      weeklySchedule: Prisma.$WeeklySchedulePayload[]
+    }
   }
 
   type CourseGetPayload<S extends boolean | null | undefined | CourseDefaultArgs> = $Result.GetResult<Prisma.$CoursePayload, S>
@@ -4045,11 +3999,7 @@ export namespace Prisma {
    */
   export interface Prisma__CourseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    instructor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    requiredMaterials<T extends Course$requiredMaterialsArgs<ExtArgs> = {}>(args?: Subset<T, Course$requiredMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    gradingPolicy<T extends Course$gradingPolicyArgs<ExtArgs> = {}>(args?: Subset<T, Course$gradingPolicyArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    coursePolicies<T extends Course$coursePoliciesArgs<ExtArgs> = {}>(args?: Subset<T, Course$coursePoliciesArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    gradingReferences<T extends Course$gradingReferencesArgs<ExtArgs> = {}>(args?: Subset<T, Course$gradingReferencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4080,17 +4030,16 @@ export namespace Prisma {
    */
   interface CourseFieldRefs {
     readonly id: FieldRef<"Course", 'String'>
+    readonly userId: FieldRef<"Course", 'String'>
     readonly name: FieldRef<"Course", 'String'>
-    readonly instructorId: FieldRef<"Course", 'String'>
-    readonly subject: FieldRef<"Course", 'String'>
-    readonly gradeLevel: FieldRef<"Course", 'String'>
+    readonly courseTitle: FieldRef<"Course", 'String'>
     readonly courseDescription: FieldRef<"Course", 'String'>
-    readonly generationPrompt: FieldRef<"Course", 'String'>
-    readonly additionalInfo: FieldRef<"Course", 'String'>
+    readonly description: FieldRef<"Course", 'String'>
+    readonly instructor: FieldRef<"Course", 'String'>
+    readonly subject: FieldRef<"Course", 'String'>
     readonly term: FieldRef<"Course", 'String'>
-    readonly learningObjects: FieldRef<"Course", 'String[]'>
-    readonly createdAt: FieldRef<"Course", 'DateTime'>
-    readonly updatedAt: FieldRef<"Course", 'DateTime'>
+    readonly gradeLevel: FieldRef<"Course", 'String'>
+    readonly learningObjectives: FieldRef<"Course", 'String[]'>
   }
     
 
@@ -4461,92 +4410,6 @@ export namespace Prisma {
   }
 
   /**
-   * Course.requiredMaterials
-   */
-  export type Course$requiredMaterialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    where?: RequiredMaterialWhereInput
-    orderBy?: RequiredMaterialOrderByWithRelationInput | RequiredMaterialOrderByWithRelationInput[]
-    cursor?: RequiredMaterialWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RequiredMaterialScalarFieldEnum | RequiredMaterialScalarFieldEnum[]
-  }
-
-  /**
-   * Course.gradingPolicy
-   */
-  export type Course$gradingPolicyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    where?: GradingPolicyWhereInput
-  }
-
-  /**
-   * Course.coursePolicies
-   */
-  export type Course$coursePoliciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    where?: CoursePoliciesWhereInput
-  }
-
-  /**
-   * Course.gradingReferences
-   */
-  export type Course$gradingReferencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    where?: GradingReferenceWhereInput
-    orderBy?: GradingReferenceOrderByWithRelationInput | GradingReferenceOrderByWithRelationInput[]
-    cursor?: GradingReferenceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GradingReferenceScalarFieldEnum | GradingReferenceScalarFieldEnum[]
-  }
-
-  /**
    * Course without action
    */
   export type CourseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4562,4012 +4425,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CourseInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model RequiredMaterial
-   */
-
-  export type AggregateRequiredMaterial = {
-    _count: RequiredMaterialCountAggregateOutputType | null
-    _min: RequiredMaterialMinAggregateOutputType | null
-    _max: RequiredMaterialMaxAggregateOutputType | null
-  }
-
-  export type RequiredMaterialMinAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    title: string | null
-    author: string | null
-    publisher: string | null
-    required: boolean | null
-  }
-
-  export type RequiredMaterialMaxAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    title: string | null
-    author: string | null
-    publisher: string | null
-    required: boolean | null
-  }
-
-  export type RequiredMaterialCountAggregateOutputType = {
-    id: number
-    courseId: number
-    title: number
-    author: number
-    publisher: number
-    required: number
-    _all: number
-  }
-
-
-  export type RequiredMaterialMinAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    author?: true
-    publisher?: true
-    required?: true
-  }
-
-  export type RequiredMaterialMaxAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    author?: true
-    publisher?: true
-    required?: true
-  }
-
-  export type RequiredMaterialCountAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    author?: true
-    publisher?: true
-    required?: true
-    _all?: true
-  }
-
-  export type RequiredMaterialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which RequiredMaterial to aggregate.
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of RequiredMaterials to fetch.
-     */
-    orderBy?: RequiredMaterialOrderByWithRelationInput | RequiredMaterialOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: RequiredMaterialWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` RequiredMaterials from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` RequiredMaterials.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned RequiredMaterials
-    **/
-    _count?: true | RequiredMaterialCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: RequiredMaterialMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: RequiredMaterialMaxAggregateInputType
-  }
-
-  export type GetRequiredMaterialAggregateType<T extends RequiredMaterialAggregateArgs> = {
-        [P in keyof T & keyof AggregateRequiredMaterial]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateRequiredMaterial[P]>
-      : GetScalarType<T[P], AggregateRequiredMaterial[P]>
-  }
-
-
-
-
-  export type RequiredMaterialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RequiredMaterialWhereInput
-    orderBy?: RequiredMaterialOrderByWithAggregationInput | RequiredMaterialOrderByWithAggregationInput[]
-    by: RequiredMaterialScalarFieldEnum[] | RequiredMaterialScalarFieldEnum
-    having?: RequiredMaterialScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: RequiredMaterialCountAggregateInputType | true
-    _min?: RequiredMaterialMinAggregateInputType
-    _max?: RequiredMaterialMaxAggregateInputType
-  }
-
-  export type RequiredMaterialGroupByOutputType = {
-    id: string
-    courseId: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
-    _count: RequiredMaterialCountAggregateOutputType | null
-    _min: RequiredMaterialMinAggregateOutputType | null
-    _max: RequiredMaterialMaxAggregateOutputType | null
-  }
-
-  type GetRequiredMaterialGroupByPayload<T extends RequiredMaterialGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<RequiredMaterialGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof RequiredMaterialGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], RequiredMaterialGroupByOutputType[P]>
-            : GetScalarType<T[P], RequiredMaterialGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type RequiredMaterialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    courseId?: boolean
-    title?: boolean
-    author?: boolean
-    publisher?: boolean
-    required?: boolean
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["requiredMaterial"]>
-
-
-
-  export type RequiredMaterialSelectScalar = {
-    id?: boolean
-    courseId?: boolean
-    title?: boolean
-    author?: boolean
-    publisher?: boolean
-    required?: boolean
-  }
-
-  export type RequiredMaterialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "courseId" | "title" | "author" | "publisher" | "required", ExtArgs["result"]["requiredMaterial"]>
-  export type RequiredMaterialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }
-
-  export type $RequiredMaterialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "RequiredMaterial"
-    objects: {
-      course: Prisma.$CoursePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      courseId: string
-      title: string
-      author: string
-      publisher: string
-      required: boolean
-    }, ExtArgs["result"]["requiredMaterial"]>
-    composites: {}
-  }
-
-  type RequiredMaterialGetPayload<S extends boolean | null | undefined | RequiredMaterialDefaultArgs> = $Result.GetResult<Prisma.$RequiredMaterialPayload, S>
-
-  type RequiredMaterialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RequiredMaterialFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RequiredMaterialCountAggregateInputType | true
-    }
-
-  export interface RequiredMaterialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RequiredMaterial'], meta: { name: 'RequiredMaterial' } }
-    /**
-     * Find zero or one RequiredMaterial that matches the filter.
-     * @param {RequiredMaterialFindUniqueArgs} args - Arguments to find a RequiredMaterial
-     * @example
-     * // Get one RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends RequiredMaterialFindUniqueArgs>(args: SelectSubset<T, RequiredMaterialFindUniqueArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one RequiredMaterial that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {RequiredMaterialFindUniqueOrThrowArgs} args - Arguments to find a RequiredMaterial
-     * @example
-     * // Get one RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends RequiredMaterialFindUniqueOrThrowArgs>(args: SelectSubset<T, RequiredMaterialFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first RequiredMaterial that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialFindFirstArgs} args - Arguments to find a RequiredMaterial
-     * @example
-     * // Get one RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends RequiredMaterialFindFirstArgs>(args?: SelectSubset<T, RequiredMaterialFindFirstArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first RequiredMaterial that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialFindFirstOrThrowArgs} args - Arguments to find a RequiredMaterial
-     * @example
-     * // Get one RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends RequiredMaterialFindFirstOrThrowArgs>(args?: SelectSubset<T, RequiredMaterialFindFirstOrThrowArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more RequiredMaterials that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all RequiredMaterials
-     * const requiredMaterials = await prisma.requiredMaterial.findMany()
-     * 
-     * // Get first 10 RequiredMaterials
-     * const requiredMaterials = await prisma.requiredMaterial.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const requiredMaterialWithIdOnly = await prisma.requiredMaterial.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends RequiredMaterialFindManyArgs>(args?: SelectSubset<T, RequiredMaterialFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a RequiredMaterial.
-     * @param {RequiredMaterialCreateArgs} args - Arguments to create a RequiredMaterial.
-     * @example
-     * // Create one RequiredMaterial
-     * const RequiredMaterial = await prisma.requiredMaterial.create({
-     *   data: {
-     *     // ... data to create a RequiredMaterial
-     *   }
-     * })
-     * 
-     */
-    create<T extends RequiredMaterialCreateArgs>(args: SelectSubset<T, RequiredMaterialCreateArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many RequiredMaterials.
-     * @param {RequiredMaterialCreateManyArgs} args - Arguments to create many RequiredMaterials.
-     * @example
-     * // Create many RequiredMaterials
-     * const requiredMaterial = await prisma.requiredMaterial.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends RequiredMaterialCreateManyArgs>(args?: SelectSubset<T, RequiredMaterialCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a RequiredMaterial.
-     * @param {RequiredMaterialDeleteArgs} args - Arguments to delete one RequiredMaterial.
-     * @example
-     * // Delete one RequiredMaterial
-     * const RequiredMaterial = await prisma.requiredMaterial.delete({
-     *   where: {
-     *     // ... filter to delete one RequiredMaterial
-     *   }
-     * })
-     * 
-     */
-    delete<T extends RequiredMaterialDeleteArgs>(args: SelectSubset<T, RequiredMaterialDeleteArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one RequiredMaterial.
-     * @param {RequiredMaterialUpdateArgs} args - Arguments to update one RequiredMaterial.
-     * @example
-     * // Update one RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends RequiredMaterialUpdateArgs>(args: SelectSubset<T, RequiredMaterialUpdateArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more RequiredMaterials.
-     * @param {RequiredMaterialDeleteManyArgs} args - Arguments to filter RequiredMaterials to delete.
-     * @example
-     * // Delete a few RequiredMaterials
-     * const { count } = await prisma.requiredMaterial.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends RequiredMaterialDeleteManyArgs>(args?: SelectSubset<T, RequiredMaterialDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more RequiredMaterials.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many RequiredMaterials
-     * const requiredMaterial = await prisma.requiredMaterial.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends RequiredMaterialUpdateManyArgs>(args: SelectSubset<T, RequiredMaterialUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one RequiredMaterial.
-     * @param {RequiredMaterialUpsertArgs} args - Arguments to update or create a RequiredMaterial.
-     * @example
-     * // Update or create a RequiredMaterial
-     * const requiredMaterial = await prisma.requiredMaterial.upsert({
-     *   create: {
-     *     // ... data to create a RequiredMaterial
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the RequiredMaterial we want to update
-     *   }
-     * })
-     */
-    upsert<T extends RequiredMaterialUpsertArgs>(args: SelectSubset<T, RequiredMaterialUpsertArgs<ExtArgs>>): Prisma__RequiredMaterialClient<$Result.GetResult<Prisma.$RequiredMaterialPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more RequiredMaterials that matches the filter.
-     * @param {RequiredMaterialFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const requiredMaterial = await prisma.requiredMaterial.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: RequiredMaterialFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a RequiredMaterial.
-     * @param {RequiredMaterialAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const requiredMaterial = await prisma.requiredMaterial.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: RequiredMaterialAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of RequiredMaterials.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialCountArgs} args - Arguments to filter RequiredMaterials to count.
-     * @example
-     * // Count the number of RequiredMaterials
-     * const count = await prisma.requiredMaterial.count({
-     *   where: {
-     *     // ... the filter for the RequiredMaterials we want to count
-     *   }
-     * })
-    **/
-    count<T extends RequiredMaterialCountArgs>(
-      args?: Subset<T, RequiredMaterialCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], RequiredMaterialCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a RequiredMaterial.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends RequiredMaterialAggregateArgs>(args: Subset<T, RequiredMaterialAggregateArgs>): Prisma.PrismaPromise<GetRequiredMaterialAggregateType<T>>
-
-    /**
-     * Group by RequiredMaterial.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequiredMaterialGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends RequiredMaterialGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: RequiredMaterialGroupByArgs['orderBy'] }
-        : { orderBy?: RequiredMaterialGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, RequiredMaterialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequiredMaterialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the RequiredMaterial model
-   */
-  readonly fields: RequiredMaterialFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for RequiredMaterial.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__RequiredMaterialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the RequiredMaterial model
-   */
-  interface RequiredMaterialFieldRefs {
-    readonly id: FieldRef<"RequiredMaterial", 'String'>
-    readonly courseId: FieldRef<"RequiredMaterial", 'String'>
-    readonly title: FieldRef<"RequiredMaterial", 'String'>
-    readonly author: FieldRef<"RequiredMaterial", 'String'>
-    readonly publisher: FieldRef<"RequiredMaterial", 'String'>
-    readonly required: FieldRef<"RequiredMaterial", 'Boolean'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * RequiredMaterial findUnique
-   */
-  export type RequiredMaterialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter, which RequiredMaterial to fetch.
-     */
-    where: RequiredMaterialWhereUniqueInput
-  }
-
-  /**
-   * RequiredMaterial findUniqueOrThrow
-   */
-  export type RequiredMaterialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter, which RequiredMaterial to fetch.
-     */
-    where: RequiredMaterialWhereUniqueInput
-  }
-
-  /**
-   * RequiredMaterial findFirst
-   */
-  export type RequiredMaterialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter, which RequiredMaterial to fetch.
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of RequiredMaterials to fetch.
-     */
-    orderBy?: RequiredMaterialOrderByWithRelationInput | RequiredMaterialOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for RequiredMaterials.
-     */
-    cursor?: RequiredMaterialWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` RequiredMaterials from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` RequiredMaterials.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of RequiredMaterials.
-     */
-    distinct?: RequiredMaterialScalarFieldEnum | RequiredMaterialScalarFieldEnum[]
-  }
-
-  /**
-   * RequiredMaterial findFirstOrThrow
-   */
-  export type RequiredMaterialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter, which RequiredMaterial to fetch.
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of RequiredMaterials to fetch.
-     */
-    orderBy?: RequiredMaterialOrderByWithRelationInput | RequiredMaterialOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for RequiredMaterials.
-     */
-    cursor?: RequiredMaterialWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` RequiredMaterials from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` RequiredMaterials.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of RequiredMaterials.
-     */
-    distinct?: RequiredMaterialScalarFieldEnum | RequiredMaterialScalarFieldEnum[]
-  }
-
-  /**
-   * RequiredMaterial findMany
-   */
-  export type RequiredMaterialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter, which RequiredMaterials to fetch.
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of RequiredMaterials to fetch.
-     */
-    orderBy?: RequiredMaterialOrderByWithRelationInput | RequiredMaterialOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing RequiredMaterials.
-     */
-    cursor?: RequiredMaterialWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` RequiredMaterials from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` RequiredMaterials.
-     */
-    skip?: number
-    distinct?: RequiredMaterialScalarFieldEnum | RequiredMaterialScalarFieldEnum[]
-  }
-
-  /**
-   * RequiredMaterial create
-   */
-  export type RequiredMaterialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * The data needed to create a RequiredMaterial.
-     */
-    data: XOR<RequiredMaterialCreateInput, RequiredMaterialUncheckedCreateInput>
-  }
-
-  /**
-   * RequiredMaterial createMany
-   */
-  export type RequiredMaterialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many RequiredMaterials.
-     */
-    data: RequiredMaterialCreateManyInput | RequiredMaterialCreateManyInput[]
-  }
-
-  /**
-   * RequiredMaterial update
-   */
-  export type RequiredMaterialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * The data needed to update a RequiredMaterial.
-     */
-    data: XOR<RequiredMaterialUpdateInput, RequiredMaterialUncheckedUpdateInput>
-    /**
-     * Choose, which RequiredMaterial to update.
-     */
-    where: RequiredMaterialWhereUniqueInput
-  }
-
-  /**
-   * RequiredMaterial updateMany
-   */
-  export type RequiredMaterialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update RequiredMaterials.
-     */
-    data: XOR<RequiredMaterialUpdateManyMutationInput, RequiredMaterialUncheckedUpdateManyInput>
-    /**
-     * Filter which RequiredMaterials to update
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * Limit how many RequiredMaterials to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * RequiredMaterial upsert
-   */
-  export type RequiredMaterialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * The filter to search for the RequiredMaterial to update in case it exists.
-     */
-    where: RequiredMaterialWhereUniqueInput
-    /**
-     * In case the RequiredMaterial found by the `where` argument doesn't exist, create a new RequiredMaterial with this data.
-     */
-    create: XOR<RequiredMaterialCreateInput, RequiredMaterialUncheckedCreateInput>
-    /**
-     * In case the RequiredMaterial was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<RequiredMaterialUpdateInput, RequiredMaterialUncheckedUpdateInput>
-  }
-
-  /**
-   * RequiredMaterial delete
-   */
-  export type RequiredMaterialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-    /**
-     * Filter which RequiredMaterial to delete.
-     */
-    where: RequiredMaterialWhereUniqueInput
-  }
-
-  /**
-   * RequiredMaterial deleteMany
-   */
-  export type RequiredMaterialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which RequiredMaterials to delete
-     */
-    where?: RequiredMaterialWhereInput
-    /**
-     * Limit how many RequiredMaterials to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * RequiredMaterial findRaw
-   */
-  export type RequiredMaterialFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * RequiredMaterial aggregateRaw
-   */
-  export type RequiredMaterialAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * RequiredMaterial without action
-   */
-  export type RequiredMaterialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RequiredMaterial
-     */
-    select?: RequiredMaterialSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RequiredMaterial
-     */
-    omit?: RequiredMaterialOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RequiredMaterialInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GradingPolicy
-   */
-
-  export type AggregateGradingPolicy = {
-    _count: GradingPolicyCountAggregateOutputType | null
-    _avg: GradingPolicyAvgAggregateOutputType | null
-    _sum: GradingPolicySumAggregateOutputType | null
-    _min: GradingPolicyMinAggregateOutputType | null
-    _max: GradingPolicyMaxAggregateOutputType | null
-  }
-
-  export type GradingPolicyAvgAggregateOutputType = {
-    assignment: number | null
-    participation: number | null
-    midterm: number | null
-    finalExam: number | null
-  }
-
-  export type GradingPolicySumAggregateOutputType = {
-    assignment: number | null
-    participation: number | null
-    midterm: number | null
-    finalExam: number | null
-  }
-
-  export type GradingPolicyMinAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    assignment: number | null
-    participation: number | null
-    midterm: number | null
-    finalExam: number | null
-  }
-
-  export type GradingPolicyMaxAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    assignment: number | null
-    participation: number | null
-    midterm: number | null
-    finalExam: number | null
-  }
-
-  export type GradingPolicyCountAggregateOutputType = {
-    id: number
-    courseId: number
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-    _all: number
-  }
-
-
-  export type GradingPolicyAvgAggregateInputType = {
-    assignment?: true
-    participation?: true
-    midterm?: true
-    finalExam?: true
-  }
-
-  export type GradingPolicySumAggregateInputType = {
-    assignment?: true
-    participation?: true
-    midterm?: true
-    finalExam?: true
-  }
-
-  export type GradingPolicyMinAggregateInputType = {
-    id?: true
-    courseId?: true
-    assignment?: true
-    participation?: true
-    midterm?: true
-    finalExam?: true
-  }
-
-  export type GradingPolicyMaxAggregateInputType = {
-    id?: true
-    courseId?: true
-    assignment?: true
-    participation?: true
-    midterm?: true
-    finalExam?: true
-  }
-
-  export type GradingPolicyCountAggregateInputType = {
-    id?: true
-    courseId?: true
-    assignment?: true
-    participation?: true
-    midterm?: true
-    finalExam?: true
-    _all?: true
-  }
-
-  export type GradingPolicyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GradingPolicy to aggregate.
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingPolicies to fetch.
-     */
-    orderBy?: GradingPolicyOrderByWithRelationInput | GradingPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: GradingPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned GradingPolicies
-    **/
-    _count?: true | GradingPolicyCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: GradingPolicyAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: GradingPolicySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: GradingPolicyMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: GradingPolicyMaxAggregateInputType
-  }
-
-  export type GetGradingPolicyAggregateType<T extends GradingPolicyAggregateArgs> = {
-        [P in keyof T & keyof AggregateGradingPolicy]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateGradingPolicy[P]>
-      : GetScalarType<T[P], AggregateGradingPolicy[P]>
-  }
-
-
-
-
-  export type GradingPolicyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GradingPolicyWhereInput
-    orderBy?: GradingPolicyOrderByWithAggregationInput | GradingPolicyOrderByWithAggregationInput[]
-    by: GradingPolicyScalarFieldEnum[] | GradingPolicyScalarFieldEnum
-    having?: GradingPolicyScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: GradingPolicyCountAggregateInputType | true
-    _avg?: GradingPolicyAvgAggregateInputType
-    _sum?: GradingPolicySumAggregateInputType
-    _min?: GradingPolicyMinAggregateInputType
-    _max?: GradingPolicyMaxAggregateInputType
-  }
-
-  export type GradingPolicyGroupByOutputType = {
-    id: string
-    courseId: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-    _count: GradingPolicyCountAggregateOutputType | null
-    _avg: GradingPolicyAvgAggregateOutputType | null
-    _sum: GradingPolicySumAggregateOutputType | null
-    _min: GradingPolicyMinAggregateOutputType | null
-    _max: GradingPolicyMaxAggregateOutputType | null
-  }
-
-  type GetGradingPolicyGroupByPayload<T extends GradingPolicyGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<GradingPolicyGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof GradingPolicyGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], GradingPolicyGroupByOutputType[P]>
-            : GetScalarType<T[P], GradingPolicyGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type GradingPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    courseId?: boolean
-    assignment?: boolean
-    participation?: boolean
-    midterm?: boolean
-    finalExam?: boolean
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gradingPolicy"]>
-
-
-
-  export type GradingPolicySelectScalar = {
-    id?: boolean
-    courseId?: boolean
-    assignment?: boolean
-    participation?: boolean
-    midterm?: boolean
-    finalExam?: boolean
-  }
-
-  export type GradingPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "courseId" | "assignment" | "participation" | "midterm" | "finalExam", ExtArgs["result"]["gradingPolicy"]>
-  export type GradingPolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }
-
-  export type $GradingPolicyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GradingPolicy"
-    objects: {
-      course: Prisma.$CoursePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      courseId: string
-      assignment: number
-      participation: number
-      midterm: number
-      finalExam: number
-    }, ExtArgs["result"]["gradingPolicy"]>
-    composites: {}
-  }
-
-  type GradingPolicyGetPayload<S extends boolean | null | undefined | GradingPolicyDefaultArgs> = $Result.GetResult<Prisma.$GradingPolicyPayload, S>
-
-  type GradingPolicyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GradingPolicyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GradingPolicyCountAggregateInputType | true
-    }
-
-  export interface GradingPolicyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GradingPolicy'], meta: { name: 'GradingPolicy' } }
-    /**
-     * Find zero or one GradingPolicy that matches the filter.
-     * @param {GradingPolicyFindUniqueArgs} args - Arguments to find a GradingPolicy
-     * @example
-     * // Get one GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends GradingPolicyFindUniqueArgs>(args: SelectSubset<T, GradingPolicyFindUniqueArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one GradingPolicy that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {GradingPolicyFindUniqueOrThrowArgs} args - Arguments to find a GradingPolicy
-     * @example
-     * // Get one GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends GradingPolicyFindUniqueOrThrowArgs>(args: SelectSubset<T, GradingPolicyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GradingPolicy that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyFindFirstArgs} args - Arguments to find a GradingPolicy
-     * @example
-     * // Get one GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends GradingPolicyFindFirstArgs>(args?: SelectSubset<T, GradingPolicyFindFirstArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GradingPolicy that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyFindFirstOrThrowArgs} args - Arguments to find a GradingPolicy
-     * @example
-     * // Get one GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends GradingPolicyFindFirstOrThrowArgs>(args?: SelectSubset<T, GradingPolicyFindFirstOrThrowArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GradingPolicies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all GradingPolicies
-     * const gradingPolicies = await prisma.gradingPolicy.findMany()
-     * 
-     * // Get first 10 GradingPolicies
-     * const gradingPolicies = await prisma.gradingPolicy.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const gradingPolicyWithIdOnly = await prisma.gradingPolicy.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends GradingPolicyFindManyArgs>(args?: SelectSubset<T, GradingPolicyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a GradingPolicy.
-     * @param {GradingPolicyCreateArgs} args - Arguments to create a GradingPolicy.
-     * @example
-     * // Create one GradingPolicy
-     * const GradingPolicy = await prisma.gradingPolicy.create({
-     *   data: {
-     *     // ... data to create a GradingPolicy
-     *   }
-     * })
-     * 
-     */
-    create<T extends GradingPolicyCreateArgs>(args: SelectSubset<T, GradingPolicyCreateArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many GradingPolicies.
-     * @param {GradingPolicyCreateManyArgs} args - Arguments to create many GradingPolicies.
-     * @example
-     * // Create many GradingPolicies
-     * const gradingPolicy = await prisma.gradingPolicy.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends GradingPolicyCreateManyArgs>(args?: SelectSubset<T, GradingPolicyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a GradingPolicy.
-     * @param {GradingPolicyDeleteArgs} args - Arguments to delete one GradingPolicy.
-     * @example
-     * // Delete one GradingPolicy
-     * const GradingPolicy = await prisma.gradingPolicy.delete({
-     *   where: {
-     *     // ... filter to delete one GradingPolicy
-     *   }
-     * })
-     * 
-     */
-    delete<T extends GradingPolicyDeleteArgs>(args: SelectSubset<T, GradingPolicyDeleteArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one GradingPolicy.
-     * @param {GradingPolicyUpdateArgs} args - Arguments to update one GradingPolicy.
-     * @example
-     * // Update one GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends GradingPolicyUpdateArgs>(args: SelectSubset<T, GradingPolicyUpdateArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more GradingPolicies.
-     * @param {GradingPolicyDeleteManyArgs} args - Arguments to filter GradingPolicies to delete.
-     * @example
-     * // Delete a few GradingPolicies
-     * const { count } = await prisma.gradingPolicy.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends GradingPolicyDeleteManyArgs>(args?: SelectSubset<T, GradingPolicyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GradingPolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many GradingPolicies
-     * const gradingPolicy = await prisma.gradingPolicy.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends GradingPolicyUpdateManyArgs>(args: SelectSubset<T, GradingPolicyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one GradingPolicy.
-     * @param {GradingPolicyUpsertArgs} args - Arguments to update or create a GradingPolicy.
-     * @example
-     * // Update or create a GradingPolicy
-     * const gradingPolicy = await prisma.gradingPolicy.upsert({
-     *   create: {
-     *     // ... data to create a GradingPolicy
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the GradingPolicy we want to update
-     *   }
-     * })
-     */
-    upsert<T extends GradingPolicyUpsertArgs>(args: SelectSubset<T, GradingPolicyUpsertArgs<ExtArgs>>): Prisma__GradingPolicyClient<$Result.GetResult<Prisma.$GradingPolicyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GradingPolicies that matches the filter.
-     * @param {GradingPolicyFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const gradingPolicy = await prisma.gradingPolicy.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: GradingPolicyFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a GradingPolicy.
-     * @param {GradingPolicyAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const gradingPolicy = await prisma.gradingPolicy.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: GradingPolicyAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of GradingPolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyCountArgs} args - Arguments to filter GradingPolicies to count.
-     * @example
-     * // Count the number of GradingPolicies
-     * const count = await prisma.gradingPolicy.count({
-     *   where: {
-     *     // ... the filter for the GradingPolicies we want to count
-     *   }
-     * })
-    **/
-    count<T extends GradingPolicyCountArgs>(
-      args?: Subset<T, GradingPolicyCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], GradingPolicyCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a GradingPolicy.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends GradingPolicyAggregateArgs>(args: Subset<T, GradingPolicyAggregateArgs>): Prisma.PrismaPromise<GetGradingPolicyAggregateType<T>>
-
-    /**
-     * Group by GradingPolicy.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingPolicyGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends GradingPolicyGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GradingPolicyGroupByArgs['orderBy'] }
-        : { orderBy?: GradingPolicyGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, GradingPolicyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGradingPolicyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the GradingPolicy model
-   */
-  readonly fields: GradingPolicyFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for GradingPolicy.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__GradingPolicyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the GradingPolicy model
-   */
-  interface GradingPolicyFieldRefs {
-    readonly id: FieldRef<"GradingPolicy", 'String'>
-    readonly courseId: FieldRef<"GradingPolicy", 'String'>
-    readonly assignment: FieldRef<"GradingPolicy", 'Int'>
-    readonly participation: FieldRef<"GradingPolicy", 'Int'>
-    readonly midterm: FieldRef<"GradingPolicy", 'Int'>
-    readonly finalExam: FieldRef<"GradingPolicy", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GradingPolicy findUnique
-   */
-  export type GradingPolicyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingPolicy to fetch.
-     */
-    where: GradingPolicyWhereUniqueInput
-  }
-
-  /**
-   * GradingPolicy findUniqueOrThrow
-   */
-  export type GradingPolicyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingPolicy to fetch.
-     */
-    where: GradingPolicyWhereUniqueInput
-  }
-
-  /**
-   * GradingPolicy findFirst
-   */
-  export type GradingPolicyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingPolicy to fetch.
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingPolicies to fetch.
-     */
-    orderBy?: GradingPolicyOrderByWithRelationInput | GradingPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GradingPolicies.
-     */
-    cursor?: GradingPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GradingPolicies.
-     */
-    distinct?: GradingPolicyScalarFieldEnum | GradingPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * GradingPolicy findFirstOrThrow
-   */
-  export type GradingPolicyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingPolicy to fetch.
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingPolicies to fetch.
-     */
-    orderBy?: GradingPolicyOrderByWithRelationInput | GradingPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GradingPolicies.
-     */
-    cursor?: GradingPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingPolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GradingPolicies.
-     */
-    distinct?: GradingPolicyScalarFieldEnum | GradingPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * GradingPolicy findMany
-   */
-  export type GradingPolicyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingPolicies to fetch.
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingPolicies to fetch.
-     */
-    orderBy?: GradingPolicyOrderByWithRelationInput | GradingPolicyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing GradingPolicies.
-     */
-    cursor?: GradingPolicyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingPolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingPolicies.
-     */
-    skip?: number
-    distinct?: GradingPolicyScalarFieldEnum | GradingPolicyScalarFieldEnum[]
-  }
-
-  /**
-   * GradingPolicy create
-   */
-  export type GradingPolicyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * The data needed to create a GradingPolicy.
-     */
-    data: XOR<GradingPolicyCreateInput, GradingPolicyUncheckedCreateInput>
-  }
-
-  /**
-   * GradingPolicy createMany
-   */
-  export type GradingPolicyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many GradingPolicies.
-     */
-    data: GradingPolicyCreateManyInput | GradingPolicyCreateManyInput[]
-  }
-
-  /**
-   * GradingPolicy update
-   */
-  export type GradingPolicyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * The data needed to update a GradingPolicy.
-     */
-    data: XOR<GradingPolicyUpdateInput, GradingPolicyUncheckedUpdateInput>
-    /**
-     * Choose, which GradingPolicy to update.
-     */
-    where: GradingPolicyWhereUniqueInput
-  }
-
-  /**
-   * GradingPolicy updateMany
-   */
-  export type GradingPolicyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update GradingPolicies.
-     */
-    data: XOR<GradingPolicyUpdateManyMutationInput, GradingPolicyUncheckedUpdateManyInput>
-    /**
-     * Filter which GradingPolicies to update
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * Limit how many GradingPolicies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GradingPolicy upsert
-   */
-  export type GradingPolicyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * The filter to search for the GradingPolicy to update in case it exists.
-     */
-    where: GradingPolicyWhereUniqueInput
-    /**
-     * In case the GradingPolicy found by the `where` argument doesn't exist, create a new GradingPolicy with this data.
-     */
-    create: XOR<GradingPolicyCreateInput, GradingPolicyUncheckedCreateInput>
-    /**
-     * In case the GradingPolicy was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<GradingPolicyUpdateInput, GradingPolicyUncheckedUpdateInput>
-  }
-
-  /**
-   * GradingPolicy delete
-   */
-  export type GradingPolicyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-    /**
-     * Filter which GradingPolicy to delete.
-     */
-    where: GradingPolicyWhereUniqueInput
-  }
-
-  /**
-   * GradingPolicy deleteMany
-   */
-  export type GradingPolicyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GradingPolicies to delete
-     */
-    where?: GradingPolicyWhereInput
-    /**
-     * Limit how many GradingPolicies to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * GradingPolicy findRaw
-   */
-  export type GradingPolicyFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * GradingPolicy aggregateRaw
-   */
-  export type GradingPolicyAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * GradingPolicy without action
-   */
-  export type GradingPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CoursePolicies
-   */
-
-  export type AggregateCoursePolicies = {
-    _count: CoursePoliciesCountAggregateOutputType | null
-    _min: CoursePoliciesMinAggregateOutputType | null
-    _max: CoursePoliciesMaxAggregateOutputType | null
-  }
-
-  export type CoursePoliciesMinAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    attendancePolicy: string | null
-    lateWorkPolicy: string | null
-    academicIntegrityPolicy: string | null
-    accommodationsPolicy: string | null
-  }
-
-  export type CoursePoliciesMaxAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    attendancePolicy: string | null
-    lateWorkPolicy: string | null
-    academicIntegrityPolicy: string | null
-    accommodationsPolicy: string | null
-  }
-
-  export type CoursePoliciesCountAggregateOutputType = {
-    id: number
-    courseId: number
-    attendancePolicy: number
-    lateWorkPolicy: number
-    academicIntegrityPolicy: number
-    accommodationsPolicy: number
-    _all: number
-  }
-
-
-  export type CoursePoliciesMinAggregateInputType = {
-    id?: true
-    courseId?: true
-    attendancePolicy?: true
-    lateWorkPolicy?: true
-    academicIntegrityPolicy?: true
-    accommodationsPolicy?: true
-  }
-
-  export type CoursePoliciesMaxAggregateInputType = {
-    id?: true
-    courseId?: true
-    attendancePolicy?: true
-    lateWorkPolicy?: true
-    academicIntegrityPolicy?: true
-    accommodationsPolicy?: true
-  }
-
-  export type CoursePoliciesCountAggregateInputType = {
-    id?: true
-    courseId?: true
-    attendancePolicy?: true
-    lateWorkPolicy?: true
-    academicIntegrityPolicy?: true
-    accommodationsPolicy?: true
-    _all?: true
-  }
-
-  export type CoursePoliciesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CoursePolicies to aggregate.
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CoursePolicies to fetch.
-     */
-    orderBy?: CoursePoliciesOrderByWithRelationInput | CoursePoliciesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CoursePoliciesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CoursePolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CoursePolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CoursePolicies
-    **/
-    _count?: true | CoursePoliciesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CoursePoliciesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CoursePoliciesMaxAggregateInputType
-  }
-
-  export type GetCoursePoliciesAggregateType<T extends CoursePoliciesAggregateArgs> = {
-        [P in keyof T & keyof AggregateCoursePolicies]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCoursePolicies[P]>
-      : GetScalarType<T[P], AggregateCoursePolicies[P]>
-  }
-
-
-
-
-  export type CoursePoliciesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CoursePoliciesWhereInput
-    orderBy?: CoursePoliciesOrderByWithAggregationInput | CoursePoliciesOrderByWithAggregationInput[]
-    by: CoursePoliciesScalarFieldEnum[] | CoursePoliciesScalarFieldEnum
-    having?: CoursePoliciesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CoursePoliciesCountAggregateInputType | true
-    _min?: CoursePoliciesMinAggregateInputType
-    _max?: CoursePoliciesMaxAggregateInputType
-  }
-
-  export type CoursePoliciesGroupByOutputType = {
-    id: string
-    courseId: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-    _count: CoursePoliciesCountAggregateOutputType | null
-    _min: CoursePoliciesMinAggregateOutputType | null
-    _max: CoursePoliciesMaxAggregateOutputType | null
-  }
-
-  type GetCoursePoliciesGroupByPayload<T extends CoursePoliciesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CoursePoliciesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CoursePoliciesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CoursePoliciesGroupByOutputType[P]>
-            : GetScalarType<T[P], CoursePoliciesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CoursePoliciesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    courseId?: boolean
-    attendancePolicy?: boolean
-    lateWorkPolicy?: boolean
-    academicIntegrityPolicy?: boolean
-    accommodationsPolicy?: boolean
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["coursePolicies"]>
-
-
-
-  export type CoursePoliciesSelectScalar = {
-    id?: boolean
-    courseId?: boolean
-    attendancePolicy?: boolean
-    lateWorkPolicy?: boolean
-    academicIntegrityPolicy?: boolean
-    accommodationsPolicy?: boolean
-  }
-
-  export type CoursePoliciesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "courseId" | "attendancePolicy" | "lateWorkPolicy" | "academicIntegrityPolicy" | "accommodationsPolicy", ExtArgs["result"]["coursePolicies"]>
-  export type CoursePoliciesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }
-
-  export type $CoursePoliciesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CoursePolicies"
-    objects: {
-      course: Prisma.$CoursePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      courseId: string
-      attendancePolicy: string
-      lateWorkPolicy: string
-      academicIntegrityPolicy: string
-      accommodationsPolicy: string
-    }, ExtArgs["result"]["coursePolicies"]>
-    composites: {}
-  }
-
-  type CoursePoliciesGetPayload<S extends boolean | null | undefined | CoursePoliciesDefaultArgs> = $Result.GetResult<Prisma.$CoursePoliciesPayload, S>
-
-  type CoursePoliciesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CoursePoliciesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CoursePoliciesCountAggregateInputType | true
-    }
-
-  export interface CoursePoliciesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CoursePolicies'], meta: { name: 'CoursePolicies' } }
-    /**
-     * Find zero or one CoursePolicies that matches the filter.
-     * @param {CoursePoliciesFindUniqueArgs} args - Arguments to find a CoursePolicies
-     * @example
-     * // Get one CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CoursePoliciesFindUniqueArgs>(args: SelectSubset<T, CoursePoliciesFindUniqueArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CoursePolicies that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CoursePoliciesFindUniqueOrThrowArgs} args - Arguments to find a CoursePolicies
-     * @example
-     * // Get one CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CoursePoliciesFindUniqueOrThrowArgs>(args: SelectSubset<T, CoursePoliciesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CoursePolicies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesFindFirstArgs} args - Arguments to find a CoursePolicies
-     * @example
-     * // Get one CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CoursePoliciesFindFirstArgs>(args?: SelectSubset<T, CoursePoliciesFindFirstArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CoursePolicies that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesFindFirstOrThrowArgs} args - Arguments to find a CoursePolicies
-     * @example
-     * // Get one CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CoursePoliciesFindFirstOrThrowArgs>(args?: SelectSubset<T, CoursePoliciesFindFirstOrThrowArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CoursePolicies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findMany()
-     * 
-     * // Get first 10 CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const coursePoliciesWithIdOnly = await prisma.coursePolicies.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CoursePoliciesFindManyArgs>(args?: SelectSubset<T, CoursePoliciesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CoursePolicies.
-     * @param {CoursePoliciesCreateArgs} args - Arguments to create a CoursePolicies.
-     * @example
-     * // Create one CoursePolicies
-     * const CoursePolicies = await prisma.coursePolicies.create({
-     *   data: {
-     *     // ... data to create a CoursePolicies
-     *   }
-     * })
-     * 
-     */
-    create<T extends CoursePoliciesCreateArgs>(args: SelectSubset<T, CoursePoliciesCreateArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CoursePolicies.
-     * @param {CoursePoliciesCreateManyArgs} args - Arguments to create many CoursePolicies.
-     * @example
-     * // Create many CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CoursePoliciesCreateManyArgs>(args?: SelectSubset<T, CoursePoliciesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a CoursePolicies.
-     * @param {CoursePoliciesDeleteArgs} args - Arguments to delete one CoursePolicies.
-     * @example
-     * // Delete one CoursePolicies
-     * const CoursePolicies = await prisma.coursePolicies.delete({
-     *   where: {
-     *     // ... filter to delete one CoursePolicies
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CoursePoliciesDeleteArgs>(args: SelectSubset<T, CoursePoliciesDeleteArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CoursePolicies.
-     * @param {CoursePoliciesUpdateArgs} args - Arguments to update one CoursePolicies.
-     * @example
-     * // Update one CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CoursePoliciesUpdateArgs>(args: SelectSubset<T, CoursePoliciesUpdateArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CoursePolicies.
-     * @param {CoursePoliciesDeleteManyArgs} args - Arguments to filter CoursePolicies to delete.
-     * @example
-     * // Delete a few CoursePolicies
-     * const { count } = await prisma.coursePolicies.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CoursePoliciesDeleteManyArgs>(args?: SelectSubset<T, CoursePoliciesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CoursePolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CoursePoliciesUpdateManyArgs>(args: SelectSubset<T, CoursePoliciesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one CoursePolicies.
-     * @param {CoursePoliciesUpsertArgs} args - Arguments to update or create a CoursePolicies.
-     * @example
-     * // Update or create a CoursePolicies
-     * const coursePolicies = await prisma.coursePolicies.upsert({
-     *   create: {
-     *     // ... data to create a CoursePolicies
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CoursePolicies we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CoursePoliciesUpsertArgs>(args: SelectSubset<T, CoursePoliciesUpsertArgs<ExtArgs>>): Prisma__CoursePoliciesClient<$Result.GetResult<Prisma.$CoursePoliciesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CoursePolicies that matches the filter.
-     * @param {CoursePoliciesFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const coursePolicies = await prisma.coursePolicies.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: CoursePoliciesFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a CoursePolicies.
-     * @param {CoursePoliciesAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const coursePolicies = await prisma.coursePolicies.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: CoursePoliciesAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of CoursePolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesCountArgs} args - Arguments to filter CoursePolicies to count.
-     * @example
-     * // Count the number of CoursePolicies
-     * const count = await prisma.coursePolicies.count({
-     *   where: {
-     *     // ... the filter for the CoursePolicies we want to count
-     *   }
-     * })
-    **/
-    count<T extends CoursePoliciesCountArgs>(
-      args?: Subset<T, CoursePoliciesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CoursePoliciesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CoursePolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CoursePoliciesAggregateArgs>(args: Subset<T, CoursePoliciesAggregateArgs>): Prisma.PrismaPromise<GetCoursePoliciesAggregateType<T>>
-
-    /**
-     * Group by CoursePolicies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CoursePoliciesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CoursePoliciesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CoursePoliciesGroupByArgs['orderBy'] }
-        : { orderBy?: CoursePoliciesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CoursePoliciesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCoursePoliciesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CoursePolicies model
-   */
-  readonly fields: CoursePoliciesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CoursePolicies.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CoursePoliciesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CoursePolicies model
-   */
-  interface CoursePoliciesFieldRefs {
-    readonly id: FieldRef<"CoursePolicies", 'String'>
-    readonly courseId: FieldRef<"CoursePolicies", 'String'>
-    readonly attendancePolicy: FieldRef<"CoursePolicies", 'String'>
-    readonly lateWorkPolicy: FieldRef<"CoursePolicies", 'String'>
-    readonly academicIntegrityPolicy: FieldRef<"CoursePolicies", 'String'>
-    readonly accommodationsPolicy: FieldRef<"CoursePolicies", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CoursePolicies findUnique
-   */
-  export type CoursePoliciesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter, which CoursePolicies to fetch.
-     */
-    where: CoursePoliciesWhereUniqueInput
-  }
-
-  /**
-   * CoursePolicies findUniqueOrThrow
-   */
-  export type CoursePoliciesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter, which CoursePolicies to fetch.
-     */
-    where: CoursePoliciesWhereUniqueInput
-  }
-
-  /**
-   * CoursePolicies findFirst
-   */
-  export type CoursePoliciesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter, which CoursePolicies to fetch.
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CoursePolicies to fetch.
-     */
-    orderBy?: CoursePoliciesOrderByWithRelationInput | CoursePoliciesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CoursePolicies.
-     */
-    cursor?: CoursePoliciesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CoursePolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CoursePolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CoursePolicies.
-     */
-    distinct?: CoursePoliciesScalarFieldEnum | CoursePoliciesScalarFieldEnum[]
-  }
-
-  /**
-   * CoursePolicies findFirstOrThrow
-   */
-  export type CoursePoliciesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter, which CoursePolicies to fetch.
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CoursePolicies to fetch.
-     */
-    orderBy?: CoursePoliciesOrderByWithRelationInput | CoursePoliciesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CoursePolicies.
-     */
-    cursor?: CoursePoliciesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CoursePolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CoursePolicies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CoursePolicies.
-     */
-    distinct?: CoursePoliciesScalarFieldEnum | CoursePoliciesScalarFieldEnum[]
-  }
-
-  /**
-   * CoursePolicies findMany
-   */
-  export type CoursePoliciesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter, which CoursePolicies to fetch.
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CoursePolicies to fetch.
-     */
-    orderBy?: CoursePoliciesOrderByWithRelationInput | CoursePoliciesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CoursePolicies.
-     */
-    cursor?: CoursePoliciesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CoursePolicies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CoursePolicies.
-     */
-    skip?: number
-    distinct?: CoursePoliciesScalarFieldEnum | CoursePoliciesScalarFieldEnum[]
-  }
-
-  /**
-   * CoursePolicies create
-   */
-  export type CoursePoliciesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CoursePolicies.
-     */
-    data: XOR<CoursePoliciesCreateInput, CoursePoliciesUncheckedCreateInput>
-  }
-
-  /**
-   * CoursePolicies createMany
-   */
-  export type CoursePoliciesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CoursePolicies.
-     */
-    data: CoursePoliciesCreateManyInput | CoursePoliciesCreateManyInput[]
-  }
-
-  /**
-   * CoursePolicies update
-   */
-  export type CoursePoliciesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CoursePolicies.
-     */
-    data: XOR<CoursePoliciesUpdateInput, CoursePoliciesUncheckedUpdateInput>
-    /**
-     * Choose, which CoursePolicies to update.
-     */
-    where: CoursePoliciesWhereUniqueInput
-  }
-
-  /**
-   * CoursePolicies updateMany
-   */
-  export type CoursePoliciesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CoursePolicies.
-     */
-    data: XOR<CoursePoliciesUpdateManyMutationInput, CoursePoliciesUncheckedUpdateManyInput>
-    /**
-     * Filter which CoursePolicies to update
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * Limit how many CoursePolicies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CoursePolicies upsert
-   */
-  export type CoursePoliciesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CoursePolicies to update in case it exists.
-     */
-    where: CoursePoliciesWhereUniqueInput
-    /**
-     * In case the CoursePolicies found by the `where` argument doesn't exist, create a new CoursePolicies with this data.
-     */
-    create: XOR<CoursePoliciesCreateInput, CoursePoliciesUncheckedCreateInput>
-    /**
-     * In case the CoursePolicies was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CoursePoliciesUpdateInput, CoursePoliciesUncheckedUpdateInput>
-  }
-
-  /**
-   * CoursePolicies delete
-   */
-  export type CoursePoliciesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-    /**
-     * Filter which CoursePolicies to delete.
-     */
-    where: CoursePoliciesWhereUniqueInput
-  }
-
-  /**
-   * CoursePolicies deleteMany
-   */
-  export type CoursePoliciesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CoursePolicies to delete
-     */
-    where?: CoursePoliciesWhereInput
-    /**
-     * Limit how many CoursePolicies to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CoursePolicies findRaw
-   */
-  export type CoursePoliciesFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * CoursePolicies aggregateRaw
-   */
-  export type CoursePoliciesAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * CoursePolicies without action
-   */
-  export type CoursePoliciesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CoursePolicies
-     */
-    select?: CoursePoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CoursePolicies
-     */
-    omit?: CoursePoliciesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoursePoliciesInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GradingReference
-   */
-
-  export type AggregateGradingReference = {
-    _count: GradingReferenceCountAggregateOutputType | null
-    _min: GradingReferenceMinAggregateOutputType | null
-    _max: GradingReferenceMaxAggregateOutputType | null
-  }
-
-  export type GradingReferenceMinAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    title: string | null
-    type: string | null
-    addedIn: Date | null
-    link: string | null
-  }
-
-  export type GradingReferenceMaxAggregateOutputType = {
-    id: string | null
-    courseId: string | null
-    title: string | null
-    type: string | null
-    addedIn: Date | null
-    link: string | null
-  }
-
-  export type GradingReferenceCountAggregateOutputType = {
-    id: number
-    courseId: number
-    title: number
-    type: number
-    addedIn: number
-    link: number
-    _all: number
-  }
-
-
-  export type GradingReferenceMinAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    type?: true
-    addedIn?: true
-    link?: true
-  }
-
-  export type GradingReferenceMaxAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    type?: true
-    addedIn?: true
-    link?: true
-  }
-
-  export type GradingReferenceCountAggregateInputType = {
-    id?: true
-    courseId?: true
-    title?: true
-    type?: true
-    addedIn?: true
-    link?: true
-    _all?: true
-  }
-
-  export type GradingReferenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GradingReference to aggregate.
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingReferences to fetch.
-     */
-    orderBy?: GradingReferenceOrderByWithRelationInput | GradingReferenceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: GradingReferenceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingReferences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingReferences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned GradingReferences
-    **/
-    _count?: true | GradingReferenceCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: GradingReferenceMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: GradingReferenceMaxAggregateInputType
-  }
-
-  export type GetGradingReferenceAggregateType<T extends GradingReferenceAggregateArgs> = {
-        [P in keyof T & keyof AggregateGradingReference]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateGradingReference[P]>
-      : GetScalarType<T[P], AggregateGradingReference[P]>
-  }
-
-
-
-
-  export type GradingReferenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GradingReferenceWhereInput
-    orderBy?: GradingReferenceOrderByWithAggregationInput | GradingReferenceOrderByWithAggregationInput[]
-    by: GradingReferenceScalarFieldEnum[] | GradingReferenceScalarFieldEnum
-    having?: GradingReferenceScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: GradingReferenceCountAggregateInputType | true
-    _min?: GradingReferenceMinAggregateInputType
-    _max?: GradingReferenceMaxAggregateInputType
-  }
-
-  export type GradingReferenceGroupByOutputType = {
-    id: string
-    courseId: string
-    title: string
-    type: string
-    addedIn: Date
-    link: string
-    _count: GradingReferenceCountAggregateOutputType | null
-    _min: GradingReferenceMinAggregateOutputType | null
-    _max: GradingReferenceMaxAggregateOutputType | null
-  }
-
-  type GetGradingReferenceGroupByPayload<T extends GradingReferenceGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<GradingReferenceGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof GradingReferenceGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], GradingReferenceGroupByOutputType[P]>
-            : GetScalarType<T[P], GradingReferenceGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type GradingReferenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    courseId?: boolean
-    title?: boolean
-    type?: boolean
-    addedIn?: boolean
-    link?: boolean
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gradingReference"]>
-
-
-
-  export type GradingReferenceSelectScalar = {
-    id?: boolean
-    courseId?: boolean
-    title?: boolean
-    type?: boolean
-    addedIn?: boolean
-    link?: boolean
-  }
-
-  export type GradingReferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "courseId" | "title" | "type" | "addedIn" | "link", ExtArgs["result"]["gradingReference"]>
-  export type GradingReferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    course?: boolean | CourseDefaultArgs<ExtArgs>
-  }
-
-  export type $GradingReferencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GradingReference"
-    objects: {
-      course: Prisma.$CoursePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      courseId: string
-      title: string
-      type: string
-      addedIn: Date
-      link: string
-    }, ExtArgs["result"]["gradingReference"]>
-    composites: {}
-  }
-
-  type GradingReferenceGetPayload<S extends boolean | null | undefined | GradingReferenceDefaultArgs> = $Result.GetResult<Prisma.$GradingReferencePayload, S>
-
-  type GradingReferenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GradingReferenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GradingReferenceCountAggregateInputType | true
-    }
-
-  export interface GradingReferenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GradingReference'], meta: { name: 'GradingReference' } }
-    /**
-     * Find zero or one GradingReference that matches the filter.
-     * @param {GradingReferenceFindUniqueArgs} args - Arguments to find a GradingReference
-     * @example
-     * // Get one GradingReference
-     * const gradingReference = await prisma.gradingReference.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends GradingReferenceFindUniqueArgs>(args: SelectSubset<T, GradingReferenceFindUniqueArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one GradingReference that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {GradingReferenceFindUniqueOrThrowArgs} args - Arguments to find a GradingReference
-     * @example
-     * // Get one GradingReference
-     * const gradingReference = await prisma.gradingReference.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends GradingReferenceFindUniqueOrThrowArgs>(args: SelectSubset<T, GradingReferenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GradingReference that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceFindFirstArgs} args - Arguments to find a GradingReference
-     * @example
-     * // Get one GradingReference
-     * const gradingReference = await prisma.gradingReference.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends GradingReferenceFindFirstArgs>(args?: SelectSubset<T, GradingReferenceFindFirstArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GradingReference that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceFindFirstOrThrowArgs} args - Arguments to find a GradingReference
-     * @example
-     * // Get one GradingReference
-     * const gradingReference = await prisma.gradingReference.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends GradingReferenceFindFirstOrThrowArgs>(args?: SelectSubset<T, GradingReferenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GradingReferences that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all GradingReferences
-     * const gradingReferences = await prisma.gradingReference.findMany()
-     * 
-     * // Get first 10 GradingReferences
-     * const gradingReferences = await prisma.gradingReference.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const gradingReferenceWithIdOnly = await prisma.gradingReference.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends GradingReferenceFindManyArgs>(args?: SelectSubset<T, GradingReferenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a GradingReference.
-     * @param {GradingReferenceCreateArgs} args - Arguments to create a GradingReference.
-     * @example
-     * // Create one GradingReference
-     * const GradingReference = await prisma.gradingReference.create({
-     *   data: {
-     *     // ... data to create a GradingReference
-     *   }
-     * })
-     * 
-     */
-    create<T extends GradingReferenceCreateArgs>(args: SelectSubset<T, GradingReferenceCreateArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many GradingReferences.
-     * @param {GradingReferenceCreateManyArgs} args - Arguments to create many GradingReferences.
-     * @example
-     * // Create many GradingReferences
-     * const gradingReference = await prisma.gradingReference.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends GradingReferenceCreateManyArgs>(args?: SelectSubset<T, GradingReferenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a GradingReference.
-     * @param {GradingReferenceDeleteArgs} args - Arguments to delete one GradingReference.
-     * @example
-     * // Delete one GradingReference
-     * const GradingReference = await prisma.gradingReference.delete({
-     *   where: {
-     *     // ... filter to delete one GradingReference
-     *   }
-     * })
-     * 
-     */
-    delete<T extends GradingReferenceDeleteArgs>(args: SelectSubset<T, GradingReferenceDeleteArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one GradingReference.
-     * @param {GradingReferenceUpdateArgs} args - Arguments to update one GradingReference.
-     * @example
-     * // Update one GradingReference
-     * const gradingReference = await prisma.gradingReference.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends GradingReferenceUpdateArgs>(args: SelectSubset<T, GradingReferenceUpdateArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more GradingReferences.
-     * @param {GradingReferenceDeleteManyArgs} args - Arguments to filter GradingReferences to delete.
-     * @example
-     * // Delete a few GradingReferences
-     * const { count } = await prisma.gradingReference.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends GradingReferenceDeleteManyArgs>(args?: SelectSubset<T, GradingReferenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GradingReferences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many GradingReferences
-     * const gradingReference = await prisma.gradingReference.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends GradingReferenceUpdateManyArgs>(args: SelectSubset<T, GradingReferenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one GradingReference.
-     * @param {GradingReferenceUpsertArgs} args - Arguments to update or create a GradingReference.
-     * @example
-     * // Update or create a GradingReference
-     * const gradingReference = await prisma.gradingReference.upsert({
-     *   create: {
-     *     // ... data to create a GradingReference
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the GradingReference we want to update
-     *   }
-     * })
-     */
-    upsert<T extends GradingReferenceUpsertArgs>(args: SelectSubset<T, GradingReferenceUpsertArgs<ExtArgs>>): Prisma__GradingReferenceClient<$Result.GetResult<Prisma.$GradingReferencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GradingReferences that matches the filter.
-     * @param {GradingReferenceFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const gradingReference = await prisma.gradingReference.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: GradingReferenceFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a GradingReference.
-     * @param {GradingReferenceAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const gradingReference = await prisma.gradingReference.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: GradingReferenceAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of GradingReferences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceCountArgs} args - Arguments to filter GradingReferences to count.
-     * @example
-     * // Count the number of GradingReferences
-     * const count = await prisma.gradingReference.count({
-     *   where: {
-     *     // ... the filter for the GradingReferences we want to count
-     *   }
-     * })
-    **/
-    count<T extends GradingReferenceCountArgs>(
-      args?: Subset<T, GradingReferenceCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], GradingReferenceCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a GradingReference.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends GradingReferenceAggregateArgs>(args: Subset<T, GradingReferenceAggregateArgs>): Prisma.PrismaPromise<GetGradingReferenceAggregateType<T>>
-
-    /**
-     * Group by GradingReference.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GradingReferenceGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends GradingReferenceGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GradingReferenceGroupByArgs['orderBy'] }
-        : { orderBy?: GradingReferenceGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, GradingReferenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGradingReferenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the GradingReference model
-   */
-  readonly fields: GradingReferenceFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for GradingReference.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__GradingReferenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the GradingReference model
-   */
-  interface GradingReferenceFieldRefs {
-    readonly id: FieldRef<"GradingReference", 'String'>
-    readonly courseId: FieldRef<"GradingReference", 'String'>
-    readonly title: FieldRef<"GradingReference", 'String'>
-    readonly type: FieldRef<"GradingReference", 'String'>
-    readonly addedIn: FieldRef<"GradingReference", 'DateTime'>
-    readonly link: FieldRef<"GradingReference", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GradingReference findUnique
-   */
-  export type GradingReferenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingReference to fetch.
-     */
-    where: GradingReferenceWhereUniqueInput
-  }
-
-  /**
-   * GradingReference findUniqueOrThrow
-   */
-  export type GradingReferenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingReference to fetch.
-     */
-    where: GradingReferenceWhereUniqueInput
-  }
-
-  /**
-   * GradingReference findFirst
-   */
-  export type GradingReferenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingReference to fetch.
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingReferences to fetch.
-     */
-    orderBy?: GradingReferenceOrderByWithRelationInput | GradingReferenceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GradingReferences.
-     */
-    cursor?: GradingReferenceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingReferences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingReferences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GradingReferences.
-     */
-    distinct?: GradingReferenceScalarFieldEnum | GradingReferenceScalarFieldEnum[]
-  }
-
-  /**
-   * GradingReference findFirstOrThrow
-   */
-  export type GradingReferenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingReference to fetch.
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingReferences to fetch.
-     */
-    orderBy?: GradingReferenceOrderByWithRelationInput | GradingReferenceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GradingReferences.
-     */
-    cursor?: GradingReferenceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingReferences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingReferences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GradingReferences.
-     */
-    distinct?: GradingReferenceScalarFieldEnum | GradingReferenceScalarFieldEnum[]
-  }
-
-  /**
-   * GradingReference findMany
-   */
-  export type GradingReferenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter, which GradingReferences to fetch.
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GradingReferences to fetch.
-     */
-    orderBy?: GradingReferenceOrderByWithRelationInput | GradingReferenceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing GradingReferences.
-     */
-    cursor?: GradingReferenceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GradingReferences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GradingReferences.
-     */
-    skip?: number
-    distinct?: GradingReferenceScalarFieldEnum | GradingReferenceScalarFieldEnum[]
-  }
-
-  /**
-   * GradingReference create
-   */
-  export type GradingReferenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * The data needed to create a GradingReference.
-     */
-    data: XOR<GradingReferenceCreateInput, GradingReferenceUncheckedCreateInput>
-  }
-
-  /**
-   * GradingReference createMany
-   */
-  export type GradingReferenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many GradingReferences.
-     */
-    data: GradingReferenceCreateManyInput | GradingReferenceCreateManyInput[]
-  }
-
-  /**
-   * GradingReference update
-   */
-  export type GradingReferenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * The data needed to update a GradingReference.
-     */
-    data: XOR<GradingReferenceUpdateInput, GradingReferenceUncheckedUpdateInput>
-    /**
-     * Choose, which GradingReference to update.
-     */
-    where: GradingReferenceWhereUniqueInput
-  }
-
-  /**
-   * GradingReference updateMany
-   */
-  export type GradingReferenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update GradingReferences.
-     */
-    data: XOR<GradingReferenceUpdateManyMutationInput, GradingReferenceUncheckedUpdateManyInput>
-    /**
-     * Filter which GradingReferences to update
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * Limit how many GradingReferences to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GradingReference upsert
-   */
-  export type GradingReferenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * The filter to search for the GradingReference to update in case it exists.
-     */
-    where: GradingReferenceWhereUniqueInput
-    /**
-     * In case the GradingReference found by the `where` argument doesn't exist, create a new GradingReference with this data.
-     */
-    create: XOR<GradingReferenceCreateInput, GradingReferenceUncheckedCreateInput>
-    /**
-     * In case the GradingReference was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<GradingReferenceUpdateInput, GradingReferenceUncheckedUpdateInput>
-  }
-
-  /**
-   * GradingReference delete
-   */
-  export type GradingReferenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
-    /**
-     * Filter which GradingReference to delete.
-     */
-    where: GradingReferenceWhereUniqueInput
-  }
-
-  /**
-   * GradingReference deleteMany
-   */
-  export type GradingReferenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GradingReferences to delete
-     */
-    where?: GradingReferenceWhereInput
-    /**
-     * Limit how many GradingReferences to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * GradingReference findRaw
-   */
-  export type GradingReferenceFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * GradingReference aggregateRaw
-   */
-  export type GradingReferenceAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * GradingReference without action
-   */
-  export type GradingReferenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingReference
-     */
-    select?: GradingReferenceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingReference
-     */
-    omit?: GradingReferenceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingReferenceInclude<ExtArgs> | null
   }
 
 
@@ -8598,68 +4455,19 @@ export namespace Prisma {
 
   export const CourseScalarFieldEnum: {
     id: 'id',
+    userId: 'userId',
     name: 'name',
-    instructorId: 'instructorId',
-    subject: 'subject',
-    gradeLevel: 'gradeLevel',
+    courseTitle: 'courseTitle',
     courseDescription: 'courseDescription',
-    generationPrompt: 'generationPrompt',
-    additionalInfo: 'additionalInfo',
+    description: 'description',
+    instructor: 'instructor',
+    subject: 'subject',
     term: 'term',
-    learningObjects: 'learningObjects',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    gradeLevel: 'gradeLevel',
+    learningObjectives: 'learningObjectives'
   };
 
   export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
-
-
-  export const RequiredMaterialScalarFieldEnum: {
-    id: 'id',
-    courseId: 'courseId',
-    title: 'title',
-    author: 'author',
-    publisher: 'publisher',
-    required: 'required'
-  };
-
-  export type RequiredMaterialScalarFieldEnum = (typeof RequiredMaterialScalarFieldEnum)[keyof typeof RequiredMaterialScalarFieldEnum]
-
-
-  export const GradingPolicyScalarFieldEnum: {
-    id: 'id',
-    courseId: 'courseId',
-    assignment: 'assignment',
-    participation: 'participation',
-    midterm: 'midterm',
-    finalExam: 'finalExam'
-  };
-
-  export type GradingPolicyScalarFieldEnum = (typeof GradingPolicyScalarFieldEnum)[keyof typeof GradingPolicyScalarFieldEnum]
-
-
-  export const CoursePoliciesScalarFieldEnum: {
-    id: 'id',
-    courseId: 'courseId',
-    attendancePolicy: 'attendancePolicy',
-    lateWorkPolicy: 'lateWorkPolicy',
-    academicIntegrityPolicy: 'academicIntegrityPolicy',
-    accommodationsPolicy: 'accommodationsPolicy'
-  };
-
-  export type CoursePoliciesScalarFieldEnum = (typeof CoursePoliciesScalarFieldEnum)[keyof typeof CoursePoliciesScalarFieldEnum]
-
-
-  export const GradingReferenceScalarFieldEnum: {
-    id: 'id',
-    courseId: 'courseId',
-    title: 'title',
-    type: 'type',
-    addedIn: 'addedIn',
-    link: 'link'
-  };
-
-  export type GradingReferenceScalarFieldEnum = (typeof GradingReferenceScalarFieldEnum)[keyof typeof GradingReferenceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8740,27 +4548,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -8775,16 +4562,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Boolean'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -8898,42 +4678,40 @@ export namespace Prisma {
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
     id?: StringFilter<"Course"> | string
+    userId?: StringFilter<"Course"> | string
     name?: StringFilter<"Course"> | string
-    instructorId?: StringFilter<"Course"> | string
-    subject?: StringFilter<"Course"> | string
-    gradeLevel?: StringFilter<"Course"> | string
+    courseTitle?: StringFilter<"Course"> | string
     courseDescription?: StringFilter<"Course"> | string
-    generationPrompt?: StringFilter<"Course"> | string
-    additionalInfo?: StringNullableFilter<"Course"> | string | null
+    description?: StringFilter<"Course"> | string
+    instructor?: StringFilter<"Course"> | string
+    subject?: StringFilter<"Course"> | string
     term?: StringFilter<"Course"> | string
-    learningObjects?: StringNullableListFilter<"Course">
-    createdAt?: DateTimeFilter<"Course"> | Date | string
-    updatedAt?: DateTimeFilter<"Course"> | Date | string
-    instructor?: XOR<UserScalarRelationFilter, UserWhereInput>
-    requiredMaterials?: RequiredMaterialListRelationFilter
-    gradingPolicy?: XOR<GradingPolicyNullableScalarRelationFilter, GradingPolicyWhereInput> | null
-    coursePolicies?: XOR<CoursePoliciesNullableScalarRelationFilter, CoursePoliciesWhereInput> | null
-    gradingReferences?: GradingReferenceListRelationFilter
+    gradeLevel?: StringFilter<"Course"> | string
+    learningObjectives?: StringNullableListFilter<"Course">
+    requiredMaterials?: MaterialCompositeListFilter | MaterialObjectEqualityInput[]
+    gradingPolicy?: XOR<GradingPolicyCompositeFilter, GradingPolicyObjectEqualityInput>
+    policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
+    weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type CourseOrderByWithRelationInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
-    instructorId?: SortOrder
-    subject?: SortOrder
-    gradeLevel?: SortOrder
+    courseTitle?: SortOrder
     courseDescription?: SortOrder
-    generationPrompt?: SortOrder
-    additionalInfo?: SortOrder
+    description?: SortOrder
+    instructor?: SortOrder
+    subject?: SortOrder
     term?: SortOrder
-    learningObjects?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    instructor?: UserOrderByWithRelationInput
-    requiredMaterials?: RequiredMaterialOrderByRelationAggregateInput
-    gradingPolicy?: GradingPolicyOrderByWithRelationInput
-    coursePolicies?: CoursePoliciesOrderByWithRelationInput
-    gradingReferences?: GradingReferenceOrderByRelationAggregateInput
+    gradeLevel?: SortOrder
+    learningObjectives?: SortOrder
+    requiredMaterials?: MaterialOrderByCompositeAggregateInput
+    gradingPolicy?: GradingPolicyOrderByInput
+    policies?: PoliciesOrderByInput
+    weeklySchedule?: WeeklyScheduleOrderByCompositeAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type CourseWhereUniqueInput = Prisma.AtLeast<{
@@ -8941,37 +4719,35 @@ export namespace Prisma {
     AND?: CourseWhereInput | CourseWhereInput[]
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
+    userId?: StringFilter<"Course"> | string
     name?: StringFilter<"Course"> | string
-    instructorId?: StringFilter<"Course"> | string
-    subject?: StringFilter<"Course"> | string
-    gradeLevel?: StringFilter<"Course"> | string
+    courseTitle?: StringFilter<"Course"> | string
     courseDescription?: StringFilter<"Course"> | string
-    generationPrompt?: StringFilter<"Course"> | string
-    additionalInfo?: StringNullableFilter<"Course"> | string | null
+    description?: StringFilter<"Course"> | string
+    instructor?: StringFilter<"Course"> | string
+    subject?: StringFilter<"Course"> | string
     term?: StringFilter<"Course"> | string
-    learningObjects?: StringNullableListFilter<"Course">
-    createdAt?: DateTimeFilter<"Course"> | Date | string
-    updatedAt?: DateTimeFilter<"Course"> | Date | string
-    instructor?: XOR<UserScalarRelationFilter, UserWhereInput>
-    requiredMaterials?: RequiredMaterialListRelationFilter
-    gradingPolicy?: XOR<GradingPolicyNullableScalarRelationFilter, GradingPolicyWhereInput> | null
-    coursePolicies?: XOR<CoursePoliciesNullableScalarRelationFilter, CoursePoliciesWhereInput> | null
-    gradingReferences?: GradingReferenceListRelationFilter
+    gradeLevel?: StringFilter<"Course"> | string
+    learningObjectives?: StringNullableListFilter<"Course">
+    requiredMaterials?: MaterialCompositeListFilter | MaterialObjectEqualityInput[]
+    gradingPolicy?: XOR<GradingPolicyCompositeFilter, GradingPolicyObjectEqualityInput>
+    policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
+    weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type CourseOrderByWithAggregationInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
-    instructorId?: SortOrder
-    subject?: SortOrder
-    gradeLevel?: SortOrder
+    courseTitle?: SortOrder
     courseDescription?: SortOrder
-    generationPrompt?: SortOrder
-    additionalInfo?: SortOrder
+    description?: SortOrder
+    instructor?: SortOrder
+    subject?: SortOrder
     term?: SortOrder
-    learningObjects?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    gradeLevel?: SortOrder
+    learningObjectives?: SortOrder
     _count?: CourseCountOrderByAggregateInput
     _max?: CourseMaxOrderByAggregateInput
     _min?: CourseMinOrderByAggregateInput
@@ -8982,259 +4758,16 @@ export namespace Prisma {
     OR?: CourseScalarWhereWithAggregatesInput[]
     NOT?: CourseScalarWhereWithAggregatesInput | CourseScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Course"> | string
+    userId?: StringWithAggregatesFilter<"Course"> | string
     name?: StringWithAggregatesFilter<"Course"> | string
-    instructorId?: StringWithAggregatesFilter<"Course"> | string
-    subject?: StringWithAggregatesFilter<"Course"> | string
-    gradeLevel?: StringWithAggregatesFilter<"Course"> | string
+    courseTitle?: StringWithAggregatesFilter<"Course"> | string
     courseDescription?: StringWithAggregatesFilter<"Course"> | string
-    generationPrompt?: StringWithAggregatesFilter<"Course"> | string
-    additionalInfo?: StringNullableWithAggregatesFilter<"Course"> | string | null
+    description?: StringWithAggregatesFilter<"Course"> | string
+    instructor?: StringWithAggregatesFilter<"Course"> | string
+    subject?: StringWithAggregatesFilter<"Course"> | string
     term?: StringWithAggregatesFilter<"Course"> | string
-    learningObjects?: StringNullableListFilter<"Course">
-    createdAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
-  }
-
-  export type RequiredMaterialWhereInput = {
-    AND?: RequiredMaterialWhereInput | RequiredMaterialWhereInput[]
-    OR?: RequiredMaterialWhereInput[]
-    NOT?: RequiredMaterialWhereInput | RequiredMaterialWhereInput[]
-    id?: StringFilter<"RequiredMaterial"> | string
-    courseId?: StringFilter<"RequiredMaterial"> | string
-    title?: StringFilter<"RequiredMaterial"> | string
-    author?: StringFilter<"RequiredMaterial"> | string
-    publisher?: StringFilter<"RequiredMaterial"> | string
-    required?: BoolFilter<"RequiredMaterial"> | boolean
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }
-
-  export type RequiredMaterialOrderByWithRelationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    author?: SortOrder
-    publisher?: SortOrder
-    required?: SortOrder
-    course?: CourseOrderByWithRelationInput
-  }
-
-  export type RequiredMaterialWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: RequiredMaterialWhereInput | RequiredMaterialWhereInput[]
-    OR?: RequiredMaterialWhereInput[]
-    NOT?: RequiredMaterialWhereInput | RequiredMaterialWhereInput[]
-    courseId?: StringFilter<"RequiredMaterial"> | string
-    title?: StringFilter<"RequiredMaterial"> | string
-    author?: StringFilter<"RequiredMaterial"> | string
-    publisher?: StringFilter<"RequiredMaterial"> | string
-    required?: BoolFilter<"RequiredMaterial"> | boolean
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }, "id">
-
-  export type RequiredMaterialOrderByWithAggregationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    author?: SortOrder
-    publisher?: SortOrder
-    required?: SortOrder
-    _count?: RequiredMaterialCountOrderByAggregateInput
-    _max?: RequiredMaterialMaxOrderByAggregateInput
-    _min?: RequiredMaterialMinOrderByAggregateInput
-  }
-
-  export type RequiredMaterialScalarWhereWithAggregatesInput = {
-    AND?: RequiredMaterialScalarWhereWithAggregatesInput | RequiredMaterialScalarWhereWithAggregatesInput[]
-    OR?: RequiredMaterialScalarWhereWithAggregatesInput[]
-    NOT?: RequiredMaterialScalarWhereWithAggregatesInput | RequiredMaterialScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"RequiredMaterial"> | string
-    courseId?: StringWithAggregatesFilter<"RequiredMaterial"> | string
-    title?: StringWithAggregatesFilter<"RequiredMaterial"> | string
-    author?: StringWithAggregatesFilter<"RequiredMaterial"> | string
-    publisher?: StringWithAggregatesFilter<"RequiredMaterial"> | string
-    required?: BoolWithAggregatesFilter<"RequiredMaterial"> | boolean
-  }
-
-  export type GradingPolicyWhereInput = {
-    AND?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    OR?: GradingPolicyWhereInput[]
-    NOT?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    id?: StringFilter<"GradingPolicy"> | string
-    courseId?: StringFilter<"GradingPolicy"> | string
-    assignment?: IntFilter<"GradingPolicy"> | number
-    participation?: IntFilter<"GradingPolicy"> | number
-    midterm?: IntFilter<"GradingPolicy"> | number
-    finalExam?: IntFilter<"GradingPolicy"> | number
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }
-
-  export type GradingPolicyOrderByWithRelationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-    course?: CourseOrderByWithRelationInput
-  }
-
-  export type GradingPolicyWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    courseId?: string
-    AND?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    OR?: GradingPolicyWhereInput[]
-    NOT?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    assignment?: IntFilter<"GradingPolicy"> | number
-    participation?: IntFilter<"GradingPolicy"> | number
-    midterm?: IntFilter<"GradingPolicy"> | number
-    finalExam?: IntFilter<"GradingPolicy"> | number
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }, "id" | "courseId">
-
-  export type GradingPolicyOrderByWithAggregationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-    _count?: GradingPolicyCountOrderByAggregateInput
-    _avg?: GradingPolicyAvgOrderByAggregateInput
-    _max?: GradingPolicyMaxOrderByAggregateInput
-    _min?: GradingPolicyMinOrderByAggregateInput
-    _sum?: GradingPolicySumOrderByAggregateInput
-  }
-
-  export type GradingPolicyScalarWhereWithAggregatesInput = {
-    AND?: GradingPolicyScalarWhereWithAggregatesInput | GradingPolicyScalarWhereWithAggregatesInput[]
-    OR?: GradingPolicyScalarWhereWithAggregatesInput[]
-    NOT?: GradingPolicyScalarWhereWithAggregatesInput | GradingPolicyScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"GradingPolicy"> | string
-    courseId?: StringWithAggregatesFilter<"GradingPolicy"> | string
-    assignment?: IntWithAggregatesFilter<"GradingPolicy"> | number
-    participation?: IntWithAggregatesFilter<"GradingPolicy"> | number
-    midterm?: IntWithAggregatesFilter<"GradingPolicy"> | number
-    finalExam?: IntWithAggregatesFilter<"GradingPolicy"> | number
-  }
-
-  export type CoursePoliciesWhereInput = {
-    AND?: CoursePoliciesWhereInput | CoursePoliciesWhereInput[]
-    OR?: CoursePoliciesWhereInput[]
-    NOT?: CoursePoliciesWhereInput | CoursePoliciesWhereInput[]
-    id?: StringFilter<"CoursePolicies"> | string
-    courseId?: StringFilter<"CoursePolicies"> | string
-    attendancePolicy?: StringFilter<"CoursePolicies"> | string
-    lateWorkPolicy?: StringFilter<"CoursePolicies"> | string
-    academicIntegrityPolicy?: StringFilter<"CoursePolicies"> | string
-    accommodationsPolicy?: StringFilter<"CoursePolicies"> | string
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }
-
-  export type CoursePoliciesOrderByWithRelationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    attendancePolicy?: SortOrder
-    lateWorkPolicy?: SortOrder
-    academicIntegrityPolicy?: SortOrder
-    accommodationsPolicy?: SortOrder
-    course?: CourseOrderByWithRelationInput
-  }
-
-  export type CoursePoliciesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    courseId?: string
-    AND?: CoursePoliciesWhereInput | CoursePoliciesWhereInput[]
-    OR?: CoursePoliciesWhereInput[]
-    NOT?: CoursePoliciesWhereInput | CoursePoliciesWhereInput[]
-    attendancePolicy?: StringFilter<"CoursePolicies"> | string
-    lateWorkPolicy?: StringFilter<"CoursePolicies"> | string
-    academicIntegrityPolicy?: StringFilter<"CoursePolicies"> | string
-    accommodationsPolicy?: StringFilter<"CoursePolicies"> | string
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }, "id" | "courseId">
-
-  export type CoursePoliciesOrderByWithAggregationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    attendancePolicy?: SortOrder
-    lateWorkPolicy?: SortOrder
-    academicIntegrityPolicy?: SortOrder
-    accommodationsPolicy?: SortOrder
-    _count?: CoursePoliciesCountOrderByAggregateInput
-    _max?: CoursePoliciesMaxOrderByAggregateInput
-    _min?: CoursePoliciesMinOrderByAggregateInput
-  }
-
-  export type CoursePoliciesScalarWhereWithAggregatesInput = {
-    AND?: CoursePoliciesScalarWhereWithAggregatesInput | CoursePoliciesScalarWhereWithAggregatesInput[]
-    OR?: CoursePoliciesScalarWhereWithAggregatesInput[]
-    NOT?: CoursePoliciesScalarWhereWithAggregatesInput | CoursePoliciesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"CoursePolicies"> | string
-    courseId?: StringWithAggregatesFilter<"CoursePolicies"> | string
-    attendancePolicy?: StringWithAggregatesFilter<"CoursePolicies"> | string
-    lateWorkPolicy?: StringWithAggregatesFilter<"CoursePolicies"> | string
-    academicIntegrityPolicy?: StringWithAggregatesFilter<"CoursePolicies"> | string
-    accommodationsPolicy?: StringWithAggregatesFilter<"CoursePolicies"> | string
-  }
-
-  export type GradingReferenceWhereInput = {
-    AND?: GradingReferenceWhereInput | GradingReferenceWhereInput[]
-    OR?: GradingReferenceWhereInput[]
-    NOT?: GradingReferenceWhereInput | GradingReferenceWhereInput[]
-    id?: StringFilter<"GradingReference"> | string
-    courseId?: StringFilter<"GradingReference"> | string
-    title?: StringFilter<"GradingReference"> | string
-    type?: StringFilter<"GradingReference"> | string
-    addedIn?: DateTimeFilter<"GradingReference"> | Date | string
-    link?: StringFilter<"GradingReference"> | string
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }
-
-  export type GradingReferenceOrderByWithRelationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    type?: SortOrder
-    addedIn?: SortOrder
-    link?: SortOrder
-    course?: CourseOrderByWithRelationInput
-  }
-
-  export type GradingReferenceWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: GradingReferenceWhereInput | GradingReferenceWhereInput[]
-    OR?: GradingReferenceWhereInput[]
-    NOT?: GradingReferenceWhereInput | GradingReferenceWhereInput[]
-    courseId?: StringFilter<"GradingReference"> | string
-    title?: StringFilter<"GradingReference"> | string
-    type?: StringFilter<"GradingReference"> | string
-    addedIn?: DateTimeFilter<"GradingReference"> | Date | string
-    link?: StringFilter<"GradingReference"> | string
-    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
-  }, "id">
-
-  export type GradingReferenceOrderByWithAggregationInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    type?: SortOrder
-    addedIn?: SortOrder
-    link?: SortOrder
-    _count?: GradingReferenceCountOrderByAggregateInput
-    _max?: GradingReferenceMaxOrderByAggregateInput
-    _min?: GradingReferenceMinOrderByAggregateInput
-  }
-
-  export type GradingReferenceScalarWhereWithAggregatesInput = {
-    AND?: GradingReferenceScalarWhereWithAggregatesInput | GradingReferenceScalarWhereWithAggregatesInput[]
-    OR?: GradingReferenceScalarWhereWithAggregatesInput[]
-    NOT?: GradingReferenceScalarWhereWithAggregatesInput | GradingReferenceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"GradingReference"> | string
-    courseId?: StringWithAggregatesFilter<"GradingReference"> | string
-    title?: StringWithAggregatesFilter<"GradingReference"> | string
-    type?: StringWithAggregatesFilter<"GradingReference"> | string
-    addedIn?: DateTimeWithAggregatesFilter<"GradingReference"> | Date | string
-    link?: StringWithAggregatesFilter<"GradingReference"> | string
+    gradeLevel?: StringWithAggregatesFilter<"Course"> | string
+    learningObjectives?: StringNullableListFilter<"Course">
   }
 
   export type PaymentsCreateInput = {
@@ -9288,7 +4821,7 @@ export namespace Prisma {
     email: string
     hashed_password: string
     provider: $Enums.Provider
-    courses?: CourseCreateNestedManyWithoutInstructorInput
+    courses?: CourseCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9297,7 +4830,7 @@ export namespace Prisma {
     email: string
     hashed_password: string
     provider: $Enums.Provider
-    courses?: CourseUncheckedCreateNestedManyWithoutInstructorInput
+    courses?: CourseUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -9305,7 +4838,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
-    courses?: CourseUpdateManyWithoutInstructorNestedInput
+    courses?: CourseUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9313,7 +4846,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     hashed_password?: StringFieldUpdateOperationsInput | string
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
-    courses?: CourseUncheckedUpdateManyWithoutInstructorNestedInput
+    courses?: CourseUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9341,349 +4874,122 @@ export namespace Prisma {
   export type CourseCreateInput = {
     id?: string
     name: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    instructor: UserCreateNestedOneWithoutCoursesInput
-    requiredMaterials?: RequiredMaterialCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceCreateNestedManyWithoutCourseInput
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user: UserCreateNestedOneWithoutCoursesInput
   }
 
   export type CourseUncheckedCreateInput = {
     id?: string
+    userId: string
     name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyUncheckedCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceUncheckedCreateNestedManyWithoutCourseInput
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
   export type CourseUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructor?: UserUpdateOneRequiredWithoutCoursesNestedInput
-    requiredMaterials?: RequiredMaterialUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUpdateManyWithoutCourseNestedInput
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user?: UserUpdateOneRequiredWithoutCoursesNestedInput
   }
 
   export type CourseUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
   export type CourseCreateManyInput = {
     id?: string
+    userId: string
     name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
   export type CourseUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
   export type CourseUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RequiredMaterialCreateInput = {
-    id?: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
-    course: CourseCreateNestedOneWithoutRequiredMaterialsInput
-  }
-
-  export type RequiredMaterialUncheckedCreateInput = {
-    id?: string
-    courseId: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
-  }
-
-  export type RequiredMaterialUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
-    course?: CourseUpdateOneRequiredWithoutRequiredMaterialsNestedInput
-  }
-
-  export type RequiredMaterialUncheckedUpdateInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type RequiredMaterialCreateManyInput = {
-    id?: string
-    courseId: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
-  }
-
-  export type RequiredMaterialUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type RequiredMaterialUncheckedUpdateManyInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type GradingPolicyCreateInput = {
-    id?: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-    course: CourseCreateNestedOneWithoutGradingPolicyInput
-  }
-
-  export type GradingPolicyUncheckedCreateInput = {
-    id?: string
-    courseId: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-  }
-
-  export type GradingPolicyUpdateInput = {
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-    course?: CourseUpdateOneRequiredWithoutGradingPolicyNestedInput
-  }
-
-  export type GradingPolicyUncheckedUpdateInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GradingPolicyCreateManyInput = {
-    id?: string
-    courseId: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-  }
-
-  export type GradingPolicyUpdateManyMutationInput = {
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GradingPolicyUncheckedUpdateManyInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type CoursePoliciesCreateInput = {
-    id?: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-    course: CourseCreateNestedOneWithoutCoursePoliciesInput
-  }
-
-  export type CoursePoliciesUncheckedCreateInput = {
-    id?: string
-    courseId: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-  }
-
-  export type CoursePoliciesUpdateInput = {
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-    course?: CourseUpdateOneRequiredWithoutCoursePoliciesNestedInput
-  }
-
-  export type CoursePoliciesUncheckedUpdateInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CoursePoliciesCreateManyInput = {
-    id?: string
-    courseId: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-  }
-
-  export type CoursePoliciesUpdateManyMutationInput = {
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CoursePoliciesUncheckedUpdateManyInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type GradingReferenceCreateInput = {
-    id?: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-    course: CourseCreateNestedOneWithoutGradingReferencesInput
-  }
-
-  export type GradingReferenceUncheckedCreateInput = {
-    id?: string
-    courseId: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-  }
-
-  export type GradingReferenceUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
-    course?: CourseUpdateOneRequiredWithoutGradingReferencesNestedInput
-  }
-
-  export type GradingReferenceUncheckedUpdateInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type GradingReferenceCreateManyInput = {
-    id?: string
-    courseId: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-  }
-
-  export type GradingReferenceUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type GradingReferenceUncheckedUpdateManyInput = {
-    courseId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9825,22 +5131,6 @@ export namespace Prisma {
     _max?: NestedEnumProviderFilter<$PrismaModel>
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-    isSet?: boolean
-  }
-
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -9849,15 +5139,63 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type MaterialCompositeListFilter = {
+    equals?: MaterialObjectEqualityInput[]
+    every?: MaterialWhereInput
+    some?: MaterialWhereInput
+    none?: MaterialWhereInput
+    isEmpty?: boolean
+    isSet?: boolean
+  }
+
+  export type MaterialObjectEqualityInput = {
+    title: string
+    author: string
+    publisher: string
+    year: string
+    required: boolean
+  }
+
+  export type GradingPolicyCompositeFilter = {
+    equals?: GradingPolicyObjectEqualityInput
+    is?: GradingPolicyWhereInput
+    isNot?: GradingPolicyWhereInput
+  }
+
+  export type GradingPolicyObjectEqualityInput = {
+    assignments: GradingComponentObjectEqualityInput
+    midterm: GradingComponentObjectEqualityInput
+    finalExam: GradingComponentObjectEqualityInput
+    participation: GradingComponentObjectEqualityInput
+  }
+
+  export type PoliciesCompositeFilter = {
+    equals?: PoliciesObjectEqualityInput
+    is?: PoliciesWhereInput
+    isNot?: PoliciesWhereInput
+  }
+
+  export type PoliciesObjectEqualityInput = {
+    attendance: string
+    lateWork: string
+    academicIntegrity: string
+    accommodations: string
+  }
+
+  export type WeeklyScheduleCompositeListFilter = {
+    equals?: WeeklyScheduleObjectEqualityInput[]
+    every?: WeeklyScheduleWhereInput
+    some?: WeeklyScheduleWhereInput
+    none?: WeeklyScheduleWhereInput
+    isEmpty?: boolean
+    isSet?: boolean
+  }
+
+  export type WeeklyScheduleObjectEqualityInput = {
+    week: number
+    topic: string
+    readings: string
+    assignments: string
   }
 
   export type UserScalarRelationFilter = {
@@ -9865,277 +5203,66 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
-  export type RequiredMaterialListRelationFilter = {
-    every?: RequiredMaterialWhereInput
-    some?: RequiredMaterialWhereInput
-    none?: RequiredMaterialWhereInput
-  }
-
-  export type GradingPolicyNullableScalarRelationFilter = {
-    is?: GradingPolicyWhereInput | null
-    isNot?: GradingPolicyWhereInput | null
-  }
-
-  export type CoursePoliciesNullableScalarRelationFilter = {
-    is?: CoursePoliciesWhereInput | null
-    isNot?: CoursePoliciesWhereInput | null
-  }
-
-  export type GradingReferenceListRelationFilter = {
-    every?: GradingReferenceWhereInput
-    some?: GradingReferenceWhereInput
-    none?: GradingReferenceWhereInput
-  }
-
-  export type RequiredMaterialOrderByRelationAggregateInput = {
+  export type MaterialOrderByCompositeAggregateInput = {
     _count?: SortOrder
   }
 
-  export type GradingReferenceOrderByRelationAggregateInput = {
+  export type GradingPolicyOrderByInput = {
+    assignments?: GradingComponentOrderByInput
+    midterm?: GradingComponentOrderByInput
+    finalExam?: GradingComponentOrderByInput
+    participation?: GradingComponentOrderByInput
+  }
+
+  export type PoliciesOrderByInput = {
+    attendance?: SortOrder
+    lateWork?: SortOrder
+    academicIntegrity?: SortOrder
+    accommodations?: SortOrder
+  }
+
+  export type WeeklyScheduleOrderByCompositeAggregateInput = {
     _count?: SortOrder
   }
 
   export type CourseCountOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
-    instructorId?: SortOrder
-    subject?: SortOrder
-    gradeLevel?: SortOrder
+    courseTitle?: SortOrder
     courseDescription?: SortOrder
-    generationPrompt?: SortOrder
-    additionalInfo?: SortOrder
+    description?: SortOrder
+    instructor?: SortOrder
+    subject?: SortOrder
     term?: SortOrder
-    learningObjects?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    gradeLevel?: SortOrder
+    learningObjectives?: SortOrder
   }
 
   export type CourseMaxOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
-    instructorId?: SortOrder
-    subject?: SortOrder
-    gradeLevel?: SortOrder
+    courseTitle?: SortOrder
     courseDescription?: SortOrder
-    generationPrompt?: SortOrder
-    additionalInfo?: SortOrder
+    description?: SortOrder
+    instructor?: SortOrder
+    subject?: SortOrder
     term?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    gradeLevel?: SortOrder
   }
 
   export type CourseMinOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
-    instructorId?: SortOrder
-    subject?: SortOrder
-    gradeLevel?: SortOrder
+    courseTitle?: SortOrder
     courseDescription?: SortOrder
-    generationPrompt?: SortOrder
-    additionalInfo?: SortOrder
+    description?: SortOrder
+    instructor?: SortOrder
+    subject?: SortOrder
     term?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-    isSet?: boolean
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type CourseScalarRelationFilter = {
-    is?: CourseWhereInput
-    isNot?: CourseWhereInput
-  }
-
-  export type RequiredMaterialCountOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    author?: SortOrder
-    publisher?: SortOrder
-    required?: SortOrder
-  }
-
-  export type RequiredMaterialMaxOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    author?: SortOrder
-    publisher?: SortOrder
-    required?: SortOrder
-  }
-
-  export type RequiredMaterialMinOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    author?: SortOrder
-    publisher?: SortOrder
-    required?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type GradingPolicyCountOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-  }
-
-  export type GradingPolicyAvgOrderByAggregateInput = {
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-  }
-
-  export type GradingPolicyMaxOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-  }
-
-  export type GradingPolicyMinOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-  }
-
-  export type GradingPolicySumOrderByAggregateInput = {
-    assignment?: SortOrder
-    participation?: SortOrder
-    midterm?: SortOrder
-    finalExam?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type CoursePoliciesCountOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    attendancePolicy?: SortOrder
-    lateWorkPolicy?: SortOrder
-    academicIntegrityPolicy?: SortOrder
-    accommodationsPolicy?: SortOrder
-  }
-
-  export type CoursePoliciesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    attendancePolicy?: SortOrder
-    lateWorkPolicy?: SortOrder
-    academicIntegrityPolicy?: SortOrder
-    accommodationsPolicy?: SortOrder
-  }
-
-  export type CoursePoliciesMinOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    attendancePolicy?: SortOrder
-    lateWorkPolicy?: SortOrder
-    academicIntegrityPolicy?: SortOrder
-    accommodationsPolicy?: SortOrder
-  }
-
-  export type GradingReferenceCountOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    type?: SortOrder
-    addedIn?: SortOrder
-    link?: SortOrder
-  }
-
-  export type GradingReferenceMaxOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    type?: SortOrder
-    addedIn?: SortOrder
-    link?: SortOrder
-  }
-
-  export type GradingReferenceMinOrderByAggregateInput = {
-    id?: SortOrder
-    courseId?: SortOrder
-    title?: SortOrder
-    type?: SortOrder
-    addedIn?: SortOrder
-    link?: SortOrder
+    gradeLevel?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10150,17 +5277,17 @@ export namespace Prisma {
     set?: $Enums.SubsciptionType
   }
 
-  export type CourseCreateNestedManyWithoutInstructorInput = {
-    create?: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput> | CourseCreateWithoutInstructorInput[] | CourseUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: CourseCreateOrConnectWithoutInstructorInput | CourseCreateOrConnectWithoutInstructorInput[]
-    createMany?: CourseCreateManyInstructorInputEnvelope
+  export type CourseCreateNestedManyWithoutUserInput = {
+    create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
+    createMany?: CourseCreateManyUserInputEnvelope
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
   }
 
-  export type CourseUncheckedCreateNestedManyWithoutInstructorInput = {
-    create?: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput> | CourseCreateWithoutInstructorInput[] | CourseUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: CourseCreateOrConnectWithoutInstructorInput | CourseCreateOrConnectWithoutInstructorInput[]
-    createMany?: CourseCreateManyInstructorInputEnvelope
+  export type CourseUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
+    createMany?: CourseCreateManyUserInputEnvelope
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
   }
 
@@ -10168,36 +5295,81 @@ export namespace Prisma {
     set?: $Enums.Provider
   }
 
-  export type CourseUpdateManyWithoutInstructorNestedInput = {
-    create?: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput> | CourseCreateWithoutInstructorInput[] | CourseUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: CourseCreateOrConnectWithoutInstructorInput | CourseCreateOrConnectWithoutInstructorInput[]
-    upsert?: CourseUpsertWithWhereUniqueWithoutInstructorInput | CourseUpsertWithWhereUniqueWithoutInstructorInput[]
-    createMany?: CourseCreateManyInstructorInputEnvelope
+  export type CourseUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
+    upsert?: CourseUpsertWithWhereUniqueWithoutUserInput | CourseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CourseCreateManyUserInputEnvelope
     set?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     disconnect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     delete?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
-    update?: CourseUpdateWithWhereUniqueWithoutInstructorInput | CourseUpdateWithWhereUniqueWithoutInstructorInput[]
-    updateMany?: CourseUpdateManyWithWhereWithoutInstructorInput | CourseUpdateManyWithWhereWithoutInstructorInput[]
+    update?: CourseUpdateWithWhereUniqueWithoutUserInput | CourseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CourseUpdateManyWithWhereWithoutUserInput | CourseUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
   }
 
-  export type CourseUncheckedUpdateManyWithoutInstructorNestedInput = {
-    create?: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput> | CourseCreateWithoutInstructorInput[] | CourseUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: CourseCreateOrConnectWithoutInstructorInput | CourseCreateOrConnectWithoutInstructorInput[]
-    upsert?: CourseUpsertWithWhereUniqueWithoutInstructorInput | CourseUpsertWithWhereUniqueWithoutInstructorInput[]
-    createMany?: CourseCreateManyInstructorInputEnvelope
+  export type CourseUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
+    upsert?: CourseUpsertWithWhereUniqueWithoutUserInput | CourseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CourseCreateManyUserInputEnvelope
     set?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     disconnect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     delete?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
-    update?: CourseUpdateWithWhereUniqueWithoutInstructorInput | CourseUpdateWithWhereUniqueWithoutInstructorInput[]
-    updateMany?: CourseUpdateManyWithWhereWithoutInstructorInput | CourseUpdateManyWithWhereWithoutInstructorInput[]
+    update?: CourseUpdateWithWhereUniqueWithoutUserInput | CourseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CourseUpdateManyWithWhereWithoutUserInput | CourseUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
   }
 
-  export type CourseCreatelearningObjectsInput = {
+  export type CourseCreatelearningObjectivesInput = {
     set: string[]
+  }
+
+  export type MaterialListCreateEnvelopeInput = {
+    set?: MaterialCreateInput | MaterialCreateInput[]
+  }
+
+  export type MaterialCreateInput = {
+    title: string
+    author: string
+    publisher: string
+    year: string
+    required: boolean
+  }
+
+  export type GradingPolicyCreateEnvelopeInput = {
+    set?: GradingPolicyCreateInput
+  }
+
+  export type GradingPolicyCreateInput = {
+    assignments: GradingComponentCreateInput
+    midterm: GradingComponentCreateInput
+    finalExam: GradingComponentCreateInput
+    participation: GradingComponentCreateInput
+  }
+
+  export type PoliciesCreateEnvelopeInput = {
+    set?: PoliciesCreateInput
+  }
+
+  export type PoliciesCreateInput = {
+    attendance: string
+    lateWork: string
+    academicIntegrity: string
+    accommodations: string
+  }
+
+  export type WeeklyScheduleListCreateEnvelopeInput = {
+    set?: WeeklyScheduleCreateInput | WeeklyScheduleCreateInput[]
+  }
+
+  export type WeeklyScheduleCreateInput = {
+    week: number
+    topic: string
+    readings: string
+    assignments: string
   }
 
   export type UserCreateNestedOneWithoutCoursesInput = {
@@ -10206,70 +5378,33 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type RequiredMaterialCreateNestedManyWithoutCourseInput = {
-    create?: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput> | RequiredMaterialCreateWithoutCourseInput[] | RequiredMaterialUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: RequiredMaterialCreateOrConnectWithoutCourseInput | RequiredMaterialCreateOrConnectWithoutCourseInput[]
-    createMany?: RequiredMaterialCreateManyCourseInputEnvelope
-    connect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-  }
-
-  export type GradingPolicyCreateNestedOneWithoutCourseInput = {
-    create?: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: GradingPolicyCreateOrConnectWithoutCourseInput
-    connect?: GradingPolicyWhereUniqueInput
-  }
-
-  export type CoursePoliciesCreateNestedOneWithoutCourseInput = {
-    create?: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: CoursePoliciesCreateOrConnectWithoutCourseInput
-    connect?: CoursePoliciesWhereUniqueInput
-  }
-
-  export type GradingReferenceCreateNestedManyWithoutCourseInput = {
-    create?: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput> | GradingReferenceCreateWithoutCourseInput[] | GradingReferenceUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: GradingReferenceCreateOrConnectWithoutCourseInput | GradingReferenceCreateOrConnectWithoutCourseInput[]
-    createMany?: GradingReferenceCreateManyCourseInputEnvelope
-    connect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-  }
-
-  export type RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput = {
-    create?: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput> | RequiredMaterialCreateWithoutCourseInput[] | RequiredMaterialUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: RequiredMaterialCreateOrConnectWithoutCourseInput | RequiredMaterialCreateOrConnectWithoutCourseInput[]
-    createMany?: RequiredMaterialCreateManyCourseInputEnvelope
-    connect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-  }
-
-  export type GradingPolicyUncheckedCreateNestedOneWithoutCourseInput = {
-    create?: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: GradingPolicyCreateOrConnectWithoutCourseInput
-    connect?: GradingPolicyWhereUniqueInput
-  }
-
-  export type CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput = {
-    create?: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: CoursePoliciesCreateOrConnectWithoutCourseInput
-    connect?: CoursePoliciesWhereUniqueInput
-  }
-
-  export type GradingReferenceUncheckedCreateNestedManyWithoutCourseInput = {
-    create?: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput> | GradingReferenceCreateWithoutCourseInput[] | GradingReferenceUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: GradingReferenceCreateOrConnectWithoutCourseInput | GradingReferenceCreateOrConnectWithoutCourseInput[]
-    createMany?: GradingReferenceCreateManyCourseInputEnvelope
-    connect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-    unset?: boolean
-  }
-
-  export type CourseUpdatelearningObjectsInput = {
+  export type CourseUpdatelearningObjectivesInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type MaterialListUpdateEnvelopeInput = {
+    set?: MaterialCreateInput | MaterialCreateInput[]
+    push?: MaterialCreateInput | MaterialCreateInput[]
+    updateMany?: MaterialUpdateManyInput
+    deleteMany?: MaterialDeleteManyInput
+  }
+
+  export type GradingPolicyUpdateEnvelopeInput = {
+    set?: GradingPolicyCreateInput
+    update?: GradingPolicyUpdateInput
+  }
+
+  export type PoliciesUpdateEnvelopeInput = {
+    set?: PoliciesCreateInput
+    update?: PoliciesUpdateInput
+  }
+
+  export type WeeklyScheduleListUpdateEnvelopeInput = {
+    set?: WeeklyScheduleCreateInput | WeeklyScheduleCreateInput[]
+    push?: WeeklyScheduleCreateInput | WeeklyScheduleCreateInput[]
+    updateMany?: WeeklyScheduleUpdateManyInput
+    deleteMany?: WeeklyScheduleDeleteManyInput
   }
 
   export type UserUpdateOneRequiredWithoutCoursesNestedInput = {
@@ -10278,170 +5413,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCoursesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCoursesInput, UserUpdateWithoutCoursesInput>, UserUncheckedUpdateWithoutCoursesInput>
-  }
-
-  export type RequiredMaterialUpdateManyWithoutCourseNestedInput = {
-    create?: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput> | RequiredMaterialCreateWithoutCourseInput[] | RequiredMaterialUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: RequiredMaterialCreateOrConnectWithoutCourseInput | RequiredMaterialCreateOrConnectWithoutCourseInput[]
-    upsert?: RequiredMaterialUpsertWithWhereUniqueWithoutCourseInput | RequiredMaterialUpsertWithWhereUniqueWithoutCourseInput[]
-    createMany?: RequiredMaterialCreateManyCourseInputEnvelope
-    set?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    disconnect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    delete?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    connect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    update?: RequiredMaterialUpdateWithWhereUniqueWithoutCourseInput | RequiredMaterialUpdateWithWhereUniqueWithoutCourseInput[]
-    updateMany?: RequiredMaterialUpdateManyWithWhereWithoutCourseInput | RequiredMaterialUpdateManyWithWhereWithoutCourseInput[]
-    deleteMany?: RequiredMaterialScalarWhereInput | RequiredMaterialScalarWhereInput[]
-  }
-
-  export type GradingPolicyUpdateOneWithoutCourseNestedInput = {
-    create?: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: GradingPolicyCreateOrConnectWithoutCourseInput
-    upsert?: GradingPolicyUpsertWithoutCourseInput
-    disconnect?: GradingPolicyWhereInput | boolean
-    delete?: GradingPolicyWhereInput | boolean
-    connect?: GradingPolicyWhereUniqueInput
-    update?: XOR<XOR<GradingPolicyUpdateToOneWithWhereWithoutCourseInput, GradingPolicyUpdateWithoutCourseInput>, GradingPolicyUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type CoursePoliciesUpdateOneWithoutCourseNestedInput = {
-    create?: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: CoursePoliciesCreateOrConnectWithoutCourseInput
-    upsert?: CoursePoliciesUpsertWithoutCourseInput
-    disconnect?: CoursePoliciesWhereInput | boolean
-    delete?: CoursePoliciesWhereInput | boolean
-    connect?: CoursePoliciesWhereUniqueInput
-    update?: XOR<XOR<CoursePoliciesUpdateToOneWithWhereWithoutCourseInput, CoursePoliciesUpdateWithoutCourseInput>, CoursePoliciesUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type GradingReferenceUpdateManyWithoutCourseNestedInput = {
-    create?: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput> | GradingReferenceCreateWithoutCourseInput[] | GradingReferenceUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: GradingReferenceCreateOrConnectWithoutCourseInput | GradingReferenceCreateOrConnectWithoutCourseInput[]
-    upsert?: GradingReferenceUpsertWithWhereUniqueWithoutCourseInput | GradingReferenceUpsertWithWhereUniqueWithoutCourseInput[]
-    createMany?: GradingReferenceCreateManyCourseInputEnvelope
-    set?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    disconnect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    delete?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    connect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    update?: GradingReferenceUpdateWithWhereUniqueWithoutCourseInput | GradingReferenceUpdateWithWhereUniqueWithoutCourseInput[]
-    updateMany?: GradingReferenceUpdateManyWithWhereWithoutCourseInput | GradingReferenceUpdateManyWithWhereWithoutCourseInput[]
-    deleteMany?: GradingReferenceScalarWhereInput | GradingReferenceScalarWhereInput[]
-  }
-
-  export type RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput = {
-    create?: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput> | RequiredMaterialCreateWithoutCourseInput[] | RequiredMaterialUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: RequiredMaterialCreateOrConnectWithoutCourseInput | RequiredMaterialCreateOrConnectWithoutCourseInput[]
-    upsert?: RequiredMaterialUpsertWithWhereUniqueWithoutCourseInput | RequiredMaterialUpsertWithWhereUniqueWithoutCourseInput[]
-    createMany?: RequiredMaterialCreateManyCourseInputEnvelope
-    set?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    disconnect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    delete?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    connect?: RequiredMaterialWhereUniqueInput | RequiredMaterialWhereUniqueInput[]
-    update?: RequiredMaterialUpdateWithWhereUniqueWithoutCourseInput | RequiredMaterialUpdateWithWhereUniqueWithoutCourseInput[]
-    updateMany?: RequiredMaterialUpdateManyWithWhereWithoutCourseInput | RequiredMaterialUpdateManyWithWhereWithoutCourseInput[]
-    deleteMany?: RequiredMaterialScalarWhereInput | RequiredMaterialScalarWhereInput[]
-  }
-
-  export type GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput = {
-    create?: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: GradingPolicyCreateOrConnectWithoutCourseInput
-    upsert?: GradingPolicyUpsertWithoutCourseInput
-    disconnect?: GradingPolicyWhereInput | boolean
-    delete?: GradingPolicyWhereInput | boolean
-    connect?: GradingPolicyWhereUniqueInput
-    update?: XOR<XOR<GradingPolicyUpdateToOneWithWhereWithoutCourseInput, GradingPolicyUpdateWithoutCourseInput>, GradingPolicyUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput = {
-    create?: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-    connectOrCreate?: CoursePoliciesCreateOrConnectWithoutCourseInput
-    upsert?: CoursePoliciesUpsertWithoutCourseInput
-    disconnect?: CoursePoliciesWhereInput | boolean
-    delete?: CoursePoliciesWhereInput | boolean
-    connect?: CoursePoliciesWhereUniqueInput
-    update?: XOR<XOR<CoursePoliciesUpdateToOneWithWhereWithoutCourseInput, CoursePoliciesUpdateWithoutCourseInput>, CoursePoliciesUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput = {
-    create?: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput> | GradingReferenceCreateWithoutCourseInput[] | GradingReferenceUncheckedCreateWithoutCourseInput[]
-    connectOrCreate?: GradingReferenceCreateOrConnectWithoutCourseInput | GradingReferenceCreateOrConnectWithoutCourseInput[]
-    upsert?: GradingReferenceUpsertWithWhereUniqueWithoutCourseInput | GradingReferenceUpsertWithWhereUniqueWithoutCourseInput[]
-    createMany?: GradingReferenceCreateManyCourseInputEnvelope
-    set?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    disconnect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    delete?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    connect?: GradingReferenceWhereUniqueInput | GradingReferenceWhereUniqueInput[]
-    update?: GradingReferenceUpdateWithWhereUniqueWithoutCourseInput | GradingReferenceUpdateWithWhereUniqueWithoutCourseInput[]
-    updateMany?: GradingReferenceUpdateManyWithWhereWithoutCourseInput | GradingReferenceUpdateManyWithWhereWithoutCourseInput[]
-    deleteMany?: GradingReferenceScalarWhereInput | GradingReferenceScalarWhereInput[]
-  }
-
-  export type CourseCreateNestedOneWithoutRequiredMaterialsInput = {
-    create?: XOR<CourseCreateWithoutRequiredMaterialsInput, CourseUncheckedCreateWithoutRequiredMaterialsInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutRequiredMaterialsInput
-    connect?: CourseWhereUniqueInput
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type CourseUpdateOneRequiredWithoutRequiredMaterialsNestedInput = {
-    create?: XOR<CourseCreateWithoutRequiredMaterialsInput, CourseUncheckedCreateWithoutRequiredMaterialsInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutRequiredMaterialsInput
-    upsert?: CourseUpsertWithoutRequiredMaterialsInput
-    connect?: CourseWhereUniqueInput
-    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutRequiredMaterialsInput, CourseUpdateWithoutRequiredMaterialsInput>, CourseUncheckedUpdateWithoutRequiredMaterialsInput>
-  }
-
-  export type CourseCreateNestedOneWithoutGradingPolicyInput = {
-    create?: XOR<CourseCreateWithoutGradingPolicyInput, CourseUncheckedCreateWithoutGradingPolicyInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutGradingPolicyInput
-    connect?: CourseWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type CourseUpdateOneRequiredWithoutGradingPolicyNestedInput = {
-    create?: XOR<CourseCreateWithoutGradingPolicyInput, CourseUncheckedCreateWithoutGradingPolicyInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutGradingPolicyInput
-    upsert?: CourseUpsertWithoutGradingPolicyInput
-    connect?: CourseWhereUniqueInput
-    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutGradingPolicyInput, CourseUpdateWithoutGradingPolicyInput>, CourseUncheckedUpdateWithoutGradingPolicyInput>
-  }
-
-  export type CourseCreateNestedOneWithoutCoursePoliciesInput = {
-    create?: XOR<CourseCreateWithoutCoursePoliciesInput, CourseUncheckedCreateWithoutCoursePoliciesInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutCoursePoliciesInput
-    connect?: CourseWhereUniqueInput
-  }
-
-  export type CourseUpdateOneRequiredWithoutCoursePoliciesNestedInput = {
-    create?: XOR<CourseCreateWithoutCoursePoliciesInput, CourseUncheckedCreateWithoutCoursePoliciesInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutCoursePoliciesInput
-    upsert?: CourseUpsertWithoutCoursePoliciesInput
-    connect?: CourseWhereUniqueInput
-    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutCoursePoliciesInput, CourseUpdateWithoutCoursePoliciesInput>, CourseUncheckedUpdateWithoutCoursePoliciesInput>
-  }
-
-  export type CourseCreateNestedOneWithoutGradingReferencesInput = {
-    create?: XOR<CourseCreateWithoutGradingReferencesInput, CourseUncheckedCreateWithoutGradingReferencesInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutGradingReferencesInput
-    connect?: CourseWhereUniqueInput
-  }
-
-  export type CourseUpdateOneRequiredWithoutGradingReferencesNestedInput = {
-    create?: XOR<CourseCreateWithoutGradingReferencesInput, CourseUncheckedCreateWithoutGradingReferencesInput>
-    connectOrCreate?: CourseCreateOrConnectWithoutGradingReferencesInput
-    upsert?: CourseUpsertWithoutGradingReferencesInput
-    connect?: CourseWhereUniqueInput
-    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutGradingReferencesInput, CourseUpdateWithoutGradingReferencesInput>, CourseUncheckedUpdateWithoutGradingReferencesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -10537,175 +5508,114 @@ export namespace Prisma {
     _max?: NestedEnumProviderFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-    isSet?: boolean
+  export type MaterialWhereInput = {
+    AND?: MaterialWhereInput | MaterialWhereInput[]
+    OR?: MaterialWhereInput[]
+    NOT?: MaterialWhereInput | MaterialWhereInput[]
+    title?: StringFilter<"Material"> | string
+    author?: StringFilter<"Material"> | string
+    publisher?: StringFilter<"Material"> | string
+    year?: StringFilter<"Material"> | string
+    required?: BoolFilter<"Material"> | boolean
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type GradingPolicyWhereInput = {
+    AND?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
+    OR?: GradingPolicyWhereInput[]
+    NOT?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
+    assignments?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
+    midterm?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
+    finalExam?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
+    participation?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-    isSet?: boolean
+  export type GradingComponentObjectEqualityInput = {
+    description: string
+    percentage: number
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-    isSet?: boolean
+  export type PoliciesWhereInput = {
+    AND?: PoliciesWhereInput | PoliciesWhereInput[]
+    OR?: PoliciesWhereInput[]
+    NOT?: PoliciesWhereInput | PoliciesWhereInput[]
+    attendance?: StringFilter<"Policies"> | string
+    lateWork?: StringFilter<"Policies"> | string
+    academicIntegrity?: StringFilter<"Policies"> | string
+    accommodations?: StringFilter<"Policies"> | string
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type WeeklyScheduleWhereInput = {
+    AND?: WeeklyScheduleWhereInput | WeeklyScheduleWhereInput[]
+    OR?: WeeklyScheduleWhereInput[]
+    NOT?: WeeklyScheduleWhereInput | WeeklyScheduleWhereInput[]
+    week?: IntFilter<"WeeklySchedule"> | number
+    topic?: StringFilter<"WeeklySchedule"> | string
+    readings?: StringFilter<"WeeklySchedule"> | string
+    assignments?: StringFilter<"WeeklySchedule"> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type GradingComponentOrderByInput = {
+    description?: SortOrder
+    percentage?: SortOrder
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type CourseCreateWithoutInstructorInput = {
+  export type CourseCreateWithoutUserInput = {
     id?: string
     name: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceCreateNestedManyWithoutCourseInput
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseUncheckedCreateWithoutInstructorInput = {
+  export type CourseUncheckedCreateWithoutUserInput = {
     id?: string
     name: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
+    description: string
+    instructor: string
+    subject: string
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyUncheckedCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceUncheckedCreateNestedManyWithoutCourseInput
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseCreateOrConnectWithoutInstructorInput = {
+  export type CourseCreateOrConnectWithoutUserInput = {
     where: CourseWhereUniqueInput
-    create: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput>
+    create: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput>
   }
 
-  export type CourseCreateManyInstructorInputEnvelope = {
-    data: CourseCreateManyInstructorInput | CourseCreateManyInstructorInput[]
+  export type CourseCreateManyUserInputEnvelope = {
+    data: CourseCreateManyUserInput | CourseCreateManyUserInput[]
   }
 
-  export type CourseUpsertWithWhereUniqueWithoutInstructorInput = {
+  export type CourseUpsertWithWhereUniqueWithoutUserInput = {
     where: CourseWhereUniqueInput
-    update: XOR<CourseUpdateWithoutInstructorInput, CourseUncheckedUpdateWithoutInstructorInput>
-    create: XOR<CourseCreateWithoutInstructorInput, CourseUncheckedCreateWithoutInstructorInput>
+    update: XOR<CourseUpdateWithoutUserInput, CourseUncheckedUpdateWithoutUserInput>
+    create: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput>
   }
 
-  export type CourseUpdateWithWhereUniqueWithoutInstructorInput = {
+  export type CourseUpdateWithWhereUniqueWithoutUserInput = {
     where: CourseWhereUniqueInput
-    data: XOR<CourseUpdateWithoutInstructorInput, CourseUncheckedUpdateWithoutInstructorInput>
+    data: XOR<CourseUpdateWithoutUserInput, CourseUncheckedUpdateWithoutUserInput>
   }
 
-  export type CourseUpdateManyWithWhereWithoutInstructorInput = {
+  export type CourseUpdateManyWithWhereWithoutUserInput = {
     where: CourseScalarWhereInput
-    data: XOR<CourseUpdateManyMutationInput, CourseUncheckedUpdateManyWithoutInstructorInput>
+    data: XOR<CourseUpdateManyMutationInput, CourseUncheckedUpdateManyWithoutUserInput>
   }
 
   export type CourseScalarWhereInput = {
@@ -10713,17 +5623,21 @@ export namespace Prisma {
     OR?: CourseScalarWhereInput[]
     NOT?: CourseScalarWhereInput | CourseScalarWhereInput[]
     id?: StringFilter<"Course"> | string
+    userId?: StringFilter<"Course"> | string
     name?: StringFilter<"Course"> | string
-    instructorId?: StringFilter<"Course"> | string
-    subject?: StringFilter<"Course"> | string
-    gradeLevel?: StringFilter<"Course"> | string
+    courseTitle?: StringFilter<"Course"> | string
     courseDescription?: StringFilter<"Course"> | string
-    generationPrompt?: StringFilter<"Course"> | string
-    additionalInfo?: StringNullableFilter<"Course"> | string | null
+    description?: StringFilter<"Course"> | string
+    instructor?: StringFilter<"Course"> | string
+    subject?: StringFilter<"Course"> | string
     term?: StringFilter<"Course"> | string
-    learningObjects?: StringNullableListFilter<"Course">
-    createdAt?: DateTimeFilter<"Course"> | Date | string
-    updatedAt?: DateTimeFilter<"Course"> | Date | string
+    gradeLevel?: StringFilter<"Course"> | string
+    learningObjectives?: StringNullableListFilter<"Course">
+  }
+
+  export type GradingComponentCreateInput = {
+    description: string
+    percentage: number
   }
 
   export type UserCreateWithoutCoursesInput = {
@@ -10747,96 +5661,36 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCoursesInput, UserUncheckedCreateWithoutCoursesInput>
   }
 
-  export type RequiredMaterialCreateWithoutCourseInput = {
-    id?: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
+  export type MaterialUpdateManyInput = {
+    where: MaterialWhereInput
+    data: MaterialUpdateInput
   }
 
-  export type RequiredMaterialUncheckedCreateWithoutCourseInput = {
-    id?: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
+  export type MaterialDeleteManyInput = {
+    where: MaterialWhereInput
   }
 
-  export type RequiredMaterialCreateOrConnectWithoutCourseInput = {
-    where: RequiredMaterialWhereUniqueInput
-    create: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput>
+  export type GradingPolicyUpdateInput = {
+    assignments?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
+    midterm?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
+    finalExam?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
+    participation?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
   }
 
-  export type RequiredMaterialCreateManyCourseInputEnvelope = {
-    data: RequiredMaterialCreateManyCourseInput | RequiredMaterialCreateManyCourseInput[]
+  export type PoliciesUpdateInput = {
+    attendance?: StringFieldUpdateOperationsInput | string
+    lateWork?: StringFieldUpdateOperationsInput | string
+    academicIntegrity?: StringFieldUpdateOperationsInput | string
+    accommodations?: StringFieldUpdateOperationsInput | string
   }
 
-  export type GradingPolicyCreateWithoutCourseInput = {
-    id?: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
+  export type WeeklyScheduleUpdateManyInput = {
+    where: WeeklyScheduleWhereInput
+    data: WeeklyScheduleUpdateInput
   }
 
-  export type GradingPolicyUncheckedCreateWithoutCourseInput = {
-    id?: string
-    assignment: number
-    participation: number
-    midterm: number
-    finalExam: number
-  }
-
-  export type GradingPolicyCreateOrConnectWithoutCourseInput = {
-    where: GradingPolicyWhereUniqueInput
-    create: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-  }
-
-  export type CoursePoliciesCreateWithoutCourseInput = {
-    id?: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-  }
-
-  export type CoursePoliciesUncheckedCreateWithoutCourseInput = {
-    id?: string
-    attendancePolicy: string
-    lateWorkPolicy: string
-    academicIntegrityPolicy: string
-    accommodationsPolicy: string
-  }
-
-  export type CoursePoliciesCreateOrConnectWithoutCourseInput = {
-    where: CoursePoliciesWhereUniqueInput
-    create: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-  }
-
-  export type GradingReferenceCreateWithoutCourseInput = {
-    id?: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-  }
-
-  export type GradingReferenceUncheckedCreateWithoutCourseInput = {
-    id?: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-  }
-
-  export type GradingReferenceCreateOrConnectWithoutCourseInput = {
-    where: GradingReferenceWhereUniqueInput
-    create: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput>
-  }
-
-  export type GradingReferenceCreateManyCourseInputEnvelope = {
-    data: GradingReferenceCreateManyCourseInput | GradingReferenceCreateManyCourseInput[]
+  export type WeeklyScheduleDeleteManyInput = {
+    where: WeeklyScheduleWhereInput
   }
 
   export type UserUpsertWithoutCoursesInput = {
@@ -10864,573 +5718,141 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   }
 
-  export type RequiredMaterialUpsertWithWhereUniqueWithoutCourseInput = {
-    where: RequiredMaterialWhereUniqueInput
-    update: XOR<RequiredMaterialUpdateWithoutCourseInput, RequiredMaterialUncheckedUpdateWithoutCourseInput>
-    create: XOR<RequiredMaterialCreateWithoutCourseInput, RequiredMaterialUncheckedCreateWithoutCourseInput>
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type RequiredMaterialUpdateWithWhereUniqueWithoutCourseInput = {
-    where: RequiredMaterialWhereUniqueInput
-    data: XOR<RequiredMaterialUpdateWithoutCourseInput, RequiredMaterialUncheckedUpdateWithoutCourseInput>
+  export type GradingComponentCompositeFilter = {
+    equals?: GradingComponentObjectEqualityInput
+    is?: GradingComponentWhereInput
+    isNot?: GradingComponentWhereInput
   }
 
-  export type RequiredMaterialUpdateManyWithWhereWithoutCourseInput = {
-    where: RequiredMaterialScalarWhereInput
-    data: XOR<RequiredMaterialUpdateManyMutationInput, RequiredMaterialUncheckedUpdateManyWithoutCourseInput>
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type RequiredMaterialScalarWhereInput = {
-    AND?: RequiredMaterialScalarWhereInput | RequiredMaterialScalarWhereInput[]
-    OR?: RequiredMaterialScalarWhereInput[]
-    NOT?: RequiredMaterialScalarWhereInput | RequiredMaterialScalarWhereInput[]
-    id?: StringFilter<"RequiredMaterial"> | string
-    courseId?: StringFilter<"RequiredMaterial"> | string
-    title?: StringFilter<"RequiredMaterial"> | string
-    author?: StringFilter<"RequiredMaterial"> | string
-    publisher?: StringFilter<"RequiredMaterial"> | string
-    required?: BoolFilter<"RequiredMaterial"> | boolean
-  }
-
-  export type GradingPolicyUpsertWithoutCourseInput = {
-    update: XOR<GradingPolicyUpdateWithoutCourseInput, GradingPolicyUncheckedUpdateWithoutCourseInput>
-    create: XOR<GradingPolicyCreateWithoutCourseInput, GradingPolicyUncheckedCreateWithoutCourseInput>
-    where?: GradingPolicyWhereInput
-  }
-
-  export type GradingPolicyUpdateToOneWithWhereWithoutCourseInput = {
-    where?: GradingPolicyWhereInput
-    data: XOR<GradingPolicyUpdateWithoutCourseInput, GradingPolicyUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type GradingPolicyUpdateWithoutCourseInput = {
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GradingPolicyUncheckedUpdateWithoutCourseInput = {
-    assignment?: IntFieldUpdateOperationsInput | number
-    participation?: IntFieldUpdateOperationsInput | number
-    midterm?: IntFieldUpdateOperationsInput | number
-    finalExam?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type CoursePoliciesUpsertWithoutCourseInput = {
-    update: XOR<CoursePoliciesUpdateWithoutCourseInput, CoursePoliciesUncheckedUpdateWithoutCourseInput>
-    create: XOR<CoursePoliciesCreateWithoutCourseInput, CoursePoliciesUncheckedCreateWithoutCourseInput>
-    where?: CoursePoliciesWhereInput
-  }
-
-  export type CoursePoliciesUpdateToOneWithWhereWithoutCourseInput = {
-    where?: CoursePoliciesWhereInput
-    data: XOR<CoursePoliciesUpdateWithoutCourseInput, CoursePoliciesUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type CoursePoliciesUpdateWithoutCourseInput = {
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CoursePoliciesUncheckedUpdateWithoutCourseInput = {
-    attendancePolicy?: StringFieldUpdateOperationsInput | string
-    lateWorkPolicy?: StringFieldUpdateOperationsInput | string
-    academicIntegrityPolicy?: StringFieldUpdateOperationsInput | string
-    accommodationsPolicy?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type GradingReferenceUpsertWithWhereUniqueWithoutCourseInput = {
-    where: GradingReferenceWhereUniqueInput
-    update: XOR<GradingReferenceUpdateWithoutCourseInput, GradingReferenceUncheckedUpdateWithoutCourseInput>
-    create: XOR<GradingReferenceCreateWithoutCourseInput, GradingReferenceUncheckedCreateWithoutCourseInput>
-  }
-
-  export type GradingReferenceUpdateWithWhereUniqueWithoutCourseInput = {
-    where: GradingReferenceWhereUniqueInput
-    data: XOR<GradingReferenceUpdateWithoutCourseInput, GradingReferenceUncheckedUpdateWithoutCourseInput>
-  }
-
-  export type GradingReferenceUpdateManyWithWhereWithoutCourseInput = {
-    where: GradingReferenceScalarWhereInput
-    data: XOR<GradingReferenceUpdateManyMutationInput, GradingReferenceUncheckedUpdateManyWithoutCourseInput>
-  }
-
-  export type GradingReferenceScalarWhereInput = {
-    AND?: GradingReferenceScalarWhereInput | GradingReferenceScalarWhereInput[]
-    OR?: GradingReferenceScalarWhereInput[]
-    NOT?: GradingReferenceScalarWhereInput | GradingReferenceScalarWhereInput[]
-    id?: StringFilter<"GradingReference"> | string
-    courseId?: StringFilter<"GradingReference"> | string
-    title?: StringFilter<"GradingReference"> | string
-    type?: StringFilter<"GradingReference"> | string
-    addedIn?: DateTimeFilter<"GradingReference"> | Date | string
-    link?: StringFilter<"GradingReference"> | string
-  }
-
-  export type CourseCreateWithoutRequiredMaterialsInput = {
+  export type CourseCreateManyUserInput = {
     id?: string
     name: string
-    subject: string
-    gradeLevel: string
+    courseTitle: string
     courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    instructor: UserCreateNestedOneWithoutCoursesInput
-    gradingPolicy?: GradingPolicyCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceCreateNestedManyWithoutCourseInput
-  }
-
-  export type CourseUncheckedCreateWithoutRequiredMaterialsInput = {
-    id?: string
-    name: string
-    instructorId: string
+    description: string
+    instructor: string
     subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
     term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    gradingPolicy?: GradingPolicyUncheckedCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceUncheckedCreateNestedManyWithoutCourseInput
-  }
-
-  export type CourseCreateOrConnectWithoutRequiredMaterialsInput = {
-    where: CourseWhereUniqueInput
-    create: XOR<CourseCreateWithoutRequiredMaterialsInput, CourseUncheckedCreateWithoutRequiredMaterialsInput>
-  }
-
-  export type CourseUpsertWithoutRequiredMaterialsInput = {
-    update: XOR<CourseUpdateWithoutRequiredMaterialsInput, CourseUncheckedUpdateWithoutRequiredMaterialsInput>
-    create: XOR<CourseCreateWithoutRequiredMaterialsInput, CourseUncheckedCreateWithoutRequiredMaterialsInput>
-    where?: CourseWhereInput
-  }
-
-  export type CourseUpdateToOneWithWhereWithoutRequiredMaterialsInput = {
-    where?: CourseWhereInput
-    data: XOR<CourseUpdateWithoutRequiredMaterialsInput, CourseUncheckedUpdateWithoutRequiredMaterialsInput>
-  }
-
-  export type CourseUpdateWithoutRequiredMaterialsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructor?: UserUpdateOneRequiredWithoutCoursesNestedInput
-    gradingPolicy?: GradingPolicyUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseUncheckedUpdateWithoutRequiredMaterialsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    gradingPolicy?: GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseCreateWithoutGradingPolicyInput = {
-    id?: string
-    name: string
-    subject: string
     gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    instructor: UserCreateNestedOneWithoutCoursesInput
-    requiredMaterials?: RequiredMaterialCreateNestedManyWithoutCourseInput
-    coursePolicies?: CoursePoliciesCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceCreateNestedManyWithoutCourseInput
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseUncheckedCreateWithoutGradingPolicyInput = {
-    id?: string
-    name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput
-    coursePolicies?: CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceUncheckedCreateNestedManyWithoutCourseInput
-  }
-
-  export type CourseCreateOrConnectWithoutGradingPolicyInput = {
-    where: CourseWhereUniqueInput
-    create: XOR<CourseCreateWithoutGradingPolicyInput, CourseUncheckedCreateWithoutGradingPolicyInput>
-  }
-
-  export type CourseUpsertWithoutGradingPolicyInput = {
-    update: XOR<CourseUpdateWithoutGradingPolicyInput, CourseUncheckedUpdateWithoutGradingPolicyInput>
-    create: XOR<CourseCreateWithoutGradingPolicyInput, CourseUncheckedCreateWithoutGradingPolicyInput>
-    where?: CourseWhereInput
-  }
-
-  export type CourseUpdateToOneWithWhereWithoutGradingPolicyInput = {
-    where?: CourseWhereInput
-    data: XOR<CourseUpdateWithoutGradingPolicyInput, CourseUncheckedUpdateWithoutGradingPolicyInput>
-  }
-
-  export type CourseUpdateWithoutGradingPolicyInput = {
+  export type CourseUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructor?: UserUpdateOneRequiredWithoutCoursesNestedInput
-    requiredMaterials?: RequiredMaterialUpdateManyWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUpdateManyWithoutCourseNestedInput
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseUncheckedUpdateWithoutGradingPolicyInput = {
+  export type CourseUncheckedUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseCreateWithoutCoursePoliciesInput = {
-    id?: string
-    name: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    instructor: UserCreateNestedOneWithoutCoursesInput
-    requiredMaterials?: RequiredMaterialCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceCreateNestedManyWithoutCourseInput
-  }
-
-  export type CourseUncheckedCreateWithoutCoursePoliciesInput = {
-    id?: string
-    name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyUncheckedCreateNestedOneWithoutCourseInput
-    gradingReferences?: GradingReferenceUncheckedCreateNestedManyWithoutCourseInput
-  }
-
-  export type CourseCreateOrConnectWithoutCoursePoliciesInput = {
-    where: CourseWhereUniqueInput
-    create: XOR<CourseCreateWithoutCoursePoliciesInput, CourseUncheckedCreateWithoutCoursePoliciesInput>
-  }
-
-  export type CourseUpsertWithoutCoursePoliciesInput = {
-    update: XOR<CourseUpdateWithoutCoursePoliciesInput, CourseUncheckedUpdateWithoutCoursePoliciesInput>
-    create: XOR<CourseCreateWithoutCoursePoliciesInput, CourseUncheckedCreateWithoutCoursePoliciesInput>
-    where?: CourseWhereInput
-  }
-
-  export type CourseUpdateToOneWithWhereWithoutCoursePoliciesInput = {
-    where?: CourseWhereInput
-    data: XOR<CourseUpdateWithoutCoursePoliciesInput, CourseUncheckedUpdateWithoutCoursePoliciesInput>
-  }
-
-  export type CourseUpdateWithoutCoursePoliciesInput = {
+  export type CourseUncheckedUpdateManyWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
     courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructor?: UserUpdateOneRequiredWithoutCoursesNestedInput
-    requiredMaterials?: RequiredMaterialUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseUncheckedUpdateWithoutCoursePoliciesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseCreateWithoutGradingReferencesInput = {
-    id?: string
-    name: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    instructor: UserCreateNestedOneWithoutCoursesInput
-    requiredMaterials?: RequiredMaterialCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesCreateNestedOneWithoutCourseInput
-  }
-
-  export type CourseUncheckedCreateWithoutGradingReferencesInput = {
-    id?: string
-    name: string
-    instructorId: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    requiredMaterials?: RequiredMaterialUncheckedCreateNestedManyWithoutCourseInput
-    gradingPolicy?: GradingPolicyUncheckedCreateNestedOneWithoutCourseInput
-    coursePolicies?: CoursePoliciesUncheckedCreateNestedOneWithoutCourseInput
-  }
-
-  export type CourseCreateOrConnectWithoutGradingReferencesInput = {
-    where: CourseWhereUniqueInput
-    create: XOR<CourseCreateWithoutGradingReferencesInput, CourseUncheckedCreateWithoutGradingReferencesInput>
-  }
-
-  export type CourseUpsertWithoutGradingReferencesInput = {
-    update: XOR<CourseUpdateWithoutGradingReferencesInput, CourseUncheckedUpdateWithoutGradingReferencesInput>
-    create: XOR<CourseCreateWithoutGradingReferencesInput, CourseUncheckedCreateWithoutGradingReferencesInput>
-    where?: CourseWhereInput
-  }
-
-  export type CourseUpdateToOneWithWhereWithoutGradingReferencesInput = {
-    where?: CourseWhereInput
-    data: XOR<CourseUpdateWithoutGradingReferencesInput, CourseUncheckedUpdateWithoutGradingReferencesInput>
-  }
-
-  export type CourseUpdateWithoutGradingReferencesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
     gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructor?: UserUpdateOneRequiredWithoutCoursesNestedInput
-    requiredMaterials?: RequiredMaterialUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUpdateOneWithoutCourseNestedInput
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
-  export type CourseUncheckedUpdateWithoutGradingReferencesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    instructorId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput
-  }
-
-  export type CourseCreateManyInstructorInput = {
-    id?: string
-    name: string
-    subject: string
-    gradeLevel: string
-    courseDescription: string
-    generationPrompt: string
-    additionalInfo?: string | null
-    term: string
-    learningObjects?: CourseCreatelearningObjectsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CourseUpdateWithoutInstructorInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseUncheckedUpdateWithoutInstructorInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    requiredMaterials?: RequiredMaterialUncheckedUpdateManyWithoutCourseNestedInput
-    gradingPolicy?: GradingPolicyUncheckedUpdateOneWithoutCourseNestedInput
-    coursePolicies?: CoursePoliciesUncheckedUpdateOneWithoutCourseNestedInput
-    gradingReferences?: GradingReferenceUncheckedUpdateManyWithoutCourseNestedInput
-  }
-
-  export type CourseUncheckedUpdateManyWithoutInstructorInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
-    gradeLevel?: StringFieldUpdateOperationsInput | string
-    courseDescription?: StringFieldUpdateOperationsInput | string
-    generationPrompt?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    term?: StringFieldUpdateOperationsInput | string
-    learningObjects?: CourseUpdatelearningObjectsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RequiredMaterialCreateManyCourseInput = {
-    id?: string
-    title: string
-    author: string
-    publisher: string
-    required: boolean
-  }
-
-  export type GradingReferenceCreateManyCourseInput = {
-    id?: string
-    title: string
-    type: string
-    addedIn?: Date | string
-    link: string
-  }
-
-  export type RequiredMaterialUpdateWithoutCourseInput = {
+  export type MaterialUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     publisher?: StringFieldUpdateOperationsInput | string
+    year?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type RequiredMaterialUncheckedUpdateWithoutCourseInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
+  export type GradingComponentUpdateEnvelopeInput = {
+    set?: GradingComponentCreateInput
+    update?: GradingComponentUpdateInput
   }
 
-  export type RequiredMaterialUncheckedUpdateManyWithoutCourseInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
-    publisher?: StringFieldUpdateOperationsInput | string
-    required?: BoolFieldUpdateOperationsInput | boolean
+  export type WeeklyScheduleUpdateInput = {
+    week?: IntFieldUpdateOperationsInput | number
+    topic?: StringFieldUpdateOperationsInput | string
+    readings?: StringFieldUpdateOperationsInput | string
+    assignments?: StringFieldUpdateOperationsInput | string
   }
 
-  export type GradingReferenceUpdateWithoutCourseInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type GradingReferenceUncheckedUpdateWithoutCourseInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
+  export type GradingComponentWhereInput = {
+    AND?: GradingComponentWhereInput | GradingComponentWhereInput[]
+    OR?: GradingComponentWhereInput[]
+    NOT?: GradingComponentWhereInput | GradingComponentWhereInput[]
+    description?: StringFilter<"GradingComponent"> | string
+    percentage?: IntFilter<"GradingComponent"> | number
   }
 
-  export type GradingReferenceUncheckedUpdateManyWithoutCourseInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    addedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    link?: StringFieldUpdateOperationsInput | string
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type GradingComponentUpdateInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    percentage?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
 

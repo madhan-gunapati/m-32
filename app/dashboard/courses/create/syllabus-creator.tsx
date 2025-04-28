@@ -31,7 +31,7 @@ export function SyllabusCreator({ courseDetails, onComplete, isCreating }: Sylla
   const [syllabusData, setSyllabusData] = useState<any>(null)
   const [prompt, setPrompt] = useState("")
   const [additionalInfo, setAdditionalInfo] = useState("")
-
+  
   // Generate default prompt based on course details
   useEffect(() => {
     const defaultPrompt = `Create a comprehensive syllabus for a ${courseDetails.gradeLevel} level ${courseDetails.subject} course titled "${courseDetails.name}". The course is described as: ${courseDetails.description}`
@@ -611,7 +611,7 @@ export function SyllabusCreator({ courseDetails, onComplete, isCreating }: Sylla
                     <Edit2 className="mr-2 h-4 w-4" />
                     Edit
                   </Button>
-                  <Button onClick={onComplete} disabled={isCreating}>
+                  <Button onClick={()=>{onComplete(syllabusData)}} disabled={isCreating}>
                     {isCreating ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />

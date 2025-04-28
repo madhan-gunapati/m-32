@@ -54,63 +54,63 @@ model User {
 }
 
 
+
 model Course {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  name             String
-  instructorId     String
-  instructor       User     @relation(fields: [instructorId], references: [id])
-  subject          String
-  gradeLevel       String
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String   @db.ObjectId
+  user              User     @relation(fields: [userId], references: [id])
+
+  name              String
+  courseTitle       String
   courseDescription String
-  generationPrompt String
-  additionalInfo   String?
-  term             String
-  learningObjects  String[]
-  requiredMaterials RequiredMaterial[]
-  gradingPolicy    GradingPolicy?
-  coursePolicies   CoursePolicies?
-  gradingReferences GradingReference[]
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  description       String
+  instructor        String
+  subject           String
+  term              String
+  gradeLevel        String
+
+  learningObjectives String[]
+
+  requiredMaterials Material[]
+
+  gradingPolicy     GradingPolicy
+
+  policies          Policies
+
+  weeklySchedule    WeeklySchedule[]
 }
 
-model RequiredMaterial {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  courseId   String
-  course     Course  @relation(fields: [courseId], references: [id])
-  title      String
-  author     String
-  publisher  String
-  required   Boolean
+type Material {
+  title     String
+  author    String
+  publisher String
+  year      String
+  required  Boolean
 }
 
-model GradingPolicy {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  courseId     String  @unique
-  course       Course  @relation(fields: [courseId], references: [id])
-  assignment   Int
-  participation Int
-  midterm      Int
-  finalExam    Int
+type GradingPolicy {
+  assignments   GradingComponent
+  midterm       GradingComponent
+  finalExam     GradingComponent
+  participation GradingComponent
 }
 
-model CoursePolicies {
-  id                        String  @id @default(auto()) @map("_id") @db.ObjectId
-  courseId                  String  @unique
-  course                    Course  @relation(fields: [courseId], references: [id])
-  attendancePolicy          String
-  lateWorkPolicy            String
-  academicIntegrityPolicy   String
-  accommodationsPolicy      String
+type GradingComponent {
+  description String
+  percentage  Int
 }
 
-model GradingReference {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  courseId   String
-  course     Course  @relation(fields: [courseId], references: [id])
-  title      String
-  type       String
-  addedIn    DateTime @default(now())
-  link       String
+type Policies {
+  attendance         String
+  lateWork           String
+  academicIntegrity  String
+  accommodations     String
+}
+
+type WeeklySchedule {
+  week        Int
+  topic       String
+  readings    String
+  assignments String
 }
 

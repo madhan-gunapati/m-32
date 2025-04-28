@@ -15,7 +15,8 @@ import { PageHeader } from "@/components/page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { SyllabusCreator } from "./syllabus-creator"
-
+import { useSelector } from "react-redux"
+import { selectUser } from "@/lib/state/slices/userSlice"
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Course name must be at least 2 characters.",
@@ -35,7 +36,8 @@ export default function CreateCoursePage() {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("details")
   const [isCreating, setIsCreating] = useState(false)
-  const [courseDetails, setCourseDetails] = useState(null)
+  const [courseDetails, setCourseDetails] = useState({})
+  const user = useSelector(selectUser)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,9 +55,27 @@ export default function CreateCoursePage() {
     setActiveTab("syllabus")
   }
 
-  function onCreateCourse() {
+  async function onCreateCourse(syllabusData: any) {
+   
+    const pushableData = {
+      user: user.id,
+      course:{
+        
+      ...courseDetails,
+      ...syllabusData,
+      }
+    }
+    console.log("Course Created:", pushableData)
+    
     setIsCreating(true)
     // Simulate API call
+    const result = await fetch('/api/create-course', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(pushableData),
+    })
     setTimeout(() => {
       setIsCreating(false)
       router.push("/dashboard/courses")
