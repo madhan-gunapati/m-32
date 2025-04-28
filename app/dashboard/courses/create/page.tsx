@@ -82,6 +82,7 @@ export default function CreateCoursePage() {
       router.push("/dashboard/courses")
     }
     else {
+      console.error("Error creating course:", data.error)
       alert("Error creating course. Please try again.")
     }
   }
