@@ -8,7 +8,7 @@ import { Download, Eye, Share2, Edit } from "lucide-react"
 import Link from "next/link"
 import { FileUpload } from "@/components/file-upload"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Dialog,
   DialogContent,
@@ -22,8 +22,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/components/ui/use-toast"
+import {use} from 'react'
+import { set } from "date-fns"
 
-export default function AssignmentDetailPage({ params }: { params: { id: string } }) {
+
+export default function AssignmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  
+  const unwrappedParams = use(params)
+
+  
+
+const [assignmentData , setAssignmentData] = useState<any>({})
   const router = useRouter()
   const [assignNameOpen, setAssignNameOpen] = useState(false)
   const [selectedSubmission, setSelectedSubmission] = useState<any>(null)
@@ -32,9 +41,83 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
   const [activeTab, setActiveTab] = useState("select")
   const { toast } = useToast()
 
+  useEffect(() => {
+    const assignmentId = unwrappedParams.id
+    const assignmentData = async () => {
+      try {
+        const response = await fetch("/api/assignments-data" ,{
+          method: "POST",
+          body: JSON.stringify({ id: assignmentId }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        if (!response.ok) {
+          alert("Failed to fetch assignment data")
+          return
+        }
+        const data = await response.json()
+        
+        const required_data= {
+          id: data.id,
+          title: data.assignmentTitle,
+          description: data.description,
+          dueDate: data.dueDate.split("T")[0],
+          totalPoints: 100,
+          submissions: [
+            {
+              id: "1",
+              studentName: "Mock Student 1",
+              studentId: "S12345",
+              submissionDate: "2023-12-10",
+              status: "graded",
+              score: 85,
+              aiScore: 92,
+              plagiarismScore: 98,
+            },
+            {
+              id: "2",
+              studentName: "Mock Student 2",
+              studentId: "S12346",
+              submissionDate: "2023-12-12",
+              status: "pending",
+              score: null,
+              aiScore: 88,
+              plagiarismScore: 95,
+            },
+            {
+              id: "3",
+              studentName: "Bob Johnson",
+              studentId: "S12347",
+              submissionDate: "2023-12-14",
+              status: "graded",
+              score: 92,
+              aiScore: 90,
+              plagiarismScore: 100,
+            },
+            {
+              id: "4",
+              studentName: null,
+              studentId: "S12348",
+              submissionDate: "2023-12-14",
+              status: "pending",
+              score: null,
+              aiScore: 0,
+              plagiarismScore: 0,
+            },
+          ],
+        }
+        setAssignmentData(required_data)
+      } catch (error) {
+        console.error("Error fetching assignment data:", error)
+      }
+    }
+    assignmentData()
+  },[unwrappedParams.id])
+
   // Mock data for the assignment
   const assignment = {
-    id: params.id,
+    id: unwrappedParams.id,
     title: "Essay on Climate Change",
     description: "Write a 500-word essay on the impacts of climate change on global ecosystems.",
     dueDate: "2023-12-15",
@@ -42,7 +125,7 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
     submissions: [
       {
         id: "1",
-        studentName: "John Doe",
+        studentName: "Mock Student 1",
         studentId: "S12345",
         submissionDate: "2023-12-10",
         status: "graded",
@@ -52,7 +135,7 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
       },
       {
         id: "2",
-        studentName: "Jane Smith",
+        studentName: "Mock Student 2",
         studentId: "S12346",
         submissionDate: "2023-12-12",
         status: "pending",
@@ -149,7 +232,7 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
 
   const handleEditAssignment = () => {
     // Navigate to the edit assignment page with the current assignment data
-    router.push(`/dashboard/assignments/${params.id}/edit`)
+    router.push(`/dashboard/assignments/${unwrappedParams.id}/edit`)
   }
 
   const handleAssignName = () => {
@@ -186,8 +269,8 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
     <div className="container mx-auto py-6 space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{assignment.title}</h1>
-          <p className="text-muted-foreground">Due: {new Date(assignment.dueDate).toLocaleDateString()}</p>
+          <h1 className="text-3xl font-bold tracking-tight">{assignmentData.title}</h1>
+          <p className="text-muted-foreground">Due: {assignmentData.dueDate}</p>
         </div>
         <div className="flex gap-2">
           <FileUpload
@@ -208,9 +291,9 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
           <CardTitle>Assignment Details</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>{assignment.description}</p>
+          <p>{assignmentData.description}</p>
           <p className="mt-2">
-            <strong>Total Points:</strong> {assignment.totalPoints}
+            <strong>Total Points:</strong> {assignmentData.totalPoints}
           </p>
         </CardContent>
       </Card>
@@ -247,8 +330,10 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
                       </Button>
                     )}
                     <p className="text-sm text-muted-foreground">
-                      Submitted: {new Date(submission.submissionDate).toLocaleDateString()}
-                    </p>
+                   
+      Submitted: {typeof window !== 'undefined' ? new Date(submission.submissionDate).toISOString() : 'Loading...'}
+    </p>
+                   
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -259,17 +344,17 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
                   )}
                   <div className="flex gap-2">
                     <Button variant="outline" size="icon" asChild title="Share">
-                      <Link href={`/dashboard/assignments/${params.id}/submissions/${submission.id}/share`}>
+                      <Link href={`/dashboard/assignments/${unwrappedParams.id}/submissions/${submission.id}/share`}>
                         <Share2 className="h-4 w-4" />
                       </Link>
                     </Button>
                     <Button variant="outline" size="icon" asChild title="Download">
-                      <Link href={`/dashboard/assignments/${params.id}/submissions/${submission.id}/download`}>
+                      <Link href={`/dashboard/assignments/${unwrappedParams.id}/submissions/${submission.id}/download`}>
                         <Download className="h-4 w-4" />
                       </Link>
                     </Button>
                     <Button variant="outline" size="icon" asChild title="Review">
-                      <Link href={`/dashboard/assignments/${params.id}/submissions/${submission.id}`}>
+                      <Link href={`/dashboard/assignments/${unwrappedParams.id}/submissions/${submission.id}`}>
                         <Eye className="h-4 w-4" />
                       </Link>
                     </Button>

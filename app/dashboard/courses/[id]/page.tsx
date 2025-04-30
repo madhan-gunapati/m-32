@@ -1,5 +1,6 @@
 "use client"
-
+import React from "react"
+import {use} from 'react'
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -19,8 +20,9 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
-export default function CourseDetailPage({ params }: { params: { id: string } }) {
+export default function Page({ params }:any) {
+  const unwrappedParams:any = use(params) // React 18's `use()` to unwrap the promise
+  
   const { toast } = useToast()
   const [activeTab, setActiveTab] = useState("assignments")
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false)
@@ -30,7 +32,8 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
 
   // Find the course by ID
-  const course = courses.find((c) => c.id === params.id) || courses[0]
+  const course = courses.find((c) => c.id === unwrappedParams.id) || courses[0]
+
 
   const handleGradeAssignment = (assignmentId: string) => {
     toast({
@@ -134,7 +137,7 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
                 <CardDescription>{course.students} students enrolled • Spring 2025</CardDescription>
               </div>
               <Button asChild>
-                <Link href={`/dashboard/create-assignment?courseId=${params.id}`}>
+                <Link href={`/dashboard/create-assignment?courseId=${unwrappedParams.id}`}>
                   <Plus className="mr-2 h-4 w-4" />
                   Add Assignment
                 </Link>

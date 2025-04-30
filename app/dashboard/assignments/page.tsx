@@ -13,14 +13,13 @@ import { setUser } from "@/lib/state/slices/userSlice"
 import { date } from "zod"
 import { useSelector } from "react-redux"
 import { selectUser } from "@/lib/state/slices/userSlice"
-
+import { useState } from "react"
 export default function AssignmentsPage() {
   const { toast } = useToast()
   const dispatch = useDispatch()
-  
-
   const { data: session } = useSession()
   
+  const [assignementList, setAssignmentList] = useState([])
  
 
   useEffect(() => {
@@ -28,6 +27,40 @@ export default function AssignmentsPage() {
   dispatch(setUser(session?.user))
   }
 , [session , dispatch])
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      try {
+        const response = await fetch("/api/assignments")
+        if (!response.ok) {
+          toast({
+            title: "Error",
+            description: "Failed to fetch assignments",
+            variant: "destructive",
+          })
+          return
+        }
+        const data = await response.json()
+          
+        // Assuming the response contains an array of assignments
+        if (data.length === 0) {
+          alert("No assignments found , Create NEW")
+        } else {
+         
+         
+          setAssignmentList(data)
+          console.log(data)
+        }
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "An error occurred while fetching assignments",
+          variant: "destructive",
+        })
+      }
+    }
+    fetchAssignments()
+  }, [])
   
 
   return (
@@ -53,146 +86,39 @@ export default function AssignmentsPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-              <CardTitle>Research Paper</CardTitle>
-              <CardDescription>Introduction to Psychology (PSY 101)</CardDescription>
-            </div>
-            <Badge>Active</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <CalendarDays className="mr-1 h-4 w-4" />
-                <span>Due: May 15, 2025</span>
+        {
+          assignementList.map((assignment) => (<Card key={assignment.id}>
+            <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
+              <div className="space-y-1">
+                <CardTitle>{assignment.assignmentTitle}</CardTitle>
+                <CardDescription>{assignment.course.courseTitle} (PSY 101)</CardDescription>
               </div>
-              <div className="flex items-center mt-1">
-                <FileText className="mr-1 h-4 w-4" />
-                <span>32 submissions</span>
+              <Badge>Active</Badge>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm text-muted-foreground">
+                <div className="flex items-center">
+                  <CalendarDays className="mr-1 h-4 w-4" />
+                  <span>Due: {assignment.dueDate}</span>
+                </div>
+                <div className="flex items-center mt-1">
+                  <FileText className="mr-1 h-4 w-4" />
+                  <span>mock data : 32 submissions</span>
+                </div>
               </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Link href="/dashboard/assignments/1" className="w-full">
-              <Button variant="outline" className="w-full">
-                View Details
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-              <CardTitle>Midterm Exam</CardTitle>
-              <CardDescription>Advanced Statistics (STAT 301)</CardDescription>
-            </div>
-            <Badge>Active</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <CalendarDays className="mr-1 h-4 w-4" />
-                <span>Due: April 10, 2025</span>
-              </div>
-              <div className="flex items-center mt-1">
-                <FileText className="mr-1 h-4 w-4" />
-                <span>45 submissions</span>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Link href="/dashboard/assignments/2" className="w-full">
-              <Button variant="outline" className="w-full">
-                View Details
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-              <CardTitle>Case Study Analysis</CardTitle>
-              <CardDescription>Environmental Science (ENV 201)</CardDescription>
-            </div>
-            <Badge variant="outline">Draft</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <Clock className="mr-1 h-4 w-4" />
-                <span>Created: March 22, 2025</span>
-              </div>
-              <div className="flex items-center mt-1">
-                <FileText className="mr-1 h-4 w-4" />
-                <span>Not published</span>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Link href="/dashboard/assignments/3" className="w-full">
-              <Button variant="outline" className="w-full">
-                Edit Draft
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-              <CardTitle>Final Project</CardTitle>
-              <CardDescription>Creative Writing (ENG 215)</CardDescription>
-            </div>
-            <Badge>Active</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <CalendarDays className="mr-1 h-4 w-4" />
-                <span>Due: June 1, 2025</span>
-              </div>
-              <div className="flex items-center mt-1">
-                <FileText className="mr-1 h-4 w-4" />
-                <span>18 submissions</span>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Link href="/dashboard/assignments/4" className="w-full">
-              <Button variant="outline" className="w-full">
-                View Details
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-              <CardTitle>Weekly Quiz</CardTitle>
-              <CardDescription>Introduction to Psychology (PSY 101)</CardDescription>
-            </div>
-            <Badge variant="secondary">Archived</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <CalendarDays className="mr-1 h-4 w-4" />
-                <span>Ended: March 1, 2025</span>
-              </div>
-              <div className="flex items-center mt-1">
-                <FileText className="mr-1 h-4 w-4" />
-                <span>30 submissions</span>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Link href="/dashboard/assignments/5" className="w-full">
-              <Button variant="outline" className="w-full">
-                View Details
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
+            </CardContent>
+            <CardFooter>
+              <Link href={`/dashboard/assignments/${assignment.id}`} className="w-full">
+                <Button variant="outline" className="w-full">
+                  View Details
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+          ))
+        }
+        
+       
       </div>
     </div>
   )

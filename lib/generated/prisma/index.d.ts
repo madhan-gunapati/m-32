@@ -2063,6 +2063,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CourseCountOutputType
+   */
+
+  export type CourseCountOutputType = {
+    assignment: number
+    student: number
+  }
+
+  export type CourseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignment?: boolean | CourseCountOutputTypeCountAssignmentArgs
+    student?: boolean | CourseCountOutputTypeCountStudentArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CourseCountOutputType
+     */
+    select?: CourseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountAssignmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentWhereInput
+  }
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountStudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
+  }
+
+
+  /**
    * Count Type AssignmentCountOutputType
    */
 
@@ -4770,6 +4810,9 @@ export namespace Prisma {
     policies?: boolean | PoliciesDefaultArgs<ExtArgs>
     weeklySchedule?: boolean | WeeklyScheduleDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    assignment?: boolean | Course$assignmentArgs<ExtArgs>
+    student?: boolean | Course$studentArgs<ExtArgs>
+    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
 
@@ -4791,12 +4834,17 @@ export namespace Prisma {
   export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "courseTitle" | "courseDescription" | "description" | "instructor" | "subject" | "term" | "gradeLevel" | "learningObjectives" | "requiredMaterials" | "gradingPolicy" | "policies" | "weeklySchedule", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    assignment?: boolean | Course$assignmentArgs<ExtArgs>
+    student?: boolean | Course$studentArgs<ExtArgs>
+    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $CoursePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Course"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      assignment: Prisma.$AssignmentPayload<ExtArgs>[]
+      student: Prisma.$StudentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5179,6 +5227,8 @@ export namespace Prisma {
   export interface Prisma__CourseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    assignment<T extends Course$assignmentArgs<ExtArgs> = {}>(args?: Subset<T, Course$assignmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    student<T extends Course$studentArgs<ExtArgs> = {}>(args?: Subset<T, Course$studentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5589,6 +5639,54 @@ export namespace Prisma {
   }
 
   /**
+   * Course.assignment
+   */
+  export type Course$assignmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assignment
+     */
+    select?: AssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assignment
+     */
+    omit?: AssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentInclude<ExtArgs> | null
+    where?: AssignmentWhereInput
+    orderBy?: AssignmentOrderByWithRelationInput | AssignmentOrderByWithRelationInput[]
+    cursor?: AssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssignmentScalarFieldEnum | AssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * Course.student
+   */
+  export type Course$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
    * Course without action
    */
   export type CourseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5632,6 +5730,7 @@ export namespace Prisma {
     participation_criteria: string | null
     peer_evaluation: string | null
     userId: string | null
+    courseId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5651,6 +5750,7 @@ export namespace Prisma {
     participation_criteria: string | null
     peer_evaluation: string | null
     userId: string | null
+    courseId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5670,6 +5770,7 @@ export namespace Prisma {
     participation_criteria: number
     peer_evaluation: number
     userId: number
+    courseId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5691,6 +5792,7 @@ export namespace Prisma {
     participation_criteria?: true
     peer_evaluation?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5710,6 +5812,7 @@ export namespace Prisma {
     participation_criteria?: true
     peer_evaluation?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5729,6 +5832,7 @@ export namespace Prisma {
     participation_criteria?: true
     peer_evaluation?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5821,6 +5925,7 @@ export namespace Prisma {
     participation_criteria: string | null
     peer_evaluation: string | null
     userId: string
+    courseId: string
     createdAt: Date
     updatedAt: Date
     _count: AssignmentCountAggregateOutputType | null
@@ -5857,9 +5962,11 @@ export namespace Prisma {
     participation_criteria?: boolean
     peer_evaluation?: boolean
     userId?: boolean
+    courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
     submission?: boolean | Assignment$submissionArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
@@ -5881,13 +5988,15 @@ export namespace Prisma {
     participation_criteria?: boolean
     peer_evaluation?: boolean
     userId?: boolean
+    courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentTitle" | "selectedCourse" | "dueDate" | "description" | "learningObjectives" | "instructions" | "rubric" | "questions" | "answer_key" | "checklist" | "participation_criteria" | "peer_evaluation" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["assignment"]>
+  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentTitle" | "selectedCourse" | "dueDate" | "description" | "learningObjectives" | "instructions" | "rubric" | "questions" | "answer_key" | "checklist" | "participation_criteria" | "peer_evaluation" | "userId" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["assignment"]>
   export type AssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
     submission?: boolean | Assignment$submissionArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5896,6 +6005,7 @@ export namespace Prisma {
     name: "Assignment"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      course: Prisma.$CoursePayload<ExtArgs>
       submission: Prisma.$SubmissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5913,6 +6023,7 @@ export namespace Prisma {
       participation_criteria: string | null
       peer_evaluation: string | null
       userId: string
+      courseId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["assignment"]>
@@ -6279,6 +6390,7 @@ export namespace Prisma {
   export interface Prisma__AssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     submission<T extends Assignment$submissionArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$submissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6323,6 +6435,7 @@ export namespace Prisma {
     readonly participation_criteria: FieldRef<"Assignment", 'String'>
     readonly peer_evaluation: FieldRef<"Assignment", 'String'>
     readonly userId: FieldRef<"Assignment", 'String'>
+    readonly courseId: FieldRef<"Assignment", 'String'>
     readonly createdAt: FieldRef<"Assignment", 'DateTime'>
     readonly updatedAt: FieldRef<"Assignment", 'DateTime'>
   }
@@ -6753,6 +6866,7 @@ export namespace Prisma {
     email: string | null
     class: string | null
     userId: string | null
+    courseId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6763,6 +6877,7 @@ export namespace Prisma {
     email: string | null
     class: string | null
     userId: string | null
+    courseId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6773,6 +6888,7 @@ export namespace Prisma {
     email: number
     class: number
     userId: number
+    courseId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6785,6 +6901,7 @@ export namespace Prisma {
     email?: true
     class?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6795,6 +6912,7 @@ export namespace Prisma {
     email?: true
     class?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6805,6 +6923,7 @@ export namespace Prisma {
     email?: true
     class?: true
     userId?: true
+    courseId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6888,6 +7007,7 @@ export namespace Prisma {
     email: string
     class: string
     userId: string
+    courseId: string
     createdAt: Date
     updatedAt: Date
     _count: StudentCountAggregateOutputType | null
@@ -6915,9 +7035,11 @@ export namespace Prisma {
     email?: boolean
     class?: boolean
     userId?: boolean
+    courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
 
@@ -6928,19 +7050,22 @@ export namespace Prisma {
     email?: boolean
     class?: boolean
     userId?: boolean
+    courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "class" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "class" | "userId" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
   }
 
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Student"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      course: Prisma.$CoursePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6948,6 +7073,7 @@ export namespace Prisma {
       email: string
       class: string
       userId: string
+      courseId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["student"]>
@@ -7314,6 +7440,7 @@ export namespace Prisma {
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7348,6 +7475,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Student", 'String'>
     readonly class: FieldRef<"Student", 'String'>
     readonly userId: FieldRef<"Student", 'String'>
+    readonly courseId: FieldRef<"Student", 'String'>
     readonly createdAt: FieldRef<"Student", 'DateTime'>
     readonly updatedAt: FieldRef<"Student", 'DateTime'>
   }
@@ -16138,6 +16266,7 @@ export namespace Prisma {
     participation_criteria: 'participation_criteria',
     peer_evaluation: 'peer_evaluation',
     userId: 'userId',
+    courseId: 'courseId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -16151,6 +16280,7 @@ export namespace Prisma {
     email: 'email',
     class: 'class',
     userId: 'userId',
+    courseId: 'courseId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -16540,6 +16670,8 @@ export namespace Prisma {
     policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
     weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    assignment?: AssignmentListRelationFilter
+    student?: StudentListRelationFilter
   }
 
   export type CourseOrderByWithRelationInput = {
@@ -16559,6 +16691,8 @@ export namespace Prisma {
     policies?: PoliciesOrderByInput
     weeklySchedule?: WeeklyScheduleOrderByCompositeAggregateInput
     user?: UserOrderByWithRelationInput
+    assignment?: AssignmentOrderByRelationAggregateInput
+    student?: StudentOrderByRelationAggregateInput
   }
 
   export type CourseWhereUniqueInput = Prisma.AtLeast<{
@@ -16581,6 +16715,8 @@ export namespace Prisma {
     policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
     weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    assignment?: AssignmentListRelationFilter
+    student?: StudentListRelationFilter
   }, "id">
 
   export type CourseOrderByWithAggregationInput = {
@@ -16635,9 +16771,11 @@ export namespace Prisma {
     participation_criteria?: StringNullableFilter<"Assignment"> | string | null
     peer_evaluation?: StringNullableFilter<"Assignment"> | string | null
     userId?: StringFilter<"Assignment"> | string
+    courseId?: StringFilter<"Assignment"> | string
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
     submission?: SubmissionListRelationFilter
   }
 
@@ -16656,9 +16794,11 @@ export namespace Prisma {
     participation_criteria?: SortOrder
     peer_evaluation?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    course?: CourseOrderByWithRelationInput
     submission?: SubmissionOrderByRelationAggregateInput
   }
 
@@ -16680,9 +16820,11 @@ export namespace Prisma {
     participation_criteria?: StringNullableFilter<"Assignment"> | string | null
     peer_evaluation?: StringNullableFilter<"Assignment"> | string | null
     userId?: StringFilter<"Assignment"> | string
+    courseId?: StringFilter<"Assignment"> | string
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
     submission?: SubmissionListRelationFilter
   }, "id">
 
@@ -16701,6 +16843,7 @@ export namespace Prisma {
     participation_criteria?: SortOrder
     peer_evaluation?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AssignmentCountOrderByAggregateInput
@@ -16726,6 +16869,7 @@ export namespace Prisma {
     participation_criteria?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
     peer_evaluation?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
     userId?: StringWithAggregatesFilter<"Assignment"> | string
+    courseId?: StringWithAggregatesFilter<"Assignment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
   }
@@ -16739,9 +16883,11 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
+    courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -16750,9 +16896,11 @@ export namespace Prisma {
     email?: SortOrder
     class?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    course?: CourseOrderByWithRelationInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -16764,9 +16912,11 @@ export namespace Prisma {
     name?: StringFilter<"Student"> | string
     class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
+    courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    course?: XOR<CourseScalarRelationFilter, CourseWhereInput>
   }, "id" | "email">
 
   export type StudentOrderByWithAggregationInput = {
@@ -16775,6 +16925,7 @@ export namespace Prisma {
     email?: SortOrder
     class?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: StudentCountOrderByAggregateInput
@@ -16791,6 +16942,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Student"> | string
     class?: StringWithAggregatesFilter<"Student"> | string
     userId?: StringWithAggregatesFilter<"Student"> | string
+    courseId?: StringWithAggregatesFilter<"Student"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
   }
@@ -17430,6 +17582,8 @@ export namespace Prisma {
     policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user: UserCreateNestedOneWithoutCoursesInput
+    assignment?: AssignmentCreateNestedManyWithoutCourseInput
+    student?: StudentCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateInput = {
@@ -17448,6 +17602,8 @@ export namespace Prisma {
     gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
     policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
+    student?: StudentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUpdateInput = {
@@ -17465,6 +17621,8 @@ export namespace Prisma {
     policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user?: UserUpdateOneRequiredWithoutCoursesNestedInput
+    assignment?: AssignmentUpdateManyWithoutCourseNestedInput
+    student?: StudentUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateInput = {
@@ -17482,6 +17640,8 @@ export namespace Prisma {
     gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
     policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
+    student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseCreateManyInput = {
@@ -17552,6 +17712,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAssignmentsInput
+    course: CourseCreateNestedOneWithoutAssignmentInput
     submission?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -17570,6 +17731,7 @@ export namespace Prisma {
     participation_criteria?: string | null
     peer_evaluation?: string | null
     userId: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
     submission?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
@@ -17591,6 +17753,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+    course?: CourseUpdateOneRequiredWithoutAssignmentNestedInput
     submission?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -17608,6 +17771,7 @@ export namespace Prisma {
     participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     submission?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -17628,6 +17792,7 @@ export namespace Prisma {
     participation_criteria?: string | null
     peer_evaluation?: string | null
     userId: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17663,6 +17828,7 @@ export namespace Prisma {
     participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17675,6 +17841,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutStudentsInput
+    course: CourseCreateNestedOneWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -17683,6 +17850,7 @@ export namespace Prisma {
     email: string
     class: string
     userId: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17694,6 +17862,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutStudentsNestedInput
+    course?: CourseUpdateOneRequiredWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -17701,6 +17870,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17711,6 +17881,7 @@ export namespace Prisma {
     email: string
     class: string
     userId: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17728,6 +17899,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18539,6 +18711,11 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type CourseScalarRelationFilter = {
+    is?: CourseWhereInput
+    isNot?: CourseWhereInput
+  }
+
   export type SubmissionListRelationFilter = {
     every?: SubmissionWhereInput
     some?: SubmissionWhereInput
@@ -18564,6 +18741,7 @@ export namespace Prisma {
     participation_criteria?: SortOrder
     peer_evaluation?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18583,6 +18761,7 @@ export namespace Prisma {
     participation_criteria?: SortOrder
     peer_evaluation?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18602,6 +18781,7 @@ export namespace Prisma {
     participation_criteria?: SortOrder
     peer_evaluation?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18645,6 +18825,7 @@ export namespace Prisma {
     email?: SortOrder
     class?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18655,6 +18836,7 @@ export namespace Prisma {
     email?: SortOrder
     class?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18665,6 +18847,7 @@ export namespace Prisma {
     email?: SortOrder
     class?: SortOrder
     userId?: SortOrder
+    courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19330,6 +19513,34 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type AssignmentCreateNestedManyWithoutCourseInput = {
+    create?: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput> | AssignmentCreateWithoutCourseInput[] | AssignmentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: AssignmentCreateOrConnectWithoutCourseInput | AssignmentCreateOrConnectWithoutCourseInput[]
+    createMany?: AssignmentCreateManyCourseInputEnvelope
+    connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+  }
+
+  export type StudentCreateNestedManyWithoutCourseInput = {
+    create?: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput> | StudentCreateWithoutCourseInput[] | StudentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutCourseInput | StudentCreateOrConnectWithoutCourseInput[]
+    createMany?: StudentCreateManyCourseInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type AssignmentUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput> | AssignmentCreateWithoutCourseInput[] | AssignmentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: AssignmentCreateOrConnectWithoutCourseInput | AssignmentCreateOrConnectWithoutCourseInput[]
+    createMany?: AssignmentCreateManyCourseInputEnvelope
+    connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput> | StudentCreateWithoutCourseInput[] | StudentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutCourseInput | StudentCreateOrConnectWithoutCourseInput[]
+    createMany?: StudentCreateManyCourseInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
   export type CourseUpdatelearningObjectivesInput = {
     set?: string[]
     push?: string | string[]
@@ -19367,10 +19578,72 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCoursesInput, UserUpdateWithoutCoursesInput>, UserUncheckedUpdateWithoutCoursesInput>
   }
 
+  export type AssignmentUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput> | AssignmentCreateWithoutCourseInput[] | AssignmentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: AssignmentCreateOrConnectWithoutCourseInput | AssignmentCreateOrConnectWithoutCourseInput[]
+    upsert?: AssignmentUpsertWithWhereUniqueWithoutCourseInput | AssignmentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: AssignmentCreateManyCourseInputEnvelope
+    set?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    disconnect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    delete?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    update?: AssignmentUpdateWithWhereUniqueWithoutCourseInput | AssignmentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: AssignmentUpdateManyWithWhereWithoutCourseInput | AssignmentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type StudentUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput> | StudentCreateWithoutCourseInput[] | StudentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutCourseInput | StudentCreateOrConnectWithoutCourseInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutCourseInput | StudentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: StudentCreateManyCourseInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutCourseInput | StudentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutCourseInput | StudentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type AssignmentUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput> | AssignmentCreateWithoutCourseInput[] | AssignmentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: AssignmentCreateOrConnectWithoutCourseInput | AssignmentCreateOrConnectWithoutCourseInput[]
+    upsert?: AssignmentUpsertWithWhereUniqueWithoutCourseInput | AssignmentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: AssignmentCreateManyCourseInputEnvelope
+    set?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    disconnect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    delete?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+    update?: AssignmentUpdateWithWhereUniqueWithoutCourseInput | AssignmentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: AssignmentUpdateManyWithWhereWithoutCourseInput | AssignmentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type StudentUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput> | StudentCreateWithoutCourseInput[] | StudentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutCourseInput | StudentCreateOrConnectWithoutCourseInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutCourseInput | StudentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: StudentCreateManyCourseInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutCourseInput | StudentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutCourseInput | StudentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAssignmentsInput = {
     create?: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAssignmentsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type CourseCreateNestedOneWithoutAssignmentInput = {
+    create?: XOR<CourseCreateWithoutAssignmentInput, CourseUncheckedCreateWithoutAssignmentInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutAssignmentInput
+    connect?: CourseWhereUniqueInput
   }
 
   export type SubmissionCreateNestedManyWithoutAssignmentInput = {
@@ -19402,6 +19675,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAssignmentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAssignmentsInput, UserUpdateWithoutAssignmentsInput>, UserUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type CourseUpdateOneRequiredWithoutAssignmentNestedInput = {
+    create?: XOR<CourseCreateWithoutAssignmentInput, CourseUncheckedCreateWithoutAssignmentInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutAssignmentInput
+    upsert?: CourseUpsertWithoutAssignmentInput
+    connect?: CourseWhereUniqueInput
+    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutAssignmentInput, CourseUpdateWithoutAssignmentInput>, CourseUncheckedUpdateWithoutAssignmentInput>
   }
 
   export type SubmissionUpdateManyWithoutAssignmentNestedInput = {
@@ -19438,12 +19719,26 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CourseCreateNestedOneWithoutStudentInput = {
+    create?: XOR<CourseCreateWithoutStudentInput, CourseUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutStudentInput
+    connect?: CourseWhereUniqueInput
+  }
+
   export type UserUpdateOneRequiredWithoutStudentsNestedInput = {
     create?: XOR<UserCreateWithoutStudentsInput, UserUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutStudentsInput
     upsert?: UserUpsertWithoutStudentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStudentsInput, UserUpdateWithoutStudentsInput>, UserUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type CourseUpdateOneRequiredWithoutStudentNestedInput = {
+    create?: XOR<CourseCreateWithoutStudentInput, CourseUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutStudentInput
+    upsert?: CourseUpsertWithoutStudentInput
+    connect?: CourseWhereUniqueInput
+    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutStudentInput, CourseUpdateWithoutStudentInput>, CourseUncheckedUpdateWithoutStudentInput>
   }
 
   export type AssignmentCreateNestedOneWithoutSubmissionInput = {
@@ -20170,6 +20465,8 @@ export namespace Prisma {
     gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
     policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentCreateNestedManyWithoutCourseInput
+    student?: StudentCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutUserInput = {
@@ -20187,6 +20484,8 @@ export namespace Prisma {
     gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
     policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
+    student?: StudentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutUserInput = {
@@ -20214,6 +20513,7 @@ export namespace Prisma {
     peer_evaluation?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutAssignmentInput
     submission?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -20231,6 +20531,7 @@ export namespace Prisma {
     checklist?: string | null
     participation_criteria?: string | null
     peer_evaluation?: string | null
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
     submission?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
@@ -20252,6 +20553,7 @@ export namespace Prisma {
     class: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutUserInput = {
@@ -20259,6 +20561,7 @@ export namespace Prisma {
     name: string
     email: string
     class: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20368,6 +20671,7 @@ export namespace Prisma {
     participation_criteria?: StringNullableFilter<"Assignment"> | string | null
     peer_evaluation?: StringNullableFilter<"Assignment"> | string | null
     userId?: StringFilter<"Assignment"> | string
+    courseId?: StringFilter<"Assignment"> | string
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
   }
@@ -20397,6 +20701,7 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
+    courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
   }
@@ -20463,6 +20768,84 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCoursesInput, UserUncheckedCreateWithoutCoursesInput>
   }
 
+  export type AssignmentCreateWithoutCourseInput = {
+    id?: string
+    assignmentTitle: string
+    selectedCourse: string
+    dueDate: Date | string
+    description: string
+    learningObjectives: string
+    instructions?: string | null
+    rubric?: string | null
+    questions?: string | null
+    answer_key?: string | null
+    checklist?: string | null
+    participation_criteria?: string | null
+    peer_evaluation?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAssignmentsInput
+    submission?: SubmissionCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentUncheckedCreateWithoutCourseInput = {
+    id?: string
+    assignmentTitle: string
+    selectedCourse: string
+    dueDate: Date | string
+    description: string
+    learningObjectives: string
+    instructions?: string | null
+    rubric?: string | null
+    questions?: string | null
+    answer_key?: string | null
+    checklist?: string | null
+    participation_criteria?: string | null
+    peer_evaluation?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    submission?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentCreateOrConnectWithoutCourseInput = {
+    where: AssignmentWhereUniqueInput
+    create: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type AssignmentCreateManyCourseInputEnvelope = {
+    data: AssignmentCreateManyCourseInput | AssignmentCreateManyCourseInput[]
+  }
+
+  export type StudentCreateWithoutCourseInput = {
+    id?: string
+    name: string
+    email: string
+    class: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentUncheckedCreateWithoutCourseInput = {
+    id?: string
+    name: string
+    email: string
+    class: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateOrConnectWithoutCourseInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type StudentCreateManyCourseInputEnvelope = {
+    data: StudentCreateManyCourseInput | StudentCreateManyCourseInput[]
+  }
+
   export type MaterialUpdateManyInput = {
     where: MaterialWhereInput
     data: MaterialUpdateInput
@@ -20526,6 +20909,38 @@ export namespace Prisma {
     inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
+  export type AssignmentUpsertWithWhereUniqueWithoutCourseInput = {
+    where: AssignmentWhereUniqueInput
+    update: XOR<AssignmentUpdateWithoutCourseInput, AssignmentUncheckedUpdateWithoutCourseInput>
+    create: XOR<AssignmentCreateWithoutCourseInput, AssignmentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type AssignmentUpdateWithWhereUniqueWithoutCourseInput = {
+    where: AssignmentWhereUniqueInput
+    data: XOR<AssignmentUpdateWithoutCourseInput, AssignmentUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type AssignmentUpdateManyWithWhereWithoutCourseInput = {
+    where: AssignmentScalarWhereInput
+    data: XOR<AssignmentUpdateManyMutationInput, AssignmentUncheckedUpdateManyWithoutCourseInput>
+  }
+
+  export type StudentUpsertWithWhereUniqueWithoutCourseInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutCourseInput, StudentUncheckedUpdateWithoutCourseInput>
+    create: XOR<StudentCreateWithoutCourseInput, StudentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutCourseInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutCourseInput, StudentUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutCourseInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutCourseInput>
+  }
+
   export type UserCreateWithoutAssignmentsInput = {
     id?: string
     name: string
@@ -20551,6 +20966,49 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutAssignmentsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type CourseCreateWithoutAssignmentInput = {
+    id?: string
+    name: string
+    courseTitle: string
+    courseDescription: string
+    description: string
+    instructor: string
+    subject: string
+    term: string
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user: UserCreateNestedOneWithoutCoursesInput
+    student?: StudentCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateWithoutAssignmentInput = {
+    id?: string
+    userId: string
+    name: string
+    courseTitle: string
+    courseDescription: string
+    description: string
+    instructor: string
+    subject: string
+    term: string
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    student?: StudentUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseCreateOrConnectWithoutAssignmentInput = {
+    where: CourseWhereUniqueInput
+    create: XOR<CourseCreateWithoutAssignmentInput, CourseUncheckedCreateWithoutAssignmentInput>
   }
 
   export type SubmissionCreateWithoutAssignmentInput = {
@@ -20627,6 +21085,53 @@ export namespace Prisma {
     inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
+  export type CourseUpsertWithoutAssignmentInput = {
+    update: XOR<CourseUpdateWithoutAssignmentInput, CourseUncheckedUpdateWithoutAssignmentInput>
+    create: XOR<CourseCreateWithoutAssignmentInput, CourseUncheckedCreateWithoutAssignmentInput>
+    where?: CourseWhereInput
+  }
+
+  export type CourseUpdateToOneWithWhereWithoutAssignmentInput = {
+    where?: CourseWhereInput
+    data: XOR<CourseUpdateWithoutAssignmentInput, CourseUncheckedUpdateWithoutAssignmentInput>
+  }
+
+  export type CourseUpdateWithoutAssignmentInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
+    courseDescription?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user?: UserUpdateOneRequiredWithoutCoursesNestedInput
+    student?: StudentUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateWithoutAssignmentInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
+    courseDescription?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
   export type SubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
     where: SubmissionWhereUniqueInput
     update: XOR<SubmissionUpdateWithoutAssignmentInput, SubmissionUncheckedUpdateWithoutAssignmentInput>
@@ -20688,6 +21193,49 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutStudentsInput, UserUncheckedCreateWithoutStudentsInput>
   }
 
+  export type CourseCreateWithoutStudentInput = {
+    id?: string
+    name: string
+    courseTitle: string
+    courseDescription: string
+    description: string
+    instructor: string
+    subject: string
+    term: string
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user: UserCreateNestedOneWithoutCoursesInput
+    assignment?: AssignmentCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateWithoutStudentInput = {
+    id?: string
+    userId: string
+    name: string
+    courseTitle: string
+    courseDescription: string
+    description: string
+    instructor: string
+    subject: string
+    term: string
+    gradeLevel: string
+    learningObjectives?: CourseCreatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
+    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseCreateOrConnectWithoutStudentInput = {
+    where: CourseWhereUniqueInput
+    create: XOR<CourseCreateWithoutStudentInput, CourseUncheckedCreateWithoutStudentInput>
+  }
+
   export type UserUpsertWithoutStudentsInput = {
     update: XOR<UserUpdateWithoutStudentsInput, UserUncheckedUpdateWithoutStudentsInput>
     create: XOR<UserCreateWithoutStudentsInput, UserUncheckedCreateWithoutStudentsInput>
@@ -20719,6 +21267,53 @@ export namespace Prisma {
     inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
+  export type CourseUpsertWithoutStudentInput = {
+    update: XOR<CourseUpdateWithoutStudentInput, CourseUncheckedUpdateWithoutStudentInput>
+    create: XOR<CourseCreateWithoutStudentInput, CourseUncheckedCreateWithoutStudentInput>
+    where?: CourseWhereInput
+  }
+
+  export type CourseUpdateToOneWithWhereWithoutStudentInput = {
+    where?: CourseWhereInput
+    data: XOR<CourseUpdateWithoutStudentInput, CourseUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type CourseUpdateWithoutStudentInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
+    courseDescription?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    user?: UserUpdateOneRequiredWithoutCoursesNestedInput
+    assignment?: AssignmentUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateWithoutStudentInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    courseTitle?: StringFieldUpdateOperationsInput | string
+    courseDescription?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructor?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    gradeLevel?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
+    requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
+    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
+    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
   export type AssignmentCreateWithoutSubmissionInput = {
     id?: string
     assignmentTitle: string
@@ -20736,6 +21331,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAssignmentsInput
+    course: CourseCreateNestedOneWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutSubmissionInput = {
@@ -20753,6 +21349,7 @@ export namespace Prisma {
     participation_criteria?: string | null
     peer_evaluation?: string | null
     userId: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20898,6 +21495,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+    course?: CourseUpdateOneRequiredWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutSubmissionInput = {
@@ -20914,6 +21512,7 @@ export namespace Prisma {
     participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21719,6 +22318,7 @@ export namespace Prisma {
     checklist?: string | null
     participation_criteria?: string | null
     peer_evaluation?: string | null
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21728,6 +22328,7 @@ export namespace Prisma {
     name: string
     email: string
     class: string
+    courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21756,6 +22357,8 @@ export namespace Prisma {
     gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
     policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUpdateManyWithoutCourseNestedInput
+    student?: StudentUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutUserInput = {
@@ -21772,6 +22375,8 @@ export namespace Prisma {
     gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
     policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
+    assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
+    student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateManyWithoutUserInput = {
@@ -21805,6 +22410,7 @@ export namespace Prisma {
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutAssignmentNestedInput
     submission?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -21821,6 +22427,7 @@ export namespace Prisma {
     checklist?: NullableStringFieldUpdateOperationsInput | string | null
     participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     submission?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
@@ -21839,6 +22446,7 @@ export namespace Prisma {
     checklist?: NullableStringFieldUpdateOperationsInput | string | null
     participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21849,12 +22457,14 @@ export namespace Prisma {
     class?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     class?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21863,6 +22473,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     class?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21894,6 +22505,35 @@ export namespace Prisma {
     submissionId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type AssignmentCreateManyCourseInput = {
+    id?: string
+    assignmentTitle: string
+    selectedCourse: string
+    dueDate: Date | string
+    description: string
+    learningObjectives: string
+    instructions?: string | null
+    rubric?: string | null
+    questions?: string | null
+    answer_key?: string | null
+    checklist?: string | null
+    participation_criteria?: string | null
+    peer_evaluation?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateManyCourseInput = {
+    id?: string
+    name: string
+    email: string
+    class: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type MaterialUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
@@ -21912,6 +22552,89 @@ export namespace Prisma {
     topic?: StringFieldUpdateOperationsInput | string
     readings?: StringFieldUpdateOperationsInput | string
     assignments?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AssignmentUpdateWithoutCourseInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    selectedCourse?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    rubric?: NullableStringFieldUpdateOperationsInput | string | null
+    questions?: NullableStringFieldUpdateOperationsInput | string | null
+    answer_key?: NullableStringFieldUpdateOperationsInput | string | null
+    checklist?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
+    peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+    submission?: SubmissionUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type AssignmentUncheckedUpdateWithoutCourseInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    selectedCourse?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    rubric?: NullableStringFieldUpdateOperationsInput | string | null
+    questions?: NullableStringFieldUpdateOperationsInput | string | null
+    answer_key?: NullableStringFieldUpdateOperationsInput | string | null
+    checklist?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
+    peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type AssignmentUncheckedUpdateManyWithoutCourseInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    selectedCourse?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    rubric?: NullableStringFieldUpdateOperationsInput | string | null
+    questions?: NullableStringFieldUpdateOperationsInput | string | null
+    answer_key?: NullableStringFieldUpdateOperationsInput | string | null
+    checklist?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
+    peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpdateWithoutCourseInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    class?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutCourseInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    class?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUncheckedUpdateManyWithoutCourseInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    class?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubmissionCreateManyAssignmentInput = {

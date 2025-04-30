@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -34,8 +34,10 @@ import { EmailPreviewDialog } from "@/components/email-preview-dialog"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useSelector } from "react-redux"
 import { selectUser } from "@/lib/state/slices/userSlice"
-
-
+import { set } from "date-fns"
+import {useDispatch} from "react-redux"
+import { add_courses } from "@/lib/state/slices/courseSlice"
+import { RootState } from "@/lib/state/store"
 // Assignment type definitions
 const ASSIGNMENT_TYPES = {
   ESSAY: "essay",
@@ -135,6 +137,14 @@ export default function CreateAssignmentPage() {
   const [description, setDescription] = useState("")
   const [learningObjectives, setLearningObjectives] = useState("")
 
+  const [selectedCourseId , setSelectedCourseId] = useState("")
+
+  //adding user created courses
+  const [courses, setCourses] = useState([])
+  const coureses_from_state = useSelector(((state:any) => state.courseState.courses))
+  
+   const dispatch = useDispatch()
+
   // Generation states
   const [isGenerating, setIsGenerating] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -173,6 +183,47 @@ export default function CreateAssignmentPage() {
       setDescription(topic)
     }
   }, [searchParams])
+
+  useEffect(() => {
+    
+    if(coureses_from_state.length > 0) {
+    setCourses(coureses_from_state)
+    }
+    // Fetch courses from the server or perform any necessary side effects
+    else {
+    const createdCourses = async () => {
+      try {
+      const response = await fetch("/api/courses")
+      if (!response.ok) {
+        alert("Failed to fetch courses")
+        return
+      }
+      const data = await response.json()
+      
+      // Assuming the response contains an array of courses
+       setCourses(data)
+       dispatch(add_courses(data))
+       return 
+    }
+    catch (error) {
+      console.error("Error fetching courses:", error)
+      alert("Error fetching courses: Showing Mock coureses")  
+      
+      return 
+    }
+  }
+  createdCourses()
+}
+
+  }, [])
+
+  const handleSelectedCourse = (id:string)=>{
+    const selected_course_id = id
+    const name = courses.find((course) => course.id === selected_course_id)?.name
+    setSelectedCourse(name)
+    setSelectedCourseId(selected_course_id)
+    
+  }
 
   // Handle type selection and move to next step
   const handleTypeSelection = () => {
@@ -586,6 +637,8 @@ This peer evaluation will be used as part of the individual grade calculation fo
     setIsSaving(true)
 
     const isoDueDate = new Date(dueDate).toISOString();
+   
+    
 
 const response = await  fetch('/api/create-assignment', {
       method: 'POST',
@@ -593,13 +646,14 @@ const response = await  fetch('/api/create-assignment', {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user_email: user?.email,
+        
         details: {
            assignmentTitle,
            selectedCourse,
            dueDate:isoDueDate,
           description,
            learningObjectives,
+           courseId:selectedCourseId,
           
           ... generatedContent,
         },
@@ -746,18 +800,27 @@ const response = await  fetch('/api/create-assignment', {
 
             <div className="space-y-2">
               <Label htmlFor="course">Course</Label>
-              <Select value={selectedCourse} onValueChange={setSelectedCourse}>
+              <Select value={selectedCourseId} onValueChange={handleSelectedCourse}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select course" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Introduction to Psychology (PSY 101)">
+                  {/* <SelectItem value="Introduction to Psychology (PSY 101)">
                     Introduction to Psychology (PSY 101)
                   </SelectItem>
                   <SelectItem value="Advanced Statistics (STAT 301)">Advanced Statistics (STAT 301)</SelectItem>
                   <SelectItem value="Environmental Science (ENV 201)">Environmental Science (ENV 201)</SelectItem>
                   <SelectItem value="Creative Writing (ENG 215)">Creative Writing (ENG 215)</SelectItem>
-                  <SelectItem value="Biology 101">Biology 101</SelectItem>
+                  <SelectItem value="Biology 101">Biology 101</SelectItem> */}
+                  {courses.length === 0 && (
+                    <SelectItem value="No courses available" disabled>
+                      No courses available
+                    </SelectItem>) }
+                  {courses.map((course) => (
+                    <SelectItem key={course.id} value={course.id}>
+                      {course.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

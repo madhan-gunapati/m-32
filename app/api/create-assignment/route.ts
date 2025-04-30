@@ -1,22 +1,32 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function POST(req:NextRequest) {
-  try {
-    const body = await req.json();
-    const { user_email  , details} = body;
+
+  const session = await getServerSession(authOptions);
     
-    const user = await prisma.user.findUnique({  
-        where: {
-            email: user_email,
-        },
-        });
-        
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    // Find the authenticated user
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+      select: { id: true },
+    });
+
     if (!user) {
-        return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+  
+    const body = await req.json();
+    const {  details} = body;
+    
+    
     const newAssignment = await prisma.assignment.create({
         data: {
             userId:user.id,

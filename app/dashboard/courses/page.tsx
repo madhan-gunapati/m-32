@@ -5,41 +5,71 @@ import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectUser } from "@/lib/state/slices/userSlice"
- 
+import { useEffect } from "react"
+import { useState } from "react"
+import { add_courses } from "@/lib/state/slices/courseSlice"
 export default function CoursesPage() {
-
-  
+  const [courses, setCourses] = useState< {
+    id: string;
+    name: string;
+    description: string;
+    subject: string;
+    students: number;
+    assignments: number;
+}[]>([])
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch()
   
   // Mock courses data
   //fetch the created classes - MN
-  const courses = [
+  const mock_courses = [
     {
       id: "1",
-      name: "Introduction to Literature",
-      description: "A survey of major literary works from various periods and cultures.",
+      name: "mock data, create new course",
+      description: "cereate your own courses.",
       subject: "English",
       students: 28,
       assignments: 12,
     },
-    {
-      id: "2",
-      name: "Algebra II",
-      description: "Advanced algebraic concepts including functions, equations, and graphs.",
-      subject: "Mathematics",
-      students: 32,
-      assignments: 15,
-    },
-    {
-      id: "3",
-      name: "World History",
-      description: "Exploration of major historical events and their impact on modern society.",
-      subject: "History",
-      students: 25,
-      assignments: 8,
-    },
+    
   ]
+  
+
+  useEffect(() => {
+    // Fetch courses from the server or perform any necessary side effects
+    setCourses(mock_courses)
+    const createdCourses = async () => {
+      try {
+      const response = await fetch("/api/courses")
+      if (!response.ok) {
+        alert("Failed to fetch courses")
+        return
+      }
+      const data = await response.json()
+      // console.log(data)
+      // Assuming the response contains an array of courses
+      if(data.length === 0){
+        alert('No courses found create new')
+      }
+      else{
+       setCourses(data)
+       dispatch(add_courses(data))
+      }
+       return 
+    }
+    catch (error) {
+      console.error("Error fetching courses:", error)
+      alert("Error fetching courses: Showing Mock coureses")  
+      setCourses(mock_courses)
+      
+      return 
+    }
+  }
+  createdCourses()
+    
+  }, [])
 
   return (
     <div className="container mx-auto py-6">

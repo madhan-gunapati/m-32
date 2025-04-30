@@ -118,6 +118,9 @@ model Course {
   policies          Policies
 
   weeklySchedule    WeeklySchedule[]
+
+  assignment Assignment[]
+  student Student[]
 }
 
 model Assignment {
@@ -136,8 +139,11 @@ model Assignment {
   peer_evaluation    String?
   userId             String     // Foreign key to User
   user               User     @relation(fields: [userId], references: [id]) // Relationship to User model
-
-  createdAt          DateTime @default(now())
+  
+  courseId            String 
+  course            Course @relation(fields: [courseId], references: [id]) // Relationship to Course model
+ 
+ createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
   submission Submission[]
 }
@@ -150,6 +156,11 @@ model Student {
   class     String
   userId    String
   user      User   @relation(fields: [userId], references: [id])
+
+  courseId            String 
+  course            Course @relation(fields: [courseId], references: [id]) // Relationship to Course model
+ 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
