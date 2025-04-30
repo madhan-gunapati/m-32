@@ -5,6 +5,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 
 export async function POST(req:NextRequest) {
+  
   try {
     const session = await getServerSession(authOptions);
 
@@ -20,7 +21,7 @@ export async function POST(req:NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    
+
     const body = await req.json();
     const {  details} = body;
     

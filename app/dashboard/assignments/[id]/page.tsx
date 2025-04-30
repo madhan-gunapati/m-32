@@ -45,7 +45,7 @@ const [assignmentData , setAssignmentData] = useState<any>({})
     const assignmentId = unwrappedParams.id
     const assignmentData = async () => {
       try {
-        const response = await fetch("/api/assignments" ,{
+        const response = await fetch("/api/assignments-data" ,{
           method: "POST",
           body: JSON.stringify({ id: assignmentId }),
           headers: {
@@ -53,7 +53,9 @@ const [assignmentData , setAssignmentData] = useState<any>({})
           },
         })
         if (!response.ok) {
-          alert("Failed to fetch assignment data")
+          const data = await response.json()
+          console.log(data,'errror')
+          alert("Failed to fetch assignment data noww")
           return
         }
         const data = await response.json()
@@ -331,7 +333,7 @@ const [assignmentData , setAssignmentData] = useState<any>({})
                     )}
                     <p className="text-sm text-muted-foreground">
                    
-      Submitted: {typeof window !== 'undefined' ? new Date(submission.submissionDate).toISOString() : 'Loading...'}
+      Submitted: {(submission.submissionDate)}
     </p>
                    
                   </div>
