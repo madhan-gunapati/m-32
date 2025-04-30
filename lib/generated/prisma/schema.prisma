@@ -140,10 +140,10 @@ model Assignment {
 }
 
 model Student {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  email  String @unique
-  class  String
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  email String @unique
+
   userId String
   user   User   @relation(fields: [userId], references: [id])
 

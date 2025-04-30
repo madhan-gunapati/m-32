@@ -6864,7 +6864,6 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
-    class: string | null
     userId: string | null
     courseId: string | null
     createdAt: Date | null
@@ -6875,7 +6874,6 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
-    class: string | null
     userId: string | null
     courseId: string | null
     createdAt: Date | null
@@ -6886,7 +6884,6 @@ export namespace Prisma {
     id: number
     name: number
     email: number
-    class: number
     userId: number
     courseId: number
     createdAt: number
@@ -6899,7 +6896,6 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    class?: true
     userId?: true
     courseId?: true
     createdAt?: true
@@ -6910,7 +6906,6 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    class?: true
     userId?: true
     courseId?: true
     createdAt?: true
@@ -6921,7 +6916,6 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    class?: true
     userId?: true
     courseId?: true
     createdAt?: true
@@ -7005,7 +6999,6 @@ export namespace Prisma {
     id: string
     name: string
     email: string
-    class: string
     userId: string
     courseId: string
     createdAt: Date
@@ -7033,7 +7026,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    class?: boolean
     userId?: boolean
     courseId?: boolean
     createdAt?: boolean
@@ -7048,14 +7040,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    class?: boolean
     userId?: boolean
     courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "class" | "userId" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "userId" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     course?: boolean | CourseDefaultArgs<ExtArgs>
@@ -7071,7 +7062,6 @@ export namespace Prisma {
       id: string
       name: string
       email: string
-      class: string
       userId: string
       courseId: string
       createdAt: Date
@@ -7473,7 +7463,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Student", 'String'>
     readonly name: FieldRef<"Student", 'String'>
     readonly email: FieldRef<"Student", 'String'>
-    readonly class: FieldRef<"Student", 'String'>
     readonly userId: FieldRef<"Student", 'String'>
     readonly courseId: FieldRef<"Student", 'String'>
     readonly createdAt: FieldRef<"Student", 'DateTime'>
@@ -16278,7 +16267,6 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    class: 'class',
     userId: 'userId',
     courseId: 'courseId',
     createdAt: 'createdAt',
@@ -16881,7 +16869,6 @@ export namespace Prisma {
     id?: StringFilter<"Student"> | string
     name?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
-    class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
     courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
@@ -16894,7 +16881,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    class?: SortOrder
     userId?: SortOrder
     courseId?: SortOrder
     createdAt?: SortOrder
@@ -16910,7 +16896,6 @@ export namespace Prisma {
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
     name?: StringFilter<"Student"> | string
-    class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
     courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
@@ -16923,7 +16908,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    class?: SortOrder
     userId?: SortOrder
     courseId?: SortOrder
     createdAt?: SortOrder
@@ -16940,7 +16924,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Student"> | string
     name?: StringWithAggregatesFilter<"Student"> | string
     email?: StringWithAggregatesFilter<"Student"> | string
-    class?: StringWithAggregatesFilter<"Student"> | string
     userId?: StringWithAggregatesFilter<"Student"> | string
     courseId?: StringWithAggregatesFilter<"Student"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
@@ -17837,7 +17820,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutStudentsInput
@@ -17848,7 +17830,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     userId: string
     courseId: string
     createdAt?: Date | string
@@ -17858,7 +17839,6 @@ export namespace Prisma {
   export type StudentUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutStudentsNestedInput
@@ -17868,7 +17848,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17879,7 +17858,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     userId: string
     courseId: string
     createdAt?: Date | string
@@ -17889,7 +17867,6 @@ export namespace Prisma {
   export type StudentUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17897,7 +17874,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18823,7 +18799,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    class?: SortOrder
     userId?: SortOrder
     courseId?: SortOrder
     createdAt?: SortOrder
@@ -18834,7 +18809,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    class?: SortOrder
     userId?: SortOrder
     courseId?: SortOrder
     createdAt?: SortOrder
@@ -18845,7 +18819,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    class?: SortOrder
     userId?: SortOrder
     courseId?: SortOrder
     createdAt?: SortOrder
@@ -20550,7 +20523,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     createdAt?: Date | string
     updatedAt?: Date | string
     course: CourseCreateNestedOneWithoutStudentInput
@@ -20560,7 +20532,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20699,7 +20670,6 @@ export namespace Prisma {
     id?: StringFilter<"Student"> | string
     name?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
-    class?: StringFilter<"Student"> | string
     userId?: StringFilter<"Student"> | string
     courseId?: StringFilter<"Student"> | string
     createdAt?: DateTimeFilter<"Student"> | Date | string
@@ -20821,7 +20791,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutStudentsInput
@@ -20831,7 +20800,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22327,7 +22295,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22454,7 +22421,6 @@ export namespace Prisma {
   export type StudentUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     course?: CourseUpdateOneRequiredWithoutStudentNestedInput
@@ -22463,7 +22429,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22472,7 +22437,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateManyWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22528,7 +22492,6 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
-    class: string
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22613,7 +22576,6 @@ export namespace Prisma {
   export type StudentUpdateWithoutCourseInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutStudentsNestedInput
@@ -22622,7 +22584,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateWithoutCourseInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22631,7 +22592,6 @@ export namespace Prisma {
   export type StudentUncheckedUpdateManyWithoutCourseInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    class?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

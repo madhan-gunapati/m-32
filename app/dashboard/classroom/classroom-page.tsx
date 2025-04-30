@@ -19,21 +19,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { StudentsList } from "./students-list"
 import { CoTeachersList } from "./co-teachers-list"
 import { useToast } from "@/components/ui/toast"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { selectUser } from "@/lib/state/slices/userSlice"
+import { useDispatch } from "react-redux"
+import { add_courses } from "@/lib/state/slices/courseSlice"
 export default function ClassroomPage() {
   const [studentName , setStudentName] = useState("")
   const [studentEmail , setStudentEmail] = useState("")
   const [studentClass , setStudentClass] = useState("")
+  const [selectedCourseId , setSelectedCourseId] = useState("")
   const [coTeacherEmail , setCoTeacherEmail] = useState("")
   const [coTeacherClass , setCoTeacherClass] = useState("")
   const [coTeacherName , setCoTeacherName] = useState("")
   const [coTeacherRole , setCoTeacherRole] = useState("")
+  const [classList, setClassList] = useState([])
   const { toast } = useToast()
-  const user = useSelector(selectUser)
+  const courses = useSelector((state:any)=>state.courseState.courses)
+  const dispatch = useDispatch()
  
   const handleStudentSubmissiontoDB = async () => {
+    console.log(selectedCourseId)
+    const course = classList.find((item)=>item.id === selectedCourseId)
+    setStudentClass(course.name)
     try {
       const response = await fetch("/api/create-student", {
         method: "POST",
@@ -41,11 +49,12 @@ export default function ClassroomPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_email: user.email,
+          
           details: {
             name: studentName,
             email: studentEmail,
-            class: studentClass,
+            // course: studentClass,
+            courseId:selectedCourseId,
           },
         }),
       })
@@ -64,6 +73,41 @@ export default function ClassroomPage() {
       alert("Error adding student:") 
     }
   } 
+
+  useEffect(() => {
+      
+
+      if(courses.length > 0) {
+      setClassList(courses)
+      }
+      // Fetch courses from the server or perform any necessary side effects
+      else {
+      const createdCourses = async () => {
+        try {
+        const response = await fetch("/api/courses")
+        if (!response.ok) {
+          alert("Failed to fetch courses")
+          return
+        }
+        const data = await response.json()
+        
+        // Assuming the response contains an array of courses
+         setClassList(data)
+         
+         dispatch(add_courses(data))
+         return 
+      }
+      catch (error) {
+        console.error("Error fetching courses:", error)
+        alert("Error fetching courses: Showing Mock coureses")  
+        
+        return 
+      }
+    }
+    createdCourses()
+  }
+  
+    }, [])
 
   return (
     <div className="container py-6">
@@ -101,6 +145,7 @@ export default function ClassroomPage() {
                   id="class"
                   className="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
+                  
                   <option value="all">All Classes</option>
                   <option value="math101">Math 101</option>
                   <option value="science202">Science 202</option>
@@ -215,12 +260,11 @@ export default function ClassroomPage() {
                         <select
                           id="student-class"
                           className="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        onChange={(e)=>setStudentClass(e.target.value)}
+                        onChange={(e)=>setSelectedCourseId(e.target.value)}
                         >
-                          <option value="math101">Math 101</option>
-                          <option value="science202">Science 202</option>
-                          <option value="history303">History 303</option>
-                          <option value="Will fetch from db">Will fetch from db</option>
+                          {/* {classList.length === 0 && <option disabled>add courses</option>} */}
+                          {classList.map((item)=> <option key={item.id} value={item.id}>{item.name}</option>)}
+                         
                         </select>
                       </div>
                     </div>

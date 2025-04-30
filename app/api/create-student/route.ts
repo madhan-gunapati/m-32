@@ -1,22 +1,30 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "../auth/[...nextauth]/route";
 
 
-
-export async function POST(req) {
+export async function POST(req:NextRequest) {
   try {
-    const body = await req.json();
-    const { user_email  , details} = body;
-    
-    const user = await prisma.user.findUnique({  
-        where: {
-            email: user_email,
-        },
-        });
-            
-    if (!user) {
-        return NextResponse.json({ error: "Instructor not found" }, { status: 404 });
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+    });
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    
+    const body = await req.json();
+    const {  details} = body;
+    
+    
     const newCourse = await prisma.student.create({
         data: {
             userId:user.id,

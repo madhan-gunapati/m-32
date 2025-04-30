@@ -45,7 +45,7 @@ const [assignmentData , setAssignmentData] = useState<any>({})
     const assignmentId = unwrappedParams.id
     const assignmentData = async () => {
       try {
-        const response = await fetch("/api/assignments-data" ,{
+        const response = await fetch("/api/assignments" ,{
           method: "POST",
           body: JSON.stringify({ id: assignmentId }),
           headers: {

@@ -153,7 +153,7 @@ model Student {
   id        String    @id @default(auto())  @map("_id") @db.ObjectId
   name      String
   email     String @unique
-  class     String
+  
   userId    String
   user      User   @relation(fields: [userId], references: [id])
 
