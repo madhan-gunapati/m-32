@@ -54,7 +54,7 @@ const [assignmentData , setAssignmentData] = useState<any>({})
         })
         if (!response.ok) {
           const data = await response.json()
-          console.log(data,'errror')
+          
           alert("Failed to fetch assignment data noww")
           return
         }
@@ -211,7 +211,7 @@ const [assignmentData , setAssignmentData] = useState<any>({})
         return;
       }
       const submissionData = await submission_to_db.json();
-      console.log("Submission saved to database:", submissionData);
+      // console.log("Submission saved to database:", submissionData);
       alert("Submission saved successfully!");
     }
     catch (error) {

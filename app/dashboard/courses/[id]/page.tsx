@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useEffect } from "react"
 import {use} from 'react'
 import { useState } from "react"
 import Link from "next/link"
@@ -30,9 +30,12 @@ export default function Page({ params }:any) {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
+  const [courseAssignments , setCourseAssignments] = useState([])
+  const [courseStudents , setCourseStudents] = useState([])
+  const [course, setCourse] = useState({})
 
   // Find the course by ID
-  const course = courses.find((c) => c.id === unwrappedParams.id) || courses[0]
+  // const course = courses.find((c) => c.id === unwrappedParams.id) || courses[0]
 
 
   const handleGradeAssignment = (assignmentId: string) => {
@@ -116,6 +119,38 @@ export default function Page({ params }:any) {
     })
     setIsUploadModalOpen(false)
   }
+  useEffect(()=>{
+    const dataFetcher = async()=>{
+      const response = await fetch('/api/course-data' , {
+        method:'POST', 
+        body:JSON.stringify({courseId:unwrappedParams.id}) ,
+        headers:{"Content-Type": "application/json",}
+      })
+      if(!response.ok){
+        alert('Error in fetching details , try again')
+      }
+      else{
+        const data = await response.json()
+        
+        setCourse(data)
+        let assignments = data.assignment 
+        
+        if(assignments){
+          assignments = assignments.map((item)=>({...item , submissions:"23/42" , status:'Active' , dueDate:item.dueDate.split('T')[0]}))
+        setCourseAssignments(assignments)
+        }
+        let students = data.student
+        if(students){
+          
+          students = students.map((item)=>({...item , grade:'A', completed:'22', }))
+          setCourseStudents(students)
+        }
+        
+      }
+    }
+    dataFetcher()
+    
+  },[])
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -125,8 +160,8 @@ export default function Page({ params }:any) {
             <ArrowLeft className="h-4 w-4" />
           </Link>
         </Button>
-        <h2 className="text-3xl font-bold tracking-tight">{course.title}</h2>
-        <Badge>{course.code}</Badge>
+        <h2 className="text-3xl font-bold tracking-tight">{course.courseTitle}</h2>
+        <Badge>{course.code} pso1</Badge>
       </div>
       <div className="grid gap-4 md:grid-cols-7">
         <Card className="md:col-span-5">
@@ -134,7 +169,7 @@ export default function Page({ params }:any) {
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle>Course Details</CardTitle>
-                <CardDescription>{course.students} students enrolled • Spring 2025</CardDescription>
+                <CardDescription>{courseStudents.length} students enrolled • Spring 2025</CardDescription>
               </div>
               <Button asChild>
                 <Link href={`/dashboard/create-assignment?courseId=${unwrappedParams.id}`}>
@@ -172,7 +207,7 @@ export default function Page({ params }:any) {
                       <TableBody>
                         {courseAssignments.map((assignment) => (
                           <TableRow key={assignment.id}>
-                            <TableCell className="font-medium">{assignment.title}</TableCell>
+                            <TableCell className="font-medium">{assignment.assignmentTitle}</TableCell>
                             <TableCell>{assignment.dueDate}</TableCell>
                             <TableCell>
                               <Badge
@@ -187,7 +222,9 @@ export default function Page({ params }:any) {
                                 {assignment.status}
                               </Badge>
                             </TableCell>
-                            <TableCell>{assignment.submissions}</TableCell>
+                            <TableCell>
+                              {assignment.submissions} 
+                              </TableCell>
                             <TableCell className="text-right">
                               <Button variant="ghost" size="sm" onClick={() => handleGradeAssignment(assignment.id)}>
                                 Grade
@@ -283,40 +320,32 @@ export default function Page({ params }:any) {
                   <CardContent>
                     <div className="prose max-w-none dark:prose-invert">
                       <h1>
-                        {course.title} ({course.code})
+                        {course.courseTitle} ({course.code}pso1) 
                       </h1>
-                      <h2>Spring 2025</h2>
+                      <h2>{course.term}</h2>
 
                       <h3>Course Description</h3>
                       <p>
-                        This course provides a comprehensive introduction to the scientific study of behavior and mental
-                        processes. Students will explore the major theories, concepts, and research methods in
-                        psychology, including biological bases of behavior, sensation and perception, learning, memory,
-                        cognition, development, personality, social psychology, and psychological disorders.
+                       {course.description}
                       </p>
 
                       <h3>Learning Objectives</h3>
                       <ul>
-                        <li>Describe key concepts, principles, and overarching themes in psychology</li>
-                        <li>Develop a working knowledge of psychology's content domains</li>
-                        <li>Apply critical thinking skills to evaluate psychological research</li>
-                        <li>Apply psychological concepts to real-world situations</li>
-                        <li>Demonstrate effective written and oral communication skills</li>
+                       {course.learningObjectives && course.learningObjectives.map((item)=><li key={item.id}>{item}</li>)}
                       </ul>
 
                       <h3>Required Materials</h3>
                       <ul>
-                        <li>Myers, D. G., & DeWall, C. N. (2024). Psychology (14th ed.). Worth Publishers.</li>
-                        <li>Additional readings will be provided on the course website</li>
+                        {course.requiredMaterials  &&course.requiredMaterials.map((item)=><li key={item.id}>{item.title} written by{item.author}  publsihed by {item.publisher} in the year {item.year}</li>)}
                       </ul>
 
                       <h3>Assignments and Grading</h3>
                       <ul>
-                        <li>Midterm Exam: 25%</li>
-                        <li>Final Exam: 30%</li>
-                        <li>Research Paper: 20%</li>
-                        <li>Weekly Quizzes: 15%</li>
-                        <li>Class Participation: 10%</li>
+                        <li>Midterm Exam: {course.gradingPolicy &&  course.gradingPolicy.midterm.percentage}%</li>
+                        <li>Final Exam: {course.gradingPolicy && course.gradingPolicy.finalExam.percentage}%</li>
+                        
+                        <li>Assignments: {course.gradingPolicy && course.gradingPolicy.assignments.percentage}%</li>
+                        <li>Class Participation: {course.gradingPolicy && course.gradingPolicy.participation.percentage}%</li>
                       </ul>
                     </div>
                   </CardContent>
@@ -706,7 +735,7 @@ export default function Page({ params }:any) {
 const courses = [
   {
     id: "1",
-    title: "Introduction to Psychology",
+    title: "Introduction to Psychology ",
     code: "PSY 101",
     students: 42,
     assignments: 8,
@@ -761,7 +790,7 @@ const courseActivity = [
   },
 ]
 
-const courseAssignments = [
+const Assignments = [
   {
     id: "1",
     title: "Research Paper",
@@ -806,7 +835,7 @@ const courseAssignments = [
   },
 ]
 
-const courseStudents = [
+const Students = [
   {
     id: "1",
     name: "Emma Johnson",

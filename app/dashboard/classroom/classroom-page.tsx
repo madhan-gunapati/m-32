@@ -39,7 +39,7 @@ export default function ClassroomPage() {
   const dispatch = useDispatch()
  
   const handleStudentSubmissiontoDB = async () => {
-    console.log(selectedCourseId)
+    
     const course = classList.find((item)=>item.id === selectedCourseId)
     setStudentClass(course.name)
     try {
@@ -61,6 +61,7 @@ export default function ClassroomPage() {
 
       if (!response.ok) {
         alert("Failed to add student . Retry again")
+        return
       }
 
       const data = await response.json()

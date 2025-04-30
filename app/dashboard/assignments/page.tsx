@@ -49,7 +49,7 @@ export default function AssignmentsPage() {
          
          
           setAssignmentList(data)
-          console.log(data)
+          // console.log(data)
         }
       } catch (error) {
         toast({
