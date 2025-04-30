@@ -75,14 +75,15 @@ model Payments {
 }
 
 model User {
-  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
   name            String
-  email           String       @unique
+  email           String          @unique
   hashed_password String
   provider        Provider
   courses         Course[] // reverse relation: a user can create many courses
   assignments     Assignment[] // One user can have many assignments
   students        Student[] // 1 user -> many students
+  inlineComments  InlineComment[]
 }
 
 model Course {
@@ -127,8 +128,9 @@ model Assignment {
   userId                 String // Foreign key to User
   user                   User     @relation(fields: [userId], references: [id]) // Relationship to User model
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  submission Submission[]
 }
 
 model Student {
@@ -140,4 +142,105 @@ model Student {
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Submission {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  assignmentId    String
+  assignmentTitle String
+  assignment      Assignment       @relation(fields: [assignmentId], references: [id]) // Relationship to User model
+  studentName     String?
+  studentId       String?
+  submissionDate  DateTime         @default(now())
+  status          SubmissionStatus
+  content         String
+
+  aiCheckerResults   AICheckerResults? @relation(fields: [aiCheckerResultsId], references: [id])
+  aiCheckerResultsId String?           @unique
+
+  plagiarismResults   PlagiarismResults? @relation(fields: [plagiarismResultsId], references: [id])
+  plagiarismResultsId String?            @unique
+
+  inlineComments  InlineComment[]
+  overallFeedback OverallFeedback?
+  subscores       Subscore[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum SubmissionStatus {
+  PENDING
+  GRADED
+}
+
+model AICheckerResults {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  score      Int
+  confidence ConfidenceLevel
+  details    AIDetail[]
+  submission Submission?
+}
+
+enum ConfidenceLevel {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+model AIDetail {
+  id                 String           @id @default(auto()) @map("_id") @db.ObjectId
+  section            String
+  aiProbability      Float
+  humanProbability   Float
+  aiCheckerResultsId String
+  aiCheckerResults   AICheckerResults @relation(fields: [aiCheckerResultsId], references: [id])
+}
+
+model PlagiarismResults {
+  id         String            @id @default(auto()) @map("_id") @db.ObjectId
+  score      Int
+  matches    PlagiarismMatch[]
+  submission Submission?
+}
+
+model PlagiarismMatch {
+  id                  String            @id @default(auto()) @map("_id") @db.ObjectId
+  test                String
+  source              String
+  similarity          Float
+  plagiarismResultsId String
+  plagiarismResults   PlagiarismResults @relation(fields: [plagiarismResultsId], references: [id])
+}
+
+model InlineComment {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  startIndex   Int
+  endIndex     Int
+  text         String
+  color        String
+  timeStamp    DateTime
+  authorId     String
+  author       User       @relation(fields: [authorId], references: [id])
+  submissionId String
+  submission   Submission @relation(fields: [submissionId], references: [id])
+}
+
+model OverallFeedback {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  strengths    String
+  improvements String
+  actionItems  String
+  submissionId String     @unique
+  submission   Submission @relation(fields: [submissionId], references: [id])
+}
+
+model Subscore {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  score        Float
+  maxScore     Float
+  rationale    String
+  submissionId String
+  submission   Submission @relation(fields: [submissionId], references: [id])
 }

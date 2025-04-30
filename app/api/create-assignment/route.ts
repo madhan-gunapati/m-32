@@ -17,17 +17,17 @@ export async function POST(req:NextRequest) {
     if (!user) {
         return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-    const newCourse = await prisma.assignment.create({
+    const newAssignment = await prisma.assignment.create({
         data: {
             userId:user.id,
            ...details },
     });
 
-    if (!newCourse) {
+    if (!newAssignment) {
       return NextResponse.json({ error: "Failed to create assignment " }, { status: 500 });
     }
-
-    return NextResponse.json(newCourse);
+    console.log("Assignment created successfully:", newAssignment);
+    return NextResponse.json(newAssignment);
   } catch (error) {
     console.error("Error creating assignment:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

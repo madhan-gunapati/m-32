@@ -63,6 +63,46 @@ export type Assignment = $Result.DefaultSelection<Prisma.$AssignmentPayload>
  * 
  */
 export type Student = $Result.DefaultSelection<Prisma.$StudentPayload>
+/**
+ * Model Submission
+ * 
+ */
+export type Submission = $Result.DefaultSelection<Prisma.$SubmissionPayload>
+/**
+ * Model AICheckerResults
+ * 
+ */
+export type AICheckerResults = $Result.DefaultSelection<Prisma.$AICheckerResultsPayload>
+/**
+ * Model AIDetail
+ * 
+ */
+export type AIDetail = $Result.DefaultSelection<Prisma.$AIDetailPayload>
+/**
+ * Model PlagiarismResults
+ * 
+ */
+export type PlagiarismResults = $Result.DefaultSelection<Prisma.$PlagiarismResultsPayload>
+/**
+ * Model PlagiarismMatch
+ * 
+ */
+export type PlagiarismMatch = $Result.DefaultSelection<Prisma.$PlagiarismMatchPayload>
+/**
+ * Model InlineComment
+ * 
+ */
+export type InlineComment = $Result.DefaultSelection<Prisma.$InlineCommentPayload>
+/**
+ * Model OverallFeedback
+ * 
+ */
+export type OverallFeedback = $Result.DefaultSelection<Prisma.$OverallFeedbackPayload>
+/**
+ * Model Subscore
+ * 
+ */
+export type Subscore = $Result.DefaultSelection<Prisma.$SubscorePayload>
 
 /**
  * Enums
@@ -94,6 +134,23 @@ export const SubsciptionType: {
 
 export type SubsciptionType = (typeof SubsciptionType)[keyof typeof SubsciptionType]
 
+
+export const SubmissionStatus: {
+  PENDING: 'PENDING',
+  GRADED: 'GRADED'
+};
+
+export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]
+
+
+export const ConfidenceLevel: {
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW'
+};
+
+export type ConfidenceLevel = (typeof ConfidenceLevel)[keyof typeof ConfidenceLevel]
+
 }
 
 export type Provider = $Enums.Provider
@@ -107,6 +164,14 @@ export const PaymentStatus: typeof $Enums.PaymentStatus
 export type SubsciptionType = $Enums.SubsciptionType
 
 export const SubsciptionType: typeof $Enums.SubsciptionType
+
+export type SubmissionStatus = $Enums.SubmissionStatus
+
+export const SubmissionStatus: typeof $Enums.SubmissionStatus
+
+export type ConfidenceLevel = $Enums.ConfidenceLevel
+
+export const ConfidenceLevel: typeof $Enums.ConfidenceLevel
 
 /**
  * ##  Prisma Client ʲˢ
@@ -249,6 +314,86 @@ export class PrismaClient<
     * ```
     */
   get student(): Prisma.StudentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.submission`: Exposes CRUD operations for the **Submission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Submissions
+    * const submissions = await prisma.submission.findMany()
+    * ```
+    */
+  get submission(): Prisma.SubmissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aICheckerResults`: Exposes CRUD operations for the **AICheckerResults** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AICheckerResults
+    * const aICheckerResults = await prisma.aICheckerResults.findMany()
+    * ```
+    */
+  get aICheckerResults(): Prisma.AICheckerResultsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIDetail`: Exposes CRUD operations for the **AIDetail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIDetails
+    * const aIDetails = await prisma.aIDetail.findMany()
+    * ```
+    */
+  get aIDetail(): Prisma.AIDetailDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.plagiarismResults`: Exposes CRUD operations for the **PlagiarismResults** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlagiarismResults
+    * const plagiarismResults = await prisma.plagiarismResults.findMany()
+    * ```
+    */
+  get plagiarismResults(): Prisma.PlagiarismResultsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.plagiarismMatch`: Exposes CRUD operations for the **PlagiarismMatch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlagiarismMatches
+    * const plagiarismMatches = await prisma.plagiarismMatch.findMany()
+    * ```
+    */
+  get plagiarismMatch(): Prisma.PlagiarismMatchDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.inlineComment`: Exposes CRUD operations for the **InlineComment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InlineComments
+    * const inlineComments = await prisma.inlineComment.findMany()
+    * ```
+    */
+  get inlineComment(): Prisma.InlineCommentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.overallFeedback`: Exposes CRUD operations for the **OverallFeedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OverallFeedbacks
+    * const overallFeedbacks = await prisma.overallFeedback.findMany()
+    * ```
+    */
+  get overallFeedback(): Prisma.OverallFeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.subscore`: Exposes CRUD operations for the **Subscore** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Subscores
+    * const subscores = await prisma.subscore.findMany()
+    * ```
+    */
+  get subscore(): Prisma.SubscoreDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -693,7 +838,15 @@ export namespace Prisma {
     User: 'User',
     Course: 'Course',
     Assignment: 'Assignment',
-    Student: 'Student'
+    Student: 'Student',
+    Submission: 'Submission',
+    AICheckerResults: 'AICheckerResults',
+    AIDetail: 'AIDetail',
+    PlagiarismResults: 'PlagiarismResults',
+    PlagiarismMatch: 'PlagiarismMatch',
+    InlineComment: 'InlineComment',
+    OverallFeedback: 'OverallFeedback',
+    Subscore: 'Subscore'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -712,7 +865,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "payments" | "user" | "course" | "assignment" | "student"
+      modelProps: "payments" | "user" | "course" | "assignment" | "student" | "submission" | "aICheckerResults" | "aIDetail" | "plagiarismResults" | "plagiarismMatch" | "inlineComment" | "overallFeedback" | "subscore"
       txIsolationLevel: never
     }
     model: {
@@ -1086,6 +1239,598 @@ export namespace Prisma {
           }
         }
       }
+      Submission: {
+        payload: Prisma.$SubmissionPayload<ExtArgs>
+        fields: Prisma.SubmissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubmissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubmissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          findFirst: {
+            args: Prisma.SubmissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubmissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          findMany: {
+            args: Prisma.SubmissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>[]
+          }
+          create: {
+            args: Prisma.SubmissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          createMany: {
+            args: Prisma.SubmissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SubmissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          update: {
+            args: Prisma.SubmissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubmissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubmissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SubmissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionPayload>
+          }
+          aggregate: {
+            args: Prisma.SubmissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubmission>
+          }
+          groupBy: {
+            args: Prisma.SubmissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.SubmissionFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.SubmissionAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.SubmissionCountArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      AICheckerResults: {
+        payload: Prisma.$AICheckerResultsPayload<ExtArgs>
+        fields: Prisma.AICheckerResultsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AICheckerResultsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AICheckerResultsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          findFirst: {
+            args: Prisma.AICheckerResultsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AICheckerResultsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          findMany: {
+            args: Prisma.AICheckerResultsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>[]
+          }
+          create: {
+            args: Prisma.AICheckerResultsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          createMany: {
+            args: Prisma.AICheckerResultsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AICheckerResultsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          update: {
+            args: Prisma.AICheckerResultsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          deleteMany: {
+            args: Prisma.AICheckerResultsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AICheckerResultsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AICheckerResultsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AICheckerResultsPayload>
+          }
+          aggregate: {
+            args: Prisma.AICheckerResultsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAICheckerResults>
+          }
+          groupBy: {
+            args: Prisma.AICheckerResultsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AICheckerResultsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.AICheckerResultsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.AICheckerResultsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.AICheckerResultsCountArgs<ExtArgs>
+            result: $Utils.Optional<AICheckerResultsCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIDetail: {
+        payload: Prisma.$AIDetailPayload<ExtArgs>
+        fields: Prisma.AIDetailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIDetailFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIDetailFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          findFirst: {
+            args: Prisma.AIDetailFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIDetailFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          findMany: {
+            args: Prisma.AIDetailFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>[]
+          }
+          create: {
+            args: Prisma.AIDetailCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          createMany: {
+            args: Prisma.AIDetailCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AIDetailDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          update: {
+            args: Prisma.AIDetailUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIDetailDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIDetailUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AIDetailUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDetailPayload>
+          }
+          aggregate: {
+            args: Prisma.AIDetailAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIDetail>
+          }
+          groupBy: {
+            args: Prisma.AIDetailGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIDetailGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.AIDetailFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.AIDetailAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.AIDetailCountArgs<ExtArgs>
+            result: $Utils.Optional<AIDetailCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlagiarismResults: {
+        payload: Prisma.$PlagiarismResultsPayload<ExtArgs>
+        fields: Prisma.PlagiarismResultsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlagiarismResultsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlagiarismResultsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          findFirst: {
+            args: Prisma.PlagiarismResultsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlagiarismResultsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          findMany: {
+            args: Prisma.PlagiarismResultsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>[]
+          }
+          create: {
+            args: Prisma.PlagiarismResultsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          createMany: {
+            args: Prisma.PlagiarismResultsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PlagiarismResultsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          update: {
+            args: Prisma.PlagiarismResultsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlagiarismResultsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlagiarismResultsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlagiarismResultsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismResultsPayload>
+          }
+          aggregate: {
+            args: Prisma.PlagiarismResultsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlagiarismResults>
+          }
+          groupBy: {
+            args: Prisma.PlagiarismResultsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlagiarismResultsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.PlagiarismResultsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.PlagiarismResultsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.PlagiarismResultsCountArgs<ExtArgs>
+            result: $Utils.Optional<PlagiarismResultsCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlagiarismMatch: {
+        payload: Prisma.$PlagiarismMatchPayload<ExtArgs>
+        fields: Prisma.PlagiarismMatchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlagiarismMatchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlagiarismMatchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          findFirst: {
+            args: Prisma.PlagiarismMatchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlagiarismMatchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          findMany: {
+            args: Prisma.PlagiarismMatchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>[]
+          }
+          create: {
+            args: Prisma.PlagiarismMatchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          createMany: {
+            args: Prisma.PlagiarismMatchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PlagiarismMatchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          update: {
+            args: Prisma.PlagiarismMatchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlagiarismMatchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlagiarismMatchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlagiarismMatchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlagiarismMatchPayload>
+          }
+          aggregate: {
+            args: Prisma.PlagiarismMatchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlagiarismMatch>
+          }
+          groupBy: {
+            args: Prisma.PlagiarismMatchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlagiarismMatchGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.PlagiarismMatchFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.PlagiarismMatchAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.PlagiarismMatchCountArgs<ExtArgs>
+            result: $Utils.Optional<PlagiarismMatchCountAggregateOutputType> | number
+          }
+        }
+      }
+      InlineComment: {
+        payload: Prisma.$InlineCommentPayload<ExtArgs>
+        fields: Prisma.InlineCommentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InlineCommentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InlineCommentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          findFirst: {
+            args: Prisma.InlineCommentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InlineCommentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          findMany: {
+            args: Prisma.InlineCommentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>[]
+          }
+          create: {
+            args: Prisma.InlineCommentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          createMany: {
+            args: Prisma.InlineCommentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InlineCommentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          update: {
+            args: Prisma.InlineCommentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          deleteMany: {
+            args: Prisma.InlineCommentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InlineCommentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InlineCommentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InlineCommentPayload>
+          }
+          aggregate: {
+            args: Prisma.InlineCommentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInlineComment>
+          }
+          groupBy: {
+            args: Prisma.InlineCommentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InlineCommentGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.InlineCommentFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.InlineCommentAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.InlineCommentCountArgs<ExtArgs>
+            result: $Utils.Optional<InlineCommentCountAggregateOutputType> | number
+          }
+        }
+      }
+      OverallFeedback: {
+        payload: Prisma.$OverallFeedbackPayload<ExtArgs>
+        fields: Prisma.OverallFeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OverallFeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OverallFeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.OverallFeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OverallFeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.OverallFeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.OverallFeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.OverallFeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.OverallFeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          update: {
+            args: Prisma.OverallFeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.OverallFeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OverallFeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.OverallFeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OverallFeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.OverallFeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOverallFeedback>
+          }
+          groupBy: {
+            args: Prisma.OverallFeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OverallFeedbackGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.OverallFeedbackFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.OverallFeedbackAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.OverallFeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<OverallFeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      Subscore: {
+        payload: Prisma.$SubscorePayload<ExtArgs>
+        fields: Prisma.SubscoreFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubscoreFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubscoreFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          findFirst: {
+            args: Prisma.SubscoreFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubscoreFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          findMany: {
+            args: Prisma.SubscoreFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>[]
+          }
+          create: {
+            args: Prisma.SubscoreCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          createMany: {
+            args: Prisma.SubscoreCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SubscoreDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          update: {
+            args: Prisma.SubscoreUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          deleteMany: {
+            args: Prisma.SubscoreDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubscoreUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SubscoreUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscorePayload>
+          }
+          aggregate: {
+            args: Prisma.SubscoreAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubscore>
+          }
+          groupBy: {
+            args: Prisma.SubscoreGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubscoreGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.SubscoreFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.SubscoreAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.SubscoreCountArgs<ExtArgs>
+            result: $Utils.Optional<SubscoreCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1162,6 +1907,14 @@ export namespace Prisma {
     course?: CourseOmit
     assignment?: AssignmentOmit
     student?: StudentOmit
+    submission?: SubmissionOmit
+    aICheckerResults?: AICheckerResultsOmit
+    aIDetail?: AIDetailOmit
+    plagiarismResults?: PlagiarismResultsOmit
+    plagiarismMatch?: PlagiarismMatchOmit
+    inlineComment?: InlineCommentOmit
+    overallFeedback?: OverallFeedbackOmit
+    subscore?: SubscoreOmit
   }
 
   /* Types for Logging */
@@ -1259,12 +2012,14 @@ export namespace Prisma {
     courses: number
     assignments: number
     students: number
+    inlineComments: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | UserCountOutputTypeCountCoursesArgs
     assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
     students?: boolean | UserCountOutputTypeCountStudentsArgs
+    inlineComments?: boolean | UserCountOutputTypeCountInlineCommentsArgs
   }
 
   // Custom InputTypes
@@ -1297,6 +2052,146 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountInlineCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InlineCommentWhereInput
+  }
+
+
+  /**
+   * Count Type AssignmentCountOutputType
+   */
+
+  export type AssignmentCountOutputType = {
+    submission: number
+  }
+
+  export type AssignmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submission?: boolean | AssignmentCountOutputTypeCountSubmissionArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AssignmentCountOutputType without action
+   */
+  export type AssignmentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentCountOutputType
+     */
+    select?: AssignmentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AssignmentCountOutputType without action
+   */
+  export type AssignmentCountOutputTypeCountSubmissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubmissionWhereInput
+  }
+
+
+  /**
+   * Count Type SubmissionCountOutputType
+   */
+
+  export type SubmissionCountOutputType = {
+    inlineComments: number
+    subscores: number
+  }
+
+  export type SubmissionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inlineComments?: boolean | SubmissionCountOutputTypeCountInlineCommentsArgs
+    subscores?: boolean | SubmissionCountOutputTypeCountSubscoresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SubmissionCountOutputType without action
+   */
+  export type SubmissionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubmissionCountOutputType
+     */
+    select?: SubmissionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SubmissionCountOutputType without action
+   */
+  export type SubmissionCountOutputTypeCountInlineCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InlineCommentWhereInput
+  }
+
+  /**
+   * SubmissionCountOutputType without action
+   */
+  export type SubmissionCountOutputTypeCountSubscoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscoreWhereInput
+  }
+
+
+  /**
+   * Count Type AICheckerResultsCountOutputType
+   */
+
+  export type AICheckerResultsCountOutputType = {
+    details: number
+  }
+
+  export type AICheckerResultsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | AICheckerResultsCountOutputTypeCountDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AICheckerResultsCountOutputType without action
+   */
+  export type AICheckerResultsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResultsCountOutputType
+     */
+    select?: AICheckerResultsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AICheckerResultsCountOutputType without action
+   */
+  export type AICheckerResultsCountOutputTypeCountDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIDetailWhereInput
+  }
+
+
+  /**
+   * Count Type PlagiarismResultsCountOutputType
+   */
+
+  export type PlagiarismResultsCountOutputType = {
+    matches: number
+  }
+
+  export type PlagiarismResultsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    matches?: boolean | PlagiarismResultsCountOutputTypeCountMatchesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PlagiarismResultsCountOutputType without action
+   */
+  export type PlagiarismResultsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResultsCountOutputType
+     */
+    select?: PlagiarismResultsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PlagiarismResultsCountOutputType without action
+   */
+  export type PlagiarismResultsCountOutputTypeCountMatchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlagiarismMatchWhereInput
   }
 
 
@@ -2740,6 +3635,7 @@ export namespace Prisma {
     courses?: boolean | User$coursesArgs<ExtArgs>
     assignments?: boolean | User$assignmentsArgs<ExtArgs>
     students?: boolean | User$studentsArgs<ExtArgs>
+    inlineComments?: boolean | User$inlineCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2758,6 +3654,7 @@ export namespace Prisma {
     courses?: boolean | User$coursesArgs<ExtArgs>
     assignments?: boolean | User$assignmentsArgs<ExtArgs>
     students?: boolean | User$studentsArgs<ExtArgs>
+    inlineComments?: boolean | User$inlineCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2767,6 +3664,7 @@ export namespace Prisma {
       courses: Prisma.$CoursePayload<ExtArgs>[]
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       students: Prisma.$StudentPayload<ExtArgs>[]
+      inlineComments: Prisma.$InlineCommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3140,6 +4038,7 @@ export namespace Prisma {
     courses<T extends User$coursesArgs<ExtArgs> = {}>(args?: Subset<T, User$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignments<T extends User$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends User$studentsArgs<ExtArgs> = {}>(args?: Subset<T, User$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inlineComments<T extends User$inlineCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$inlineCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3613,6 +4512,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * User.inlineComments
+   */
+  export type User$inlineCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    where?: InlineCommentWhereInput
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    cursor?: InlineCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InlineCommentScalarFieldEnum | InlineCommentScalarFieldEnum[]
   }
 
   /**
@@ -4937,6 +5860,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    submission?: boolean | Assignment$submissionArgs<ExtArgs>
+    _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
 
 
@@ -4963,12 +5888,15 @@ export namespace Prisma {
   export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentTitle" | "selectedCourse" | "dueDate" | "description" | "learningObjectives" | "instructions" | "rubric" | "questions" | "answer_key" | "checklist" | "participation_criteria" | "peer_evaluation" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["assignment"]>
   export type AssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    submission?: boolean | Assignment$submissionArgs<ExtArgs>
+    _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $AssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Assignment"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      submission: Prisma.$SubmissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5351,6 +6279,7 @@ export namespace Prisma {
   export interface Prisma__AssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    submission<T extends Assignment$submissionArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$submissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5763,6 +6692,30 @@ export namespace Prisma {
      * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
      */
     options?: InputJsonValue
+  }
+
+  /**
+   * Assignment.submission
+   */
+  export type Assignment$submissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    where?: SubmissionWhereInput
+    orderBy?: SubmissionOrderByWithRelationInput | SubmissionOrderByWithRelationInput[]
+    cursor?: SubmissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
   }
 
   /**
@@ -6786,6 +7739,8349 @@ export namespace Prisma {
 
 
   /**
+   * Model Submission
+   */
+
+  export type AggregateSubmission = {
+    _count: SubmissionCountAggregateOutputType | null
+    _min: SubmissionMinAggregateOutputType | null
+    _max: SubmissionMaxAggregateOutputType | null
+  }
+
+  export type SubmissionMinAggregateOutputType = {
+    id: string | null
+    assignmentId: string | null
+    assignmentTitle: string | null
+    studentName: string | null
+    studentId: string | null
+    submissionDate: Date | null
+    status: $Enums.SubmissionStatus | null
+    content: string | null
+    aiCheckerResultsId: string | null
+    plagiarismResultsId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubmissionMaxAggregateOutputType = {
+    id: string | null
+    assignmentId: string | null
+    assignmentTitle: string | null
+    studentName: string | null
+    studentId: string | null
+    submissionDate: Date | null
+    status: $Enums.SubmissionStatus | null
+    content: string | null
+    aiCheckerResultsId: string | null
+    plagiarismResultsId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubmissionCountAggregateOutputType = {
+    id: number
+    assignmentId: number
+    assignmentTitle: number
+    studentName: number
+    studentId: number
+    submissionDate: number
+    status: number
+    content: number
+    aiCheckerResultsId: number
+    plagiarismResultsId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SubmissionMinAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    assignmentTitle?: true
+    studentName?: true
+    studentId?: true
+    submissionDate?: true
+    status?: true
+    content?: true
+    aiCheckerResultsId?: true
+    plagiarismResultsId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubmissionMaxAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    assignmentTitle?: true
+    studentName?: true
+    studentId?: true
+    submissionDate?: true
+    status?: true
+    content?: true
+    aiCheckerResultsId?: true
+    plagiarismResultsId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubmissionCountAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    assignmentTitle?: true
+    studentName?: true
+    studentId?: true
+    submissionDate?: true
+    status?: true
+    content?: true
+    aiCheckerResultsId?: true
+    plagiarismResultsId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SubmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Submission to aggregate.
+     */
+    where?: SubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionOrderByWithRelationInput | SubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Submissions
+    **/
+    _count?: true | SubmissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubmissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubmissionMaxAggregateInputType
+  }
+
+  export type GetSubmissionAggregateType<T extends SubmissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubmission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubmission[P]>
+      : GetScalarType<T[P], AggregateSubmission[P]>
+  }
+
+
+
+
+  export type SubmissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubmissionWhereInput
+    orderBy?: SubmissionOrderByWithAggregationInput | SubmissionOrderByWithAggregationInput[]
+    by: SubmissionScalarFieldEnum[] | SubmissionScalarFieldEnum
+    having?: SubmissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubmissionCountAggregateInputType | true
+    _min?: SubmissionMinAggregateInputType
+    _max?: SubmissionMaxAggregateInputType
+  }
+
+  export type SubmissionGroupByOutputType = {
+    id: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName: string | null
+    studentId: string | null
+    submissionDate: Date
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId: string | null
+    plagiarismResultsId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SubmissionCountAggregateOutputType | null
+    _min: SubmissionMinAggregateOutputType | null
+    _max: SubmissionMaxAggregateOutputType | null
+  }
+
+  type GetSubmissionGroupByPayload<T extends SubmissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubmissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubmissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubmissionGroupByOutputType[P]>
+            : GetScalarType<T[P], SubmissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubmissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    assignmentId?: boolean
+    assignmentTitle?: boolean
+    studentName?: boolean
+    studentId?: boolean
+    submissionDate?: boolean
+    status?: boolean
+    content?: boolean
+    aiCheckerResultsId?: boolean
+    plagiarismResultsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    aiCheckerResults?: boolean | Submission$aiCheckerResultsArgs<ExtArgs>
+    plagiarismResults?: boolean | Submission$plagiarismResultsArgs<ExtArgs>
+    inlineComments?: boolean | Submission$inlineCommentsArgs<ExtArgs>
+    overallFeedback?: boolean | Submission$overallFeedbackArgs<ExtArgs>
+    subscores?: boolean | Submission$subscoresArgs<ExtArgs>
+    _count?: boolean | SubmissionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["submission"]>
+
+
+
+  export type SubmissionSelectScalar = {
+    id?: boolean
+    assignmentId?: boolean
+    assignmentTitle?: boolean
+    studentName?: boolean
+    studentId?: boolean
+    submissionDate?: boolean
+    status?: boolean
+    content?: boolean
+    aiCheckerResultsId?: boolean
+    plagiarismResultsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SubmissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentId" | "assignmentTitle" | "studentName" | "studentId" | "submissionDate" | "status" | "content" | "aiCheckerResultsId" | "plagiarismResultsId" | "createdAt" | "updatedAt", ExtArgs["result"]["submission"]>
+  export type SubmissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    aiCheckerResults?: boolean | Submission$aiCheckerResultsArgs<ExtArgs>
+    plagiarismResults?: boolean | Submission$plagiarismResultsArgs<ExtArgs>
+    inlineComments?: boolean | Submission$inlineCommentsArgs<ExtArgs>
+    overallFeedback?: boolean | Submission$overallFeedbackArgs<ExtArgs>
+    subscores?: boolean | Submission$subscoresArgs<ExtArgs>
+    _count?: boolean | SubmissionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $SubmissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Submission"
+    objects: {
+      assignment: Prisma.$AssignmentPayload<ExtArgs>
+      aiCheckerResults: Prisma.$AICheckerResultsPayload<ExtArgs> | null
+      plagiarismResults: Prisma.$PlagiarismResultsPayload<ExtArgs> | null
+      inlineComments: Prisma.$InlineCommentPayload<ExtArgs>[]
+      overallFeedback: Prisma.$OverallFeedbackPayload<ExtArgs> | null
+      subscores: Prisma.$SubscorePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      assignmentId: string
+      assignmentTitle: string
+      studentName: string | null
+      studentId: string | null
+      submissionDate: Date
+      status: $Enums.SubmissionStatus
+      content: string
+      aiCheckerResultsId: string | null
+      plagiarismResultsId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["submission"]>
+    composites: {}
+  }
+
+  type SubmissionGetPayload<S extends boolean | null | undefined | SubmissionDefaultArgs> = $Result.GetResult<Prisma.$SubmissionPayload, S>
+
+  type SubmissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubmissionCountAggregateInputType | true
+    }
+
+  export interface SubmissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Submission'], meta: { name: 'Submission' } }
+    /**
+     * Find zero or one Submission that matches the filter.
+     * @param {SubmissionFindUniqueArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubmissionFindUniqueArgs>(args: SelectSubset<T, SubmissionFindUniqueArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Submission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubmissionFindUniqueOrThrowArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubmissionFindUniqueOrThrowArgs>(args: SelectSubset<T, SubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionFindFirstArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubmissionFindFirstArgs>(args?: SelectSubset<T, SubmissionFindFirstArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionFindFirstOrThrowArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubmissionFindFirstOrThrowArgs>(args?: SelectSubset<T, SubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Submissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Submissions
+     * const submissions = await prisma.submission.findMany()
+     * 
+     * // Get first 10 Submissions
+     * const submissions = await prisma.submission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const submissionWithIdOnly = await prisma.submission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubmissionFindManyArgs>(args?: SelectSubset<T, SubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Submission.
+     * @param {SubmissionCreateArgs} args - Arguments to create a Submission.
+     * @example
+     * // Create one Submission
+     * const Submission = await prisma.submission.create({
+     *   data: {
+     *     // ... data to create a Submission
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubmissionCreateArgs>(args: SelectSubset<T, SubmissionCreateArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Submissions.
+     * @param {SubmissionCreateManyArgs} args - Arguments to create many Submissions.
+     * @example
+     * // Create many Submissions
+     * const submission = await prisma.submission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubmissionCreateManyArgs>(args?: SelectSubset<T, SubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Submission.
+     * @param {SubmissionDeleteArgs} args - Arguments to delete one Submission.
+     * @example
+     * // Delete one Submission
+     * const Submission = await prisma.submission.delete({
+     *   where: {
+     *     // ... filter to delete one Submission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubmissionDeleteArgs>(args: SelectSubset<T, SubmissionDeleteArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Submission.
+     * @param {SubmissionUpdateArgs} args - Arguments to update one Submission.
+     * @example
+     * // Update one Submission
+     * const submission = await prisma.submission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubmissionUpdateArgs>(args: SelectSubset<T, SubmissionUpdateArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Submissions.
+     * @param {SubmissionDeleteManyArgs} args - Arguments to filter Submissions to delete.
+     * @example
+     * // Delete a few Submissions
+     * const { count } = await prisma.submission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubmissionDeleteManyArgs>(args?: SelectSubset<T, SubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Submissions
+     * const submission = await prisma.submission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubmissionUpdateManyArgs>(args: SelectSubset<T, SubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Submission.
+     * @param {SubmissionUpsertArgs} args - Arguments to update or create a Submission.
+     * @example
+     * // Update or create a Submission
+     * const submission = await prisma.submission.upsert({
+     *   create: {
+     *     // ... data to create a Submission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Submission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubmissionUpsertArgs>(args: SelectSubset<T, SubmissionUpsertArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Submissions that matches the filter.
+     * @param {SubmissionFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const submission = await prisma.submission.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: SubmissionFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Submission.
+     * @param {SubmissionAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const submission = await prisma.submission.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: SubmissionAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionCountArgs} args - Arguments to filter Submissions to count.
+     * @example
+     * // Count the number of Submissions
+     * const count = await prisma.submission.count({
+     *   where: {
+     *     // ... the filter for the Submissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubmissionCountArgs>(
+      args?: Subset<T, SubmissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubmissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Submission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubmissionAggregateArgs>(args: Subset<T, SubmissionAggregateArgs>): Prisma.PrismaPromise<GetSubmissionAggregateType<T>>
+
+    /**
+     * Group by Submission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubmissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubmissionGroupByArgs['orderBy'] }
+        : { orderBy?: SubmissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Submission model
+   */
+  readonly fields: SubmissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Submission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubmissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    assignment<T extends AssignmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AssignmentDefaultArgs<ExtArgs>>): Prisma__AssignmentClient<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    aiCheckerResults<T extends Submission$aiCheckerResultsArgs<ExtArgs> = {}>(args?: Subset<T, Submission$aiCheckerResultsArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    plagiarismResults<T extends Submission$plagiarismResultsArgs<ExtArgs> = {}>(args?: Subset<T, Submission$plagiarismResultsArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    inlineComments<T extends Submission$inlineCommentsArgs<ExtArgs> = {}>(args?: Subset<T, Submission$inlineCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    overallFeedback<T extends Submission$overallFeedbackArgs<ExtArgs> = {}>(args?: Subset<T, Submission$overallFeedbackArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    subscores<T extends Submission$subscoresArgs<ExtArgs> = {}>(args?: Subset<T, Submission$subscoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Submission model
+   */
+  interface SubmissionFieldRefs {
+    readonly id: FieldRef<"Submission", 'String'>
+    readonly assignmentId: FieldRef<"Submission", 'String'>
+    readonly assignmentTitle: FieldRef<"Submission", 'String'>
+    readonly studentName: FieldRef<"Submission", 'String'>
+    readonly studentId: FieldRef<"Submission", 'String'>
+    readonly submissionDate: FieldRef<"Submission", 'DateTime'>
+    readonly status: FieldRef<"Submission", 'SubmissionStatus'>
+    readonly content: FieldRef<"Submission", 'String'>
+    readonly aiCheckerResultsId: FieldRef<"Submission", 'String'>
+    readonly plagiarismResultsId: FieldRef<"Submission", 'String'>
+    readonly createdAt: FieldRef<"Submission", 'DateTime'>
+    readonly updatedAt: FieldRef<"Submission", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Submission findUnique
+   */
+  export type SubmissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Submission to fetch.
+     */
+    where: SubmissionWhereUniqueInput
+  }
+
+  /**
+   * Submission findUniqueOrThrow
+   */
+  export type SubmissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Submission to fetch.
+     */
+    where: SubmissionWhereUniqueInput
+  }
+
+  /**
+   * Submission findFirst
+   */
+  export type SubmissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Submission to fetch.
+     */
+    where?: SubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionOrderByWithRelationInput | SubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Submissions.
+     */
+    cursor?: SubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Submissions.
+     */
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * Submission findFirstOrThrow
+   */
+  export type SubmissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Submission to fetch.
+     */
+    where?: SubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionOrderByWithRelationInput | SubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Submissions.
+     */
+    cursor?: SubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Submissions.
+     */
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * Submission findMany
+   */
+  export type SubmissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where?: SubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionOrderByWithRelationInput | SubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Submissions.
+     */
+    cursor?: SubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * Submission create
+   */
+  export type SubmissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Submission.
+     */
+    data: XOR<SubmissionCreateInput, SubmissionUncheckedCreateInput>
+  }
+
+  /**
+   * Submission createMany
+   */
+  export type SubmissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Submissions.
+     */
+    data: SubmissionCreateManyInput | SubmissionCreateManyInput[]
+  }
+
+  /**
+   * Submission update
+   */
+  export type SubmissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Submission.
+     */
+    data: XOR<SubmissionUpdateInput, SubmissionUncheckedUpdateInput>
+    /**
+     * Choose, which Submission to update.
+     */
+    where: SubmissionWhereUniqueInput
+  }
+
+  /**
+   * Submission updateMany
+   */
+  export type SubmissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Submissions.
+     */
+    data: XOR<SubmissionUpdateManyMutationInput, SubmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which Submissions to update
+     */
+    where?: SubmissionWhereInput
+    /**
+     * Limit how many Submissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Submission upsert
+   */
+  export type SubmissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Submission to update in case it exists.
+     */
+    where: SubmissionWhereUniqueInput
+    /**
+     * In case the Submission found by the `where` argument doesn't exist, create a new Submission with this data.
+     */
+    create: XOR<SubmissionCreateInput, SubmissionUncheckedCreateInput>
+    /**
+     * In case the Submission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubmissionUpdateInput, SubmissionUncheckedUpdateInput>
+  }
+
+  /**
+   * Submission delete
+   */
+  export type SubmissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    /**
+     * Filter which Submission to delete.
+     */
+    where: SubmissionWhereUniqueInput
+  }
+
+  /**
+   * Submission deleteMany
+   */
+  export type SubmissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Submissions to delete
+     */
+    where?: SubmissionWhereInput
+    /**
+     * Limit how many Submissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Submission findRaw
+   */
+  export type SubmissionFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Submission aggregateRaw
+   */
+  export type SubmissionAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Submission.aiCheckerResults
+   */
+  export type Submission$aiCheckerResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    where?: AICheckerResultsWhereInput
+  }
+
+  /**
+   * Submission.plagiarismResults
+   */
+  export type Submission$plagiarismResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    where?: PlagiarismResultsWhereInput
+  }
+
+  /**
+   * Submission.inlineComments
+   */
+  export type Submission$inlineCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    where?: InlineCommentWhereInput
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    cursor?: InlineCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InlineCommentScalarFieldEnum | InlineCommentScalarFieldEnum[]
+  }
+
+  /**
+   * Submission.overallFeedback
+   */
+  export type Submission$overallFeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    where?: OverallFeedbackWhereInput
+  }
+
+  /**
+   * Submission.subscores
+   */
+  export type Submission$subscoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    where?: SubscoreWhereInput
+    orderBy?: SubscoreOrderByWithRelationInput | SubscoreOrderByWithRelationInput[]
+    cursor?: SubscoreWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubscoreScalarFieldEnum | SubscoreScalarFieldEnum[]
+  }
+
+  /**
+   * Submission without action
+   */
+  export type SubmissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AICheckerResults
+   */
+
+  export type AggregateAICheckerResults = {
+    _count: AICheckerResultsCountAggregateOutputType | null
+    _avg: AICheckerResultsAvgAggregateOutputType | null
+    _sum: AICheckerResultsSumAggregateOutputType | null
+    _min: AICheckerResultsMinAggregateOutputType | null
+    _max: AICheckerResultsMaxAggregateOutputType | null
+  }
+
+  export type AICheckerResultsAvgAggregateOutputType = {
+    score: number | null
+  }
+
+  export type AICheckerResultsSumAggregateOutputType = {
+    score: number | null
+  }
+
+  export type AICheckerResultsMinAggregateOutputType = {
+    id: string | null
+    score: number | null
+    confidence: $Enums.ConfidenceLevel | null
+  }
+
+  export type AICheckerResultsMaxAggregateOutputType = {
+    id: string | null
+    score: number | null
+    confidence: $Enums.ConfidenceLevel | null
+  }
+
+  export type AICheckerResultsCountAggregateOutputType = {
+    id: number
+    score: number
+    confidence: number
+    _all: number
+  }
+
+
+  export type AICheckerResultsAvgAggregateInputType = {
+    score?: true
+  }
+
+  export type AICheckerResultsSumAggregateInputType = {
+    score?: true
+  }
+
+  export type AICheckerResultsMinAggregateInputType = {
+    id?: true
+    score?: true
+    confidence?: true
+  }
+
+  export type AICheckerResultsMaxAggregateInputType = {
+    id?: true
+    score?: true
+    confidence?: true
+  }
+
+  export type AICheckerResultsCountAggregateInputType = {
+    id?: true
+    score?: true
+    confidence?: true
+    _all?: true
+  }
+
+  export type AICheckerResultsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AICheckerResults to aggregate.
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AICheckerResults to fetch.
+     */
+    orderBy?: AICheckerResultsOrderByWithRelationInput | AICheckerResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AICheckerResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AICheckerResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AICheckerResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AICheckerResults
+    **/
+    _count?: true | AICheckerResultsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AICheckerResultsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AICheckerResultsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AICheckerResultsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AICheckerResultsMaxAggregateInputType
+  }
+
+  export type GetAICheckerResultsAggregateType<T extends AICheckerResultsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAICheckerResults]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAICheckerResults[P]>
+      : GetScalarType<T[P], AggregateAICheckerResults[P]>
+  }
+
+
+
+
+  export type AICheckerResultsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AICheckerResultsWhereInput
+    orderBy?: AICheckerResultsOrderByWithAggregationInput | AICheckerResultsOrderByWithAggregationInput[]
+    by: AICheckerResultsScalarFieldEnum[] | AICheckerResultsScalarFieldEnum
+    having?: AICheckerResultsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AICheckerResultsCountAggregateInputType | true
+    _avg?: AICheckerResultsAvgAggregateInputType
+    _sum?: AICheckerResultsSumAggregateInputType
+    _min?: AICheckerResultsMinAggregateInputType
+    _max?: AICheckerResultsMaxAggregateInputType
+  }
+
+  export type AICheckerResultsGroupByOutputType = {
+    id: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    _count: AICheckerResultsCountAggregateOutputType | null
+    _avg: AICheckerResultsAvgAggregateOutputType | null
+    _sum: AICheckerResultsSumAggregateOutputType | null
+    _min: AICheckerResultsMinAggregateOutputType | null
+    _max: AICheckerResultsMaxAggregateOutputType | null
+  }
+
+  type GetAICheckerResultsGroupByPayload<T extends AICheckerResultsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AICheckerResultsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AICheckerResultsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AICheckerResultsGroupByOutputType[P]>
+            : GetScalarType<T[P], AICheckerResultsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AICheckerResultsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    score?: boolean
+    confidence?: boolean
+    details?: boolean | AICheckerResults$detailsArgs<ExtArgs>
+    submission?: boolean | AICheckerResults$submissionArgs<ExtArgs>
+    _count?: boolean | AICheckerResultsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aICheckerResults"]>
+
+
+
+  export type AICheckerResultsSelectScalar = {
+    id?: boolean
+    score?: boolean
+    confidence?: boolean
+  }
+
+  export type AICheckerResultsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "score" | "confidence", ExtArgs["result"]["aICheckerResults"]>
+  export type AICheckerResultsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | AICheckerResults$detailsArgs<ExtArgs>
+    submission?: boolean | AICheckerResults$submissionArgs<ExtArgs>
+    _count?: boolean | AICheckerResultsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $AICheckerResultsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AICheckerResults"
+    objects: {
+      details: Prisma.$AIDetailPayload<ExtArgs>[]
+      submission: Prisma.$SubmissionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      score: number
+      confidence: $Enums.ConfidenceLevel
+    }, ExtArgs["result"]["aICheckerResults"]>
+    composites: {}
+  }
+
+  type AICheckerResultsGetPayload<S extends boolean | null | undefined | AICheckerResultsDefaultArgs> = $Result.GetResult<Prisma.$AICheckerResultsPayload, S>
+
+  type AICheckerResultsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AICheckerResultsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AICheckerResultsCountAggregateInputType | true
+    }
+
+  export interface AICheckerResultsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AICheckerResults'], meta: { name: 'AICheckerResults' } }
+    /**
+     * Find zero or one AICheckerResults that matches the filter.
+     * @param {AICheckerResultsFindUniqueArgs} args - Arguments to find a AICheckerResults
+     * @example
+     * // Get one AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AICheckerResultsFindUniqueArgs>(args: SelectSubset<T, AICheckerResultsFindUniqueArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AICheckerResults that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AICheckerResultsFindUniqueOrThrowArgs} args - Arguments to find a AICheckerResults
+     * @example
+     * // Get one AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AICheckerResultsFindUniqueOrThrowArgs>(args: SelectSubset<T, AICheckerResultsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AICheckerResults that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsFindFirstArgs} args - Arguments to find a AICheckerResults
+     * @example
+     * // Get one AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AICheckerResultsFindFirstArgs>(args?: SelectSubset<T, AICheckerResultsFindFirstArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AICheckerResults that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsFindFirstOrThrowArgs} args - Arguments to find a AICheckerResults
+     * @example
+     * // Get one AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AICheckerResultsFindFirstOrThrowArgs>(args?: SelectSubset<T, AICheckerResultsFindFirstOrThrowArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AICheckerResults that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findMany()
+     * 
+     * // Get first 10 AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aICheckerResultsWithIdOnly = await prisma.aICheckerResults.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AICheckerResultsFindManyArgs>(args?: SelectSubset<T, AICheckerResultsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AICheckerResults.
+     * @param {AICheckerResultsCreateArgs} args - Arguments to create a AICheckerResults.
+     * @example
+     * // Create one AICheckerResults
+     * const AICheckerResults = await prisma.aICheckerResults.create({
+     *   data: {
+     *     // ... data to create a AICheckerResults
+     *   }
+     * })
+     * 
+     */
+    create<T extends AICheckerResultsCreateArgs>(args: SelectSubset<T, AICheckerResultsCreateArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AICheckerResults.
+     * @param {AICheckerResultsCreateManyArgs} args - Arguments to create many AICheckerResults.
+     * @example
+     * // Create many AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AICheckerResultsCreateManyArgs>(args?: SelectSubset<T, AICheckerResultsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AICheckerResults.
+     * @param {AICheckerResultsDeleteArgs} args - Arguments to delete one AICheckerResults.
+     * @example
+     * // Delete one AICheckerResults
+     * const AICheckerResults = await prisma.aICheckerResults.delete({
+     *   where: {
+     *     // ... filter to delete one AICheckerResults
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AICheckerResultsDeleteArgs>(args: SelectSubset<T, AICheckerResultsDeleteArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AICheckerResults.
+     * @param {AICheckerResultsUpdateArgs} args - Arguments to update one AICheckerResults.
+     * @example
+     * // Update one AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AICheckerResultsUpdateArgs>(args: SelectSubset<T, AICheckerResultsUpdateArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AICheckerResults.
+     * @param {AICheckerResultsDeleteManyArgs} args - Arguments to filter AICheckerResults to delete.
+     * @example
+     * // Delete a few AICheckerResults
+     * const { count } = await prisma.aICheckerResults.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AICheckerResultsDeleteManyArgs>(args?: SelectSubset<T, AICheckerResultsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AICheckerResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AICheckerResultsUpdateManyArgs>(args: SelectSubset<T, AICheckerResultsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AICheckerResults.
+     * @param {AICheckerResultsUpsertArgs} args - Arguments to update or create a AICheckerResults.
+     * @example
+     * // Update or create a AICheckerResults
+     * const aICheckerResults = await prisma.aICheckerResults.upsert({
+     *   create: {
+     *     // ... data to create a AICheckerResults
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AICheckerResults we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AICheckerResultsUpsertArgs>(args: SelectSubset<T, AICheckerResultsUpsertArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AICheckerResults that matches the filter.
+     * @param {AICheckerResultsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const aICheckerResults = await prisma.aICheckerResults.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: AICheckerResultsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a AICheckerResults.
+     * @param {AICheckerResultsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const aICheckerResults = await prisma.aICheckerResults.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: AICheckerResultsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of AICheckerResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsCountArgs} args - Arguments to filter AICheckerResults to count.
+     * @example
+     * // Count the number of AICheckerResults
+     * const count = await prisma.aICheckerResults.count({
+     *   where: {
+     *     // ... the filter for the AICheckerResults we want to count
+     *   }
+     * })
+    **/
+    count<T extends AICheckerResultsCountArgs>(
+      args?: Subset<T, AICheckerResultsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AICheckerResultsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AICheckerResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AICheckerResultsAggregateArgs>(args: Subset<T, AICheckerResultsAggregateArgs>): Prisma.PrismaPromise<GetAICheckerResultsAggregateType<T>>
+
+    /**
+     * Group by AICheckerResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AICheckerResultsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AICheckerResultsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AICheckerResultsGroupByArgs['orderBy'] }
+        : { orderBy?: AICheckerResultsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AICheckerResultsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAICheckerResultsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AICheckerResults model
+   */
+  readonly fields: AICheckerResultsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AICheckerResults.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AICheckerResultsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    details<T extends AICheckerResults$detailsArgs<ExtArgs> = {}>(args?: Subset<T, AICheckerResults$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    submission<T extends AICheckerResults$submissionArgs<ExtArgs> = {}>(args?: Subset<T, AICheckerResults$submissionArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AICheckerResults model
+   */
+  interface AICheckerResultsFieldRefs {
+    readonly id: FieldRef<"AICheckerResults", 'String'>
+    readonly score: FieldRef<"AICheckerResults", 'Int'>
+    readonly confidence: FieldRef<"AICheckerResults", 'ConfidenceLevel'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AICheckerResults findUnique
+   */
+  export type AICheckerResultsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which AICheckerResults to fetch.
+     */
+    where: AICheckerResultsWhereUniqueInput
+  }
+
+  /**
+   * AICheckerResults findUniqueOrThrow
+   */
+  export type AICheckerResultsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which AICheckerResults to fetch.
+     */
+    where: AICheckerResultsWhereUniqueInput
+  }
+
+  /**
+   * AICheckerResults findFirst
+   */
+  export type AICheckerResultsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which AICheckerResults to fetch.
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AICheckerResults to fetch.
+     */
+    orderBy?: AICheckerResultsOrderByWithRelationInput | AICheckerResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AICheckerResults.
+     */
+    cursor?: AICheckerResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AICheckerResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AICheckerResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AICheckerResults.
+     */
+    distinct?: AICheckerResultsScalarFieldEnum | AICheckerResultsScalarFieldEnum[]
+  }
+
+  /**
+   * AICheckerResults findFirstOrThrow
+   */
+  export type AICheckerResultsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which AICheckerResults to fetch.
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AICheckerResults to fetch.
+     */
+    orderBy?: AICheckerResultsOrderByWithRelationInput | AICheckerResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AICheckerResults.
+     */
+    cursor?: AICheckerResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AICheckerResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AICheckerResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AICheckerResults.
+     */
+    distinct?: AICheckerResultsScalarFieldEnum | AICheckerResultsScalarFieldEnum[]
+  }
+
+  /**
+   * AICheckerResults findMany
+   */
+  export type AICheckerResultsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which AICheckerResults to fetch.
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AICheckerResults to fetch.
+     */
+    orderBy?: AICheckerResultsOrderByWithRelationInput | AICheckerResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AICheckerResults.
+     */
+    cursor?: AICheckerResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AICheckerResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AICheckerResults.
+     */
+    skip?: number
+    distinct?: AICheckerResultsScalarFieldEnum | AICheckerResultsScalarFieldEnum[]
+  }
+
+  /**
+   * AICheckerResults create
+   */
+  export type AICheckerResultsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AICheckerResults.
+     */
+    data: XOR<AICheckerResultsCreateInput, AICheckerResultsUncheckedCreateInput>
+  }
+
+  /**
+   * AICheckerResults createMany
+   */
+  export type AICheckerResultsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AICheckerResults.
+     */
+    data: AICheckerResultsCreateManyInput | AICheckerResultsCreateManyInput[]
+  }
+
+  /**
+   * AICheckerResults update
+   */
+  export type AICheckerResultsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AICheckerResults.
+     */
+    data: XOR<AICheckerResultsUpdateInput, AICheckerResultsUncheckedUpdateInput>
+    /**
+     * Choose, which AICheckerResults to update.
+     */
+    where: AICheckerResultsWhereUniqueInput
+  }
+
+  /**
+   * AICheckerResults updateMany
+   */
+  export type AICheckerResultsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AICheckerResults.
+     */
+    data: XOR<AICheckerResultsUpdateManyMutationInput, AICheckerResultsUncheckedUpdateManyInput>
+    /**
+     * Filter which AICheckerResults to update
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * Limit how many AICheckerResults to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AICheckerResults upsert
+   */
+  export type AICheckerResultsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AICheckerResults to update in case it exists.
+     */
+    where: AICheckerResultsWhereUniqueInput
+    /**
+     * In case the AICheckerResults found by the `where` argument doesn't exist, create a new AICheckerResults with this data.
+     */
+    create: XOR<AICheckerResultsCreateInput, AICheckerResultsUncheckedCreateInput>
+    /**
+     * In case the AICheckerResults was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AICheckerResultsUpdateInput, AICheckerResultsUncheckedUpdateInput>
+  }
+
+  /**
+   * AICheckerResults delete
+   */
+  export type AICheckerResultsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+    /**
+     * Filter which AICheckerResults to delete.
+     */
+    where: AICheckerResultsWhereUniqueInput
+  }
+
+  /**
+   * AICheckerResults deleteMany
+   */
+  export type AICheckerResultsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AICheckerResults to delete
+     */
+    where?: AICheckerResultsWhereInput
+    /**
+     * Limit how many AICheckerResults to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AICheckerResults findRaw
+   */
+  export type AICheckerResultsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AICheckerResults aggregateRaw
+   */
+  export type AICheckerResultsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AICheckerResults.details
+   */
+  export type AICheckerResults$detailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    where?: AIDetailWhereInput
+    orderBy?: AIDetailOrderByWithRelationInput | AIDetailOrderByWithRelationInput[]
+    cursor?: AIDetailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIDetailScalarFieldEnum | AIDetailScalarFieldEnum[]
+  }
+
+  /**
+   * AICheckerResults.submission
+   */
+  export type AICheckerResults$submissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    where?: SubmissionWhereInput
+  }
+
+  /**
+   * AICheckerResults without action
+   */
+  export type AICheckerResultsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AICheckerResults
+     */
+    select?: AICheckerResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AICheckerResults
+     */
+    omit?: AICheckerResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AICheckerResultsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIDetail
+   */
+
+  export type AggregateAIDetail = {
+    _count: AIDetailCountAggregateOutputType | null
+    _avg: AIDetailAvgAggregateOutputType | null
+    _sum: AIDetailSumAggregateOutputType | null
+    _min: AIDetailMinAggregateOutputType | null
+    _max: AIDetailMaxAggregateOutputType | null
+  }
+
+  export type AIDetailAvgAggregateOutputType = {
+    aiProbability: number | null
+    humanProbability: number | null
+  }
+
+  export type AIDetailSumAggregateOutputType = {
+    aiProbability: number | null
+    humanProbability: number | null
+  }
+
+  export type AIDetailMinAggregateOutputType = {
+    id: string | null
+    section: string | null
+    aiProbability: number | null
+    humanProbability: number | null
+    aiCheckerResultsId: string | null
+  }
+
+  export type AIDetailMaxAggregateOutputType = {
+    id: string | null
+    section: string | null
+    aiProbability: number | null
+    humanProbability: number | null
+    aiCheckerResultsId: string | null
+  }
+
+  export type AIDetailCountAggregateOutputType = {
+    id: number
+    section: number
+    aiProbability: number
+    humanProbability: number
+    aiCheckerResultsId: number
+    _all: number
+  }
+
+
+  export type AIDetailAvgAggregateInputType = {
+    aiProbability?: true
+    humanProbability?: true
+  }
+
+  export type AIDetailSumAggregateInputType = {
+    aiProbability?: true
+    humanProbability?: true
+  }
+
+  export type AIDetailMinAggregateInputType = {
+    id?: true
+    section?: true
+    aiProbability?: true
+    humanProbability?: true
+    aiCheckerResultsId?: true
+  }
+
+  export type AIDetailMaxAggregateInputType = {
+    id?: true
+    section?: true
+    aiProbability?: true
+    humanProbability?: true
+    aiCheckerResultsId?: true
+  }
+
+  export type AIDetailCountAggregateInputType = {
+    id?: true
+    section?: true
+    aiProbability?: true
+    humanProbability?: true
+    aiCheckerResultsId?: true
+    _all?: true
+  }
+
+  export type AIDetailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDetail to aggregate.
+     */
+    where?: AIDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDetails to fetch.
+     */
+    orderBy?: AIDetailOrderByWithRelationInput | AIDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIDetails
+    **/
+    _count?: true | AIDetailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIDetailAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIDetailSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIDetailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIDetailMaxAggregateInputType
+  }
+
+  export type GetAIDetailAggregateType<T extends AIDetailAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIDetail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIDetail[P]>
+      : GetScalarType<T[P], AggregateAIDetail[P]>
+  }
+
+
+
+
+  export type AIDetailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIDetailWhereInput
+    orderBy?: AIDetailOrderByWithAggregationInput | AIDetailOrderByWithAggregationInput[]
+    by: AIDetailScalarFieldEnum[] | AIDetailScalarFieldEnum
+    having?: AIDetailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIDetailCountAggregateInputType | true
+    _avg?: AIDetailAvgAggregateInputType
+    _sum?: AIDetailSumAggregateInputType
+    _min?: AIDetailMinAggregateInputType
+    _max?: AIDetailMaxAggregateInputType
+  }
+
+  export type AIDetailGroupByOutputType = {
+    id: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+    aiCheckerResultsId: string
+    _count: AIDetailCountAggregateOutputType | null
+    _avg: AIDetailAvgAggregateOutputType | null
+    _sum: AIDetailSumAggregateOutputType | null
+    _min: AIDetailMinAggregateOutputType | null
+    _max: AIDetailMaxAggregateOutputType | null
+  }
+
+  type GetAIDetailGroupByPayload<T extends AIDetailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIDetailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIDetailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIDetailGroupByOutputType[P]>
+            : GetScalarType<T[P], AIDetailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIDetailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    section?: boolean
+    aiProbability?: boolean
+    humanProbability?: boolean
+    aiCheckerResultsId?: boolean
+    aiCheckerResults?: boolean | AICheckerResultsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIDetail"]>
+
+
+
+  export type AIDetailSelectScalar = {
+    id?: boolean
+    section?: boolean
+    aiProbability?: boolean
+    humanProbability?: boolean
+    aiCheckerResultsId?: boolean
+  }
+
+  export type AIDetailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "section" | "aiProbability" | "humanProbability" | "aiCheckerResultsId", ExtArgs["result"]["aIDetail"]>
+  export type AIDetailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aiCheckerResults?: boolean | AICheckerResultsDefaultArgs<ExtArgs>
+  }
+
+  export type $AIDetailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIDetail"
+    objects: {
+      aiCheckerResults: Prisma.$AICheckerResultsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      section: string
+      aiProbability: number
+      humanProbability: number
+      aiCheckerResultsId: string
+    }, ExtArgs["result"]["aIDetail"]>
+    composites: {}
+  }
+
+  type AIDetailGetPayload<S extends boolean | null | undefined | AIDetailDefaultArgs> = $Result.GetResult<Prisma.$AIDetailPayload, S>
+
+  type AIDetailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIDetailFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIDetailCountAggregateInputType | true
+    }
+
+  export interface AIDetailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIDetail'], meta: { name: 'AIDetail' } }
+    /**
+     * Find zero or one AIDetail that matches the filter.
+     * @param {AIDetailFindUniqueArgs} args - Arguments to find a AIDetail
+     * @example
+     * // Get one AIDetail
+     * const aIDetail = await prisma.aIDetail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIDetailFindUniqueArgs>(args: SelectSubset<T, AIDetailFindUniqueArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIDetail that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIDetailFindUniqueOrThrowArgs} args - Arguments to find a AIDetail
+     * @example
+     * // Get one AIDetail
+     * const aIDetail = await prisma.aIDetail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIDetailFindUniqueOrThrowArgs>(args: SelectSubset<T, AIDetailFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDetail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailFindFirstArgs} args - Arguments to find a AIDetail
+     * @example
+     * // Get one AIDetail
+     * const aIDetail = await prisma.aIDetail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIDetailFindFirstArgs>(args?: SelectSubset<T, AIDetailFindFirstArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDetail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailFindFirstOrThrowArgs} args - Arguments to find a AIDetail
+     * @example
+     * // Get one AIDetail
+     * const aIDetail = await prisma.aIDetail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIDetailFindFirstOrThrowArgs>(args?: SelectSubset<T, AIDetailFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIDetails
+     * const aIDetails = await prisma.aIDetail.findMany()
+     * 
+     * // Get first 10 AIDetails
+     * const aIDetails = await prisma.aIDetail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIDetailWithIdOnly = await prisma.aIDetail.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIDetailFindManyArgs>(args?: SelectSubset<T, AIDetailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIDetail.
+     * @param {AIDetailCreateArgs} args - Arguments to create a AIDetail.
+     * @example
+     * // Create one AIDetail
+     * const AIDetail = await prisma.aIDetail.create({
+     *   data: {
+     *     // ... data to create a AIDetail
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIDetailCreateArgs>(args: SelectSubset<T, AIDetailCreateArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIDetails.
+     * @param {AIDetailCreateManyArgs} args - Arguments to create many AIDetails.
+     * @example
+     * // Create many AIDetails
+     * const aIDetail = await prisma.aIDetail.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIDetailCreateManyArgs>(args?: SelectSubset<T, AIDetailCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AIDetail.
+     * @param {AIDetailDeleteArgs} args - Arguments to delete one AIDetail.
+     * @example
+     * // Delete one AIDetail
+     * const AIDetail = await prisma.aIDetail.delete({
+     *   where: {
+     *     // ... filter to delete one AIDetail
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIDetailDeleteArgs>(args: SelectSubset<T, AIDetailDeleteArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIDetail.
+     * @param {AIDetailUpdateArgs} args - Arguments to update one AIDetail.
+     * @example
+     * // Update one AIDetail
+     * const aIDetail = await prisma.aIDetail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIDetailUpdateArgs>(args: SelectSubset<T, AIDetailUpdateArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIDetails.
+     * @param {AIDetailDeleteManyArgs} args - Arguments to filter AIDetails to delete.
+     * @example
+     * // Delete a few AIDetails
+     * const { count } = await prisma.aIDetail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIDetailDeleteManyArgs>(args?: SelectSubset<T, AIDetailDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIDetails
+     * const aIDetail = await prisma.aIDetail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIDetailUpdateManyArgs>(args: SelectSubset<T, AIDetailUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AIDetail.
+     * @param {AIDetailUpsertArgs} args - Arguments to update or create a AIDetail.
+     * @example
+     * // Update or create a AIDetail
+     * const aIDetail = await prisma.aIDetail.upsert({
+     *   create: {
+     *     // ... data to create a AIDetail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIDetail we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIDetailUpsertArgs>(args: SelectSubset<T, AIDetailUpsertArgs<ExtArgs>>): Prisma__AIDetailClient<$Result.GetResult<Prisma.$AIDetailPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIDetails that matches the filter.
+     * @param {AIDetailFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const aIDetail = await prisma.aIDetail.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: AIDetailFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a AIDetail.
+     * @param {AIDetailAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const aIDetail = await prisma.aIDetail.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: AIDetailAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of AIDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailCountArgs} args - Arguments to filter AIDetails to count.
+     * @example
+     * // Count the number of AIDetails
+     * const count = await prisma.aIDetail.count({
+     *   where: {
+     *     // ... the filter for the AIDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIDetailCountArgs>(
+      args?: Subset<T, AIDetailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIDetailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIDetailAggregateArgs>(args: Subset<T, AIDetailAggregateArgs>): Prisma.PrismaPromise<GetAIDetailAggregateType<T>>
+
+    /**
+     * Group by AIDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDetailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIDetailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIDetailGroupByArgs['orderBy'] }
+        : { orderBy?: AIDetailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIDetailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIDetailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIDetail model
+   */
+  readonly fields: AIDetailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIDetail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIDetailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    aiCheckerResults<T extends AICheckerResultsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AICheckerResultsDefaultArgs<ExtArgs>>): Prisma__AICheckerResultsClient<$Result.GetResult<Prisma.$AICheckerResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIDetail model
+   */
+  interface AIDetailFieldRefs {
+    readonly id: FieldRef<"AIDetail", 'String'>
+    readonly section: FieldRef<"AIDetail", 'String'>
+    readonly aiProbability: FieldRef<"AIDetail", 'Float'>
+    readonly humanProbability: FieldRef<"AIDetail", 'Float'>
+    readonly aiCheckerResultsId: FieldRef<"AIDetail", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIDetail findUnique
+   */
+  export type AIDetailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDetail to fetch.
+     */
+    where: AIDetailWhereUniqueInput
+  }
+
+  /**
+   * AIDetail findUniqueOrThrow
+   */
+  export type AIDetailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDetail to fetch.
+     */
+    where: AIDetailWhereUniqueInput
+  }
+
+  /**
+   * AIDetail findFirst
+   */
+  export type AIDetailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDetail to fetch.
+     */
+    where?: AIDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDetails to fetch.
+     */
+    orderBy?: AIDetailOrderByWithRelationInput | AIDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDetails.
+     */
+    cursor?: AIDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDetails.
+     */
+    distinct?: AIDetailScalarFieldEnum | AIDetailScalarFieldEnum[]
+  }
+
+  /**
+   * AIDetail findFirstOrThrow
+   */
+  export type AIDetailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDetail to fetch.
+     */
+    where?: AIDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDetails to fetch.
+     */
+    orderBy?: AIDetailOrderByWithRelationInput | AIDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDetails.
+     */
+    cursor?: AIDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDetails.
+     */
+    distinct?: AIDetailScalarFieldEnum | AIDetailScalarFieldEnum[]
+  }
+
+  /**
+   * AIDetail findMany
+   */
+  export type AIDetailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDetails to fetch.
+     */
+    where?: AIDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDetails to fetch.
+     */
+    orderBy?: AIDetailOrderByWithRelationInput | AIDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIDetails.
+     */
+    cursor?: AIDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDetails.
+     */
+    skip?: number
+    distinct?: AIDetailScalarFieldEnum | AIDetailScalarFieldEnum[]
+  }
+
+  /**
+   * AIDetail create
+   */
+  export type AIDetailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIDetail.
+     */
+    data: XOR<AIDetailCreateInput, AIDetailUncheckedCreateInput>
+  }
+
+  /**
+   * AIDetail createMany
+   */
+  export type AIDetailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIDetails.
+     */
+    data: AIDetailCreateManyInput | AIDetailCreateManyInput[]
+  }
+
+  /**
+   * AIDetail update
+   */
+  export type AIDetailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIDetail.
+     */
+    data: XOR<AIDetailUpdateInput, AIDetailUncheckedUpdateInput>
+    /**
+     * Choose, which AIDetail to update.
+     */
+    where: AIDetailWhereUniqueInput
+  }
+
+  /**
+   * AIDetail updateMany
+   */
+  export type AIDetailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIDetails.
+     */
+    data: XOR<AIDetailUpdateManyMutationInput, AIDetailUncheckedUpdateManyInput>
+    /**
+     * Filter which AIDetails to update
+     */
+    where?: AIDetailWhereInput
+    /**
+     * Limit how many AIDetails to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDetail upsert
+   */
+  export type AIDetailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIDetail to update in case it exists.
+     */
+    where: AIDetailWhereUniqueInput
+    /**
+     * In case the AIDetail found by the `where` argument doesn't exist, create a new AIDetail with this data.
+     */
+    create: XOR<AIDetailCreateInput, AIDetailUncheckedCreateInput>
+    /**
+     * In case the AIDetail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIDetailUpdateInput, AIDetailUncheckedUpdateInput>
+  }
+
+  /**
+   * AIDetail delete
+   */
+  export type AIDetailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+    /**
+     * Filter which AIDetail to delete.
+     */
+    where: AIDetailWhereUniqueInput
+  }
+
+  /**
+   * AIDetail deleteMany
+   */
+  export type AIDetailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDetails to delete
+     */
+    where?: AIDetailWhereInput
+    /**
+     * Limit how many AIDetails to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDetail findRaw
+   */
+  export type AIDetailFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AIDetail aggregateRaw
+   */
+  export type AIDetailAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AIDetail without action
+   */
+  export type AIDetailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDetail
+     */
+    select?: AIDetailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDetail
+     */
+    omit?: AIDetailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDetailInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PlagiarismResults
+   */
+
+  export type AggregatePlagiarismResults = {
+    _count: PlagiarismResultsCountAggregateOutputType | null
+    _avg: PlagiarismResultsAvgAggregateOutputType | null
+    _sum: PlagiarismResultsSumAggregateOutputType | null
+    _min: PlagiarismResultsMinAggregateOutputType | null
+    _max: PlagiarismResultsMaxAggregateOutputType | null
+  }
+
+  export type PlagiarismResultsAvgAggregateOutputType = {
+    score: number | null
+  }
+
+  export type PlagiarismResultsSumAggregateOutputType = {
+    score: number | null
+  }
+
+  export type PlagiarismResultsMinAggregateOutputType = {
+    id: string | null
+    score: number | null
+  }
+
+  export type PlagiarismResultsMaxAggregateOutputType = {
+    id: string | null
+    score: number | null
+  }
+
+  export type PlagiarismResultsCountAggregateOutputType = {
+    id: number
+    score: number
+    _all: number
+  }
+
+
+  export type PlagiarismResultsAvgAggregateInputType = {
+    score?: true
+  }
+
+  export type PlagiarismResultsSumAggregateInputType = {
+    score?: true
+  }
+
+  export type PlagiarismResultsMinAggregateInputType = {
+    id?: true
+    score?: true
+  }
+
+  export type PlagiarismResultsMaxAggregateInputType = {
+    id?: true
+    score?: true
+  }
+
+  export type PlagiarismResultsCountAggregateInputType = {
+    id?: true
+    score?: true
+    _all?: true
+  }
+
+  export type PlagiarismResultsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlagiarismResults to aggregate.
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismResults to fetch.
+     */
+    orderBy?: PlagiarismResultsOrderByWithRelationInput | PlagiarismResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlagiarismResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlagiarismResults
+    **/
+    _count?: true | PlagiarismResultsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlagiarismResultsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlagiarismResultsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlagiarismResultsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlagiarismResultsMaxAggregateInputType
+  }
+
+  export type GetPlagiarismResultsAggregateType<T extends PlagiarismResultsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlagiarismResults]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlagiarismResults[P]>
+      : GetScalarType<T[P], AggregatePlagiarismResults[P]>
+  }
+
+
+
+
+  export type PlagiarismResultsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlagiarismResultsWhereInput
+    orderBy?: PlagiarismResultsOrderByWithAggregationInput | PlagiarismResultsOrderByWithAggregationInput[]
+    by: PlagiarismResultsScalarFieldEnum[] | PlagiarismResultsScalarFieldEnum
+    having?: PlagiarismResultsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlagiarismResultsCountAggregateInputType | true
+    _avg?: PlagiarismResultsAvgAggregateInputType
+    _sum?: PlagiarismResultsSumAggregateInputType
+    _min?: PlagiarismResultsMinAggregateInputType
+    _max?: PlagiarismResultsMaxAggregateInputType
+  }
+
+  export type PlagiarismResultsGroupByOutputType = {
+    id: string
+    score: number
+    _count: PlagiarismResultsCountAggregateOutputType | null
+    _avg: PlagiarismResultsAvgAggregateOutputType | null
+    _sum: PlagiarismResultsSumAggregateOutputType | null
+    _min: PlagiarismResultsMinAggregateOutputType | null
+    _max: PlagiarismResultsMaxAggregateOutputType | null
+  }
+
+  type GetPlagiarismResultsGroupByPayload<T extends PlagiarismResultsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlagiarismResultsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlagiarismResultsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlagiarismResultsGroupByOutputType[P]>
+            : GetScalarType<T[P], PlagiarismResultsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlagiarismResultsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    score?: boolean
+    matches?: boolean | PlagiarismResults$matchesArgs<ExtArgs>
+    submission?: boolean | PlagiarismResults$submissionArgs<ExtArgs>
+    _count?: boolean | PlagiarismResultsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plagiarismResults"]>
+
+
+
+  export type PlagiarismResultsSelectScalar = {
+    id?: boolean
+    score?: boolean
+  }
+
+  export type PlagiarismResultsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "score", ExtArgs["result"]["plagiarismResults"]>
+  export type PlagiarismResultsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    matches?: boolean | PlagiarismResults$matchesArgs<ExtArgs>
+    submission?: boolean | PlagiarismResults$submissionArgs<ExtArgs>
+    _count?: boolean | PlagiarismResultsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $PlagiarismResultsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlagiarismResults"
+    objects: {
+      matches: Prisma.$PlagiarismMatchPayload<ExtArgs>[]
+      submission: Prisma.$SubmissionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      score: number
+    }, ExtArgs["result"]["plagiarismResults"]>
+    composites: {}
+  }
+
+  type PlagiarismResultsGetPayload<S extends boolean | null | undefined | PlagiarismResultsDefaultArgs> = $Result.GetResult<Prisma.$PlagiarismResultsPayload, S>
+
+  type PlagiarismResultsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlagiarismResultsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlagiarismResultsCountAggregateInputType | true
+    }
+
+  export interface PlagiarismResultsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlagiarismResults'], meta: { name: 'PlagiarismResults' } }
+    /**
+     * Find zero or one PlagiarismResults that matches the filter.
+     * @param {PlagiarismResultsFindUniqueArgs} args - Arguments to find a PlagiarismResults
+     * @example
+     * // Get one PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlagiarismResultsFindUniqueArgs>(args: SelectSubset<T, PlagiarismResultsFindUniqueArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PlagiarismResults that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PlagiarismResultsFindUniqueOrThrowArgs} args - Arguments to find a PlagiarismResults
+     * @example
+     * // Get one PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlagiarismResultsFindUniqueOrThrowArgs>(args: SelectSubset<T, PlagiarismResultsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlagiarismResults that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsFindFirstArgs} args - Arguments to find a PlagiarismResults
+     * @example
+     * // Get one PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlagiarismResultsFindFirstArgs>(args?: SelectSubset<T, PlagiarismResultsFindFirstArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlagiarismResults that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsFindFirstOrThrowArgs} args - Arguments to find a PlagiarismResults
+     * @example
+     * // Get one PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlagiarismResultsFindFirstOrThrowArgs>(args?: SelectSubset<T, PlagiarismResultsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlagiarismResults that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findMany()
+     * 
+     * // Get first 10 PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const plagiarismResultsWithIdOnly = await prisma.plagiarismResults.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlagiarismResultsFindManyArgs>(args?: SelectSubset<T, PlagiarismResultsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PlagiarismResults.
+     * @param {PlagiarismResultsCreateArgs} args - Arguments to create a PlagiarismResults.
+     * @example
+     * // Create one PlagiarismResults
+     * const PlagiarismResults = await prisma.plagiarismResults.create({
+     *   data: {
+     *     // ... data to create a PlagiarismResults
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlagiarismResultsCreateArgs>(args: SelectSubset<T, PlagiarismResultsCreateArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PlagiarismResults.
+     * @param {PlagiarismResultsCreateManyArgs} args - Arguments to create many PlagiarismResults.
+     * @example
+     * // Create many PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlagiarismResultsCreateManyArgs>(args?: SelectSubset<T, PlagiarismResultsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlagiarismResults.
+     * @param {PlagiarismResultsDeleteArgs} args - Arguments to delete one PlagiarismResults.
+     * @example
+     * // Delete one PlagiarismResults
+     * const PlagiarismResults = await prisma.plagiarismResults.delete({
+     *   where: {
+     *     // ... filter to delete one PlagiarismResults
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlagiarismResultsDeleteArgs>(args: SelectSubset<T, PlagiarismResultsDeleteArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PlagiarismResults.
+     * @param {PlagiarismResultsUpdateArgs} args - Arguments to update one PlagiarismResults.
+     * @example
+     * // Update one PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlagiarismResultsUpdateArgs>(args: SelectSubset<T, PlagiarismResultsUpdateArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PlagiarismResults.
+     * @param {PlagiarismResultsDeleteManyArgs} args - Arguments to filter PlagiarismResults to delete.
+     * @example
+     * // Delete a few PlagiarismResults
+     * const { count } = await prisma.plagiarismResults.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlagiarismResultsDeleteManyArgs>(args?: SelectSubset<T, PlagiarismResultsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlagiarismResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlagiarismResultsUpdateManyArgs>(args: SelectSubset<T, PlagiarismResultsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlagiarismResults.
+     * @param {PlagiarismResultsUpsertArgs} args - Arguments to update or create a PlagiarismResults.
+     * @example
+     * // Update or create a PlagiarismResults
+     * const plagiarismResults = await prisma.plagiarismResults.upsert({
+     *   create: {
+     *     // ... data to create a PlagiarismResults
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlagiarismResults we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlagiarismResultsUpsertArgs>(args: SelectSubset<T, PlagiarismResultsUpsertArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlagiarismResults that matches the filter.
+     * @param {PlagiarismResultsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const plagiarismResults = await prisma.plagiarismResults.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: PlagiarismResultsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a PlagiarismResults.
+     * @param {PlagiarismResultsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const plagiarismResults = await prisma.plagiarismResults.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: PlagiarismResultsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of PlagiarismResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsCountArgs} args - Arguments to filter PlagiarismResults to count.
+     * @example
+     * // Count the number of PlagiarismResults
+     * const count = await prisma.plagiarismResults.count({
+     *   where: {
+     *     // ... the filter for the PlagiarismResults we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlagiarismResultsCountArgs>(
+      args?: Subset<T, PlagiarismResultsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlagiarismResultsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlagiarismResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlagiarismResultsAggregateArgs>(args: Subset<T, PlagiarismResultsAggregateArgs>): Prisma.PrismaPromise<GetPlagiarismResultsAggregateType<T>>
+
+    /**
+     * Group by PlagiarismResults.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismResultsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlagiarismResultsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlagiarismResultsGroupByArgs['orderBy'] }
+        : { orderBy?: PlagiarismResultsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlagiarismResultsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlagiarismResultsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlagiarismResults model
+   */
+  readonly fields: PlagiarismResultsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlagiarismResults.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlagiarismResultsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    matches<T extends PlagiarismResults$matchesArgs<ExtArgs> = {}>(args?: Subset<T, PlagiarismResults$matchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    submission<T extends PlagiarismResults$submissionArgs<ExtArgs> = {}>(args?: Subset<T, PlagiarismResults$submissionArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlagiarismResults model
+   */
+  interface PlagiarismResultsFieldRefs {
+    readonly id: FieldRef<"PlagiarismResults", 'String'>
+    readonly score: FieldRef<"PlagiarismResults", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlagiarismResults findUnique
+   */
+  export type PlagiarismResultsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismResults to fetch.
+     */
+    where: PlagiarismResultsWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismResults findUniqueOrThrow
+   */
+  export type PlagiarismResultsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismResults to fetch.
+     */
+    where: PlagiarismResultsWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismResults findFirst
+   */
+  export type PlagiarismResultsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismResults to fetch.
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismResults to fetch.
+     */
+    orderBy?: PlagiarismResultsOrderByWithRelationInput | PlagiarismResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlagiarismResults.
+     */
+    cursor?: PlagiarismResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlagiarismResults.
+     */
+    distinct?: PlagiarismResultsScalarFieldEnum | PlagiarismResultsScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismResults findFirstOrThrow
+   */
+  export type PlagiarismResultsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismResults to fetch.
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismResults to fetch.
+     */
+    orderBy?: PlagiarismResultsOrderByWithRelationInput | PlagiarismResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlagiarismResults.
+     */
+    cursor?: PlagiarismResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismResults.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlagiarismResults.
+     */
+    distinct?: PlagiarismResultsScalarFieldEnum | PlagiarismResultsScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismResults findMany
+   */
+  export type PlagiarismResultsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismResults to fetch.
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismResults to fetch.
+     */
+    orderBy?: PlagiarismResultsOrderByWithRelationInput | PlagiarismResultsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlagiarismResults.
+     */
+    cursor?: PlagiarismResultsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismResults from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismResults.
+     */
+    skip?: number
+    distinct?: PlagiarismResultsScalarFieldEnum | PlagiarismResultsScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismResults create
+   */
+  export type PlagiarismResultsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlagiarismResults.
+     */
+    data: XOR<PlagiarismResultsCreateInput, PlagiarismResultsUncheckedCreateInput>
+  }
+
+  /**
+   * PlagiarismResults createMany
+   */
+  export type PlagiarismResultsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlagiarismResults.
+     */
+    data: PlagiarismResultsCreateManyInput | PlagiarismResultsCreateManyInput[]
+  }
+
+  /**
+   * PlagiarismResults update
+   */
+  export type PlagiarismResultsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlagiarismResults.
+     */
+    data: XOR<PlagiarismResultsUpdateInput, PlagiarismResultsUncheckedUpdateInput>
+    /**
+     * Choose, which PlagiarismResults to update.
+     */
+    where: PlagiarismResultsWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismResults updateMany
+   */
+  export type PlagiarismResultsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlagiarismResults.
+     */
+    data: XOR<PlagiarismResultsUpdateManyMutationInput, PlagiarismResultsUncheckedUpdateManyInput>
+    /**
+     * Filter which PlagiarismResults to update
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * Limit how many PlagiarismResults to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlagiarismResults upsert
+   */
+  export type PlagiarismResultsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlagiarismResults to update in case it exists.
+     */
+    where: PlagiarismResultsWhereUniqueInput
+    /**
+     * In case the PlagiarismResults found by the `where` argument doesn't exist, create a new PlagiarismResults with this data.
+     */
+    create: XOR<PlagiarismResultsCreateInput, PlagiarismResultsUncheckedCreateInput>
+    /**
+     * In case the PlagiarismResults was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlagiarismResultsUpdateInput, PlagiarismResultsUncheckedUpdateInput>
+  }
+
+  /**
+   * PlagiarismResults delete
+   */
+  export type PlagiarismResultsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+    /**
+     * Filter which PlagiarismResults to delete.
+     */
+    where: PlagiarismResultsWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismResults deleteMany
+   */
+  export type PlagiarismResultsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlagiarismResults to delete
+     */
+    where?: PlagiarismResultsWhereInput
+    /**
+     * Limit how many PlagiarismResults to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlagiarismResults findRaw
+   */
+  export type PlagiarismResultsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PlagiarismResults aggregateRaw
+   */
+  export type PlagiarismResultsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PlagiarismResults.matches
+   */
+  export type PlagiarismResults$matchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    where?: PlagiarismMatchWhereInput
+    orderBy?: PlagiarismMatchOrderByWithRelationInput | PlagiarismMatchOrderByWithRelationInput[]
+    cursor?: PlagiarismMatchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlagiarismMatchScalarFieldEnum | PlagiarismMatchScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismResults.submission
+   */
+  export type PlagiarismResults$submissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submission
+     */
+    select?: SubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submission
+     */
+    omit?: SubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionInclude<ExtArgs> | null
+    where?: SubmissionWhereInput
+  }
+
+  /**
+   * PlagiarismResults without action
+   */
+  export type PlagiarismResultsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismResults
+     */
+    select?: PlagiarismResultsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismResults
+     */
+    omit?: PlagiarismResultsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismResultsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PlagiarismMatch
+   */
+
+  export type AggregatePlagiarismMatch = {
+    _count: PlagiarismMatchCountAggregateOutputType | null
+    _avg: PlagiarismMatchAvgAggregateOutputType | null
+    _sum: PlagiarismMatchSumAggregateOutputType | null
+    _min: PlagiarismMatchMinAggregateOutputType | null
+    _max: PlagiarismMatchMaxAggregateOutputType | null
+  }
+
+  export type PlagiarismMatchAvgAggregateOutputType = {
+    similarity: number | null
+  }
+
+  export type PlagiarismMatchSumAggregateOutputType = {
+    similarity: number | null
+  }
+
+  export type PlagiarismMatchMinAggregateOutputType = {
+    id: string | null
+    test: string | null
+    source: string | null
+    similarity: number | null
+    plagiarismResultsId: string | null
+  }
+
+  export type PlagiarismMatchMaxAggregateOutputType = {
+    id: string | null
+    test: string | null
+    source: string | null
+    similarity: number | null
+    plagiarismResultsId: string | null
+  }
+
+  export type PlagiarismMatchCountAggregateOutputType = {
+    id: number
+    test: number
+    source: number
+    similarity: number
+    plagiarismResultsId: number
+    _all: number
+  }
+
+
+  export type PlagiarismMatchAvgAggregateInputType = {
+    similarity?: true
+  }
+
+  export type PlagiarismMatchSumAggregateInputType = {
+    similarity?: true
+  }
+
+  export type PlagiarismMatchMinAggregateInputType = {
+    id?: true
+    test?: true
+    source?: true
+    similarity?: true
+    plagiarismResultsId?: true
+  }
+
+  export type PlagiarismMatchMaxAggregateInputType = {
+    id?: true
+    test?: true
+    source?: true
+    similarity?: true
+    plagiarismResultsId?: true
+  }
+
+  export type PlagiarismMatchCountAggregateInputType = {
+    id?: true
+    test?: true
+    source?: true
+    similarity?: true
+    plagiarismResultsId?: true
+    _all?: true
+  }
+
+  export type PlagiarismMatchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlagiarismMatch to aggregate.
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismMatches to fetch.
+     */
+    orderBy?: PlagiarismMatchOrderByWithRelationInput | PlagiarismMatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlagiarismMatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismMatches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismMatches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlagiarismMatches
+    **/
+    _count?: true | PlagiarismMatchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlagiarismMatchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlagiarismMatchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlagiarismMatchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlagiarismMatchMaxAggregateInputType
+  }
+
+  export type GetPlagiarismMatchAggregateType<T extends PlagiarismMatchAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlagiarismMatch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlagiarismMatch[P]>
+      : GetScalarType<T[P], AggregatePlagiarismMatch[P]>
+  }
+
+
+
+
+  export type PlagiarismMatchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlagiarismMatchWhereInput
+    orderBy?: PlagiarismMatchOrderByWithAggregationInput | PlagiarismMatchOrderByWithAggregationInput[]
+    by: PlagiarismMatchScalarFieldEnum[] | PlagiarismMatchScalarFieldEnum
+    having?: PlagiarismMatchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlagiarismMatchCountAggregateInputType | true
+    _avg?: PlagiarismMatchAvgAggregateInputType
+    _sum?: PlagiarismMatchSumAggregateInputType
+    _min?: PlagiarismMatchMinAggregateInputType
+    _max?: PlagiarismMatchMaxAggregateInputType
+  }
+
+  export type PlagiarismMatchGroupByOutputType = {
+    id: string
+    test: string
+    source: string
+    similarity: number
+    plagiarismResultsId: string
+    _count: PlagiarismMatchCountAggregateOutputType | null
+    _avg: PlagiarismMatchAvgAggregateOutputType | null
+    _sum: PlagiarismMatchSumAggregateOutputType | null
+    _min: PlagiarismMatchMinAggregateOutputType | null
+    _max: PlagiarismMatchMaxAggregateOutputType | null
+  }
+
+  type GetPlagiarismMatchGroupByPayload<T extends PlagiarismMatchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlagiarismMatchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlagiarismMatchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlagiarismMatchGroupByOutputType[P]>
+            : GetScalarType<T[P], PlagiarismMatchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlagiarismMatchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    test?: boolean
+    source?: boolean
+    similarity?: boolean
+    plagiarismResultsId?: boolean
+    plagiarismResults?: boolean | PlagiarismResultsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plagiarismMatch"]>
+
+
+
+  export type PlagiarismMatchSelectScalar = {
+    id?: boolean
+    test?: boolean
+    source?: boolean
+    similarity?: boolean
+    plagiarismResultsId?: boolean
+  }
+
+  export type PlagiarismMatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "test" | "source" | "similarity" | "plagiarismResultsId", ExtArgs["result"]["plagiarismMatch"]>
+  export type PlagiarismMatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plagiarismResults?: boolean | PlagiarismResultsDefaultArgs<ExtArgs>
+  }
+
+  export type $PlagiarismMatchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlagiarismMatch"
+    objects: {
+      plagiarismResults: Prisma.$PlagiarismResultsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      test: string
+      source: string
+      similarity: number
+      plagiarismResultsId: string
+    }, ExtArgs["result"]["plagiarismMatch"]>
+    composites: {}
+  }
+
+  type PlagiarismMatchGetPayload<S extends boolean | null | undefined | PlagiarismMatchDefaultArgs> = $Result.GetResult<Prisma.$PlagiarismMatchPayload, S>
+
+  type PlagiarismMatchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlagiarismMatchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlagiarismMatchCountAggregateInputType | true
+    }
+
+  export interface PlagiarismMatchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlagiarismMatch'], meta: { name: 'PlagiarismMatch' } }
+    /**
+     * Find zero or one PlagiarismMatch that matches the filter.
+     * @param {PlagiarismMatchFindUniqueArgs} args - Arguments to find a PlagiarismMatch
+     * @example
+     * // Get one PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlagiarismMatchFindUniqueArgs>(args: SelectSubset<T, PlagiarismMatchFindUniqueArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PlagiarismMatch that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PlagiarismMatchFindUniqueOrThrowArgs} args - Arguments to find a PlagiarismMatch
+     * @example
+     * // Get one PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlagiarismMatchFindUniqueOrThrowArgs>(args: SelectSubset<T, PlagiarismMatchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlagiarismMatch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchFindFirstArgs} args - Arguments to find a PlagiarismMatch
+     * @example
+     * // Get one PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlagiarismMatchFindFirstArgs>(args?: SelectSubset<T, PlagiarismMatchFindFirstArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlagiarismMatch that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchFindFirstOrThrowArgs} args - Arguments to find a PlagiarismMatch
+     * @example
+     * // Get one PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlagiarismMatchFindFirstOrThrowArgs>(args?: SelectSubset<T, PlagiarismMatchFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlagiarismMatches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlagiarismMatches
+     * const plagiarismMatches = await prisma.plagiarismMatch.findMany()
+     * 
+     * // Get first 10 PlagiarismMatches
+     * const plagiarismMatches = await prisma.plagiarismMatch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const plagiarismMatchWithIdOnly = await prisma.plagiarismMatch.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlagiarismMatchFindManyArgs>(args?: SelectSubset<T, PlagiarismMatchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PlagiarismMatch.
+     * @param {PlagiarismMatchCreateArgs} args - Arguments to create a PlagiarismMatch.
+     * @example
+     * // Create one PlagiarismMatch
+     * const PlagiarismMatch = await prisma.plagiarismMatch.create({
+     *   data: {
+     *     // ... data to create a PlagiarismMatch
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlagiarismMatchCreateArgs>(args: SelectSubset<T, PlagiarismMatchCreateArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PlagiarismMatches.
+     * @param {PlagiarismMatchCreateManyArgs} args - Arguments to create many PlagiarismMatches.
+     * @example
+     * // Create many PlagiarismMatches
+     * const plagiarismMatch = await prisma.plagiarismMatch.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlagiarismMatchCreateManyArgs>(args?: SelectSubset<T, PlagiarismMatchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlagiarismMatch.
+     * @param {PlagiarismMatchDeleteArgs} args - Arguments to delete one PlagiarismMatch.
+     * @example
+     * // Delete one PlagiarismMatch
+     * const PlagiarismMatch = await prisma.plagiarismMatch.delete({
+     *   where: {
+     *     // ... filter to delete one PlagiarismMatch
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlagiarismMatchDeleteArgs>(args: SelectSubset<T, PlagiarismMatchDeleteArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PlagiarismMatch.
+     * @param {PlagiarismMatchUpdateArgs} args - Arguments to update one PlagiarismMatch.
+     * @example
+     * // Update one PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlagiarismMatchUpdateArgs>(args: SelectSubset<T, PlagiarismMatchUpdateArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PlagiarismMatches.
+     * @param {PlagiarismMatchDeleteManyArgs} args - Arguments to filter PlagiarismMatches to delete.
+     * @example
+     * // Delete a few PlagiarismMatches
+     * const { count } = await prisma.plagiarismMatch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlagiarismMatchDeleteManyArgs>(args?: SelectSubset<T, PlagiarismMatchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlagiarismMatches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlagiarismMatches
+     * const plagiarismMatch = await prisma.plagiarismMatch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlagiarismMatchUpdateManyArgs>(args: SelectSubset<T, PlagiarismMatchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlagiarismMatch.
+     * @param {PlagiarismMatchUpsertArgs} args - Arguments to update or create a PlagiarismMatch.
+     * @example
+     * // Update or create a PlagiarismMatch
+     * const plagiarismMatch = await prisma.plagiarismMatch.upsert({
+     *   create: {
+     *     // ... data to create a PlagiarismMatch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlagiarismMatch we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlagiarismMatchUpsertArgs>(args: SelectSubset<T, PlagiarismMatchUpsertArgs<ExtArgs>>): Prisma__PlagiarismMatchClient<$Result.GetResult<Prisma.$PlagiarismMatchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlagiarismMatches that matches the filter.
+     * @param {PlagiarismMatchFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const plagiarismMatch = await prisma.plagiarismMatch.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: PlagiarismMatchFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a PlagiarismMatch.
+     * @param {PlagiarismMatchAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const plagiarismMatch = await prisma.plagiarismMatch.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: PlagiarismMatchAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of PlagiarismMatches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchCountArgs} args - Arguments to filter PlagiarismMatches to count.
+     * @example
+     * // Count the number of PlagiarismMatches
+     * const count = await prisma.plagiarismMatch.count({
+     *   where: {
+     *     // ... the filter for the PlagiarismMatches we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlagiarismMatchCountArgs>(
+      args?: Subset<T, PlagiarismMatchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlagiarismMatchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlagiarismMatch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlagiarismMatchAggregateArgs>(args: Subset<T, PlagiarismMatchAggregateArgs>): Prisma.PrismaPromise<GetPlagiarismMatchAggregateType<T>>
+
+    /**
+     * Group by PlagiarismMatch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlagiarismMatchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlagiarismMatchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlagiarismMatchGroupByArgs['orderBy'] }
+        : { orderBy?: PlagiarismMatchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlagiarismMatchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlagiarismMatchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlagiarismMatch model
+   */
+  readonly fields: PlagiarismMatchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlagiarismMatch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlagiarismMatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    plagiarismResults<T extends PlagiarismResultsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlagiarismResultsDefaultArgs<ExtArgs>>): Prisma__PlagiarismResultsClient<$Result.GetResult<Prisma.$PlagiarismResultsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlagiarismMatch model
+   */
+  interface PlagiarismMatchFieldRefs {
+    readonly id: FieldRef<"PlagiarismMatch", 'String'>
+    readonly test: FieldRef<"PlagiarismMatch", 'String'>
+    readonly source: FieldRef<"PlagiarismMatch", 'String'>
+    readonly similarity: FieldRef<"PlagiarismMatch", 'Float'>
+    readonly plagiarismResultsId: FieldRef<"PlagiarismMatch", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlagiarismMatch findUnique
+   */
+  export type PlagiarismMatchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismMatch to fetch.
+     */
+    where: PlagiarismMatchWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismMatch findUniqueOrThrow
+   */
+  export type PlagiarismMatchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismMatch to fetch.
+     */
+    where: PlagiarismMatchWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismMatch findFirst
+   */
+  export type PlagiarismMatchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismMatch to fetch.
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismMatches to fetch.
+     */
+    orderBy?: PlagiarismMatchOrderByWithRelationInput | PlagiarismMatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlagiarismMatches.
+     */
+    cursor?: PlagiarismMatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismMatches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismMatches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlagiarismMatches.
+     */
+    distinct?: PlagiarismMatchScalarFieldEnum | PlagiarismMatchScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismMatch findFirstOrThrow
+   */
+  export type PlagiarismMatchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismMatch to fetch.
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismMatches to fetch.
+     */
+    orderBy?: PlagiarismMatchOrderByWithRelationInput | PlagiarismMatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlagiarismMatches.
+     */
+    cursor?: PlagiarismMatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismMatches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismMatches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlagiarismMatches.
+     */
+    distinct?: PlagiarismMatchScalarFieldEnum | PlagiarismMatchScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismMatch findMany
+   */
+  export type PlagiarismMatchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter, which PlagiarismMatches to fetch.
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlagiarismMatches to fetch.
+     */
+    orderBy?: PlagiarismMatchOrderByWithRelationInput | PlagiarismMatchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlagiarismMatches.
+     */
+    cursor?: PlagiarismMatchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlagiarismMatches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlagiarismMatches.
+     */
+    skip?: number
+    distinct?: PlagiarismMatchScalarFieldEnum | PlagiarismMatchScalarFieldEnum[]
+  }
+
+  /**
+   * PlagiarismMatch create
+   */
+  export type PlagiarismMatchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlagiarismMatch.
+     */
+    data: XOR<PlagiarismMatchCreateInput, PlagiarismMatchUncheckedCreateInput>
+  }
+
+  /**
+   * PlagiarismMatch createMany
+   */
+  export type PlagiarismMatchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlagiarismMatches.
+     */
+    data: PlagiarismMatchCreateManyInput | PlagiarismMatchCreateManyInput[]
+  }
+
+  /**
+   * PlagiarismMatch update
+   */
+  export type PlagiarismMatchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlagiarismMatch.
+     */
+    data: XOR<PlagiarismMatchUpdateInput, PlagiarismMatchUncheckedUpdateInput>
+    /**
+     * Choose, which PlagiarismMatch to update.
+     */
+    where: PlagiarismMatchWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismMatch updateMany
+   */
+  export type PlagiarismMatchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlagiarismMatches.
+     */
+    data: XOR<PlagiarismMatchUpdateManyMutationInput, PlagiarismMatchUncheckedUpdateManyInput>
+    /**
+     * Filter which PlagiarismMatches to update
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * Limit how many PlagiarismMatches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlagiarismMatch upsert
+   */
+  export type PlagiarismMatchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlagiarismMatch to update in case it exists.
+     */
+    where: PlagiarismMatchWhereUniqueInput
+    /**
+     * In case the PlagiarismMatch found by the `where` argument doesn't exist, create a new PlagiarismMatch with this data.
+     */
+    create: XOR<PlagiarismMatchCreateInput, PlagiarismMatchUncheckedCreateInput>
+    /**
+     * In case the PlagiarismMatch was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlagiarismMatchUpdateInput, PlagiarismMatchUncheckedUpdateInput>
+  }
+
+  /**
+   * PlagiarismMatch delete
+   */
+  export type PlagiarismMatchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+    /**
+     * Filter which PlagiarismMatch to delete.
+     */
+    where: PlagiarismMatchWhereUniqueInput
+  }
+
+  /**
+   * PlagiarismMatch deleteMany
+   */
+  export type PlagiarismMatchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlagiarismMatches to delete
+     */
+    where?: PlagiarismMatchWhereInput
+    /**
+     * Limit how many PlagiarismMatches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlagiarismMatch findRaw
+   */
+  export type PlagiarismMatchFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PlagiarismMatch aggregateRaw
+   */
+  export type PlagiarismMatchAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PlagiarismMatch without action
+   */
+  export type PlagiarismMatchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlagiarismMatch
+     */
+    select?: PlagiarismMatchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlagiarismMatch
+     */
+    omit?: PlagiarismMatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlagiarismMatchInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InlineComment
+   */
+
+  export type AggregateInlineComment = {
+    _count: InlineCommentCountAggregateOutputType | null
+    _avg: InlineCommentAvgAggregateOutputType | null
+    _sum: InlineCommentSumAggregateOutputType | null
+    _min: InlineCommentMinAggregateOutputType | null
+    _max: InlineCommentMaxAggregateOutputType | null
+  }
+
+  export type InlineCommentAvgAggregateOutputType = {
+    startIndex: number | null
+    endIndex: number | null
+  }
+
+  export type InlineCommentSumAggregateOutputType = {
+    startIndex: number | null
+    endIndex: number | null
+  }
+
+  export type InlineCommentMinAggregateOutputType = {
+    id: string | null
+    startIndex: number | null
+    endIndex: number | null
+    text: string | null
+    color: string | null
+    timeStamp: Date | null
+    authorId: string | null
+    submissionId: string | null
+  }
+
+  export type InlineCommentMaxAggregateOutputType = {
+    id: string | null
+    startIndex: number | null
+    endIndex: number | null
+    text: string | null
+    color: string | null
+    timeStamp: Date | null
+    authorId: string | null
+    submissionId: string | null
+  }
+
+  export type InlineCommentCountAggregateOutputType = {
+    id: number
+    startIndex: number
+    endIndex: number
+    text: number
+    color: number
+    timeStamp: number
+    authorId: number
+    submissionId: number
+    _all: number
+  }
+
+
+  export type InlineCommentAvgAggregateInputType = {
+    startIndex?: true
+    endIndex?: true
+  }
+
+  export type InlineCommentSumAggregateInputType = {
+    startIndex?: true
+    endIndex?: true
+  }
+
+  export type InlineCommentMinAggregateInputType = {
+    id?: true
+    startIndex?: true
+    endIndex?: true
+    text?: true
+    color?: true
+    timeStamp?: true
+    authorId?: true
+    submissionId?: true
+  }
+
+  export type InlineCommentMaxAggregateInputType = {
+    id?: true
+    startIndex?: true
+    endIndex?: true
+    text?: true
+    color?: true
+    timeStamp?: true
+    authorId?: true
+    submissionId?: true
+  }
+
+  export type InlineCommentCountAggregateInputType = {
+    id?: true
+    startIndex?: true
+    endIndex?: true
+    text?: true
+    color?: true
+    timeStamp?: true
+    authorId?: true
+    submissionId?: true
+    _all?: true
+  }
+
+  export type InlineCommentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InlineComment to aggregate.
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InlineComments to fetch.
+     */
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InlineCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InlineComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InlineComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InlineComments
+    **/
+    _count?: true | InlineCommentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InlineCommentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InlineCommentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InlineCommentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InlineCommentMaxAggregateInputType
+  }
+
+  export type GetInlineCommentAggregateType<T extends InlineCommentAggregateArgs> = {
+        [P in keyof T & keyof AggregateInlineComment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInlineComment[P]>
+      : GetScalarType<T[P], AggregateInlineComment[P]>
+  }
+
+
+
+
+  export type InlineCommentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InlineCommentWhereInput
+    orderBy?: InlineCommentOrderByWithAggregationInput | InlineCommentOrderByWithAggregationInput[]
+    by: InlineCommentScalarFieldEnum[] | InlineCommentScalarFieldEnum
+    having?: InlineCommentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InlineCommentCountAggregateInputType | true
+    _avg?: InlineCommentAvgAggregateInputType
+    _sum?: InlineCommentSumAggregateInputType
+    _min?: InlineCommentMinAggregateInputType
+    _max?: InlineCommentMaxAggregateInputType
+  }
+
+  export type InlineCommentGroupByOutputType = {
+    id: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date
+    authorId: string
+    submissionId: string
+    _count: InlineCommentCountAggregateOutputType | null
+    _avg: InlineCommentAvgAggregateOutputType | null
+    _sum: InlineCommentSumAggregateOutputType | null
+    _min: InlineCommentMinAggregateOutputType | null
+    _max: InlineCommentMaxAggregateOutputType | null
+  }
+
+  type GetInlineCommentGroupByPayload<T extends InlineCommentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InlineCommentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InlineCommentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InlineCommentGroupByOutputType[P]>
+            : GetScalarType<T[P], InlineCommentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InlineCommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    startIndex?: boolean
+    endIndex?: boolean
+    text?: boolean
+    color?: boolean
+    timeStamp?: boolean
+    authorId?: boolean
+    submissionId?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["inlineComment"]>
+
+
+
+  export type InlineCommentSelectScalar = {
+    id?: boolean
+    startIndex?: boolean
+    endIndex?: boolean
+    text?: boolean
+    color?: boolean
+    timeStamp?: boolean
+    authorId?: boolean
+    submissionId?: boolean
+  }
+
+  export type InlineCommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startIndex" | "endIndex" | "text" | "color" | "timeStamp" | "authorId" | "submissionId", ExtArgs["result"]["inlineComment"]>
+  export type InlineCommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }
+
+  export type $InlineCommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InlineComment"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+      submission: Prisma.$SubmissionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      startIndex: number
+      endIndex: number
+      text: string
+      color: string
+      timeStamp: Date
+      authorId: string
+      submissionId: string
+    }, ExtArgs["result"]["inlineComment"]>
+    composites: {}
+  }
+
+  type InlineCommentGetPayload<S extends boolean | null | undefined | InlineCommentDefaultArgs> = $Result.GetResult<Prisma.$InlineCommentPayload, S>
+
+  type InlineCommentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InlineCommentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InlineCommentCountAggregateInputType | true
+    }
+
+  export interface InlineCommentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InlineComment'], meta: { name: 'InlineComment' } }
+    /**
+     * Find zero or one InlineComment that matches the filter.
+     * @param {InlineCommentFindUniqueArgs} args - Arguments to find a InlineComment
+     * @example
+     * // Get one InlineComment
+     * const inlineComment = await prisma.inlineComment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InlineCommentFindUniqueArgs>(args: SelectSubset<T, InlineCommentFindUniqueArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InlineComment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InlineCommentFindUniqueOrThrowArgs} args - Arguments to find a InlineComment
+     * @example
+     * // Get one InlineComment
+     * const inlineComment = await prisma.inlineComment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InlineCommentFindUniqueOrThrowArgs>(args: SelectSubset<T, InlineCommentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InlineComment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentFindFirstArgs} args - Arguments to find a InlineComment
+     * @example
+     * // Get one InlineComment
+     * const inlineComment = await prisma.inlineComment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InlineCommentFindFirstArgs>(args?: SelectSubset<T, InlineCommentFindFirstArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InlineComment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentFindFirstOrThrowArgs} args - Arguments to find a InlineComment
+     * @example
+     * // Get one InlineComment
+     * const inlineComment = await prisma.inlineComment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InlineCommentFindFirstOrThrowArgs>(args?: SelectSubset<T, InlineCommentFindFirstOrThrowArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InlineComments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InlineComments
+     * const inlineComments = await prisma.inlineComment.findMany()
+     * 
+     * // Get first 10 InlineComments
+     * const inlineComments = await prisma.inlineComment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const inlineCommentWithIdOnly = await prisma.inlineComment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InlineCommentFindManyArgs>(args?: SelectSubset<T, InlineCommentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InlineComment.
+     * @param {InlineCommentCreateArgs} args - Arguments to create a InlineComment.
+     * @example
+     * // Create one InlineComment
+     * const InlineComment = await prisma.inlineComment.create({
+     *   data: {
+     *     // ... data to create a InlineComment
+     *   }
+     * })
+     * 
+     */
+    create<T extends InlineCommentCreateArgs>(args: SelectSubset<T, InlineCommentCreateArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InlineComments.
+     * @param {InlineCommentCreateManyArgs} args - Arguments to create many InlineComments.
+     * @example
+     * // Create many InlineComments
+     * const inlineComment = await prisma.inlineComment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InlineCommentCreateManyArgs>(args?: SelectSubset<T, InlineCommentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InlineComment.
+     * @param {InlineCommentDeleteArgs} args - Arguments to delete one InlineComment.
+     * @example
+     * // Delete one InlineComment
+     * const InlineComment = await prisma.inlineComment.delete({
+     *   where: {
+     *     // ... filter to delete one InlineComment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InlineCommentDeleteArgs>(args: SelectSubset<T, InlineCommentDeleteArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InlineComment.
+     * @param {InlineCommentUpdateArgs} args - Arguments to update one InlineComment.
+     * @example
+     * // Update one InlineComment
+     * const inlineComment = await prisma.inlineComment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InlineCommentUpdateArgs>(args: SelectSubset<T, InlineCommentUpdateArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InlineComments.
+     * @param {InlineCommentDeleteManyArgs} args - Arguments to filter InlineComments to delete.
+     * @example
+     * // Delete a few InlineComments
+     * const { count } = await prisma.inlineComment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InlineCommentDeleteManyArgs>(args?: SelectSubset<T, InlineCommentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InlineComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InlineComments
+     * const inlineComment = await prisma.inlineComment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InlineCommentUpdateManyArgs>(args: SelectSubset<T, InlineCommentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InlineComment.
+     * @param {InlineCommentUpsertArgs} args - Arguments to update or create a InlineComment.
+     * @example
+     * // Update or create a InlineComment
+     * const inlineComment = await prisma.inlineComment.upsert({
+     *   create: {
+     *     // ... data to create a InlineComment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InlineComment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InlineCommentUpsertArgs>(args: SelectSubset<T, InlineCommentUpsertArgs<ExtArgs>>): Prisma__InlineCommentClient<$Result.GetResult<Prisma.$InlineCommentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InlineComments that matches the filter.
+     * @param {InlineCommentFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const inlineComment = await prisma.inlineComment.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: InlineCommentFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a InlineComment.
+     * @param {InlineCommentAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const inlineComment = await prisma.inlineComment.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: InlineCommentAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of InlineComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentCountArgs} args - Arguments to filter InlineComments to count.
+     * @example
+     * // Count the number of InlineComments
+     * const count = await prisma.inlineComment.count({
+     *   where: {
+     *     // ... the filter for the InlineComments we want to count
+     *   }
+     * })
+    **/
+    count<T extends InlineCommentCountArgs>(
+      args?: Subset<T, InlineCommentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InlineCommentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InlineComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InlineCommentAggregateArgs>(args: Subset<T, InlineCommentAggregateArgs>): Prisma.PrismaPromise<GetInlineCommentAggregateType<T>>
+
+    /**
+     * Group by InlineComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InlineCommentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InlineCommentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InlineCommentGroupByArgs['orderBy'] }
+        : { orderBy?: InlineCommentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InlineCommentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInlineCommentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InlineComment model
+   */
+  readonly fields: InlineCommentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InlineComment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InlineCommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    submission<T extends SubmissionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubmissionDefaultArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InlineComment model
+   */
+  interface InlineCommentFieldRefs {
+    readonly id: FieldRef<"InlineComment", 'String'>
+    readonly startIndex: FieldRef<"InlineComment", 'Int'>
+    readonly endIndex: FieldRef<"InlineComment", 'Int'>
+    readonly text: FieldRef<"InlineComment", 'String'>
+    readonly color: FieldRef<"InlineComment", 'String'>
+    readonly timeStamp: FieldRef<"InlineComment", 'DateTime'>
+    readonly authorId: FieldRef<"InlineComment", 'String'>
+    readonly submissionId: FieldRef<"InlineComment", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InlineComment findUnique
+   */
+  export type InlineCommentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which InlineComment to fetch.
+     */
+    where: InlineCommentWhereUniqueInput
+  }
+
+  /**
+   * InlineComment findUniqueOrThrow
+   */
+  export type InlineCommentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which InlineComment to fetch.
+     */
+    where: InlineCommentWhereUniqueInput
+  }
+
+  /**
+   * InlineComment findFirst
+   */
+  export type InlineCommentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which InlineComment to fetch.
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InlineComments to fetch.
+     */
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InlineComments.
+     */
+    cursor?: InlineCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InlineComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InlineComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InlineComments.
+     */
+    distinct?: InlineCommentScalarFieldEnum | InlineCommentScalarFieldEnum[]
+  }
+
+  /**
+   * InlineComment findFirstOrThrow
+   */
+  export type InlineCommentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which InlineComment to fetch.
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InlineComments to fetch.
+     */
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InlineComments.
+     */
+    cursor?: InlineCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InlineComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InlineComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InlineComments.
+     */
+    distinct?: InlineCommentScalarFieldEnum | InlineCommentScalarFieldEnum[]
+  }
+
+  /**
+   * InlineComment findMany
+   */
+  export type InlineCommentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which InlineComments to fetch.
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InlineComments to fetch.
+     */
+    orderBy?: InlineCommentOrderByWithRelationInput | InlineCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InlineComments.
+     */
+    cursor?: InlineCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InlineComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InlineComments.
+     */
+    skip?: number
+    distinct?: InlineCommentScalarFieldEnum | InlineCommentScalarFieldEnum[]
+  }
+
+  /**
+   * InlineComment create
+   */
+  export type InlineCommentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InlineComment.
+     */
+    data: XOR<InlineCommentCreateInput, InlineCommentUncheckedCreateInput>
+  }
+
+  /**
+   * InlineComment createMany
+   */
+  export type InlineCommentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InlineComments.
+     */
+    data: InlineCommentCreateManyInput | InlineCommentCreateManyInput[]
+  }
+
+  /**
+   * InlineComment update
+   */
+  export type InlineCommentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InlineComment.
+     */
+    data: XOR<InlineCommentUpdateInput, InlineCommentUncheckedUpdateInput>
+    /**
+     * Choose, which InlineComment to update.
+     */
+    where: InlineCommentWhereUniqueInput
+  }
+
+  /**
+   * InlineComment updateMany
+   */
+  export type InlineCommentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InlineComments.
+     */
+    data: XOR<InlineCommentUpdateManyMutationInput, InlineCommentUncheckedUpdateManyInput>
+    /**
+     * Filter which InlineComments to update
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * Limit how many InlineComments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InlineComment upsert
+   */
+  export type InlineCommentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InlineComment to update in case it exists.
+     */
+    where: InlineCommentWhereUniqueInput
+    /**
+     * In case the InlineComment found by the `where` argument doesn't exist, create a new InlineComment with this data.
+     */
+    create: XOR<InlineCommentCreateInput, InlineCommentUncheckedCreateInput>
+    /**
+     * In case the InlineComment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InlineCommentUpdateInput, InlineCommentUncheckedUpdateInput>
+  }
+
+  /**
+   * InlineComment delete
+   */
+  export type InlineCommentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+    /**
+     * Filter which InlineComment to delete.
+     */
+    where: InlineCommentWhereUniqueInput
+  }
+
+  /**
+   * InlineComment deleteMany
+   */
+  export type InlineCommentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InlineComments to delete
+     */
+    where?: InlineCommentWhereInput
+    /**
+     * Limit how many InlineComments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InlineComment findRaw
+   */
+  export type InlineCommentFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InlineComment aggregateRaw
+   */
+  export type InlineCommentAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InlineComment without action
+   */
+  export type InlineCommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InlineComment
+     */
+    select?: InlineCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InlineComment
+     */
+    omit?: InlineCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InlineCommentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model OverallFeedback
+   */
+
+  export type AggregateOverallFeedback = {
+    _count: OverallFeedbackCountAggregateOutputType | null
+    _min: OverallFeedbackMinAggregateOutputType | null
+    _max: OverallFeedbackMaxAggregateOutputType | null
+  }
+
+  export type OverallFeedbackMinAggregateOutputType = {
+    id: string | null
+    strengths: string | null
+    improvements: string | null
+    actionItems: string | null
+    submissionId: string | null
+  }
+
+  export type OverallFeedbackMaxAggregateOutputType = {
+    id: string | null
+    strengths: string | null
+    improvements: string | null
+    actionItems: string | null
+    submissionId: string | null
+  }
+
+  export type OverallFeedbackCountAggregateOutputType = {
+    id: number
+    strengths: number
+    improvements: number
+    actionItems: number
+    submissionId: number
+    _all: number
+  }
+
+
+  export type OverallFeedbackMinAggregateInputType = {
+    id?: true
+    strengths?: true
+    improvements?: true
+    actionItems?: true
+    submissionId?: true
+  }
+
+  export type OverallFeedbackMaxAggregateInputType = {
+    id?: true
+    strengths?: true
+    improvements?: true
+    actionItems?: true
+    submissionId?: true
+  }
+
+  export type OverallFeedbackCountAggregateInputType = {
+    id?: true
+    strengths?: true
+    improvements?: true
+    actionItems?: true
+    submissionId?: true
+    _all?: true
+  }
+
+  export type OverallFeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OverallFeedback to aggregate.
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OverallFeedbacks to fetch.
+     */
+    orderBy?: OverallFeedbackOrderByWithRelationInput | OverallFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OverallFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OverallFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OverallFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OverallFeedbacks
+    **/
+    _count?: true | OverallFeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OverallFeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OverallFeedbackMaxAggregateInputType
+  }
+
+  export type GetOverallFeedbackAggregateType<T extends OverallFeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateOverallFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOverallFeedback[P]>
+      : GetScalarType<T[P], AggregateOverallFeedback[P]>
+  }
+
+
+
+
+  export type OverallFeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OverallFeedbackWhereInput
+    orderBy?: OverallFeedbackOrderByWithAggregationInput | OverallFeedbackOrderByWithAggregationInput[]
+    by: OverallFeedbackScalarFieldEnum[] | OverallFeedbackScalarFieldEnum
+    having?: OverallFeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OverallFeedbackCountAggregateInputType | true
+    _min?: OverallFeedbackMinAggregateInputType
+    _max?: OverallFeedbackMaxAggregateInputType
+  }
+
+  export type OverallFeedbackGroupByOutputType = {
+    id: string
+    strengths: string
+    improvements: string
+    actionItems: string
+    submissionId: string
+    _count: OverallFeedbackCountAggregateOutputType | null
+    _min: OverallFeedbackMinAggregateOutputType | null
+    _max: OverallFeedbackMaxAggregateOutputType | null
+  }
+
+  type GetOverallFeedbackGroupByPayload<T extends OverallFeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OverallFeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OverallFeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OverallFeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], OverallFeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OverallFeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    strengths?: boolean
+    improvements?: boolean
+    actionItems?: boolean
+    submissionId?: boolean
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["overallFeedback"]>
+
+
+
+  export type OverallFeedbackSelectScalar = {
+    id?: boolean
+    strengths?: boolean
+    improvements?: boolean
+    actionItems?: boolean
+    submissionId?: boolean
+  }
+
+  export type OverallFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "strengths" | "improvements" | "actionItems" | "submissionId", ExtArgs["result"]["overallFeedback"]>
+  export type OverallFeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }
+
+  export type $OverallFeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OverallFeedback"
+    objects: {
+      submission: Prisma.$SubmissionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      strengths: string
+      improvements: string
+      actionItems: string
+      submissionId: string
+    }, ExtArgs["result"]["overallFeedback"]>
+    composites: {}
+  }
+
+  type OverallFeedbackGetPayload<S extends boolean | null | undefined | OverallFeedbackDefaultArgs> = $Result.GetResult<Prisma.$OverallFeedbackPayload, S>
+
+  type OverallFeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OverallFeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OverallFeedbackCountAggregateInputType | true
+    }
+
+  export interface OverallFeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OverallFeedback'], meta: { name: 'OverallFeedback' } }
+    /**
+     * Find zero or one OverallFeedback that matches the filter.
+     * @param {OverallFeedbackFindUniqueArgs} args - Arguments to find a OverallFeedback
+     * @example
+     * // Get one OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OverallFeedbackFindUniqueArgs>(args: SelectSubset<T, OverallFeedbackFindUniqueArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OverallFeedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OverallFeedbackFindUniqueOrThrowArgs} args - Arguments to find a OverallFeedback
+     * @example
+     * // Get one OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OverallFeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, OverallFeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OverallFeedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackFindFirstArgs} args - Arguments to find a OverallFeedback
+     * @example
+     * // Get one OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OverallFeedbackFindFirstArgs>(args?: SelectSubset<T, OverallFeedbackFindFirstArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OverallFeedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackFindFirstOrThrowArgs} args - Arguments to find a OverallFeedback
+     * @example
+     * // Get one OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OverallFeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, OverallFeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OverallFeedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OverallFeedbacks
+     * const overallFeedbacks = await prisma.overallFeedback.findMany()
+     * 
+     * // Get first 10 OverallFeedbacks
+     * const overallFeedbacks = await prisma.overallFeedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const overallFeedbackWithIdOnly = await prisma.overallFeedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OverallFeedbackFindManyArgs>(args?: SelectSubset<T, OverallFeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OverallFeedback.
+     * @param {OverallFeedbackCreateArgs} args - Arguments to create a OverallFeedback.
+     * @example
+     * // Create one OverallFeedback
+     * const OverallFeedback = await prisma.overallFeedback.create({
+     *   data: {
+     *     // ... data to create a OverallFeedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends OverallFeedbackCreateArgs>(args: SelectSubset<T, OverallFeedbackCreateArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OverallFeedbacks.
+     * @param {OverallFeedbackCreateManyArgs} args - Arguments to create many OverallFeedbacks.
+     * @example
+     * // Create many OverallFeedbacks
+     * const overallFeedback = await prisma.overallFeedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OverallFeedbackCreateManyArgs>(args?: SelectSubset<T, OverallFeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a OverallFeedback.
+     * @param {OverallFeedbackDeleteArgs} args - Arguments to delete one OverallFeedback.
+     * @example
+     * // Delete one OverallFeedback
+     * const OverallFeedback = await prisma.overallFeedback.delete({
+     *   where: {
+     *     // ... filter to delete one OverallFeedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OverallFeedbackDeleteArgs>(args: SelectSubset<T, OverallFeedbackDeleteArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OverallFeedback.
+     * @param {OverallFeedbackUpdateArgs} args - Arguments to update one OverallFeedback.
+     * @example
+     * // Update one OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OverallFeedbackUpdateArgs>(args: SelectSubset<T, OverallFeedbackUpdateArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OverallFeedbacks.
+     * @param {OverallFeedbackDeleteManyArgs} args - Arguments to filter OverallFeedbacks to delete.
+     * @example
+     * // Delete a few OverallFeedbacks
+     * const { count } = await prisma.overallFeedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OverallFeedbackDeleteManyArgs>(args?: SelectSubset<T, OverallFeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OverallFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OverallFeedbacks
+     * const overallFeedback = await prisma.overallFeedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OverallFeedbackUpdateManyArgs>(args: SelectSubset<T, OverallFeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one OverallFeedback.
+     * @param {OverallFeedbackUpsertArgs} args - Arguments to update or create a OverallFeedback.
+     * @example
+     * // Update or create a OverallFeedback
+     * const overallFeedback = await prisma.overallFeedback.upsert({
+     *   create: {
+     *     // ... data to create a OverallFeedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OverallFeedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OverallFeedbackUpsertArgs>(args: SelectSubset<T, OverallFeedbackUpsertArgs<ExtArgs>>): Prisma__OverallFeedbackClient<$Result.GetResult<Prisma.$OverallFeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OverallFeedbacks that matches the filter.
+     * @param {OverallFeedbackFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const overallFeedback = await prisma.overallFeedback.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: OverallFeedbackFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a OverallFeedback.
+     * @param {OverallFeedbackAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const overallFeedback = await prisma.overallFeedback.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: OverallFeedbackAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of OverallFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackCountArgs} args - Arguments to filter OverallFeedbacks to count.
+     * @example
+     * // Count the number of OverallFeedbacks
+     * const count = await prisma.overallFeedback.count({
+     *   where: {
+     *     // ... the filter for the OverallFeedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends OverallFeedbackCountArgs>(
+      args?: Subset<T, OverallFeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OverallFeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OverallFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OverallFeedbackAggregateArgs>(args: Subset<T, OverallFeedbackAggregateArgs>): Prisma.PrismaPromise<GetOverallFeedbackAggregateType<T>>
+
+    /**
+     * Group by OverallFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OverallFeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OverallFeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OverallFeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: OverallFeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OverallFeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOverallFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OverallFeedback model
+   */
+  readonly fields: OverallFeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OverallFeedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OverallFeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    submission<T extends SubmissionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubmissionDefaultArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OverallFeedback model
+   */
+  interface OverallFeedbackFieldRefs {
+    readonly id: FieldRef<"OverallFeedback", 'String'>
+    readonly strengths: FieldRef<"OverallFeedback", 'String'>
+    readonly improvements: FieldRef<"OverallFeedback", 'String'>
+    readonly actionItems: FieldRef<"OverallFeedback", 'String'>
+    readonly submissionId: FieldRef<"OverallFeedback", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OverallFeedback findUnique
+   */
+  export type OverallFeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which OverallFeedback to fetch.
+     */
+    where: OverallFeedbackWhereUniqueInput
+  }
+
+  /**
+   * OverallFeedback findUniqueOrThrow
+   */
+  export type OverallFeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which OverallFeedback to fetch.
+     */
+    where: OverallFeedbackWhereUniqueInput
+  }
+
+  /**
+   * OverallFeedback findFirst
+   */
+  export type OverallFeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which OverallFeedback to fetch.
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OverallFeedbacks to fetch.
+     */
+    orderBy?: OverallFeedbackOrderByWithRelationInput | OverallFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OverallFeedbacks.
+     */
+    cursor?: OverallFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OverallFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OverallFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OverallFeedbacks.
+     */
+    distinct?: OverallFeedbackScalarFieldEnum | OverallFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * OverallFeedback findFirstOrThrow
+   */
+  export type OverallFeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which OverallFeedback to fetch.
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OverallFeedbacks to fetch.
+     */
+    orderBy?: OverallFeedbackOrderByWithRelationInput | OverallFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OverallFeedbacks.
+     */
+    cursor?: OverallFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OverallFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OverallFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OverallFeedbacks.
+     */
+    distinct?: OverallFeedbackScalarFieldEnum | OverallFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * OverallFeedback findMany
+   */
+  export type OverallFeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which OverallFeedbacks to fetch.
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OverallFeedbacks to fetch.
+     */
+    orderBy?: OverallFeedbackOrderByWithRelationInput | OverallFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OverallFeedbacks.
+     */
+    cursor?: OverallFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OverallFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OverallFeedbacks.
+     */
+    skip?: number
+    distinct?: OverallFeedbackScalarFieldEnum | OverallFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * OverallFeedback create
+   */
+  export type OverallFeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OverallFeedback.
+     */
+    data: XOR<OverallFeedbackCreateInput, OverallFeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * OverallFeedback createMany
+   */
+  export type OverallFeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OverallFeedbacks.
+     */
+    data: OverallFeedbackCreateManyInput | OverallFeedbackCreateManyInput[]
+  }
+
+  /**
+   * OverallFeedback update
+   */
+  export type OverallFeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OverallFeedback.
+     */
+    data: XOR<OverallFeedbackUpdateInput, OverallFeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which OverallFeedback to update.
+     */
+    where: OverallFeedbackWhereUniqueInput
+  }
+
+  /**
+   * OverallFeedback updateMany
+   */
+  export type OverallFeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OverallFeedbacks.
+     */
+    data: XOR<OverallFeedbackUpdateManyMutationInput, OverallFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which OverallFeedbacks to update
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * Limit how many OverallFeedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OverallFeedback upsert
+   */
+  export type OverallFeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OverallFeedback to update in case it exists.
+     */
+    where: OverallFeedbackWhereUniqueInput
+    /**
+     * In case the OverallFeedback found by the `where` argument doesn't exist, create a new OverallFeedback with this data.
+     */
+    create: XOR<OverallFeedbackCreateInput, OverallFeedbackUncheckedCreateInput>
+    /**
+     * In case the OverallFeedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OverallFeedbackUpdateInput, OverallFeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * OverallFeedback delete
+   */
+  export type OverallFeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter which OverallFeedback to delete.
+     */
+    where: OverallFeedbackWhereUniqueInput
+  }
+
+  /**
+   * OverallFeedback deleteMany
+   */
+  export type OverallFeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OverallFeedbacks to delete
+     */
+    where?: OverallFeedbackWhereInput
+    /**
+     * Limit how many OverallFeedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OverallFeedback findRaw
+   */
+  export type OverallFeedbackFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * OverallFeedback aggregateRaw
+   */
+  export type OverallFeedbackAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * OverallFeedback without action
+   */
+  export type OverallFeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OverallFeedback
+     */
+    select?: OverallFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OverallFeedback
+     */
+    omit?: OverallFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OverallFeedbackInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Subscore
+   */
+
+  export type AggregateSubscore = {
+    _count: SubscoreCountAggregateOutputType | null
+    _avg: SubscoreAvgAggregateOutputType | null
+    _sum: SubscoreSumAggregateOutputType | null
+    _min: SubscoreMinAggregateOutputType | null
+    _max: SubscoreMaxAggregateOutputType | null
+  }
+
+  export type SubscoreAvgAggregateOutputType = {
+    score: number | null
+    maxScore: number | null
+  }
+
+  export type SubscoreSumAggregateOutputType = {
+    score: number | null
+    maxScore: number | null
+  }
+
+  export type SubscoreMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    score: number | null
+    maxScore: number | null
+    rationale: string | null
+    submissionId: string | null
+  }
+
+  export type SubscoreMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    score: number | null
+    maxScore: number | null
+    rationale: string | null
+    submissionId: string | null
+  }
+
+  export type SubscoreCountAggregateOutputType = {
+    id: number
+    name: number
+    score: number
+    maxScore: number
+    rationale: number
+    submissionId: number
+    _all: number
+  }
+
+
+  export type SubscoreAvgAggregateInputType = {
+    score?: true
+    maxScore?: true
+  }
+
+  export type SubscoreSumAggregateInputType = {
+    score?: true
+    maxScore?: true
+  }
+
+  export type SubscoreMinAggregateInputType = {
+    id?: true
+    name?: true
+    score?: true
+    maxScore?: true
+    rationale?: true
+    submissionId?: true
+  }
+
+  export type SubscoreMaxAggregateInputType = {
+    id?: true
+    name?: true
+    score?: true
+    maxScore?: true
+    rationale?: true
+    submissionId?: true
+  }
+
+  export type SubscoreCountAggregateInputType = {
+    id?: true
+    name?: true
+    score?: true
+    maxScore?: true
+    rationale?: true
+    submissionId?: true
+    _all?: true
+  }
+
+  export type SubscoreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscore to aggregate.
+     */
+    where?: SubscoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscores to fetch.
+     */
+    orderBy?: SubscoreOrderByWithRelationInput | SubscoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubscoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Subscores
+    **/
+    _count?: true | SubscoreCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SubscoreAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SubscoreSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubscoreMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubscoreMaxAggregateInputType
+  }
+
+  export type GetSubscoreAggregateType<T extends SubscoreAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubscore]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubscore[P]>
+      : GetScalarType<T[P], AggregateSubscore[P]>
+  }
+
+
+
+
+  export type SubscoreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscoreWhereInput
+    orderBy?: SubscoreOrderByWithAggregationInput | SubscoreOrderByWithAggregationInput[]
+    by: SubscoreScalarFieldEnum[] | SubscoreScalarFieldEnum
+    having?: SubscoreScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubscoreCountAggregateInputType | true
+    _avg?: SubscoreAvgAggregateInputType
+    _sum?: SubscoreSumAggregateInputType
+    _min?: SubscoreMinAggregateInputType
+    _max?: SubscoreMaxAggregateInputType
+  }
+
+  export type SubscoreGroupByOutputType = {
+    id: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+    submissionId: string
+    _count: SubscoreCountAggregateOutputType | null
+    _avg: SubscoreAvgAggregateOutputType | null
+    _sum: SubscoreSumAggregateOutputType | null
+    _min: SubscoreMinAggregateOutputType | null
+    _max: SubscoreMaxAggregateOutputType | null
+  }
+
+  type GetSubscoreGroupByPayload<T extends SubscoreGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubscoreGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubscoreGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubscoreGroupByOutputType[P]>
+            : GetScalarType<T[P], SubscoreGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubscoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    score?: boolean
+    maxScore?: boolean
+    rationale?: boolean
+    submissionId?: boolean
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscore"]>
+
+
+
+  export type SubscoreSelectScalar = {
+    id?: boolean
+    name?: boolean
+    score?: boolean
+    maxScore?: boolean
+    rationale?: boolean
+    submissionId?: boolean
+  }
+
+  export type SubscoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "score" | "maxScore" | "rationale" | "submissionId", ExtArgs["result"]["subscore"]>
+  export type SubscoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submission?: boolean | SubmissionDefaultArgs<ExtArgs>
+  }
+
+  export type $SubscorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Subscore"
+    objects: {
+      submission: Prisma.$SubmissionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      score: number
+      maxScore: number
+      rationale: string
+      submissionId: string
+    }, ExtArgs["result"]["subscore"]>
+    composites: {}
+  }
+
+  type SubscoreGetPayload<S extends boolean | null | undefined | SubscoreDefaultArgs> = $Result.GetResult<Prisma.$SubscorePayload, S>
+
+  type SubscoreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubscoreFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubscoreCountAggregateInputType | true
+    }
+
+  export interface SubscoreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Subscore'], meta: { name: 'Subscore' } }
+    /**
+     * Find zero or one Subscore that matches the filter.
+     * @param {SubscoreFindUniqueArgs} args - Arguments to find a Subscore
+     * @example
+     * // Get one Subscore
+     * const subscore = await prisma.subscore.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubscoreFindUniqueArgs>(args: SelectSubset<T, SubscoreFindUniqueArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Subscore that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubscoreFindUniqueOrThrowArgs} args - Arguments to find a Subscore
+     * @example
+     * // Get one Subscore
+     * const subscore = await prisma.subscore.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubscoreFindUniqueOrThrowArgs>(args: SelectSubset<T, SubscoreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscore that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreFindFirstArgs} args - Arguments to find a Subscore
+     * @example
+     * // Get one Subscore
+     * const subscore = await prisma.subscore.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubscoreFindFirstArgs>(args?: SelectSubset<T, SubscoreFindFirstArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscore that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreFindFirstOrThrowArgs} args - Arguments to find a Subscore
+     * @example
+     * // Get one Subscore
+     * const subscore = await prisma.subscore.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubscoreFindFirstOrThrowArgs>(args?: SelectSubset<T, SubscoreFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Subscores that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Subscores
+     * const subscores = await prisma.subscore.findMany()
+     * 
+     * // Get first 10 Subscores
+     * const subscores = await prisma.subscore.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subscoreWithIdOnly = await prisma.subscore.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubscoreFindManyArgs>(args?: SelectSubset<T, SubscoreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Subscore.
+     * @param {SubscoreCreateArgs} args - Arguments to create a Subscore.
+     * @example
+     * // Create one Subscore
+     * const Subscore = await prisma.subscore.create({
+     *   data: {
+     *     // ... data to create a Subscore
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubscoreCreateArgs>(args: SelectSubset<T, SubscoreCreateArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Subscores.
+     * @param {SubscoreCreateManyArgs} args - Arguments to create many Subscores.
+     * @example
+     * // Create many Subscores
+     * const subscore = await prisma.subscore.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubscoreCreateManyArgs>(args?: SelectSubset<T, SubscoreCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Subscore.
+     * @param {SubscoreDeleteArgs} args - Arguments to delete one Subscore.
+     * @example
+     * // Delete one Subscore
+     * const Subscore = await prisma.subscore.delete({
+     *   where: {
+     *     // ... filter to delete one Subscore
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubscoreDeleteArgs>(args: SelectSubset<T, SubscoreDeleteArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Subscore.
+     * @param {SubscoreUpdateArgs} args - Arguments to update one Subscore.
+     * @example
+     * // Update one Subscore
+     * const subscore = await prisma.subscore.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubscoreUpdateArgs>(args: SelectSubset<T, SubscoreUpdateArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Subscores.
+     * @param {SubscoreDeleteManyArgs} args - Arguments to filter Subscores to delete.
+     * @example
+     * // Delete a few Subscores
+     * const { count } = await prisma.subscore.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubscoreDeleteManyArgs>(args?: SelectSubset<T, SubscoreDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Subscores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Subscores
+     * const subscore = await prisma.subscore.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubscoreUpdateManyArgs>(args: SelectSubset<T, SubscoreUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Subscore.
+     * @param {SubscoreUpsertArgs} args - Arguments to update or create a Subscore.
+     * @example
+     * // Update or create a Subscore
+     * const subscore = await prisma.subscore.upsert({
+     *   create: {
+     *     // ... data to create a Subscore
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Subscore we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubscoreUpsertArgs>(args: SelectSubset<T, SubscoreUpsertArgs<ExtArgs>>): Prisma__SubscoreClient<$Result.GetResult<Prisma.$SubscorePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Subscores that matches the filter.
+     * @param {SubscoreFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const subscore = await prisma.subscore.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: SubscoreFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Subscore.
+     * @param {SubscoreAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const subscore = await prisma.subscore.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: SubscoreAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Subscores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreCountArgs} args - Arguments to filter Subscores to count.
+     * @example
+     * // Count the number of Subscores
+     * const count = await prisma.subscore.count({
+     *   where: {
+     *     // ... the filter for the Subscores we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubscoreCountArgs>(
+      args?: Subset<T, SubscoreCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubscoreCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Subscore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubscoreAggregateArgs>(args: Subset<T, SubscoreAggregateArgs>): Prisma.PrismaPromise<GetSubscoreAggregateType<T>>
+
+    /**
+     * Group by Subscore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscoreGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubscoreGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubscoreGroupByArgs['orderBy'] }
+        : { orderBy?: SubscoreGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubscoreGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubscoreGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Subscore model
+   */
+  readonly fields: SubscoreFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Subscore.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubscoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    submission<T extends SubmissionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubmissionDefaultArgs<ExtArgs>>): Prisma__SubmissionClient<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Subscore model
+   */
+  interface SubscoreFieldRefs {
+    readonly id: FieldRef<"Subscore", 'String'>
+    readonly name: FieldRef<"Subscore", 'String'>
+    readonly score: FieldRef<"Subscore", 'Float'>
+    readonly maxScore: FieldRef<"Subscore", 'Float'>
+    readonly rationale: FieldRef<"Subscore", 'String'>
+    readonly submissionId: FieldRef<"Subscore", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Subscore findUnique
+   */
+  export type SubscoreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscore to fetch.
+     */
+    where: SubscoreWhereUniqueInput
+  }
+
+  /**
+   * Subscore findUniqueOrThrow
+   */
+  export type SubscoreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscore to fetch.
+     */
+    where: SubscoreWhereUniqueInput
+  }
+
+  /**
+   * Subscore findFirst
+   */
+  export type SubscoreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscore to fetch.
+     */
+    where?: SubscoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscores to fetch.
+     */
+    orderBy?: SubscoreOrderByWithRelationInput | SubscoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscores.
+     */
+    cursor?: SubscoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscores.
+     */
+    distinct?: SubscoreScalarFieldEnum | SubscoreScalarFieldEnum[]
+  }
+
+  /**
+   * Subscore findFirstOrThrow
+   */
+  export type SubscoreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscore to fetch.
+     */
+    where?: SubscoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscores to fetch.
+     */
+    orderBy?: SubscoreOrderByWithRelationInput | SubscoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscores.
+     */
+    cursor?: SubscoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscores.
+     */
+    distinct?: SubscoreScalarFieldEnum | SubscoreScalarFieldEnum[]
+  }
+
+  /**
+   * Subscore findMany
+   */
+  export type SubscoreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscores to fetch.
+     */
+    where?: SubscoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscores to fetch.
+     */
+    orderBy?: SubscoreOrderByWithRelationInput | SubscoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Subscores.
+     */
+    cursor?: SubscoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscores.
+     */
+    skip?: number
+    distinct?: SubscoreScalarFieldEnum | SubscoreScalarFieldEnum[]
+  }
+
+  /**
+   * Subscore create
+   */
+  export type SubscoreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Subscore.
+     */
+    data: XOR<SubscoreCreateInput, SubscoreUncheckedCreateInput>
+  }
+
+  /**
+   * Subscore createMany
+   */
+  export type SubscoreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Subscores.
+     */
+    data: SubscoreCreateManyInput | SubscoreCreateManyInput[]
+  }
+
+  /**
+   * Subscore update
+   */
+  export type SubscoreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Subscore.
+     */
+    data: XOR<SubscoreUpdateInput, SubscoreUncheckedUpdateInput>
+    /**
+     * Choose, which Subscore to update.
+     */
+    where: SubscoreWhereUniqueInput
+  }
+
+  /**
+   * Subscore updateMany
+   */
+  export type SubscoreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Subscores.
+     */
+    data: XOR<SubscoreUpdateManyMutationInput, SubscoreUncheckedUpdateManyInput>
+    /**
+     * Filter which Subscores to update
+     */
+    where?: SubscoreWhereInput
+    /**
+     * Limit how many Subscores to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscore upsert
+   */
+  export type SubscoreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Subscore to update in case it exists.
+     */
+    where: SubscoreWhereUniqueInput
+    /**
+     * In case the Subscore found by the `where` argument doesn't exist, create a new Subscore with this data.
+     */
+    create: XOR<SubscoreCreateInput, SubscoreUncheckedCreateInput>
+    /**
+     * In case the Subscore was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubscoreUpdateInput, SubscoreUncheckedUpdateInput>
+  }
+
+  /**
+   * Subscore delete
+   */
+  export type SubscoreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+    /**
+     * Filter which Subscore to delete.
+     */
+    where: SubscoreWhereUniqueInput
+  }
+
+  /**
+   * Subscore deleteMany
+   */
+  export type SubscoreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscores to delete
+     */
+    where?: SubscoreWhereInput
+    /**
+     * Limit how many Subscores to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscore findRaw
+   */
+  export type SubscoreFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Subscore aggregateRaw
+   */
+  export type SubscoreAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Subscore without action
+   */
+  export type SubscoreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscore
+     */
+    select?: SubscoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscore
+     */
+    omit?: SubscoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscoreInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6860,6 +16156,100 @@ export namespace Prisma {
   };
 
   export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
+
+
+  export const SubmissionScalarFieldEnum: {
+    id: 'id',
+    assignmentId: 'assignmentId',
+    assignmentTitle: 'assignmentTitle',
+    studentName: 'studentName',
+    studentId: 'studentId',
+    submissionDate: 'submissionDate',
+    status: 'status',
+    content: 'content',
+    aiCheckerResultsId: 'aiCheckerResultsId',
+    plagiarismResultsId: 'plagiarismResultsId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+  export const AICheckerResultsScalarFieldEnum: {
+    id: 'id',
+    score: 'score',
+    confidence: 'confidence'
+  };
+
+  export type AICheckerResultsScalarFieldEnum = (typeof AICheckerResultsScalarFieldEnum)[keyof typeof AICheckerResultsScalarFieldEnum]
+
+
+  export const AIDetailScalarFieldEnum: {
+    id: 'id',
+    section: 'section',
+    aiProbability: 'aiProbability',
+    humanProbability: 'humanProbability',
+    aiCheckerResultsId: 'aiCheckerResultsId'
+  };
+
+  export type AIDetailScalarFieldEnum = (typeof AIDetailScalarFieldEnum)[keyof typeof AIDetailScalarFieldEnum]
+
+
+  export const PlagiarismResultsScalarFieldEnum: {
+    id: 'id',
+    score: 'score'
+  };
+
+  export type PlagiarismResultsScalarFieldEnum = (typeof PlagiarismResultsScalarFieldEnum)[keyof typeof PlagiarismResultsScalarFieldEnum]
+
+
+  export const PlagiarismMatchScalarFieldEnum: {
+    id: 'id',
+    test: 'test',
+    source: 'source',
+    similarity: 'similarity',
+    plagiarismResultsId: 'plagiarismResultsId'
+  };
+
+  export type PlagiarismMatchScalarFieldEnum = (typeof PlagiarismMatchScalarFieldEnum)[keyof typeof PlagiarismMatchScalarFieldEnum]
+
+
+  export const InlineCommentScalarFieldEnum: {
+    id: 'id',
+    startIndex: 'startIndex',
+    endIndex: 'endIndex',
+    text: 'text',
+    color: 'color',
+    timeStamp: 'timeStamp',
+    authorId: 'authorId',
+    submissionId: 'submissionId'
+  };
+
+  export type InlineCommentScalarFieldEnum = (typeof InlineCommentScalarFieldEnum)[keyof typeof InlineCommentScalarFieldEnum]
+
+
+  export const OverallFeedbackScalarFieldEnum: {
+    id: 'id',
+    strengths: 'strengths',
+    improvements: 'improvements',
+    actionItems: 'actionItems',
+    submissionId: 'submissionId'
+  };
+
+  export type OverallFeedbackScalarFieldEnum = (typeof OverallFeedbackScalarFieldEnum)[keyof typeof OverallFeedbackScalarFieldEnum]
+
+
+  export const SubscoreScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    score: 'score',
+    maxScore: 'maxScore',
+    rationale: 'rationale',
+    submissionId: 'submissionId'
+  };
+
+  export type SubscoreScalarFieldEnum = (typeof SubscoreScalarFieldEnum)[keyof typeof SubscoreScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6954,6 +16344,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'SubmissionStatus'
+   */
+  export type EnumSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmissionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubmissionStatus[]'
+   */
+  export type ListEnumSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmissionStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -6964,6 +16368,34 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConfidenceLevel'
+   */
+  export type EnumConfidenceLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConfidenceLevel'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConfidenceLevel[]'
+   */
+  export type ListEnumConfidenceLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConfidenceLevel[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -7036,6 +16468,7 @@ export namespace Prisma {
     courses?: CourseListRelationFilter
     assignments?: AssignmentListRelationFilter
     students?: StudentListRelationFilter
+    inlineComments?: InlineCommentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7047,6 +16480,7 @@ export namespace Prisma {
     courses?: CourseOrderByRelationAggregateInput
     assignments?: AssignmentOrderByRelationAggregateInput
     students?: StudentOrderByRelationAggregateInput
+    inlineComments?: InlineCommentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7061,6 +16495,7 @@ export namespace Prisma {
     courses?: CourseListRelationFilter
     assignments?: AssignmentListRelationFilter
     students?: StudentListRelationFilter
+    inlineComments?: InlineCommentListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7203,6 +16638,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    submission?: SubmissionListRelationFilter
   }
 
   export type AssignmentOrderByWithRelationInput = {
@@ -7223,6 +16659,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    submission?: SubmissionOrderByRelationAggregateInput
   }
 
   export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
@@ -7246,6 +16683,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    submission?: SubmissionListRelationFilter
   }, "id">
 
   export type AssignmentOrderByWithAggregationInput = {
@@ -7357,6 +16795,512 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
   }
 
+  export type SubmissionWhereInput = {
+    AND?: SubmissionWhereInput | SubmissionWhereInput[]
+    OR?: SubmissionWhereInput[]
+    NOT?: SubmissionWhereInput | SubmissionWhereInput[]
+    id?: StringFilter<"Submission"> | string
+    assignmentId?: StringFilter<"Submission"> | string
+    assignmentTitle?: StringFilter<"Submission"> | string
+    studentName?: StringNullableFilter<"Submission"> | string | null
+    studentId?: StringNullableFilter<"Submission"> | string | null
+    submissionDate?: DateTimeFilter<"Submission"> | Date | string
+    status?: EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
+    content?: StringFilter<"Submission"> | string
+    aiCheckerResultsId?: StringNullableFilter<"Submission"> | string | null
+    plagiarismResultsId?: StringNullableFilter<"Submission"> | string | null
+    createdAt?: DateTimeFilter<"Submission"> | Date | string
+    updatedAt?: DateTimeFilter<"Submission"> | Date | string
+    assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
+    aiCheckerResults?: XOR<AICheckerResultsNullableScalarRelationFilter, AICheckerResultsWhereInput> | null
+    plagiarismResults?: XOR<PlagiarismResultsNullableScalarRelationFilter, PlagiarismResultsWhereInput> | null
+    inlineComments?: InlineCommentListRelationFilter
+    overallFeedback?: XOR<OverallFeedbackNullableScalarRelationFilter, OverallFeedbackWhereInput> | null
+    subscores?: SubscoreListRelationFilter
+  }
+
+  export type SubmissionOrderByWithRelationInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    assignmentTitle?: SortOrder
+    studentName?: SortOrder
+    studentId?: SortOrder
+    submissionDate?: SortOrder
+    status?: SortOrder
+    content?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    plagiarismResultsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    assignment?: AssignmentOrderByWithRelationInput
+    aiCheckerResults?: AICheckerResultsOrderByWithRelationInput
+    plagiarismResults?: PlagiarismResultsOrderByWithRelationInput
+    inlineComments?: InlineCommentOrderByRelationAggregateInput
+    overallFeedback?: OverallFeedbackOrderByWithRelationInput
+    subscores?: SubscoreOrderByRelationAggregateInput
+  }
+
+  export type SubmissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    aiCheckerResultsId?: string
+    plagiarismResultsId?: string
+    AND?: SubmissionWhereInput | SubmissionWhereInput[]
+    OR?: SubmissionWhereInput[]
+    NOT?: SubmissionWhereInput | SubmissionWhereInput[]
+    assignmentId?: StringFilter<"Submission"> | string
+    assignmentTitle?: StringFilter<"Submission"> | string
+    studentName?: StringNullableFilter<"Submission"> | string | null
+    studentId?: StringNullableFilter<"Submission"> | string | null
+    submissionDate?: DateTimeFilter<"Submission"> | Date | string
+    status?: EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
+    content?: StringFilter<"Submission"> | string
+    createdAt?: DateTimeFilter<"Submission"> | Date | string
+    updatedAt?: DateTimeFilter<"Submission"> | Date | string
+    assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
+    aiCheckerResults?: XOR<AICheckerResultsNullableScalarRelationFilter, AICheckerResultsWhereInput> | null
+    plagiarismResults?: XOR<PlagiarismResultsNullableScalarRelationFilter, PlagiarismResultsWhereInput> | null
+    inlineComments?: InlineCommentListRelationFilter
+    overallFeedback?: XOR<OverallFeedbackNullableScalarRelationFilter, OverallFeedbackWhereInput> | null
+    subscores?: SubscoreListRelationFilter
+  }, "id" | "aiCheckerResultsId" | "plagiarismResultsId">
+
+  export type SubmissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    assignmentTitle?: SortOrder
+    studentName?: SortOrder
+    studentId?: SortOrder
+    submissionDate?: SortOrder
+    status?: SortOrder
+    content?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    plagiarismResultsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SubmissionCountOrderByAggregateInput
+    _max?: SubmissionMaxOrderByAggregateInput
+    _min?: SubmissionMinOrderByAggregateInput
+  }
+
+  export type SubmissionScalarWhereWithAggregatesInput = {
+    AND?: SubmissionScalarWhereWithAggregatesInput | SubmissionScalarWhereWithAggregatesInput[]
+    OR?: SubmissionScalarWhereWithAggregatesInput[]
+    NOT?: SubmissionScalarWhereWithAggregatesInput | SubmissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Submission"> | string
+    assignmentId?: StringWithAggregatesFilter<"Submission"> | string
+    assignmentTitle?: StringWithAggregatesFilter<"Submission"> | string
+    studentName?: StringNullableWithAggregatesFilter<"Submission"> | string | null
+    studentId?: StringNullableWithAggregatesFilter<"Submission"> | string | null
+    submissionDate?: DateTimeWithAggregatesFilter<"Submission"> | Date | string
+    status?: EnumSubmissionStatusWithAggregatesFilter<"Submission"> | $Enums.SubmissionStatus
+    content?: StringWithAggregatesFilter<"Submission"> | string
+    aiCheckerResultsId?: StringNullableWithAggregatesFilter<"Submission"> | string | null
+    plagiarismResultsId?: StringNullableWithAggregatesFilter<"Submission"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Submission"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Submission"> | Date | string
+  }
+
+  export type AICheckerResultsWhereInput = {
+    AND?: AICheckerResultsWhereInput | AICheckerResultsWhereInput[]
+    OR?: AICheckerResultsWhereInput[]
+    NOT?: AICheckerResultsWhereInput | AICheckerResultsWhereInput[]
+    id?: StringFilter<"AICheckerResults"> | string
+    score?: IntFilter<"AICheckerResults"> | number
+    confidence?: EnumConfidenceLevelFilter<"AICheckerResults"> | $Enums.ConfidenceLevel
+    details?: AIDetailListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, SubmissionWhereInput> | null
+  }
+
+  export type AICheckerResultsOrderByWithRelationInput = {
+    id?: SortOrder
+    score?: SortOrder
+    confidence?: SortOrder
+    details?: AIDetailOrderByRelationAggregateInput
+    submission?: SubmissionOrderByWithRelationInput
+  }
+
+  export type AICheckerResultsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AICheckerResultsWhereInput | AICheckerResultsWhereInput[]
+    OR?: AICheckerResultsWhereInput[]
+    NOT?: AICheckerResultsWhereInput | AICheckerResultsWhereInput[]
+    score?: IntFilter<"AICheckerResults"> | number
+    confidence?: EnumConfidenceLevelFilter<"AICheckerResults"> | $Enums.ConfidenceLevel
+    details?: AIDetailListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, SubmissionWhereInput> | null
+  }, "id">
+
+  export type AICheckerResultsOrderByWithAggregationInput = {
+    id?: SortOrder
+    score?: SortOrder
+    confidence?: SortOrder
+    _count?: AICheckerResultsCountOrderByAggregateInput
+    _avg?: AICheckerResultsAvgOrderByAggregateInput
+    _max?: AICheckerResultsMaxOrderByAggregateInput
+    _min?: AICheckerResultsMinOrderByAggregateInput
+    _sum?: AICheckerResultsSumOrderByAggregateInput
+  }
+
+  export type AICheckerResultsScalarWhereWithAggregatesInput = {
+    AND?: AICheckerResultsScalarWhereWithAggregatesInput | AICheckerResultsScalarWhereWithAggregatesInput[]
+    OR?: AICheckerResultsScalarWhereWithAggregatesInput[]
+    NOT?: AICheckerResultsScalarWhereWithAggregatesInput | AICheckerResultsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AICheckerResults"> | string
+    score?: IntWithAggregatesFilter<"AICheckerResults"> | number
+    confidence?: EnumConfidenceLevelWithAggregatesFilter<"AICheckerResults"> | $Enums.ConfidenceLevel
+  }
+
+  export type AIDetailWhereInput = {
+    AND?: AIDetailWhereInput | AIDetailWhereInput[]
+    OR?: AIDetailWhereInput[]
+    NOT?: AIDetailWhereInput | AIDetailWhereInput[]
+    id?: StringFilter<"AIDetail"> | string
+    section?: StringFilter<"AIDetail"> | string
+    aiProbability?: FloatFilter<"AIDetail"> | number
+    humanProbability?: FloatFilter<"AIDetail"> | number
+    aiCheckerResultsId?: StringFilter<"AIDetail"> | string
+    aiCheckerResults?: XOR<AICheckerResultsScalarRelationFilter, AICheckerResultsWhereInput>
+  }
+
+  export type AIDetailOrderByWithRelationInput = {
+    id?: SortOrder
+    section?: SortOrder
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    aiCheckerResults?: AICheckerResultsOrderByWithRelationInput
+  }
+
+  export type AIDetailWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIDetailWhereInput | AIDetailWhereInput[]
+    OR?: AIDetailWhereInput[]
+    NOT?: AIDetailWhereInput | AIDetailWhereInput[]
+    section?: StringFilter<"AIDetail"> | string
+    aiProbability?: FloatFilter<"AIDetail"> | number
+    humanProbability?: FloatFilter<"AIDetail"> | number
+    aiCheckerResultsId?: StringFilter<"AIDetail"> | string
+    aiCheckerResults?: XOR<AICheckerResultsScalarRelationFilter, AICheckerResultsWhereInput>
+  }, "id">
+
+  export type AIDetailOrderByWithAggregationInput = {
+    id?: SortOrder
+    section?: SortOrder
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    _count?: AIDetailCountOrderByAggregateInput
+    _avg?: AIDetailAvgOrderByAggregateInput
+    _max?: AIDetailMaxOrderByAggregateInput
+    _min?: AIDetailMinOrderByAggregateInput
+    _sum?: AIDetailSumOrderByAggregateInput
+  }
+
+  export type AIDetailScalarWhereWithAggregatesInput = {
+    AND?: AIDetailScalarWhereWithAggregatesInput | AIDetailScalarWhereWithAggregatesInput[]
+    OR?: AIDetailScalarWhereWithAggregatesInput[]
+    NOT?: AIDetailScalarWhereWithAggregatesInput | AIDetailScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIDetail"> | string
+    section?: StringWithAggregatesFilter<"AIDetail"> | string
+    aiProbability?: FloatWithAggregatesFilter<"AIDetail"> | number
+    humanProbability?: FloatWithAggregatesFilter<"AIDetail"> | number
+    aiCheckerResultsId?: StringWithAggregatesFilter<"AIDetail"> | string
+  }
+
+  export type PlagiarismResultsWhereInput = {
+    AND?: PlagiarismResultsWhereInput | PlagiarismResultsWhereInput[]
+    OR?: PlagiarismResultsWhereInput[]
+    NOT?: PlagiarismResultsWhereInput | PlagiarismResultsWhereInput[]
+    id?: StringFilter<"PlagiarismResults"> | string
+    score?: IntFilter<"PlagiarismResults"> | number
+    matches?: PlagiarismMatchListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, SubmissionWhereInput> | null
+  }
+
+  export type PlagiarismResultsOrderByWithRelationInput = {
+    id?: SortOrder
+    score?: SortOrder
+    matches?: PlagiarismMatchOrderByRelationAggregateInput
+    submission?: SubmissionOrderByWithRelationInput
+  }
+
+  export type PlagiarismResultsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlagiarismResultsWhereInput | PlagiarismResultsWhereInput[]
+    OR?: PlagiarismResultsWhereInput[]
+    NOT?: PlagiarismResultsWhereInput | PlagiarismResultsWhereInput[]
+    score?: IntFilter<"PlagiarismResults"> | number
+    matches?: PlagiarismMatchListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, SubmissionWhereInput> | null
+  }, "id">
+
+  export type PlagiarismResultsOrderByWithAggregationInput = {
+    id?: SortOrder
+    score?: SortOrder
+    _count?: PlagiarismResultsCountOrderByAggregateInput
+    _avg?: PlagiarismResultsAvgOrderByAggregateInput
+    _max?: PlagiarismResultsMaxOrderByAggregateInput
+    _min?: PlagiarismResultsMinOrderByAggregateInput
+    _sum?: PlagiarismResultsSumOrderByAggregateInput
+  }
+
+  export type PlagiarismResultsScalarWhereWithAggregatesInput = {
+    AND?: PlagiarismResultsScalarWhereWithAggregatesInput | PlagiarismResultsScalarWhereWithAggregatesInput[]
+    OR?: PlagiarismResultsScalarWhereWithAggregatesInput[]
+    NOT?: PlagiarismResultsScalarWhereWithAggregatesInput | PlagiarismResultsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlagiarismResults"> | string
+    score?: IntWithAggregatesFilter<"PlagiarismResults"> | number
+  }
+
+  export type PlagiarismMatchWhereInput = {
+    AND?: PlagiarismMatchWhereInput | PlagiarismMatchWhereInput[]
+    OR?: PlagiarismMatchWhereInput[]
+    NOT?: PlagiarismMatchWhereInput | PlagiarismMatchWhereInput[]
+    id?: StringFilter<"PlagiarismMatch"> | string
+    test?: StringFilter<"PlagiarismMatch"> | string
+    source?: StringFilter<"PlagiarismMatch"> | string
+    similarity?: FloatFilter<"PlagiarismMatch"> | number
+    plagiarismResultsId?: StringFilter<"PlagiarismMatch"> | string
+    plagiarismResults?: XOR<PlagiarismResultsScalarRelationFilter, PlagiarismResultsWhereInput>
+  }
+
+  export type PlagiarismMatchOrderByWithRelationInput = {
+    id?: SortOrder
+    test?: SortOrder
+    source?: SortOrder
+    similarity?: SortOrder
+    plagiarismResultsId?: SortOrder
+    plagiarismResults?: PlagiarismResultsOrderByWithRelationInput
+  }
+
+  export type PlagiarismMatchWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlagiarismMatchWhereInput | PlagiarismMatchWhereInput[]
+    OR?: PlagiarismMatchWhereInput[]
+    NOT?: PlagiarismMatchWhereInput | PlagiarismMatchWhereInput[]
+    test?: StringFilter<"PlagiarismMatch"> | string
+    source?: StringFilter<"PlagiarismMatch"> | string
+    similarity?: FloatFilter<"PlagiarismMatch"> | number
+    plagiarismResultsId?: StringFilter<"PlagiarismMatch"> | string
+    plagiarismResults?: XOR<PlagiarismResultsScalarRelationFilter, PlagiarismResultsWhereInput>
+  }, "id">
+
+  export type PlagiarismMatchOrderByWithAggregationInput = {
+    id?: SortOrder
+    test?: SortOrder
+    source?: SortOrder
+    similarity?: SortOrder
+    plagiarismResultsId?: SortOrder
+    _count?: PlagiarismMatchCountOrderByAggregateInput
+    _avg?: PlagiarismMatchAvgOrderByAggregateInput
+    _max?: PlagiarismMatchMaxOrderByAggregateInput
+    _min?: PlagiarismMatchMinOrderByAggregateInput
+    _sum?: PlagiarismMatchSumOrderByAggregateInput
+  }
+
+  export type PlagiarismMatchScalarWhereWithAggregatesInput = {
+    AND?: PlagiarismMatchScalarWhereWithAggregatesInput | PlagiarismMatchScalarWhereWithAggregatesInput[]
+    OR?: PlagiarismMatchScalarWhereWithAggregatesInput[]
+    NOT?: PlagiarismMatchScalarWhereWithAggregatesInput | PlagiarismMatchScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlagiarismMatch"> | string
+    test?: StringWithAggregatesFilter<"PlagiarismMatch"> | string
+    source?: StringWithAggregatesFilter<"PlagiarismMatch"> | string
+    similarity?: FloatWithAggregatesFilter<"PlagiarismMatch"> | number
+    plagiarismResultsId?: StringWithAggregatesFilter<"PlagiarismMatch"> | string
+  }
+
+  export type InlineCommentWhereInput = {
+    AND?: InlineCommentWhereInput | InlineCommentWhereInput[]
+    OR?: InlineCommentWhereInput[]
+    NOT?: InlineCommentWhereInput | InlineCommentWhereInput[]
+    id?: StringFilter<"InlineComment"> | string
+    startIndex?: IntFilter<"InlineComment"> | number
+    endIndex?: IntFilter<"InlineComment"> | number
+    text?: StringFilter<"InlineComment"> | string
+    color?: StringFilter<"InlineComment"> | string
+    timeStamp?: DateTimeFilter<"InlineComment"> | Date | string
+    authorId?: StringFilter<"InlineComment"> | string
+    submissionId?: StringFilter<"InlineComment"> | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }
+
+  export type InlineCommentOrderByWithRelationInput = {
+    id?: SortOrder
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+    text?: SortOrder
+    color?: SortOrder
+    timeStamp?: SortOrder
+    authorId?: SortOrder
+    submissionId?: SortOrder
+    author?: UserOrderByWithRelationInput
+    submission?: SubmissionOrderByWithRelationInput
+  }
+
+  export type InlineCommentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: InlineCommentWhereInput | InlineCommentWhereInput[]
+    OR?: InlineCommentWhereInput[]
+    NOT?: InlineCommentWhereInput | InlineCommentWhereInput[]
+    startIndex?: IntFilter<"InlineComment"> | number
+    endIndex?: IntFilter<"InlineComment"> | number
+    text?: StringFilter<"InlineComment"> | string
+    color?: StringFilter<"InlineComment"> | string
+    timeStamp?: DateTimeFilter<"InlineComment"> | Date | string
+    authorId?: StringFilter<"InlineComment"> | string
+    submissionId?: StringFilter<"InlineComment"> | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }, "id">
+
+  export type InlineCommentOrderByWithAggregationInput = {
+    id?: SortOrder
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+    text?: SortOrder
+    color?: SortOrder
+    timeStamp?: SortOrder
+    authorId?: SortOrder
+    submissionId?: SortOrder
+    _count?: InlineCommentCountOrderByAggregateInput
+    _avg?: InlineCommentAvgOrderByAggregateInput
+    _max?: InlineCommentMaxOrderByAggregateInput
+    _min?: InlineCommentMinOrderByAggregateInput
+    _sum?: InlineCommentSumOrderByAggregateInput
+  }
+
+  export type InlineCommentScalarWhereWithAggregatesInput = {
+    AND?: InlineCommentScalarWhereWithAggregatesInput | InlineCommentScalarWhereWithAggregatesInput[]
+    OR?: InlineCommentScalarWhereWithAggregatesInput[]
+    NOT?: InlineCommentScalarWhereWithAggregatesInput | InlineCommentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"InlineComment"> | string
+    startIndex?: IntWithAggregatesFilter<"InlineComment"> | number
+    endIndex?: IntWithAggregatesFilter<"InlineComment"> | number
+    text?: StringWithAggregatesFilter<"InlineComment"> | string
+    color?: StringWithAggregatesFilter<"InlineComment"> | string
+    timeStamp?: DateTimeWithAggregatesFilter<"InlineComment"> | Date | string
+    authorId?: StringWithAggregatesFilter<"InlineComment"> | string
+    submissionId?: StringWithAggregatesFilter<"InlineComment"> | string
+  }
+
+  export type OverallFeedbackWhereInput = {
+    AND?: OverallFeedbackWhereInput | OverallFeedbackWhereInput[]
+    OR?: OverallFeedbackWhereInput[]
+    NOT?: OverallFeedbackWhereInput | OverallFeedbackWhereInput[]
+    id?: StringFilter<"OverallFeedback"> | string
+    strengths?: StringFilter<"OverallFeedback"> | string
+    improvements?: StringFilter<"OverallFeedback"> | string
+    actionItems?: StringFilter<"OverallFeedback"> | string
+    submissionId?: StringFilter<"OverallFeedback"> | string
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }
+
+  export type OverallFeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    strengths?: SortOrder
+    improvements?: SortOrder
+    actionItems?: SortOrder
+    submissionId?: SortOrder
+    submission?: SubmissionOrderByWithRelationInput
+  }
+
+  export type OverallFeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    submissionId?: string
+    AND?: OverallFeedbackWhereInput | OverallFeedbackWhereInput[]
+    OR?: OverallFeedbackWhereInput[]
+    NOT?: OverallFeedbackWhereInput | OverallFeedbackWhereInput[]
+    strengths?: StringFilter<"OverallFeedback"> | string
+    improvements?: StringFilter<"OverallFeedback"> | string
+    actionItems?: StringFilter<"OverallFeedback"> | string
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }, "id" | "submissionId">
+
+  export type OverallFeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    strengths?: SortOrder
+    improvements?: SortOrder
+    actionItems?: SortOrder
+    submissionId?: SortOrder
+    _count?: OverallFeedbackCountOrderByAggregateInput
+    _max?: OverallFeedbackMaxOrderByAggregateInput
+    _min?: OverallFeedbackMinOrderByAggregateInput
+  }
+
+  export type OverallFeedbackScalarWhereWithAggregatesInput = {
+    AND?: OverallFeedbackScalarWhereWithAggregatesInput | OverallFeedbackScalarWhereWithAggregatesInput[]
+    OR?: OverallFeedbackScalarWhereWithAggregatesInput[]
+    NOT?: OverallFeedbackScalarWhereWithAggregatesInput | OverallFeedbackScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"OverallFeedback"> | string
+    strengths?: StringWithAggregatesFilter<"OverallFeedback"> | string
+    improvements?: StringWithAggregatesFilter<"OverallFeedback"> | string
+    actionItems?: StringWithAggregatesFilter<"OverallFeedback"> | string
+    submissionId?: StringWithAggregatesFilter<"OverallFeedback"> | string
+  }
+
+  export type SubscoreWhereInput = {
+    AND?: SubscoreWhereInput | SubscoreWhereInput[]
+    OR?: SubscoreWhereInput[]
+    NOT?: SubscoreWhereInput | SubscoreWhereInput[]
+    id?: StringFilter<"Subscore"> | string
+    name?: StringFilter<"Subscore"> | string
+    score?: FloatFilter<"Subscore"> | number
+    maxScore?: FloatFilter<"Subscore"> | number
+    rationale?: StringFilter<"Subscore"> | string
+    submissionId?: StringFilter<"Subscore"> | string
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }
+
+  export type SubscoreOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    rationale?: SortOrder
+    submissionId?: SortOrder
+    submission?: SubmissionOrderByWithRelationInput
+  }
+
+  export type SubscoreWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SubscoreWhereInput | SubscoreWhereInput[]
+    OR?: SubscoreWhereInput[]
+    NOT?: SubscoreWhereInput | SubscoreWhereInput[]
+    name?: StringFilter<"Subscore"> | string
+    score?: FloatFilter<"Subscore"> | number
+    maxScore?: FloatFilter<"Subscore"> | number
+    rationale?: StringFilter<"Subscore"> | string
+    submissionId?: StringFilter<"Subscore"> | string
+    submission?: XOR<SubmissionScalarRelationFilter, SubmissionWhereInput>
+  }, "id">
+
+  export type SubscoreOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    rationale?: SortOrder
+    submissionId?: SortOrder
+    _count?: SubscoreCountOrderByAggregateInput
+    _avg?: SubscoreAvgOrderByAggregateInput
+    _max?: SubscoreMaxOrderByAggregateInput
+    _min?: SubscoreMinOrderByAggregateInput
+    _sum?: SubscoreSumOrderByAggregateInput
+  }
+
+  export type SubscoreScalarWhereWithAggregatesInput = {
+    AND?: SubscoreScalarWhereWithAggregatesInput | SubscoreScalarWhereWithAggregatesInput[]
+    OR?: SubscoreScalarWhereWithAggregatesInput[]
+    NOT?: SubscoreScalarWhereWithAggregatesInput | SubscoreScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Subscore"> | string
+    name?: StringWithAggregatesFilter<"Subscore"> | string
+    score?: FloatWithAggregatesFilter<"Subscore"> | number
+    maxScore?: FloatWithAggregatesFilter<"Subscore"> | number
+    rationale?: StringWithAggregatesFilter<"Subscore"> | string
+    submissionId?: StringWithAggregatesFilter<"Subscore"> | string
+  }
+
   export type PaymentsCreateInput = {
     id?: string
     email: string
@@ -7411,6 +17355,7 @@ export namespace Prisma {
     courses?: CourseCreateNestedManyWithoutUserInput
     assignments?: AssignmentCreateNestedManyWithoutUserInput
     students?: StudentCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7422,6 +17367,7 @@ export namespace Prisma {
     courses?: CourseUncheckedCreateNestedManyWithoutUserInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutUserInput
     students?: StudentUncheckedCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
@@ -7432,6 +17378,7 @@ export namespace Prisma {
     courses?: CourseUpdateManyWithoutUserNestedInput
     assignments?: AssignmentUpdateManyWithoutUserNestedInput
     students?: StudentUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7442,6 +17389,7 @@ export namespace Prisma {
     courses?: CourseUncheckedUpdateManyWithoutUserNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutUserNestedInput
     students?: StudentUncheckedUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7604,6 +17552,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAssignmentsInput
+    submission?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateInput = {
@@ -7623,6 +17572,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    submission?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUpdateInput = {
@@ -7641,6 +17591,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+    submission?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateInput = {
@@ -7659,6 +17610,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentCreateManyInput = {
@@ -7780,6 +17732,483 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SubmissionCreateInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUpdateInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionCreateManyInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubmissionUpdateManyMutationInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionUncheckedUpdateManyInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AICheckerResultsCreateInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    details?: AIDetailCreateNestedManyWithoutAiCheckerResultsInput
+    submission?: SubmissionCreateNestedOneWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsUncheckedCreateInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    details?: AIDetailUncheckedCreateNestedManyWithoutAiCheckerResultsInput
+    submission?: SubmissionUncheckedCreateNestedOneWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsUpdateInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    details?: AIDetailUpdateManyWithoutAiCheckerResultsNestedInput
+    submission?: SubmissionUpdateOneWithoutAiCheckerResultsNestedInput
+  }
+
+  export type AICheckerResultsUncheckedUpdateInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    details?: AIDetailUncheckedUpdateManyWithoutAiCheckerResultsNestedInput
+    submission?: SubmissionUncheckedUpdateOneWithoutAiCheckerResultsNestedInput
+  }
+
+  export type AICheckerResultsCreateManyInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+  }
+
+  export type AICheckerResultsUpdateManyMutationInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+  }
+
+  export type AICheckerResultsUncheckedUpdateManyInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+  }
+
+  export type AIDetailCreateInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+    aiCheckerResults: AICheckerResultsCreateNestedOneWithoutDetailsInput
+  }
+
+  export type AIDetailUncheckedCreateInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+    aiCheckerResultsId: string
+  }
+
+  export type AIDetailUpdateInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+    aiCheckerResults?: AICheckerResultsUpdateOneRequiredWithoutDetailsNestedInput
+  }
+
+  export type AIDetailUncheckedUpdateInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+    aiCheckerResultsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AIDetailCreateManyInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+    aiCheckerResultsId: string
+  }
+
+  export type AIDetailUpdateManyMutationInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AIDetailUncheckedUpdateManyInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+    aiCheckerResultsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PlagiarismResultsCreateInput = {
+    id?: string
+    score: number
+    matches?: PlagiarismMatchCreateNestedManyWithoutPlagiarismResultsInput
+    submission?: SubmissionCreateNestedOneWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsUncheckedCreateInput = {
+    id?: string
+    score: number
+    matches?: PlagiarismMatchUncheckedCreateNestedManyWithoutPlagiarismResultsInput
+    submission?: SubmissionUncheckedCreateNestedOneWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsUpdateInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    matches?: PlagiarismMatchUpdateManyWithoutPlagiarismResultsNestedInput
+    submission?: SubmissionUpdateOneWithoutPlagiarismResultsNestedInput
+  }
+
+  export type PlagiarismResultsUncheckedUpdateInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    matches?: PlagiarismMatchUncheckedUpdateManyWithoutPlagiarismResultsNestedInput
+    submission?: SubmissionUncheckedUpdateOneWithoutPlagiarismResultsNestedInput
+  }
+
+  export type PlagiarismResultsCreateManyInput = {
+    id?: string
+    score: number
+  }
+
+  export type PlagiarismResultsUpdateManyMutationInput = {
+    score?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismResultsUncheckedUpdateManyInput = {
+    score?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismMatchCreateInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+    plagiarismResults: PlagiarismResultsCreateNestedOneWithoutMatchesInput
+  }
+
+  export type PlagiarismMatchUncheckedCreateInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+    plagiarismResultsId: string
+  }
+
+  export type PlagiarismMatchUpdateInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+    plagiarismResults?: PlagiarismResultsUpdateOneRequiredWithoutMatchesNestedInput
+  }
+
+  export type PlagiarismMatchUncheckedUpdateInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+    plagiarismResultsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PlagiarismMatchCreateManyInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+    plagiarismResultsId: string
+  }
+
+  export type PlagiarismMatchUpdateManyMutationInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismMatchUncheckedUpdateManyInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+    plagiarismResultsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InlineCommentCreateInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    author: UserCreateNestedOneWithoutInlineCommentsInput
+    submission: SubmissionCreateNestedOneWithoutInlineCommentsInput
+  }
+
+  export type InlineCommentUncheckedCreateInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    authorId: string
+    submissionId: string
+  }
+
+  export type InlineCommentUpdateInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutInlineCommentsNestedInput
+    submission?: SubmissionUpdateOneRequiredWithoutInlineCommentsNestedInput
+  }
+
+  export type InlineCommentUncheckedUpdateInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InlineCommentCreateManyInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    authorId: string
+    submissionId: string
+  }
+
+  export type InlineCommentUpdateManyMutationInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InlineCommentUncheckedUpdateManyInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OverallFeedbackCreateInput = {
+    id?: string
+    strengths: string
+    improvements: string
+    actionItems: string
+    submission: SubmissionCreateNestedOneWithoutOverallFeedbackInput
+  }
+
+  export type OverallFeedbackUncheckedCreateInput = {
+    id?: string
+    strengths: string
+    improvements: string
+    actionItems: string
+    submissionId: string
+  }
+
+  export type OverallFeedbackUpdateInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+    submission?: SubmissionUpdateOneRequiredWithoutOverallFeedbackNestedInput
+  }
+
+  export type OverallFeedbackUncheckedUpdateInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OverallFeedbackCreateManyInput = {
+    id?: string
+    strengths: string
+    improvements: string
+    actionItems: string
+    submissionId: string
+  }
+
+  export type OverallFeedbackUpdateManyMutationInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OverallFeedbackUncheckedUpdateManyInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreCreateInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+    submission: SubmissionCreateNestedOneWithoutSubscoresInput
+  }
+
+  export type SubscoreUncheckedCreateInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+    submissionId: string
+  }
+
+  export type SubscoreUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+    submission?: SubmissionUpdateOneRequiredWithoutSubscoresNestedInput
+  }
+
+  export type SubscoreUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreCreateManyInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+    submissionId: string
+  }
+
+  export type SubscoreUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7893,6 +18322,12 @@ export namespace Prisma {
     none?: StudentWhereInput
   }
 
+  export type InlineCommentListRelationFilter = {
+    every?: InlineCommentWhereInput
+    some?: InlineCommentWhereInput
+    none?: InlineCommentWhereInput
+  }
+
   export type CourseOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -7902,6 +18337,10 @@ export namespace Prisma {
   }
 
   export type StudentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InlineCommentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8100,6 +18539,16 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type SubmissionListRelationFilter = {
+    every?: SubmissionWhereInput
+    some?: SubmissionWhereInput
+    none?: SubmissionWhereInput
+  }
+
+  export type SubmissionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type AssignmentCountOrderByAggregateInput = {
     id?: SortOrder
     assignmentTitle?: SortOrder
@@ -8220,6 +18669,428 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusFilter<$PrismaModel> | $Enums.SubmissionStatus
+  }
+
+  export type AssignmentScalarRelationFilter = {
+    is?: AssignmentWhereInput
+    isNot?: AssignmentWhereInput
+  }
+
+  export type AICheckerResultsNullableScalarRelationFilter = {
+    is?: AICheckerResultsWhereInput | null
+    isNot?: AICheckerResultsWhereInput | null
+  }
+
+  export type PlagiarismResultsNullableScalarRelationFilter = {
+    is?: PlagiarismResultsWhereInput | null
+    isNot?: PlagiarismResultsWhereInput | null
+  }
+
+  export type OverallFeedbackNullableScalarRelationFilter = {
+    is?: OverallFeedbackWhereInput | null
+    isNot?: OverallFeedbackWhereInput | null
+  }
+
+  export type SubscoreListRelationFilter = {
+    every?: SubscoreWhereInput
+    some?: SubscoreWhereInput
+    none?: SubscoreWhereInput
+  }
+
+  export type SubscoreOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SubmissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    assignmentTitle?: SortOrder
+    studentName?: SortOrder
+    studentId?: SortOrder
+    submissionDate?: SortOrder
+    status?: SortOrder
+    content?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    plagiarismResultsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubmissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    assignmentTitle?: SortOrder
+    studentName?: SortOrder
+    studentId?: SortOrder
+    submissionDate?: SortOrder
+    status?: SortOrder
+    content?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    plagiarismResultsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubmissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    assignmentTitle?: SortOrder
+    studentName?: SortOrder
+    studentId?: SortOrder
+    submissionDate?: SortOrder
+    status?: SortOrder
+    content?: SortOrder
+    aiCheckerResultsId?: SortOrder
+    plagiarismResultsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EnumConfidenceLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConfidenceLevel | EnumConfidenceLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumConfidenceLevelFilter<$PrismaModel> | $Enums.ConfidenceLevel
+  }
+
+  export type AIDetailListRelationFilter = {
+    every?: AIDetailWhereInput
+    some?: AIDetailWhereInput
+    none?: AIDetailWhereInput
+  }
+
+  export type SubmissionNullableScalarRelationFilter = {
+    is?: SubmissionWhereInput | null
+    isNot?: SubmissionWhereInput | null
+  }
+
+  export type AIDetailOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AICheckerResultsCountOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+    confidence?: SortOrder
+  }
+
+  export type AICheckerResultsAvgOrderByAggregateInput = {
+    score?: SortOrder
+  }
+
+  export type AICheckerResultsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+    confidence?: SortOrder
+  }
+
+  export type AICheckerResultsMinOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+    confidence?: SortOrder
+  }
+
+  export type AICheckerResultsSumOrderByAggregateInput = {
+    score?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumConfidenceLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConfidenceLevel | EnumConfidenceLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumConfidenceLevelWithAggregatesFilter<$PrismaModel> | $Enums.ConfidenceLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConfidenceLevelFilter<$PrismaModel>
+    _max?: NestedEnumConfidenceLevelFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type AICheckerResultsScalarRelationFilter = {
+    is?: AICheckerResultsWhereInput
+    isNot?: AICheckerResultsWhereInput
+  }
+
+  export type AIDetailCountOrderByAggregateInput = {
+    id?: SortOrder
+    section?: SortOrder
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+    aiCheckerResultsId?: SortOrder
+  }
+
+  export type AIDetailAvgOrderByAggregateInput = {
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+  }
+
+  export type AIDetailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    section?: SortOrder
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+    aiCheckerResultsId?: SortOrder
+  }
+
+  export type AIDetailMinOrderByAggregateInput = {
+    id?: SortOrder
+    section?: SortOrder
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+    aiCheckerResultsId?: SortOrder
+  }
+
+  export type AIDetailSumOrderByAggregateInput = {
+    aiProbability?: SortOrder
+    humanProbability?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type PlagiarismMatchListRelationFilter = {
+    every?: PlagiarismMatchWhereInput
+    some?: PlagiarismMatchWhereInput
+    none?: PlagiarismMatchWhereInput
+  }
+
+  export type PlagiarismMatchOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlagiarismResultsCountOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+  }
+
+  export type PlagiarismResultsAvgOrderByAggregateInput = {
+    score?: SortOrder
+  }
+
+  export type PlagiarismResultsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+  }
+
+  export type PlagiarismResultsMinOrderByAggregateInput = {
+    id?: SortOrder
+    score?: SortOrder
+  }
+
+  export type PlagiarismResultsSumOrderByAggregateInput = {
+    score?: SortOrder
+  }
+
+  export type PlagiarismResultsScalarRelationFilter = {
+    is?: PlagiarismResultsWhereInput
+    isNot?: PlagiarismResultsWhereInput
+  }
+
+  export type PlagiarismMatchCountOrderByAggregateInput = {
+    id?: SortOrder
+    test?: SortOrder
+    source?: SortOrder
+    similarity?: SortOrder
+    plagiarismResultsId?: SortOrder
+  }
+
+  export type PlagiarismMatchAvgOrderByAggregateInput = {
+    similarity?: SortOrder
+  }
+
+  export type PlagiarismMatchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    test?: SortOrder
+    source?: SortOrder
+    similarity?: SortOrder
+    plagiarismResultsId?: SortOrder
+  }
+
+  export type PlagiarismMatchMinOrderByAggregateInput = {
+    id?: SortOrder
+    test?: SortOrder
+    source?: SortOrder
+    similarity?: SortOrder
+    plagiarismResultsId?: SortOrder
+  }
+
+  export type PlagiarismMatchSumOrderByAggregateInput = {
+    similarity?: SortOrder
+  }
+
+  export type SubmissionScalarRelationFilter = {
+    is?: SubmissionWhereInput
+    isNot?: SubmissionWhereInput
+  }
+
+  export type InlineCommentCountOrderByAggregateInput = {
+    id?: SortOrder
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+    text?: SortOrder
+    color?: SortOrder
+    timeStamp?: SortOrder
+    authorId?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type InlineCommentAvgOrderByAggregateInput = {
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+  }
+
+  export type InlineCommentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+    text?: SortOrder
+    color?: SortOrder
+    timeStamp?: SortOrder
+    authorId?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type InlineCommentMinOrderByAggregateInput = {
+    id?: SortOrder
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+    text?: SortOrder
+    color?: SortOrder
+    timeStamp?: SortOrder
+    authorId?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type InlineCommentSumOrderByAggregateInput = {
+    startIndex?: SortOrder
+    endIndex?: SortOrder
+  }
+
+  export type OverallFeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    strengths?: SortOrder
+    improvements?: SortOrder
+    actionItems?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type OverallFeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    strengths?: SortOrder
+    improvements?: SortOrder
+    actionItems?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type OverallFeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    strengths?: SortOrder
+    improvements?: SortOrder
+    actionItems?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type SubscoreCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    rationale?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type SubscoreAvgOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+  }
+
+  export type SubscoreMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    rationale?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type SubscoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    rationale?: SortOrder
+    submissionId?: SortOrder
+  }
+
+  export type SubscoreSumOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -8253,6 +19124,13 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
   }
 
+  export type InlineCommentCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput> | InlineCommentCreateWithoutAuthorInput[] | InlineCommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutAuthorInput | InlineCommentCreateOrConnectWithoutAuthorInput[]
+    createMany?: InlineCommentCreateManyAuthorInputEnvelope
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+  }
+
   export type CourseUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
@@ -8272,6 +19150,13 @@ export namespace Prisma {
     connectOrCreate?: StudentCreateOrConnectWithoutUserInput | StudentCreateOrConnectWithoutUserInput[]
     createMany?: StudentCreateManyUserInputEnvelope
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type InlineCommentUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput> | InlineCommentCreateWithoutAuthorInput[] | InlineCommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutAuthorInput | InlineCommentCreateOrConnectWithoutAuthorInput[]
+    createMany?: InlineCommentCreateManyAuthorInputEnvelope
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
   }
 
   export type EnumProviderFieldUpdateOperationsInput = {
@@ -8320,6 +19205,20 @@ export namespace Prisma {
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
   }
 
+  export type InlineCommentUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput> | InlineCommentCreateWithoutAuthorInput[] | InlineCommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutAuthorInput | InlineCommentCreateOrConnectWithoutAuthorInput[]
+    upsert?: InlineCommentUpsertWithWhereUniqueWithoutAuthorInput | InlineCommentUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: InlineCommentCreateManyAuthorInputEnvelope
+    set?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    disconnect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    delete?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    update?: InlineCommentUpdateWithWhereUniqueWithoutAuthorInput | InlineCommentUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: InlineCommentUpdateManyWithWhereWithoutAuthorInput | InlineCommentUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
+  }
+
   export type CourseUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<CourseCreateWithoutUserInput, CourseUncheckedCreateWithoutUserInput> | CourseCreateWithoutUserInput[] | CourseUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutUserInput | CourseCreateOrConnectWithoutUserInput[]
@@ -8360,6 +19259,20 @@ export namespace Prisma {
     update?: StudentUpdateWithWhereUniqueWithoutUserInput | StudentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: StudentUpdateManyWithWhereWithoutUserInput | StudentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput> | InlineCommentCreateWithoutAuthorInput[] | InlineCommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutAuthorInput | InlineCommentCreateOrConnectWithoutAuthorInput[]
+    upsert?: InlineCommentUpsertWithWhereUniqueWithoutAuthorInput | InlineCommentUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: InlineCommentCreateManyAuthorInputEnvelope
+    set?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    disconnect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    delete?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    update?: InlineCommentUpdateWithWhereUniqueWithoutAuthorInput | InlineCommentUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: InlineCommentUpdateManyWithWhereWithoutAuthorInput | InlineCommentUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
   }
 
   export type CourseCreatelearningObjectivesInput = {
@@ -8460,6 +19373,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type SubmissionCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
+    createMany?: SubmissionCreateManyAssignmentInputEnvelope
+    connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+  }
+
+  export type SubmissionUncheckedCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
+    createMany?: SubmissionCreateManyAssignmentInputEnvelope
+    connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -8477,6 +19404,34 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAssignmentsInput, UserUpdateWithoutAssignmentsInput>, UserUncheckedUpdateWithoutAssignmentsInput>
   }
 
+  export type SubmissionUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
+    upsert?: SubmissionUpsertWithWhereUniqueWithoutAssignmentInput | SubmissionUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: SubmissionCreateManyAssignmentInputEnvelope
+    set?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    disconnect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    delete?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    update?: SubmissionUpdateWithWhereUniqueWithoutAssignmentInput | SubmissionUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: SubmissionUpdateManyWithWhereWithoutAssignmentInput | SubmissionUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
+  }
+
+  export type SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
+    upsert?: SubmissionUpsertWithWhereUniqueWithoutAssignmentInput | SubmissionUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: SubmissionCreateManyAssignmentInputEnvelope
+    set?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    disconnect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    delete?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+    update?: SubmissionUpdateWithWhereUniqueWithoutAssignmentInput | SubmissionUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: SubmissionUpdateManyWithWhereWithoutAssignmentInput | SubmissionUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutStudentsInput = {
     create?: XOR<UserCreateWithoutStudentsInput, UserUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutStudentsInput
@@ -8489,6 +19444,424 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutStudentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStudentsInput, UserUpdateWithoutStudentsInput>, UserUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type AssignmentCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<AssignmentCreateWithoutSubmissionInput, AssignmentUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutSubmissionInput
+    connect?: AssignmentWhereUniqueInput
+  }
+
+  export type AICheckerResultsCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<AICheckerResultsCreateWithoutSubmissionInput, AICheckerResultsUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: AICheckerResultsCreateOrConnectWithoutSubmissionInput
+    connect?: AICheckerResultsWhereUniqueInput
+  }
+
+  export type PlagiarismResultsCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<PlagiarismResultsCreateWithoutSubmissionInput, PlagiarismResultsUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: PlagiarismResultsCreateOrConnectWithoutSubmissionInput
+    connect?: PlagiarismResultsWhereUniqueInput
+  }
+
+  export type InlineCommentCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput> | InlineCommentCreateWithoutSubmissionInput[] | InlineCommentUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutSubmissionInput | InlineCommentCreateOrConnectWithoutSubmissionInput[]
+    createMany?: InlineCommentCreateManySubmissionInputEnvelope
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+  }
+
+  export type OverallFeedbackCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: OverallFeedbackCreateOrConnectWithoutSubmissionInput
+    connect?: OverallFeedbackWhereUniqueInput
+  }
+
+  export type SubscoreCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput> | SubscoreCreateWithoutSubmissionInput[] | SubscoreUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: SubscoreCreateOrConnectWithoutSubmissionInput | SubscoreCreateOrConnectWithoutSubmissionInput[]
+    createMany?: SubscoreCreateManySubmissionInputEnvelope
+    connect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+  }
+
+  export type InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput> | InlineCommentCreateWithoutSubmissionInput[] | InlineCommentUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutSubmissionInput | InlineCommentCreateOrConnectWithoutSubmissionInput[]
+    createMany?: InlineCommentCreateManySubmissionInputEnvelope
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+  }
+
+  export type OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: OverallFeedbackCreateOrConnectWithoutSubmissionInput
+    connect?: OverallFeedbackWhereUniqueInput
+  }
+
+  export type SubscoreUncheckedCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput> | SubscoreCreateWithoutSubmissionInput[] | SubscoreUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: SubscoreCreateOrConnectWithoutSubmissionInput | SubscoreCreateOrConnectWithoutSubmissionInput[]
+    createMany?: SubscoreCreateManySubmissionInputEnvelope
+    connect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+  }
+
+  export type EnumSubmissionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SubmissionStatus
+  }
+
+  export type AssignmentUpdateOneRequiredWithoutSubmissionNestedInput = {
+    create?: XOR<AssignmentCreateWithoutSubmissionInput, AssignmentUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutSubmissionInput
+    upsert?: AssignmentUpsertWithoutSubmissionInput
+    connect?: AssignmentWhereUniqueInput
+    update?: XOR<XOR<AssignmentUpdateToOneWithWhereWithoutSubmissionInput, AssignmentUpdateWithoutSubmissionInput>, AssignmentUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type AICheckerResultsUpdateOneWithoutSubmissionNestedInput = {
+    create?: XOR<AICheckerResultsCreateWithoutSubmissionInput, AICheckerResultsUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: AICheckerResultsCreateOrConnectWithoutSubmissionInput
+    upsert?: AICheckerResultsUpsertWithoutSubmissionInput
+    disconnect?: boolean
+    delete?: AICheckerResultsWhereInput | boolean
+    connect?: AICheckerResultsWhereUniqueInput
+    update?: XOR<XOR<AICheckerResultsUpdateToOneWithWhereWithoutSubmissionInput, AICheckerResultsUpdateWithoutSubmissionInput>, AICheckerResultsUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type PlagiarismResultsUpdateOneWithoutSubmissionNestedInput = {
+    create?: XOR<PlagiarismResultsCreateWithoutSubmissionInput, PlagiarismResultsUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: PlagiarismResultsCreateOrConnectWithoutSubmissionInput
+    upsert?: PlagiarismResultsUpsertWithoutSubmissionInput
+    disconnect?: boolean
+    delete?: PlagiarismResultsWhereInput | boolean
+    connect?: PlagiarismResultsWhereUniqueInput
+    update?: XOR<XOR<PlagiarismResultsUpdateToOneWithWhereWithoutSubmissionInput, PlagiarismResultsUpdateWithoutSubmissionInput>, PlagiarismResultsUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type InlineCommentUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput> | InlineCommentCreateWithoutSubmissionInput[] | InlineCommentUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutSubmissionInput | InlineCommentCreateOrConnectWithoutSubmissionInput[]
+    upsert?: InlineCommentUpsertWithWhereUniqueWithoutSubmissionInput | InlineCommentUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: InlineCommentCreateManySubmissionInputEnvelope
+    set?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    disconnect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    delete?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    update?: InlineCommentUpdateWithWhereUniqueWithoutSubmissionInput | InlineCommentUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: InlineCommentUpdateManyWithWhereWithoutSubmissionInput | InlineCommentUpdateManyWithWhereWithoutSubmissionInput[]
+    deleteMany?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
+  }
+
+  export type OverallFeedbackUpdateOneWithoutSubmissionNestedInput = {
+    create?: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: OverallFeedbackCreateOrConnectWithoutSubmissionInput
+    upsert?: OverallFeedbackUpsertWithoutSubmissionInput
+    disconnect?: OverallFeedbackWhereInput | boolean
+    delete?: OverallFeedbackWhereInput | boolean
+    connect?: OverallFeedbackWhereUniqueInput
+    update?: XOR<XOR<OverallFeedbackUpdateToOneWithWhereWithoutSubmissionInput, OverallFeedbackUpdateWithoutSubmissionInput>, OverallFeedbackUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type SubscoreUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput> | SubscoreCreateWithoutSubmissionInput[] | SubscoreUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: SubscoreCreateOrConnectWithoutSubmissionInput | SubscoreCreateOrConnectWithoutSubmissionInput[]
+    upsert?: SubscoreUpsertWithWhereUniqueWithoutSubmissionInput | SubscoreUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: SubscoreCreateManySubmissionInputEnvelope
+    set?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    disconnect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    delete?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    connect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    update?: SubscoreUpdateWithWhereUniqueWithoutSubmissionInput | SubscoreUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: SubscoreUpdateManyWithWhereWithoutSubmissionInput | SubscoreUpdateManyWithWhereWithoutSubmissionInput[]
+    deleteMany?: SubscoreScalarWhereInput | SubscoreScalarWhereInput[]
+  }
+
+  export type InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput> | InlineCommentCreateWithoutSubmissionInput[] | InlineCommentUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: InlineCommentCreateOrConnectWithoutSubmissionInput | InlineCommentCreateOrConnectWithoutSubmissionInput[]
+    upsert?: InlineCommentUpsertWithWhereUniqueWithoutSubmissionInput | InlineCommentUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: InlineCommentCreateManySubmissionInputEnvelope
+    set?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    disconnect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    delete?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    connect?: InlineCommentWhereUniqueInput | InlineCommentWhereUniqueInput[]
+    update?: InlineCommentUpdateWithWhereUniqueWithoutSubmissionInput | InlineCommentUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: InlineCommentUpdateManyWithWhereWithoutSubmissionInput | InlineCommentUpdateManyWithWhereWithoutSubmissionInput[]
+    deleteMany?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
+  }
+
+  export type OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput = {
+    create?: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: OverallFeedbackCreateOrConnectWithoutSubmissionInput
+    upsert?: OverallFeedbackUpsertWithoutSubmissionInput
+    disconnect?: OverallFeedbackWhereInput | boolean
+    delete?: OverallFeedbackWhereInput | boolean
+    connect?: OverallFeedbackWhereUniqueInput
+    update?: XOR<XOR<OverallFeedbackUpdateToOneWithWhereWithoutSubmissionInput, OverallFeedbackUpdateWithoutSubmissionInput>, OverallFeedbackUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput> | SubscoreCreateWithoutSubmissionInput[] | SubscoreUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: SubscoreCreateOrConnectWithoutSubmissionInput | SubscoreCreateOrConnectWithoutSubmissionInput[]
+    upsert?: SubscoreUpsertWithWhereUniqueWithoutSubmissionInput | SubscoreUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: SubscoreCreateManySubmissionInputEnvelope
+    set?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    disconnect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    delete?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    connect?: SubscoreWhereUniqueInput | SubscoreWhereUniqueInput[]
+    update?: SubscoreUpdateWithWhereUniqueWithoutSubmissionInput | SubscoreUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: SubscoreUpdateManyWithWhereWithoutSubmissionInput | SubscoreUpdateManyWithWhereWithoutSubmissionInput[]
+    deleteMany?: SubscoreScalarWhereInput | SubscoreScalarWhereInput[]
+  }
+
+  export type AIDetailCreateNestedManyWithoutAiCheckerResultsInput = {
+    create?: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput> | AIDetailCreateWithoutAiCheckerResultsInput[] | AIDetailUncheckedCreateWithoutAiCheckerResultsInput[]
+    connectOrCreate?: AIDetailCreateOrConnectWithoutAiCheckerResultsInput | AIDetailCreateOrConnectWithoutAiCheckerResultsInput[]
+    createMany?: AIDetailCreateManyAiCheckerResultsInputEnvelope
+    connect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+  }
+
+  export type SubmissionCreateNestedOneWithoutAiCheckerResultsInput = {
+    create?: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAiCheckerResultsInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type AIDetailUncheckedCreateNestedManyWithoutAiCheckerResultsInput = {
+    create?: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput> | AIDetailCreateWithoutAiCheckerResultsInput[] | AIDetailUncheckedCreateWithoutAiCheckerResultsInput[]
+    connectOrCreate?: AIDetailCreateOrConnectWithoutAiCheckerResultsInput | AIDetailCreateOrConnectWithoutAiCheckerResultsInput[]
+    createMany?: AIDetailCreateManyAiCheckerResultsInputEnvelope
+    connect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+  }
+
+  export type SubmissionUncheckedCreateNestedOneWithoutAiCheckerResultsInput = {
+    create?: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAiCheckerResultsInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumConfidenceLevelFieldUpdateOperationsInput = {
+    set?: $Enums.ConfidenceLevel
+  }
+
+  export type AIDetailUpdateManyWithoutAiCheckerResultsNestedInput = {
+    create?: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput> | AIDetailCreateWithoutAiCheckerResultsInput[] | AIDetailUncheckedCreateWithoutAiCheckerResultsInput[]
+    connectOrCreate?: AIDetailCreateOrConnectWithoutAiCheckerResultsInput | AIDetailCreateOrConnectWithoutAiCheckerResultsInput[]
+    upsert?: AIDetailUpsertWithWhereUniqueWithoutAiCheckerResultsInput | AIDetailUpsertWithWhereUniqueWithoutAiCheckerResultsInput[]
+    createMany?: AIDetailCreateManyAiCheckerResultsInputEnvelope
+    set?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    disconnect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    delete?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    connect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    update?: AIDetailUpdateWithWhereUniqueWithoutAiCheckerResultsInput | AIDetailUpdateWithWhereUniqueWithoutAiCheckerResultsInput[]
+    updateMany?: AIDetailUpdateManyWithWhereWithoutAiCheckerResultsInput | AIDetailUpdateManyWithWhereWithoutAiCheckerResultsInput[]
+    deleteMany?: AIDetailScalarWhereInput | AIDetailScalarWhereInput[]
+  }
+
+  export type SubmissionUpdateOneWithoutAiCheckerResultsNestedInput = {
+    create?: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAiCheckerResultsInput
+    upsert?: SubmissionUpsertWithoutAiCheckerResultsInput
+    disconnect?: SubmissionWhereInput | boolean
+    delete?: SubmissionWhereInput | boolean
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutAiCheckerResultsInput, SubmissionUpdateWithoutAiCheckerResultsInput>, SubmissionUncheckedUpdateWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailUncheckedUpdateManyWithoutAiCheckerResultsNestedInput = {
+    create?: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput> | AIDetailCreateWithoutAiCheckerResultsInput[] | AIDetailUncheckedCreateWithoutAiCheckerResultsInput[]
+    connectOrCreate?: AIDetailCreateOrConnectWithoutAiCheckerResultsInput | AIDetailCreateOrConnectWithoutAiCheckerResultsInput[]
+    upsert?: AIDetailUpsertWithWhereUniqueWithoutAiCheckerResultsInput | AIDetailUpsertWithWhereUniqueWithoutAiCheckerResultsInput[]
+    createMany?: AIDetailCreateManyAiCheckerResultsInputEnvelope
+    set?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    disconnect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    delete?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    connect?: AIDetailWhereUniqueInput | AIDetailWhereUniqueInput[]
+    update?: AIDetailUpdateWithWhereUniqueWithoutAiCheckerResultsInput | AIDetailUpdateWithWhereUniqueWithoutAiCheckerResultsInput[]
+    updateMany?: AIDetailUpdateManyWithWhereWithoutAiCheckerResultsInput | AIDetailUpdateManyWithWhereWithoutAiCheckerResultsInput[]
+    deleteMany?: AIDetailScalarWhereInput | AIDetailScalarWhereInput[]
+  }
+
+  export type SubmissionUncheckedUpdateOneWithoutAiCheckerResultsNestedInput = {
+    create?: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutAiCheckerResultsInput
+    upsert?: SubmissionUpsertWithoutAiCheckerResultsInput
+    disconnect?: SubmissionWhereInput | boolean
+    delete?: SubmissionWhereInput | boolean
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutAiCheckerResultsInput, SubmissionUpdateWithoutAiCheckerResultsInput>, SubmissionUncheckedUpdateWithoutAiCheckerResultsInput>
+  }
+
+  export type AICheckerResultsCreateNestedOneWithoutDetailsInput = {
+    create?: XOR<AICheckerResultsCreateWithoutDetailsInput, AICheckerResultsUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: AICheckerResultsCreateOrConnectWithoutDetailsInput
+    connect?: AICheckerResultsWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type AICheckerResultsUpdateOneRequiredWithoutDetailsNestedInput = {
+    create?: XOR<AICheckerResultsCreateWithoutDetailsInput, AICheckerResultsUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: AICheckerResultsCreateOrConnectWithoutDetailsInput
+    upsert?: AICheckerResultsUpsertWithoutDetailsInput
+    connect?: AICheckerResultsWhereUniqueInput
+    update?: XOR<XOR<AICheckerResultsUpdateToOneWithWhereWithoutDetailsInput, AICheckerResultsUpdateWithoutDetailsInput>, AICheckerResultsUncheckedUpdateWithoutDetailsInput>
+  }
+
+  export type PlagiarismMatchCreateNestedManyWithoutPlagiarismResultsInput = {
+    create?: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput> | PlagiarismMatchCreateWithoutPlagiarismResultsInput[] | PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput[]
+    connectOrCreate?: PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput | PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput[]
+    createMany?: PlagiarismMatchCreateManyPlagiarismResultsInputEnvelope
+    connect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+  }
+
+  export type SubmissionCreateNestedOneWithoutPlagiarismResultsInput = {
+    create?: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutPlagiarismResultsInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type PlagiarismMatchUncheckedCreateNestedManyWithoutPlagiarismResultsInput = {
+    create?: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput> | PlagiarismMatchCreateWithoutPlagiarismResultsInput[] | PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput[]
+    connectOrCreate?: PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput | PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput[]
+    createMany?: PlagiarismMatchCreateManyPlagiarismResultsInputEnvelope
+    connect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+  }
+
+  export type SubmissionUncheckedCreateNestedOneWithoutPlagiarismResultsInput = {
+    create?: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutPlagiarismResultsInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type PlagiarismMatchUpdateManyWithoutPlagiarismResultsNestedInput = {
+    create?: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput> | PlagiarismMatchCreateWithoutPlagiarismResultsInput[] | PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput[]
+    connectOrCreate?: PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput | PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput[]
+    upsert?: PlagiarismMatchUpsertWithWhereUniqueWithoutPlagiarismResultsInput | PlagiarismMatchUpsertWithWhereUniqueWithoutPlagiarismResultsInput[]
+    createMany?: PlagiarismMatchCreateManyPlagiarismResultsInputEnvelope
+    set?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    disconnect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    delete?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    connect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    update?: PlagiarismMatchUpdateWithWhereUniqueWithoutPlagiarismResultsInput | PlagiarismMatchUpdateWithWhereUniqueWithoutPlagiarismResultsInput[]
+    updateMany?: PlagiarismMatchUpdateManyWithWhereWithoutPlagiarismResultsInput | PlagiarismMatchUpdateManyWithWhereWithoutPlagiarismResultsInput[]
+    deleteMany?: PlagiarismMatchScalarWhereInput | PlagiarismMatchScalarWhereInput[]
+  }
+
+  export type SubmissionUpdateOneWithoutPlagiarismResultsNestedInput = {
+    create?: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutPlagiarismResultsInput
+    upsert?: SubmissionUpsertWithoutPlagiarismResultsInput
+    disconnect?: SubmissionWhereInput | boolean
+    delete?: SubmissionWhereInput | boolean
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutPlagiarismResultsInput, SubmissionUpdateWithoutPlagiarismResultsInput>, SubmissionUncheckedUpdateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchUncheckedUpdateManyWithoutPlagiarismResultsNestedInput = {
+    create?: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput> | PlagiarismMatchCreateWithoutPlagiarismResultsInput[] | PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput[]
+    connectOrCreate?: PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput | PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput[]
+    upsert?: PlagiarismMatchUpsertWithWhereUniqueWithoutPlagiarismResultsInput | PlagiarismMatchUpsertWithWhereUniqueWithoutPlagiarismResultsInput[]
+    createMany?: PlagiarismMatchCreateManyPlagiarismResultsInputEnvelope
+    set?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    disconnect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    delete?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    connect?: PlagiarismMatchWhereUniqueInput | PlagiarismMatchWhereUniqueInput[]
+    update?: PlagiarismMatchUpdateWithWhereUniqueWithoutPlagiarismResultsInput | PlagiarismMatchUpdateWithWhereUniqueWithoutPlagiarismResultsInput[]
+    updateMany?: PlagiarismMatchUpdateManyWithWhereWithoutPlagiarismResultsInput | PlagiarismMatchUpdateManyWithWhereWithoutPlagiarismResultsInput[]
+    deleteMany?: PlagiarismMatchScalarWhereInput | PlagiarismMatchScalarWhereInput[]
+  }
+
+  export type SubmissionUncheckedUpdateOneWithoutPlagiarismResultsNestedInput = {
+    create?: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutPlagiarismResultsInput
+    upsert?: SubmissionUpsertWithoutPlagiarismResultsInput
+    disconnect?: SubmissionWhereInput | boolean
+    delete?: SubmissionWhereInput | boolean
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutPlagiarismResultsInput, SubmissionUpdateWithoutPlagiarismResultsInput>, SubmissionUncheckedUpdateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismResultsCreateNestedOneWithoutMatchesInput = {
+    create?: XOR<PlagiarismResultsCreateWithoutMatchesInput, PlagiarismResultsUncheckedCreateWithoutMatchesInput>
+    connectOrCreate?: PlagiarismResultsCreateOrConnectWithoutMatchesInput
+    connect?: PlagiarismResultsWhereUniqueInput
+  }
+
+  export type PlagiarismResultsUpdateOneRequiredWithoutMatchesNestedInput = {
+    create?: XOR<PlagiarismResultsCreateWithoutMatchesInput, PlagiarismResultsUncheckedCreateWithoutMatchesInput>
+    connectOrCreate?: PlagiarismResultsCreateOrConnectWithoutMatchesInput
+    upsert?: PlagiarismResultsUpsertWithoutMatchesInput
+    connect?: PlagiarismResultsWhereUniqueInput
+    update?: XOR<XOR<PlagiarismResultsUpdateToOneWithWhereWithoutMatchesInput, PlagiarismResultsUpdateWithoutMatchesInput>, PlagiarismResultsUncheckedUpdateWithoutMatchesInput>
+  }
+
+  export type UserCreateNestedOneWithoutInlineCommentsInput = {
+    create?: XOR<UserCreateWithoutInlineCommentsInput, UserUncheckedCreateWithoutInlineCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutInlineCommentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SubmissionCreateNestedOneWithoutInlineCommentsInput = {
+    create?: XOR<SubmissionCreateWithoutInlineCommentsInput, SubmissionUncheckedCreateWithoutInlineCommentsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutInlineCommentsInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutInlineCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutInlineCommentsInput, UserUncheckedCreateWithoutInlineCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutInlineCommentsInput
+    upsert?: UserUpsertWithoutInlineCommentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutInlineCommentsInput, UserUpdateWithoutInlineCommentsInput>, UserUncheckedUpdateWithoutInlineCommentsInput>
+  }
+
+  export type SubmissionUpdateOneRequiredWithoutInlineCommentsNestedInput = {
+    create?: XOR<SubmissionCreateWithoutInlineCommentsInput, SubmissionUncheckedCreateWithoutInlineCommentsInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutInlineCommentsInput
+    upsert?: SubmissionUpsertWithoutInlineCommentsInput
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutInlineCommentsInput, SubmissionUpdateWithoutInlineCommentsInput>, SubmissionUncheckedUpdateWithoutInlineCommentsInput>
+  }
+
+  export type SubmissionCreateNestedOneWithoutOverallFeedbackInput = {
+    create?: XOR<SubmissionCreateWithoutOverallFeedbackInput, SubmissionUncheckedCreateWithoutOverallFeedbackInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutOverallFeedbackInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type SubmissionUpdateOneRequiredWithoutOverallFeedbackNestedInput = {
+    create?: XOR<SubmissionCreateWithoutOverallFeedbackInput, SubmissionUncheckedCreateWithoutOverallFeedbackInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutOverallFeedbackInput
+    upsert?: SubmissionUpsertWithoutOverallFeedbackInput
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutOverallFeedbackInput, SubmissionUpdateWithoutOverallFeedbackInput>, SubmissionUncheckedUpdateWithoutOverallFeedbackInput>
+  }
+
+  export type SubmissionCreateNestedOneWithoutSubscoresInput = {
+    create?: XOR<SubmissionCreateWithoutSubscoresInput, SubmissionUncheckedCreateWithoutSubscoresInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutSubscoresInput
+    connect?: SubmissionWhereUniqueInput
+  }
+
+  export type SubmissionUpdateOneRequiredWithoutSubscoresNestedInput = {
+    create?: XOR<SubmissionCreateWithoutSubscoresInput, SubmissionUncheckedCreateWithoutSubscoresInput>
+    connectOrCreate?: SubmissionCreateOrConnectWithoutSubscoresInput
+    upsert?: SubmissionUpsertWithoutSubscoresInput
+    connect?: SubmissionWhereUniqueInput
+    update?: XOR<XOR<SubmissionUpdateToOneWithWhereWithoutSubscoresInput, SubmissionUpdateWithoutSubscoresInput>, SubmissionUncheckedUpdateWithoutSubscoresInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8705,6 +20078,83 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type NestedEnumSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusFilter<$PrismaModel> | $Enums.SubmissionStatus
+  }
+
+  export type NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubmissionStatus | EnumSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SubmissionStatus[] | ListEnumSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubmissionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumConfidenceLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConfidenceLevel | EnumConfidenceLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumConfidenceLevelFilter<$PrismaModel> | $Enums.ConfidenceLevel
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumConfidenceLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConfidenceLevel | EnumConfidenceLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConfidenceLevel[] | ListEnumConfidenceLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumConfidenceLevelWithAggregatesFilter<$PrismaModel> | $Enums.ConfidenceLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConfidenceLevelFilter<$PrismaModel>
+    _max?: NestedEnumConfidenceLevelFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type CourseCreateWithoutUserInput = {
     id?: string
     name: string
@@ -8764,6 +20214,7 @@ export namespace Prisma {
     peer_evaluation?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    submission?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutUserInput = {
@@ -8782,6 +20233,7 @@ export namespace Prisma {
     peer_evaluation?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    submission?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutUserInput = {
@@ -8818,6 +20270,35 @@ export namespace Prisma {
 
   export type StudentCreateManyUserInputEnvelope = {
     data: StudentCreateManyUserInput | StudentCreateManyUserInput[]
+  }
+
+  export type InlineCommentCreateWithoutAuthorInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    submission: SubmissionCreateNestedOneWithoutInlineCommentsInput
+  }
+
+  export type InlineCommentUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    submissionId: string
+  }
+
+  export type InlineCommentCreateOrConnectWithoutAuthorInput = {
+    where: InlineCommentWhereUniqueInput
+    create: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type InlineCommentCreateManyAuthorInputEnvelope = {
+    data: InlineCommentCreateManyAuthorInput | InlineCommentCreateManyAuthorInput[]
   }
 
   export type CourseUpsertWithWhereUniqueWithoutUserInput = {
@@ -8920,6 +20401,36 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
   }
 
+  export type InlineCommentUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: InlineCommentWhereUniqueInput
+    update: XOR<InlineCommentUpdateWithoutAuthorInput, InlineCommentUncheckedUpdateWithoutAuthorInput>
+    create: XOR<InlineCommentCreateWithoutAuthorInput, InlineCommentUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type InlineCommentUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: InlineCommentWhereUniqueInput
+    data: XOR<InlineCommentUpdateWithoutAuthorInput, InlineCommentUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type InlineCommentUpdateManyWithWhereWithoutAuthorInput = {
+    where: InlineCommentScalarWhereInput
+    data: XOR<InlineCommentUpdateManyMutationInput, InlineCommentUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type InlineCommentScalarWhereInput = {
+    AND?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
+    OR?: InlineCommentScalarWhereInput[]
+    NOT?: InlineCommentScalarWhereInput | InlineCommentScalarWhereInput[]
+    id?: StringFilter<"InlineComment"> | string
+    startIndex?: IntFilter<"InlineComment"> | number
+    endIndex?: IntFilter<"InlineComment"> | number
+    text?: StringFilter<"InlineComment"> | string
+    color?: StringFilter<"InlineComment"> | string
+    timeStamp?: DateTimeFilter<"InlineComment"> | Date | string
+    authorId?: StringFilter<"InlineComment"> | string
+    submissionId?: StringFilter<"InlineComment"> | string
+  }
+
   export type GradingComponentCreateInput = {
     description: string
     percentage: number
@@ -8933,6 +20444,7 @@ export namespace Prisma {
     provider: $Enums.Provider
     assignments?: AssignmentCreateNestedManyWithoutUserInput
     students?: StudentCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutCoursesInput = {
@@ -8943,6 +20455,7 @@ export namespace Prisma {
     provider: $Enums.Provider
     assignments?: AssignmentUncheckedCreateNestedManyWithoutUserInput
     students?: StudentUncheckedCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutCoursesInput = {
@@ -9000,6 +20513,7 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     assignments?: AssignmentUpdateManyWithoutUserNestedInput
     students?: StudentUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCoursesInput = {
@@ -9009,6 +20523,7 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     assignments?: AssignmentUncheckedUpdateManyWithoutUserNestedInput
     students?: StudentUncheckedUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutAssignmentsInput = {
@@ -9019,6 +20534,7 @@ export namespace Prisma {
     provider: $Enums.Provider
     courses?: CourseCreateNestedManyWithoutUserInput
     students?: StudentCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -9029,11 +20545,55 @@ export namespace Prisma {
     provider: $Enums.Provider
     courses?: CourseUncheckedCreateNestedManyWithoutUserInput
     students?: StudentUncheckedCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutAssignmentsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAssignmentsInput, UserUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type SubmissionCreateWithoutAssignmentInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutAssignmentInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutAssignmentInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type SubmissionCreateManyAssignmentInputEnvelope = {
+    data: SubmissionCreateManyAssignmentInput | SubmissionCreateManyAssignmentInput[]
   }
 
   export type UserUpsertWithoutAssignmentsInput = {
@@ -9054,6 +20614,7 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     courses?: CourseUpdateManyWithoutUserNestedInput
     students?: StudentUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -9063,6 +20624,41 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     courses?: CourseUncheckedUpdateManyWithoutUserNestedInput
     students?: StudentUncheckedUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type SubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
+    where: SubmissionWhereUniqueInput
+    update: XOR<SubmissionUpdateWithoutAssignmentInput, SubmissionUncheckedUpdateWithoutAssignmentInput>
+    create: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type SubmissionUpdateWithWhereUniqueWithoutAssignmentInput = {
+    where: SubmissionWhereUniqueInput
+    data: XOR<SubmissionUpdateWithoutAssignmentInput, SubmissionUncheckedUpdateWithoutAssignmentInput>
+  }
+
+  export type SubmissionUpdateManyWithWhereWithoutAssignmentInput = {
+    where: SubmissionScalarWhereInput
+    data: XOR<SubmissionUpdateManyMutationInput, SubmissionUncheckedUpdateManyWithoutAssignmentInput>
+  }
+
+  export type SubmissionScalarWhereInput = {
+    AND?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
+    OR?: SubmissionScalarWhereInput[]
+    NOT?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
+    id?: StringFilter<"Submission"> | string
+    assignmentId?: StringFilter<"Submission"> | string
+    assignmentTitle?: StringFilter<"Submission"> | string
+    studentName?: StringNullableFilter<"Submission"> | string | null
+    studentId?: StringNullableFilter<"Submission"> | string | null
+    submissionDate?: DateTimeFilter<"Submission"> | Date | string
+    status?: EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
+    content?: StringFilter<"Submission"> | string
+    aiCheckerResultsId?: StringNullableFilter<"Submission"> | string | null
+    plagiarismResultsId?: StringNullableFilter<"Submission"> | string | null
+    createdAt?: DateTimeFilter<"Submission"> | Date | string
+    updatedAt?: DateTimeFilter<"Submission"> | Date | string
   }
 
   export type UserCreateWithoutStudentsInput = {
@@ -9073,6 +20669,7 @@ export namespace Prisma {
     provider: $Enums.Provider
     courses?: CourseCreateNestedManyWithoutUserInput
     assignments?: AssignmentCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutStudentsInput = {
@@ -9083,6 +20680,7 @@ export namespace Prisma {
     provider: $Enums.Provider
     courses?: CourseUncheckedCreateNestedManyWithoutUserInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutUserInput
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutStudentsInput = {
@@ -9108,6 +20706,7 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     courses?: CourseUpdateManyWithoutUserNestedInput
     assignments?: AssignmentUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStudentsInput = {
@@ -9117,6 +20716,965 @@ export namespace Prisma {
     provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
     courses?: CourseUncheckedUpdateManyWithoutUserNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutUserNestedInput
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AssignmentCreateWithoutSubmissionInput = {
+    id?: string
+    assignmentTitle: string
+    selectedCourse: string
+    dueDate: Date | string
+    description: string
+    learningObjectives: string
+    instructions?: string | null
+    rubric?: string | null
+    questions?: string | null
+    answer_key?: string | null
+    checklist?: string | null
+    participation_criteria?: string | null
+    peer_evaluation?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAssignmentsInput
+  }
+
+  export type AssignmentUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    assignmentTitle: string
+    selectedCourse: string
+    dueDate: Date | string
+    description: string
+    learningObjectives: string
+    instructions?: string | null
+    rubric?: string | null
+    questions?: string | null
+    answer_key?: string | null
+    checklist?: string | null
+    participation_criteria?: string | null
+    peer_evaluation?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AssignmentCreateOrConnectWithoutSubmissionInput = {
+    where: AssignmentWhereUniqueInput
+    create: XOR<AssignmentCreateWithoutSubmissionInput, AssignmentUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type AICheckerResultsCreateWithoutSubmissionInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    details?: AIDetailCreateNestedManyWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    details?: AIDetailUncheckedCreateNestedManyWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsCreateOrConnectWithoutSubmissionInput = {
+    where: AICheckerResultsWhereUniqueInput
+    create: XOR<AICheckerResultsCreateWithoutSubmissionInput, AICheckerResultsUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type PlagiarismResultsCreateWithoutSubmissionInput = {
+    id?: string
+    score: number
+    matches?: PlagiarismMatchCreateNestedManyWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    score: number
+    matches?: PlagiarismMatchUncheckedCreateNestedManyWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsCreateOrConnectWithoutSubmissionInput = {
+    where: PlagiarismResultsWhereUniqueInput
+    create: XOR<PlagiarismResultsCreateWithoutSubmissionInput, PlagiarismResultsUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type InlineCommentCreateWithoutSubmissionInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    author: UserCreateNestedOneWithoutInlineCommentsInput
+  }
+
+  export type InlineCommentUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    authorId: string
+  }
+
+  export type InlineCommentCreateOrConnectWithoutSubmissionInput = {
+    where: InlineCommentWhereUniqueInput
+    create: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type InlineCommentCreateManySubmissionInputEnvelope = {
+    data: InlineCommentCreateManySubmissionInput | InlineCommentCreateManySubmissionInput[]
+  }
+
+  export type OverallFeedbackCreateWithoutSubmissionInput = {
+    id?: string
+    strengths: string
+    improvements: string
+    actionItems: string
+  }
+
+  export type OverallFeedbackUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    strengths: string
+    improvements: string
+    actionItems: string
+  }
+
+  export type OverallFeedbackCreateOrConnectWithoutSubmissionInput = {
+    where: OverallFeedbackWhereUniqueInput
+    create: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type SubscoreCreateWithoutSubmissionInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+  }
+
+  export type SubscoreUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+  }
+
+  export type SubscoreCreateOrConnectWithoutSubmissionInput = {
+    where: SubscoreWhereUniqueInput
+    create: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type SubscoreCreateManySubmissionInputEnvelope = {
+    data: SubscoreCreateManySubmissionInput | SubscoreCreateManySubmissionInput[]
+  }
+
+  export type AssignmentUpsertWithoutSubmissionInput = {
+    update: XOR<AssignmentUpdateWithoutSubmissionInput, AssignmentUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<AssignmentCreateWithoutSubmissionInput, AssignmentUncheckedCreateWithoutSubmissionInput>
+    where?: AssignmentWhereInput
+  }
+
+  export type AssignmentUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: AssignmentWhereInput
+    data: XOR<AssignmentUpdateWithoutSubmissionInput, AssignmentUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type AssignmentUpdateWithoutSubmissionInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    selectedCourse?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    rubric?: NullableStringFieldUpdateOperationsInput | string | null
+    questions?: NullableStringFieldUpdateOperationsInput | string | null
+    answer_key?: NullableStringFieldUpdateOperationsInput | string | null
+    checklist?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
+    peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAssignmentsNestedInput
+  }
+
+  export type AssignmentUncheckedUpdateWithoutSubmissionInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    selectedCourse?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    learningObjectives?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    rubric?: NullableStringFieldUpdateOperationsInput | string | null
+    questions?: NullableStringFieldUpdateOperationsInput | string | null
+    answer_key?: NullableStringFieldUpdateOperationsInput | string | null
+    checklist?: NullableStringFieldUpdateOperationsInput | string | null
+    participation_criteria?: NullableStringFieldUpdateOperationsInput | string | null
+    peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AICheckerResultsUpsertWithoutSubmissionInput = {
+    update: XOR<AICheckerResultsUpdateWithoutSubmissionInput, AICheckerResultsUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<AICheckerResultsCreateWithoutSubmissionInput, AICheckerResultsUncheckedCreateWithoutSubmissionInput>
+    where?: AICheckerResultsWhereInput
+  }
+
+  export type AICheckerResultsUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: AICheckerResultsWhereInput
+    data: XOR<AICheckerResultsUpdateWithoutSubmissionInput, AICheckerResultsUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type AICheckerResultsUpdateWithoutSubmissionInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    details?: AIDetailUpdateManyWithoutAiCheckerResultsNestedInput
+  }
+
+  export type AICheckerResultsUncheckedUpdateWithoutSubmissionInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    details?: AIDetailUncheckedUpdateManyWithoutAiCheckerResultsNestedInput
+  }
+
+  export type PlagiarismResultsUpsertWithoutSubmissionInput = {
+    update: XOR<PlagiarismResultsUpdateWithoutSubmissionInput, PlagiarismResultsUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<PlagiarismResultsCreateWithoutSubmissionInput, PlagiarismResultsUncheckedCreateWithoutSubmissionInput>
+    where?: PlagiarismResultsWhereInput
+  }
+
+  export type PlagiarismResultsUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: PlagiarismResultsWhereInput
+    data: XOR<PlagiarismResultsUpdateWithoutSubmissionInput, PlagiarismResultsUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type PlagiarismResultsUpdateWithoutSubmissionInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    matches?: PlagiarismMatchUpdateManyWithoutPlagiarismResultsNestedInput
+  }
+
+  export type PlagiarismResultsUncheckedUpdateWithoutSubmissionInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    matches?: PlagiarismMatchUncheckedUpdateManyWithoutPlagiarismResultsNestedInput
+  }
+
+  export type InlineCommentUpsertWithWhereUniqueWithoutSubmissionInput = {
+    where: InlineCommentWhereUniqueInput
+    update: XOR<InlineCommentUpdateWithoutSubmissionInput, InlineCommentUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<InlineCommentCreateWithoutSubmissionInput, InlineCommentUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type InlineCommentUpdateWithWhereUniqueWithoutSubmissionInput = {
+    where: InlineCommentWhereUniqueInput
+    data: XOR<InlineCommentUpdateWithoutSubmissionInput, InlineCommentUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type InlineCommentUpdateManyWithWhereWithoutSubmissionInput = {
+    where: InlineCommentScalarWhereInput
+    data: XOR<InlineCommentUpdateManyMutationInput, InlineCommentUncheckedUpdateManyWithoutSubmissionInput>
+  }
+
+  export type OverallFeedbackUpsertWithoutSubmissionInput = {
+    update: XOR<OverallFeedbackUpdateWithoutSubmissionInput, OverallFeedbackUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<OverallFeedbackCreateWithoutSubmissionInput, OverallFeedbackUncheckedCreateWithoutSubmissionInput>
+    where?: OverallFeedbackWhereInput
+  }
+
+  export type OverallFeedbackUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: OverallFeedbackWhereInput
+    data: XOR<OverallFeedbackUpdateWithoutSubmissionInput, OverallFeedbackUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type OverallFeedbackUpdateWithoutSubmissionInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OverallFeedbackUncheckedUpdateWithoutSubmissionInput = {
+    strengths?: StringFieldUpdateOperationsInput | string
+    improvements?: StringFieldUpdateOperationsInput | string
+    actionItems?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreUpsertWithWhereUniqueWithoutSubmissionInput = {
+    where: SubscoreWhereUniqueInput
+    update: XOR<SubscoreUpdateWithoutSubmissionInput, SubscoreUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<SubscoreCreateWithoutSubmissionInput, SubscoreUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type SubscoreUpdateWithWhereUniqueWithoutSubmissionInput = {
+    where: SubscoreWhereUniqueInput
+    data: XOR<SubscoreUpdateWithoutSubmissionInput, SubscoreUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type SubscoreUpdateManyWithWhereWithoutSubmissionInput = {
+    where: SubscoreScalarWhereInput
+    data: XOR<SubscoreUpdateManyMutationInput, SubscoreUncheckedUpdateManyWithoutSubmissionInput>
+  }
+
+  export type SubscoreScalarWhereInput = {
+    AND?: SubscoreScalarWhereInput | SubscoreScalarWhereInput[]
+    OR?: SubscoreScalarWhereInput[]
+    NOT?: SubscoreScalarWhereInput | SubscoreScalarWhereInput[]
+    id?: StringFilter<"Subscore"> | string
+    name?: StringFilter<"Subscore"> | string
+    score?: FloatFilter<"Subscore"> | number
+    maxScore?: FloatFilter<"Subscore"> | number
+    rationale?: StringFilter<"Subscore"> | string
+    submissionId?: StringFilter<"Subscore"> | string
+  }
+
+  export type AIDetailCreateWithoutAiCheckerResultsInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+  }
+
+  export type AIDetailUncheckedCreateWithoutAiCheckerResultsInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+  }
+
+  export type AIDetailCreateOrConnectWithoutAiCheckerResultsInput = {
+    where: AIDetailWhereUniqueInput
+    create: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailCreateManyAiCheckerResultsInputEnvelope = {
+    data: AIDetailCreateManyAiCheckerResultsInput | AIDetailCreateManyAiCheckerResultsInput[]
+  }
+
+  export type SubmissionCreateWithoutAiCheckerResultsInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutAiCheckerResultsInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutAiCheckerResultsInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailUpsertWithWhereUniqueWithoutAiCheckerResultsInput = {
+    where: AIDetailWhereUniqueInput
+    update: XOR<AIDetailUpdateWithoutAiCheckerResultsInput, AIDetailUncheckedUpdateWithoutAiCheckerResultsInput>
+    create: XOR<AIDetailCreateWithoutAiCheckerResultsInput, AIDetailUncheckedCreateWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailUpdateWithWhereUniqueWithoutAiCheckerResultsInput = {
+    where: AIDetailWhereUniqueInput
+    data: XOR<AIDetailUpdateWithoutAiCheckerResultsInput, AIDetailUncheckedUpdateWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailUpdateManyWithWhereWithoutAiCheckerResultsInput = {
+    where: AIDetailScalarWhereInput
+    data: XOR<AIDetailUpdateManyMutationInput, AIDetailUncheckedUpdateManyWithoutAiCheckerResultsInput>
+  }
+
+  export type AIDetailScalarWhereInput = {
+    AND?: AIDetailScalarWhereInput | AIDetailScalarWhereInput[]
+    OR?: AIDetailScalarWhereInput[]
+    NOT?: AIDetailScalarWhereInput | AIDetailScalarWhereInput[]
+    id?: StringFilter<"AIDetail"> | string
+    section?: StringFilter<"AIDetail"> | string
+    aiProbability?: FloatFilter<"AIDetail"> | number
+    humanProbability?: FloatFilter<"AIDetail"> | number
+    aiCheckerResultsId?: StringFilter<"AIDetail"> | string
+  }
+
+  export type SubmissionUpsertWithoutAiCheckerResultsInput = {
+    update: XOR<SubmissionUpdateWithoutAiCheckerResultsInput, SubmissionUncheckedUpdateWithoutAiCheckerResultsInput>
+    create: XOR<SubmissionCreateWithoutAiCheckerResultsInput, SubmissionUncheckedCreateWithoutAiCheckerResultsInput>
+    where?: SubmissionWhereInput
+  }
+
+  export type SubmissionUpdateToOneWithWhereWithoutAiCheckerResultsInput = {
+    where?: SubmissionWhereInput
+    data: XOR<SubmissionUpdateWithoutAiCheckerResultsInput, SubmissionUncheckedUpdateWithoutAiCheckerResultsInput>
+  }
+
+  export type SubmissionUpdateWithoutAiCheckerResultsInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutAiCheckerResultsInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type AICheckerResultsCreateWithoutDetailsInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    submission?: SubmissionCreateNestedOneWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsUncheckedCreateWithoutDetailsInput = {
+    id?: string
+    score: number
+    confidence: $Enums.ConfidenceLevel
+    submission?: SubmissionUncheckedCreateNestedOneWithoutAiCheckerResultsInput
+  }
+
+  export type AICheckerResultsCreateOrConnectWithoutDetailsInput = {
+    where: AICheckerResultsWhereUniqueInput
+    create: XOR<AICheckerResultsCreateWithoutDetailsInput, AICheckerResultsUncheckedCreateWithoutDetailsInput>
+  }
+
+  export type AICheckerResultsUpsertWithoutDetailsInput = {
+    update: XOR<AICheckerResultsUpdateWithoutDetailsInput, AICheckerResultsUncheckedUpdateWithoutDetailsInput>
+    create: XOR<AICheckerResultsCreateWithoutDetailsInput, AICheckerResultsUncheckedCreateWithoutDetailsInput>
+    where?: AICheckerResultsWhereInput
+  }
+
+  export type AICheckerResultsUpdateToOneWithWhereWithoutDetailsInput = {
+    where?: AICheckerResultsWhereInput
+    data: XOR<AICheckerResultsUpdateWithoutDetailsInput, AICheckerResultsUncheckedUpdateWithoutDetailsInput>
+  }
+
+  export type AICheckerResultsUpdateWithoutDetailsInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    submission?: SubmissionUpdateOneWithoutAiCheckerResultsNestedInput
+  }
+
+  export type AICheckerResultsUncheckedUpdateWithoutDetailsInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    confidence?: EnumConfidenceLevelFieldUpdateOperationsInput | $Enums.ConfidenceLevel
+    submission?: SubmissionUncheckedUpdateOneWithoutAiCheckerResultsNestedInput
+  }
+
+  export type PlagiarismMatchCreateWithoutPlagiarismResultsInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+  }
+
+  export type PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+  }
+
+  export type PlagiarismMatchCreateOrConnectWithoutPlagiarismResultsInput = {
+    where: PlagiarismMatchWhereUniqueInput
+    create: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchCreateManyPlagiarismResultsInputEnvelope = {
+    data: PlagiarismMatchCreateManyPlagiarismResultsInput | PlagiarismMatchCreateManyPlagiarismResultsInput[]
+  }
+
+  export type SubmissionCreateWithoutPlagiarismResultsInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutPlagiarismResultsInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutPlagiarismResultsInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchUpsertWithWhereUniqueWithoutPlagiarismResultsInput = {
+    where: PlagiarismMatchWhereUniqueInput
+    update: XOR<PlagiarismMatchUpdateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedUpdateWithoutPlagiarismResultsInput>
+    create: XOR<PlagiarismMatchCreateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedCreateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchUpdateWithWhereUniqueWithoutPlagiarismResultsInput = {
+    where: PlagiarismMatchWhereUniqueInput
+    data: XOR<PlagiarismMatchUpdateWithoutPlagiarismResultsInput, PlagiarismMatchUncheckedUpdateWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchUpdateManyWithWhereWithoutPlagiarismResultsInput = {
+    where: PlagiarismMatchScalarWhereInput
+    data: XOR<PlagiarismMatchUpdateManyMutationInput, PlagiarismMatchUncheckedUpdateManyWithoutPlagiarismResultsInput>
+  }
+
+  export type PlagiarismMatchScalarWhereInput = {
+    AND?: PlagiarismMatchScalarWhereInput | PlagiarismMatchScalarWhereInput[]
+    OR?: PlagiarismMatchScalarWhereInput[]
+    NOT?: PlagiarismMatchScalarWhereInput | PlagiarismMatchScalarWhereInput[]
+    id?: StringFilter<"PlagiarismMatch"> | string
+    test?: StringFilter<"PlagiarismMatch"> | string
+    source?: StringFilter<"PlagiarismMatch"> | string
+    similarity?: FloatFilter<"PlagiarismMatch"> | number
+    plagiarismResultsId?: StringFilter<"PlagiarismMatch"> | string
+  }
+
+  export type SubmissionUpsertWithoutPlagiarismResultsInput = {
+    update: XOR<SubmissionUpdateWithoutPlagiarismResultsInput, SubmissionUncheckedUpdateWithoutPlagiarismResultsInput>
+    create: XOR<SubmissionCreateWithoutPlagiarismResultsInput, SubmissionUncheckedCreateWithoutPlagiarismResultsInput>
+    where?: SubmissionWhereInput
+  }
+
+  export type SubmissionUpdateToOneWithWhereWithoutPlagiarismResultsInput = {
+    where?: SubmissionWhereInput
+    data: XOR<SubmissionUpdateWithoutPlagiarismResultsInput, SubmissionUncheckedUpdateWithoutPlagiarismResultsInput>
+  }
+
+  export type SubmissionUpdateWithoutPlagiarismResultsInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutPlagiarismResultsInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type PlagiarismResultsCreateWithoutMatchesInput = {
+    id?: string
+    score: number
+    submission?: SubmissionCreateNestedOneWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsUncheckedCreateWithoutMatchesInput = {
+    id?: string
+    score: number
+    submission?: SubmissionUncheckedCreateNestedOneWithoutPlagiarismResultsInput
+  }
+
+  export type PlagiarismResultsCreateOrConnectWithoutMatchesInput = {
+    where: PlagiarismResultsWhereUniqueInput
+    create: XOR<PlagiarismResultsCreateWithoutMatchesInput, PlagiarismResultsUncheckedCreateWithoutMatchesInput>
+  }
+
+  export type PlagiarismResultsUpsertWithoutMatchesInput = {
+    update: XOR<PlagiarismResultsUpdateWithoutMatchesInput, PlagiarismResultsUncheckedUpdateWithoutMatchesInput>
+    create: XOR<PlagiarismResultsCreateWithoutMatchesInput, PlagiarismResultsUncheckedCreateWithoutMatchesInput>
+    where?: PlagiarismResultsWhereInput
+  }
+
+  export type PlagiarismResultsUpdateToOneWithWhereWithoutMatchesInput = {
+    where?: PlagiarismResultsWhereInput
+    data: XOR<PlagiarismResultsUpdateWithoutMatchesInput, PlagiarismResultsUncheckedUpdateWithoutMatchesInput>
+  }
+
+  export type PlagiarismResultsUpdateWithoutMatchesInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    submission?: SubmissionUpdateOneWithoutPlagiarismResultsNestedInput
+  }
+
+  export type PlagiarismResultsUncheckedUpdateWithoutMatchesInput = {
+    score?: IntFieldUpdateOperationsInput | number
+    submission?: SubmissionUncheckedUpdateOneWithoutPlagiarismResultsNestedInput
+  }
+
+  export type UserCreateWithoutInlineCommentsInput = {
+    id?: string
+    name: string
+    email: string
+    hashed_password: string
+    provider: $Enums.Provider
+    courses?: CourseCreateNestedManyWithoutUserInput
+    assignments?: AssignmentCreateNestedManyWithoutUserInput
+    students?: StudentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutInlineCommentsInput = {
+    id?: string
+    name: string
+    email: string
+    hashed_password: string
+    provider: $Enums.Provider
+    courses?: CourseUncheckedCreateNestedManyWithoutUserInput
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutUserInput
+    students?: StudentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutInlineCommentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutInlineCommentsInput, UserUncheckedCreateWithoutInlineCommentsInput>
+  }
+
+  export type SubmissionCreateWithoutInlineCommentsInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutInlineCommentsInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutInlineCommentsInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutInlineCommentsInput, SubmissionUncheckedCreateWithoutInlineCommentsInput>
+  }
+
+  export type UserUpsertWithoutInlineCommentsInput = {
+    update: XOR<UserUpdateWithoutInlineCommentsInput, UserUncheckedUpdateWithoutInlineCommentsInput>
+    create: XOR<UserCreateWithoutInlineCommentsInput, UserUncheckedCreateWithoutInlineCommentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutInlineCommentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutInlineCommentsInput, UserUncheckedUpdateWithoutInlineCommentsInput>
+  }
+
+  export type UserUpdateWithoutInlineCommentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    courses?: CourseUpdateManyWithoutUserNestedInput
+    assignments?: AssignmentUpdateManyWithoutUserNestedInput
+    students?: StudentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutInlineCommentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashed_password?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    courses?: CourseUncheckedUpdateManyWithoutUserNestedInput
+    assignments?: AssignmentUncheckedUpdateManyWithoutUserNestedInput
+    students?: StudentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type SubmissionUpsertWithoutInlineCommentsInput = {
+    update: XOR<SubmissionUpdateWithoutInlineCommentsInput, SubmissionUncheckedUpdateWithoutInlineCommentsInput>
+    create: XOR<SubmissionCreateWithoutInlineCommentsInput, SubmissionUncheckedCreateWithoutInlineCommentsInput>
+    where?: SubmissionWhereInput
+  }
+
+  export type SubmissionUpdateToOneWithWhereWithoutInlineCommentsInput = {
+    where?: SubmissionWhereInput
+    data: XOR<SubmissionUpdateWithoutInlineCommentsInput, SubmissionUncheckedUpdateWithoutInlineCommentsInput>
+  }
+
+  export type SubmissionUpdateWithoutInlineCommentsInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutInlineCommentsInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionCreateWithoutOverallFeedbackInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    subscores?: SubscoreCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutOverallFeedbackInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    subscores?: SubscoreUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutOverallFeedbackInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutOverallFeedbackInput, SubmissionUncheckedCreateWithoutOverallFeedbackInput>
+  }
+
+  export type SubmissionUpsertWithoutOverallFeedbackInput = {
+    update: XOR<SubmissionUpdateWithoutOverallFeedbackInput, SubmissionUncheckedUpdateWithoutOverallFeedbackInput>
+    create: XOR<SubmissionCreateWithoutOverallFeedbackInput, SubmissionUncheckedCreateWithoutOverallFeedbackInput>
+    where?: SubmissionWhereInput
+  }
+
+  export type SubmissionUpdateToOneWithWhereWithoutOverallFeedbackInput = {
+    where?: SubmissionWhereInput
+    data: XOR<SubmissionUpdateWithoutOverallFeedbackInput, SubmissionUncheckedUpdateWithoutOverallFeedbackInput>
+  }
+
+  export type SubmissionUpdateWithoutOverallFeedbackInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutOverallFeedbackInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionCreateWithoutSubscoresInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignment: AssignmentCreateNestedOneWithoutSubmissionInput
+    aiCheckerResults?: AICheckerResultsCreateNestedOneWithoutSubmissionInput
+    plagiarismResults?: PlagiarismResultsCreateNestedOneWithoutSubmissionInput
+    inlineComments?: InlineCommentCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackCreateNestedOneWithoutSubmissionInput
+  }
+
+  export type SubmissionUncheckedCreateWithoutSubscoresInput = {
+    id?: string
+    assignmentId: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    inlineComments?: InlineCommentUncheckedCreateNestedManyWithoutSubmissionInput
+    overallFeedback?: OverallFeedbackUncheckedCreateNestedOneWithoutSubmissionInput
+  }
+
+  export type SubmissionCreateOrConnectWithoutSubscoresInput = {
+    where: SubmissionWhereUniqueInput
+    create: XOR<SubmissionCreateWithoutSubscoresInput, SubmissionUncheckedCreateWithoutSubscoresInput>
+  }
+
+  export type SubmissionUpsertWithoutSubscoresInput = {
+    update: XOR<SubmissionUpdateWithoutSubscoresInput, SubmissionUncheckedUpdateWithoutSubscoresInput>
+    create: XOR<SubmissionCreateWithoutSubscoresInput, SubmissionUncheckedCreateWithoutSubscoresInput>
+    where?: SubmissionWhereInput
+  }
+
+  export type SubmissionUpdateToOneWithWhereWithoutSubscoresInput = {
+    where?: SubmissionWhereInput
+    data: XOR<SubmissionUpdateWithoutSubscoresInput, SubmissionUncheckedUpdateWithoutSubscoresInput>
+  }
+
+  export type SubmissionUpdateWithoutSubscoresInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignment?: AssignmentUpdateOneRequiredWithoutSubmissionNestedInput
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutSubscoresInput = {
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -9128,17 +21686,6 @@ export namespace Prisma {
     equals?: GradingComponentObjectEqualityInput
     is?: GradingComponentWhereInput
     isNot?: GradingComponentWhereInput
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type CourseCreateManyUserInput = {
@@ -9183,6 +21730,16 @@ export namespace Prisma {
     class: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type InlineCommentCreateManyAuthorInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    submissionId: string
   }
 
   export type CourseUpdateWithoutUserInput = {
@@ -9248,6 +21805,7 @@ export namespace Prisma {
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutUserInput = {
@@ -9265,6 +21823,7 @@ export namespace Prisma {
     peer_evaluation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateManyWithoutUserInput = {
@@ -9308,6 +21867,33 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type InlineCommentUpdateWithoutAuthorInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: SubmissionUpdateOneRequiredWithoutInlineCommentsNestedInput
+  }
+
+  export type InlineCommentUncheckedUpdateWithoutAuthorInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InlineCommentUncheckedUpdateManyWithoutAuthorInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    submissionId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type MaterialUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
@@ -9326,6 +21912,181 @@ export namespace Prisma {
     topic?: StringFieldUpdateOperationsInput | string
     readings?: StringFieldUpdateOperationsInput | string
     assignments?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubmissionCreateManyAssignmentInput = {
+    id?: string
+    assignmentTitle: string
+    studentName?: string | null
+    studentId?: string | null
+    submissionDate?: Date | string
+    status: $Enums.SubmissionStatus
+    content: string
+    aiCheckerResultsId?: string | null
+    plagiarismResultsId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubmissionUpdateWithoutAssignmentInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    aiCheckerResults?: AICheckerResultsUpdateOneWithoutSubmissionNestedInput
+    plagiarismResults?: PlagiarismResultsUpdateOneWithoutSubmissionNestedInput
+    inlineComments?: InlineCommentUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateWithoutAssignmentInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inlineComments?: InlineCommentUncheckedUpdateManyWithoutSubmissionNestedInput
+    overallFeedback?: OverallFeedbackUncheckedUpdateOneWithoutSubmissionNestedInput
+    subscores?: SubscoreUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionUncheckedUpdateManyWithoutAssignmentInput = {
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+    content?: StringFieldUpdateOperationsInput | string
+    aiCheckerResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    plagiarismResultsId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InlineCommentCreateManySubmissionInput = {
+    id?: string
+    startIndex: number
+    endIndex: number
+    text: string
+    color: string
+    timeStamp: Date | string
+    authorId: string
+  }
+
+  export type SubscoreCreateManySubmissionInput = {
+    id?: string
+    name: string
+    score: number
+    maxScore: number
+    rationale: string
+  }
+
+  export type InlineCommentUpdateWithoutSubmissionInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutInlineCommentsNestedInput
+  }
+
+  export type InlineCommentUncheckedUpdateWithoutSubmissionInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InlineCommentUncheckedUpdateManyWithoutSubmissionInput = {
+    startIndex?: IntFieldUpdateOperationsInput | number
+    endIndex?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    authorId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreUpdateWithoutSubmissionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreUncheckedUpdateWithoutSubmissionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubscoreUncheckedUpdateManyWithoutSubmissionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    score?: FloatFieldUpdateOperationsInput | number
+    maxScore?: FloatFieldUpdateOperationsInput | number
+    rationale?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AIDetailCreateManyAiCheckerResultsInput = {
+    id?: string
+    section: string
+    aiProbability: number
+    humanProbability: number
+  }
+
+  export type AIDetailUpdateWithoutAiCheckerResultsInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AIDetailUncheckedUpdateWithoutAiCheckerResultsInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AIDetailUncheckedUpdateManyWithoutAiCheckerResultsInput = {
+    section?: StringFieldUpdateOperationsInput | string
+    aiProbability?: FloatFieldUpdateOperationsInput | number
+    humanProbability?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismMatchCreateManyPlagiarismResultsInput = {
+    id?: string
+    test: string
+    source: string
+    similarity: number
+  }
+
+  export type PlagiarismMatchUpdateWithoutPlagiarismResultsInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismMatchUncheckedUpdateWithoutPlagiarismResultsInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PlagiarismMatchUncheckedUpdateManyWithoutPlagiarismResultsInput = {
+    test?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    similarity?: FloatFieldUpdateOperationsInput | number
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -9348,14 +22109,6 @@ export namespace Prisma {
   export type GradingComponentUpdateInput = {
     description?: StringFieldUpdateOperationsInput | string
     percentage?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
 

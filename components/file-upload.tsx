@@ -44,6 +44,7 @@ export function FileUpload({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
+      
       const filesArray = Array.from(e.target.files)
       setSelectedFiles(filesArray)
     }

@@ -83,10 +83,68 @@ export default function AssignmentDetailPage({ params }: { params: { id: string 
     ],
   }
 
-  const handleUploadComplete = (files: File[], images: string[]) => {
-    console.log("Files uploaded:", files)
-    console.log("Images captured:", images)
+  const handleUploadComplete = async (files: File[], images: string[]) => {
+    // console.log("Files uploaded:", files)
+    // console.log("Images captured:", images)
+  
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append("files", file); // append multiple files with same key
+    }
+    for (const [i, image] of images.entries()) {
+      formData.append(`images`, image); // You could also do `images[${i}]` if your backend expects indexed keys
+    }
+    try {
+      const res = await fetch("/api/extract-text", {
+        method: "POST",
+        body: formData, // no need to set Content-Type manually for FormData
+      });
+    
+      if (!res.ok) {
+        console.error("Upload failed");
+      }
+      let content = "";
+    try {
+      const data = await res.json();
+      // console.log(data[0]); // an array of extracted texts
+       content = data[0]
+      alert("Files uploaded successfully!");
+      const submission_to_db = await fetch("/api/assignment-submission", {
+        method: "POST",
+        body: JSON.stringify({
+          
+          studentId: selectedStudent,
+           content,
+           status:'PENDING',
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!submission_to_db.ok) {
+        alert("Failed to save submission to database");
+        return;
+      }
+      const submissionData = await submission_to_db.json();
+      console.log("Submission saved to database:", submissionData);
+      alert("Submission saved successfully!");
+    }
+    catch (error) {
+      console.error("Error parsing response:", error);
+      alert("Error parsing response");
+    }
+    } catch (err) {
+      console.error(err);
+      alert("Error uploading files");
+    }
+
+    
+    
+  
+  
     // Here you would typically process the files/images and send them to your backend
+  
+  
   }
 
   const handleEditAssignment = () => {
