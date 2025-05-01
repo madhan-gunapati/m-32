@@ -19,21 +19,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Material = $Result.DefaultSelection<Prisma.$MaterialPayload>
 /**
- * Model GradingPolicy
- * 
- */
-export type GradingPolicy = $Result.DefaultSelection<Prisma.$GradingPolicyPayload>
-/**
- * Model GradingComponent
- * 
- */
-export type GradingComponent = $Result.DefaultSelection<Prisma.$GradingComponentPayload>
-/**
- * Model Policies
- * 
- */
-export type Policies = $Result.DefaultSelection<Prisma.$PoliciesPayload>
-/**
  * Model WeeklySchedule
  * 
  */
@@ -2274,7 +2259,7 @@ export namespace Prisma {
       title: string
       author: string
       publisher: string
-      year: string
+      year: number
       required: boolean
     }
     composites: {}
@@ -2293,7 +2278,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Material", 'String'>
     readonly author: FieldRef<"Material", 'String'>
     readonly publisher: FieldRef<"Material", 'String'>
-    readonly year: FieldRef<"Material", 'String'>
+    readonly year: FieldRef<"Material", 'Int'>
     readonly required: FieldRef<"Material", 'Boolean'>
   }
     
@@ -2311,208 +2296,6 @@ export namespace Prisma {
      * Omit specific fields from the Material
      */
     omit?: MaterialOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GradingPolicy
-   */
-
-
-
-
-
-  export type GradingPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    assignments?: boolean | GradingComponentDefaultArgs<ExtArgs>
-    midterm?: boolean | GradingComponentDefaultArgs<ExtArgs>
-    finalExam?: boolean | GradingComponentDefaultArgs<ExtArgs>
-    participation?: boolean | GradingComponentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gradingPolicy"]>
-
-
-
-  export type GradingPolicySelectScalar = {}
-
-  export type GradingPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"assignments" | "midterm" | "finalExam" | "participation", ExtArgs["result"]["gradingPolicy"]>
-  export type GradingPolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $GradingPolicyPayload = {
-    name: "GradingPolicy"
-    objects: {}
-    scalars: {}
-    composites: {
-      assignments: Prisma.$GradingComponentPayload
-      midterm: Prisma.$GradingComponentPayload
-      finalExam: Prisma.$GradingComponentPayload
-      participation: Prisma.$GradingComponentPayload
-    }
-  }
-
-  type GradingPolicyGetPayload<S extends boolean | null | undefined | GradingPolicyDefaultArgs> = $Result.GetResult<Prisma.$GradingPolicyPayload, S>
-
-
-
-
-
-  /**
-   * Fields of the GradingPolicy model
-   */
-  interface GradingPolicyFieldRefs {
-
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GradingPolicy without action
-   */
-  export type GradingPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingPolicy
-     */
-    select?: GradingPolicySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingPolicy
-     */
-    omit?: GradingPolicyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GradingPolicyInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GradingComponent
-   */
-
-
-
-
-
-  export type GradingComponentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    description?: boolean
-    percentage?: boolean
-  }, ExtArgs["result"]["gradingComponent"]>
-
-
-
-  export type GradingComponentSelectScalar = {
-    description?: boolean
-    percentage?: boolean
-  }
-
-  export type GradingComponentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"description" | "percentage", ExtArgs["result"]["gradingComponent"]>
-
-  export type $GradingComponentPayload = {
-    name: "GradingComponent"
-    objects: {}
-    scalars: {
-      description: string
-      percentage: number
-    }
-    composites: {}
-  }
-
-  type GradingComponentGetPayload<S extends boolean | null | undefined | GradingComponentDefaultArgs> = $Result.GetResult<Prisma.$GradingComponentPayload, S>
-
-
-
-
-
-  /**
-   * Fields of the GradingComponent model
-   */
-  interface GradingComponentFieldRefs {
-    readonly description: FieldRef<"GradingComponent", 'String'>
-    readonly percentage: FieldRef<"GradingComponent", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GradingComponent without action
-   */
-  export type GradingComponentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GradingComponent
-     */
-    select?: GradingComponentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GradingComponent
-     */
-    omit?: GradingComponentOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Policies
-   */
-
-
-
-
-
-  export type PoliciesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    attendance?: boolean
-    lateWork?: boolean
-    academicIntegrity?: boolean
-    accommodations?: boolean
-  }, ExtArgs["result"]["policies"]>
-
-
-
-  export type PoliciesSelectScalar = {
-    attendance?: boolean
-    lateWork?: boolean
-    academicIntegrity?: boolean
-    accommodations?: boolean
-  }
-
-  export type PoliciesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"attendance" | "lateWork" | "academicIntegrity" | "accommodations", ExtArgs["result"]["policies"]>
-
-  export type $PoliciesPayload = {
-    name: "Policies"
-    objects: {}
-    scalars: {
-      attendance: string
-      lateWork: string
-      academicIntegrity: string
-      accommodations: string
-    }
-    composites: {}
-  }
-
-  type PoliciesGetPayload<S extends boolean | null | undefined | PoliciesDefaultArgs> = $Result.GetResult<Prisma.$PoliciesPayload, S>
-
-
-
-
-
-  /**
-   * Fields of the Policies model
-   */
-  interface PoliciesFieldRefs {
-    readonly attendance: FieldRef<"Policies", 'String'>
-    readonly lateWork: FieldRef<"Policies", 'String'>
-    readonly academicIntegrity: FieldRef<"Policies", 'String'>
-    readonly accommodations: FieldRef<"Policies", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Policies without action
-   */
-  export type PoliciesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Policies
-     */
-    select?: PoliciesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Policies
-     */
-    omit?: PoliciesOmit<ExtArgs> | null
   }
 
 
@@ -4645,6 +4428,8 @@ export namespace Prisma {
     term: number
     gradeLevel: number
     learningObjectives: number
+    gradingPolicy: number
+    policies: number
     _all: number
   }
 
@@ -4687,6 +4472,8 @@ export namespace Prisma {
     term?: true
     gradeLevel?: true
     learningObjectives?: true
+    gradingPolicy?: true
+    policies?: true
     _all?: true
   }
 
@@ -4774,6 +4561,8 @@ export namespace Prisma {
     term: string
     gradeLevel: string
     learningObjectives: string[]
+    gradingPolicy: JsonValue
+    policies: JsonValue
     _count: CourseCountAggregateOutputType | null
     _min: CourseMinAggregateOutputType | null
     _max: CourseMaxAggregateOutputType | null
@@ -4806,8 +4595,8 @@ export namespace Prisma {
     gradeLevel?: boolean
     learningObjectives?: boolean
     requiredMaterials?: boolean | MaterialDefaultArgs<ExtArgs>
-    gradingPolicy?: boolean | GradingPolicyDefaultArgs<ExtArgs>
-    policies?: boolean | PoliciesDefaultArgs<ExtArgs>
+    gradingPolicy?: boolean
+    policies?: boolean
     weeklySchedule?: boolean | WeeklyScheduleDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     assignment?: boolean | Course$assignmentArgs<ExtArgs>
@@ -4829,6 +4618,8 @@ export namespace Prisma {
     term?: boolean
     gradeLevel?: boolean
     learningObjectives?: boolean
+    gradingPolicy?: boolean
+    policies?: boolean
   }
 
   export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "courseTitle" | "courseDescription" | "description" | "instructor" | "subject" | "term" | "gradeLevel" | "learningObjectives" | "requiredMaterials" | "gradingPolicy" | "policies" | "weeklySchedule", ExtArgs["result"]["course"]>
@@ -4858,11 +4649,11 @@ export namespace Prisma {
       term: string
       gradeLevel: string
       learningObjectives: string[]
+      gradingPolicy: Prisma.JsonValue
+      policies: Prisma.JsonValue
     }, ExtArgs["result"]["course"]>
     composites: {
       requiredMaterials: Prisma.$MaterialPayload[]
-      gradingPolicy: Prisma.$GradingPolicyPayload
-      policies: Prisma.$PoliciesPayload
       weeklySchedule: Prisma.$WeeklySchedulePayload[]
     }
   }
@@ -5269,6 +5060,8 @@ export namespace Prisma {
     readonly term: FieldRef<"Course", 'String'>
     readonly gradeLevel: FieldRef<"Course", 'String'>
     readonly learningObjectives: FieldRef<"Course", 'String[]'>
+    readonly gradingPolicy: FieldRef<"Course", 'Json'>
+    readonly policies: FieldRef<"Course", 'Json'>
   }
     
 
@@ -16234,7 +16027,9 @@ export namespace Prisma {
     subject: 'subject',
     term: 'term',
     gradeLevel: 'gradeLevel',
-    learningObjectives: 'learningObjectives'
+    learningObjectives: 'learningObjectives',
+    gradingPolicy: 'gradingPolicy',
+    policies: 'policies'
   };
 
   export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
@@ -16448,6 +16243,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -16654,8 +16456,8 @@ export namespace Prisma {
     gradeLevel?: StringFilter<"Course"> | string
     learningObjectives?: StringNullableListFilter<"Course">
     requiredMaterials?: MaterialCompositeListFilter | MaterialObjectEqualityInput[]
-    gradingPolicy?: XOR<GradingPolicyCompositeFilter, GradingPolicyObjectEqualityInput>
-    policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
+    gradingPolicy?: JsonFilter<"Course">
+    policies?: JsonFilter<"Course">
     weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     assignment?: AssignmentListRelationFilter
@@ -16675,8 +16477,8 @@ export namespace Prisma {
     gradeLevel?: SortOrder
     learningObjectives?: SortOrder
     requiredMaterials?: MaterialOrderByCompositeAggregateInput
-    gradingPolicy?: GradingPolicyOrderByInput
-    policies?: PoliciesOrderByInput
+    gradingPolicy?: SortOrder
+    policies?: SortOrder
     weeklySchedule?: WeeklyScheduleOrderByCompositeAggregateInput
     user?: UserOrderByWithRelationInput
     assignment?: AssignmentOrderByRelationAggregateInput
@@ -16699,8 +16501,8 @@ export namespace Prisma {
     gradeLevel?: StringFilter<"Course"> | string
     learningObjectives?: StringNullableListFilter<"Course">
     requiredMaterials?: MaterialCompositeListFilter | MaterialObjectEqualityInput[]
-    gradingPolicy?: XOR<GradingPolicyCompositeFilter, GradingPolicyObjectEqualityInput>
-    policies?: XOR<PoliciesCompositeFilter, PoliciesObjectEqualityInput>
+    gradingPolicy?: JsonFilter<"Course">
+    policies?: JsonFilter<"Course">
     weeklySchedule?: WeeklyScheduleCompositeListFilter | WeeklyScheduleObjectEqualityInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     assignment?: AssignmentListRelationFilter
@@ -16719,6 +16521,8 @@ export namespace Prisma {
     term?: SortOrder
     gradeLevel?: SortOrder
     learningObjectives?: SortOrder
+    gradingPolicy?: SortOrder
+    policies?: SortOrder
     _count?: CourseCountOrderByAggregateInput
     _max?: CourseMaxOrderByAggregateInput
     _min?: CourseMinOrderByAggregateInput
@@ -16739,6 +16543,8 @@ export namespace Prisma {
     term?: StringWithAggregatesFilter<"Course"> | string
     gradeLevel?: StringWithAggregatesFilter<"Course"> | string
     learningObjectives?: StringNullableListFilter<"Course">
+    gradingPolicy?: JsonWithAggregatesFilter<"Course">
+    policies?: JsonWithAggregatesFilter<"Course">
   }
 
   export type AssignmentWhereInput = {
@@ -17561,8 +17367,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user: UserCreateNestedOneWithoutCoursesInput
     assignment?: AssignmentCreateNestedManyWithoutCourseInput
@@ -17582,8 +17388,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
     student?: StudentUncheckedCreateNestedManyWithoutCourseInput
@@ -17600,8 +17406,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user?: UserUpdateOneRequiredWithoutCoursesNestedInput
     assignment?: AssignmentUpdateManyWithoutCourseNestedInput
@@ -17620,8 +17426,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
     student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
@@ -17640,8 +17446,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
@@ -17656,8 +17462,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
@@ -17673,8 +17479,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
@@ -18547,34 +18353,19 @@ export namespace Prisma {
     title: string
     author: string
     publisher: string
-    year: string
+    year: number
     required: boolean
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type GradingPolicyCompositeFilter = {
-    equals?: GradingPolicyObjectEqualityInput
-    is?: GradingPolicyWhereInput
-    isNot?: GradingPolicyWhereInput
-  }
-
-  export type GradingPolicyObjectEqualityInput = {
-    assignments: GradingComponentObjectEqualityInput
-    midterm: GradingComponentObjectEqualityInput
-    finalExam: GradingComponentObjectEqualityInput
-    participation: GradingComponentObjectEqualityInput
-  }
-
-  export type PoliciesCompositeFilter = {
-    equals?: PoliciesObjectEqualityInput
-    is?: PoliciesWhereInput
-    isNot?: PoliciesWhereInput
-  }
-
-  export type PoliciesObjectEqualityInput = {
-    attendance: string
-    lateWork: string
-    academicIntegrity: string
-    accommodations: string
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
   }
 
   export type WeeklyScheduleCompositeListFilter = {
@@ -18602,20 +18393,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type GradingPolicyOrderByInput = {
-    assignments?: GradingComponentOrderByInput
-    midterm?: GradingComponentOrderByInput
-    finalExam?: GradingComponentOrderByInput
-    participation?: GradingComponentOrderByInput
-  }
-
-  export type PoliciesOrderByInput = {
-    attendance?: SortOrder
-    lateWork?: SortOrder
-    academicIntegrity?: SortOrder
-    accommodations?: SortOrder
-  }
-
   export type WeeklyScheduleOrderByCompositeAggregateInput = {
     _count?: SortOrder
   }
@@ -18632,6 +18409,8 @@ export namespace Prisma {
     term?: SortOrder
     gradeLevel?: SortOrder
     learningObjectives?: SortOrder
+    gradingPolicy?: SortOrder
+    policies?: SortOrder
   }
 
   export type CourseMaxOrderByAggregateInput = {
@@ -18658,6 +18437,20 @@ export namespace Prisma {
     subject?: SortOrder
     term?: SortOrder
     gradeLevel?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -19443,30 +19236,8 @@ export namespace Prisma {
     title: string
     author: string
     publisher: string
-    year: string
+    year: number
     required: boolean
-  }
-
-  export type GradingPolicyCreateEnvelopeInput = {
-    set?: GradingPolicyCreateInput
-  }
-
-  export type GradingPolicyCreateInput = {
-    assignments: GradingComponentCreateInput
-    midterm: GradingComponentCreateInput
-    finalExam: GradingComponentCreateInput
-    participation: GradingComponentCreateInput
-  }
-
-  export type PoliciesCreateEnvelopeInput = {
-    set?: PoliciesCreateInput
-  }
-
-  export type PoliciesCreateInput = {
-    attendance: string
-    lateWork: string
-    academicIntegrity: string
-    accommodations: string
   }
 
   export type WeeklyScheduleListCreateEnvelopeInput = {
@@ -19524,16 +19295,6 @@ export namespace Prisma {
     push?: MaterialCreateInput | MaterialCreateInput[]
     updateMany?: MaterialUpdateManyInput
     deleteMany?: MaterialDeleteManyInput
-  }
-
-  export type GradingPolicyUpdateEnvelopeInput = {
-    set?: GradingPolicyCreateInput
-    update?: GradingPolicyUpdateInput
-  }
-
-  export type PoliciesUpdateEnvelopeInput = {
-    set?: PoliciesCreateInput
-    update?: PoliciesUpdateInput
   }
 
   export type WeeklyScheduleListUpdateEnvelopeInput = {
@@ -20232,33 +19993,8 @@ export namespace Prisma {
     title?: StringFilter<"Material"> | string
     author?: StringFilter<"Material"> | string
     publisher?: StringFilter<"Material"> | string
-    year?: StringFilter<"Material"> | string
+    year?: IntFilter<"Material"> | number
     required?: BoolFilter<"Material"> | boolean
-  }
-
-  export type GradingPolicyWhereInput = {
-    AND?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    OR?: GradingPolicyWhereInput[]
-    NOT?: GradingPolicyWhereInput | GradingPolicyWhereInput[]
-    assignments?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
-    midterm?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
-    finalExam?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
-    participation?: XOR<GradingComponentCompositeFilter, GradingComponentObjectEqualityInput>
-  }
-
-  export type GradingComponentObjectEqualityInput = {
-    description: string
-    percentage: number
-  }
-
-  export type PoliciesWhereInput = {
-    AND?: PoliciesWhereInput | PoliciesWhereInput[]
-    OR?: PoliciesWhereInput[]
-    NOT?: PoliciesWhereInput | PoliciesWhereInput[]
-    attendance?: StringFilter<"Policies"> | string
-    lateWork?: StringFilter<"Policies"> | string
-    academicIntegrity?: StringFilter<"Policies"> | string
-    accommodations?: StringFilter<"Policies"> | string
   }
 
   export type WeeklyScheduleWhereInput = {
@@ -20270,10 +20006,16 @@ export namespace Prisma {
     readings?: StringFilter<"WeeklySchedule"> | string
     assignments?: StringFilter<"WeeklySchedule"> | string
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type GradingComponentOrderByInput = {
-    description?: SortOrder
-    percentage?: SortOrder
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -20435,8 +20177,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentCreateNestedManyWithoutCourseInput
     student?: StudentCreateNestedManyWithoutCourseInput
@@ -20454,8 +20196,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
     student?: StudentUncheckedCreateNestedManyWithoutCourseInput
@@ -20606,6 +20348,8 @@ export namespace Prisma {
     term?: StringFilter<"Course"> | string
     gradeLevel?: StringFilter<"Course"> | string
     learningObjectives?: StringNullableListFilter<"Course">
+    gradingPolicy?: JsonFilter<"Course">
+    policies?: JsonFilter<"Course">
   }
 
   export type AssignmentUpsertWithWhereUniqueWithoutUserInput = {
@@ -20704,11 +20448,6 @@ export namespace Prisma {
     timeStamp?: DateTimeFilter<"InlineComment"> | Date | string
     authorId?: StringFilter<"InlineComment"> | string
     submissionId?: StringFilter<"InlineComment"> | string
-  }
-
-  export type GradingComponentCreateInput = {
-    description: string
-    percentage: number
   }
 
   export type UserCreateWithoutCoursesInput = {
@@ -20823,20 +20562,6 @@ export namespace Prisma {
     where: MaterialWhereInput
   }
 
-  export type GradingPolicyUpdateInput = {
-    assignments?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
-    midterm?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
-    finalExam?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
-    participation?: XOR<GradingComponentUpdateEnvelopeInput, GradingComponentCreateInput>
-  }
-
-  export type PoliciesUpdateInput = {
-    attendance?: StringFieldUpdateOperationsInput | string
-    lateWork?: StringFieldUpdateOperationsInput | string
-    academicIntegrity?: StringFieldUpdateOperationsInput | string
-    accommodations?: StringFieldUpdateOperationsInput | string
-  }
-
   export type WeeklyScheduleUpdateManyInput = {
     where: WeeklyScheduleWhereInput
     data: WeeklyScheduleUpdateInput
@@ -20948,8 +20673,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user: UserCreateNestedOneWithoutCoursesInput
     student?: StudentCreateNestedManyWithoutCourseInput
@@ -20968,8 +20693,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     student?: StudentUncheckedCreateNestedManyWithoutCourseInput
   }
@@ -21075,8 +20800,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user?: UserUpdateOneRequiredWithoutCoursesNestedInput
     student?: StudentUpdateManyWithoutCourseNestedInput
@@ -21094,8 +20819,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
   }
@@ -21173,8 +20898,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user: UserCreateNestedOneWithoutCoursesInput
     assignment?: AssignmentCreateNestedManyWithoutCourseInput
@@ -21193,8 +20918,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedCreateNestedManyWithoutCourseInput
   }
@@ -21257,8 +20982,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     user?: UserUpdateOneRequiredWithoutCoursesNestedInput
     assignment?: AssignmentUpdateManyWithoutCourseNestedInput
@@ -21276,8 +21001,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
   }
@@ -22249,12 +21974,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type GradingComponentCompositeFilter = {
-    equals?: GradingComponentObjectEqualityInput
-    is?: GradingComponentWhereInput
-    isNot?: GradingComponentWhereInput
-  }
-
   export type CourseCreateManyUserInput = {
     id?: string
     name: string
@@ -22267,8 +21986,8 @@ export namespace Prisma {
     gradeLevel: string
     learningObjectives?: CourseCreatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListCreateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy: XOR<GradingPolicyCreateEnvelopeInput, GradingPolicyCreateInput>
-    policies: XOR<PoliciesCreateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy: InputJsonValue
+    policies: InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListCreateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
@@ -22321,8 +22040,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUpdateManyWithoutCourseNestedInput
     student?: StudentUpdateManyWithoutCourseNestedInput
@@ -22339,8 +22058,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
     assignment?: AssignmentUncheckedUpdateManyWithoutCourseNestedInput
     student?: StudentUncheckedUpdateManyWithoutCourseNestedInput
@@ -22357,8 +22076,8 @@ export namespace Prisma {
     gradeLevel?: StringFieldUpdateOperationsInput | string
     learningObjectives?: CourseUpdatelearningObjectivesInput | string[]
     requiredMaterials?: XOR<MaterialListUpdateEnvelopeInput, MaterialCreateInput> | MaterialCreateInput[]
-    gradingPolicy?: XOR<GradingPolicyUpdateEnvelopeInput, GradingPolicyCreateInput>
-    policies?: XOR<PoliciesUpdateEnvelopeInput, PoliciesCreateInput>
+    gradingPolicy?: InputJsonValue | InputJsonValue
+    policies?: InputJsonValue | InputJsonValue
     weeklySchedule?: XOR<WeeklyScheduleListUpdateEnvelopeInput, WeeklyScheduleCreateInput> | WeeklyScheduleCreateInput[]
   }
 
@@ -22501,13 +22220,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     publisher?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     required?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type GradingComponentUpdateEnvelopeInput = {
-    set?: GradingComponentCreateInput
-    update?: GradingComponentUpdateInput
   }
 
   export type WeeklyScheduleUpdateInput = {
@@ -22777,21 +22491,8 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type GradingComponentWhereInput = {
-    AND?: GradingComponentWhereInput | GradingComponentWhereInput[]
-    OR?: GradingComponentWhereInput[]
-    NOT?: GradingComponentWhereInput | GradingComponentWhereInput[]
-    description?: StringFilter<"GradingComponent"> | string
-    percentage?: IntFilter<"GradingComponent"> | number
-  }
-
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type GradingComponentUpdateInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    percentage?: IntFieldUpdateOperationsInput | number
   }
 
 

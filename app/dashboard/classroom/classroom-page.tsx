@@ -40,7 +40,14 @@ export default function ClassroomPage() {
  
   const handleStudentSubmissiontoDB = async () => {
     
+    if(classList.length === 1){
+      
+      setSelectedCourseId(classList[0]['id']) // to make the onChange in SELECT work, bcz it doesnn't work if no of options is 1
+    }
+    
     const course = classList.find((item)=>item.id === selectedCourseId)
+    
+
     setStudentClass(course.name)
     try {
       const response = await fetch("/api/create-student", {

@@ -39,7 +39,7 @@ type Material {
   title     String
   author    String
   publisher String
-  year      String
+  year      Int
   required  Boolean
 }
 
@@ -113,9 +113,9 @@ model Course {
 
   requiredMaterials Material[]
 
-  gradingPolicy     GradingPolicy
+  gradingPolicy     Json  // Dynamic object stored here
 
-  policies          Policies
+  policies          Json
 
   weeklySchedule    WeeklySchedule[]
 

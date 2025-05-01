@@ -133,6 +133,7 @@ export default function Page({ params }:any) {
         const data = await response.json()
         
         setCourse(data)
+        
         let assignments = data.assignment 
         
         if(assignments){
@@ -341,11 +342,13 @@ export default function Page({ params }:any) {
 
                       <h3>Assignments and Grading</h3>
                       <ul>
-                        <li>Midterm Exam: {course.gradingPolicy &&  course.gradingPolicy.midterm.percentage}%</li>
-                        <li>Final Exam: {course.gradingPolicy && course.gradingPolicy.finalExam.percentage}%</li>
-                        
-                        <li>Assignments: {course.gradingPolicy && course.gradingPolicy.assignments.percentage}%</li>
-                        <li>Class Participation: {course.gradingPolicy && course.gradingPolicy.participation.percentage}%</li>
+
+                          { course.gradingPolicy && Object.entries(course.gradingPolicy).map(([key, value]) => (
+                          <li key={key}>
+                           <strong>{key}:</strong> {value.percentage}% 
+                            </li>
+                            ))}
+
                       </ul>
                     </div>
                   </CardContent>
